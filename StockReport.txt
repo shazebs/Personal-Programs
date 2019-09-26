@@ -1,0 +1,15 @@
+Current Stock Report as of 9/26/19
+
+Item Name            Price         Quantity   
+-------------------------------------------
+Computer Chair       $50           1
+Lava Lamp            $20           1
+Handheld Steamer     $35           1
+Keyboard             $80           1
+Helmut Lang Chair    $200          2
+Bike Pump            $15           1
+Women's Coat Size:2  $10           1
+--------------------------------------------
+Results              $410          8
+
+End of Report.
