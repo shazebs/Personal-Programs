@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   eBayNew.cpp
- * Author: shaze
+ * Author: Shazeb
  *
  * Created on September 26, 2019, 3:54 PM
  */
@@ -73,8 +67,7 @@ void StockReport(string variable)
             stockFile >> stockReport;
             cout << stockReport << endl;
         }
-        cout << endl;
-        
+        cout << "(End of Report)" << endl;  
     }
     else 
     {
@@ -114,8 +107,7 @@ void SalesReport(string variable)
             stockFile >> salesReport;
             cout << salesReport << endl;
         }
-        cout << endl;
-        
+        cout << "(End of Report)" << endl;
     }
     else 
     {
