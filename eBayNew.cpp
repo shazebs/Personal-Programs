@@ -17,6 +17,8 @@ using namespace std;
 // FUNCTION PROTOTYPES
 void StockReport(string);
 void SalesReport(string);
+void EbayProfitCalc();
+void ZadigEtVoltaire();
 
 
 int main(int argc, char** argv) {
@@ -25,8 +27,10 @@ int main(int argc, char** argv) {
     int reportChoice;
     string fileContents;
     
-    cout << "STOCK REPORT (1)" << endl;
-    cout << "SALES REPORT (2)" << endl;
+    cout << "(1) STOCK REPORT" << endl;
+    cout << "(2) SALES REPORT" << endl;
+    cout << "(3) EBAY PROFIT CALCULATOR" << endl;
+    cout << "(4) ZADIG-ET-VOLTAIRE CALCULATOR" << endl;
     cout << "Enter: ";
     cin >> reportChoice;
     
@@ -35,7 +39,11 @@ int main(int argc, char** argv) {
     else if (reportChoice == 2)
         SalesReport(fileContents); // second function call
     
-    // CALCULATIONS
+    // BACK FROM STATISTICAL REPORT FUNCTIONS
+    if (reportChoice == 3)
+        EbayProfitCalc();
+    else if (reportChoice == 4)
+        ZadigEtVoltaire();
     
     
     // TEST OUTPUT
@@ -61,7 +69,7 @@ void StockReport(string variable)
     if (stockFile)
     {
         cout << "File opened successfully!\n";
-        cout << "File's Contents:\n\n";
+        cout << "\nFile's Contents:\n";
         while (!stockFile.eof())
         {
             stockFile >> stockReport;
@@ -113,4 +121,29 @@ void SalesReport(string variable)
     {
         cout << "File failed to open!\n";
     }
+}
+
+// EBAY PROFIT CALCULATOR FUNCTION
+void EbayProfitCalc()
+{
+    // variable declaration
+    const float ebayFee = 0.1125;
+    const int shipFee = 15;
+    double price;
+    
+    cout << "Enter the price of an item: $";
+    cin >> price;
+    
+}
+
+// ZADIG-ET-VOLTAIRE CALCULATOR
+void ZadigEtVoltaire()
+{
+    // variable declaration
+    
+    // beginning prompts
+    
+    cout << "\n--------------------------------------\n";
+    cout << "Zadig-et-Voltaire Ebay Selling Section\n";
+    cout << "--------------------------------------\n";
 }
