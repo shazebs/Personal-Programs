@@ -32,6 +32,11 @@ void program11();
 void program12();
 void program13();
 void program14();
+void program15();
+bool openFileIn(fstream &, string);
+void showContents(fstream &);
+void program16();
+void showState(fstream &);
 
 int main(int argc, char** argv) {
     
@@ -71,6 +76,10 @@ int main(int argc, char** argv) {
         program13();
     else if (decision == 14)
         program14();
+    else if (decision == 15)
+        program15();
+    else if (decision == 16)
+        program16();
     
     // END PROGRAM
     cout << "\nProgram Ended Successfully";
@@ -110,7 +119,11 @@ void menu()
     cout << "(13) Program 12-3\n";
     cout << "     - This Program uses setprecision to format file output\n";
     cout << "(14) Program 12-4\n";
-    cout << "     -This program writes three rows of numbers to a file.\n";
+    cout << "     -This Program writes three rows of numbers to a file.\n";
+    cout << "(15) Program 12-5\n";
+    cout << "     -This Program passes file stream objects by reference to functions.\n";
+    cout << "(16) Program 12-6\n";
+    cout << "     -This Program demonstrates return value of the stream object error testing member functions.\n";
 }
 
 // PROGRAM EXAMPLE 1
@@ -617,3 +630,102 @@ void program14()
     // close the file again
     inFile.close();
 }
+
+// PROGRAM EXAMPLE 15
+void program15()
+{
+    // variable declaration
+    fstream dataFile;
+
+    cout << "\nProgram Example 15:\n";
+    if (openFileIn(dataFile, "demofile_12.4"))
+    {
+        cout << "File opened successfully.\n";
+        cout << "Now reading data from the file.\n\n";
+        showContents(dataFile);
+        dataFile.close();
+        cout << "\nDone.\n";
+    }
+    else 
+        cout << "File open error!" << endl;
+}
+// PROGRAM EXAMPLE 15 SUPPLEMENTAL FUNCTIONS
+bool openFileIn(fstream &file, string name)
+{
+    file.open(name, ios::in);
+    if (file.fail())
+        return false;
+    else 
+        return true;
+}
+void showContents(fstream &file)
+{
+    string line;
+    
+    while (file >> line)
+    {
+        cout << line << endl;
+    }
+}
+
+// PROGRAM EXAMPLE 16
+void program16()
+{
+    // variable declaration
+    int num = 10;
+    
+    // open the file for output
+    fstream testFile("stuff.dat", ios::out);
+    
+    cout << "\nProgram Example 16:\n";
+    if (testFile.fail())
+    {
+        cout << "ERROR: Cannot open the file.\n";
+    }
+    
+    // Write a value to the file
+    cout << "Writing the value " << num << " to the file.\n";
+    testFile << num;
+    
+    // show the bit states
+    showState(testFile);
+    
+    // close the file 
+    testFile.close();
+    
+    // reopen the file for input
+    testFile.open("stuff.dat", ios::in);
+    if (testFile.fail())
+    {
+        cout << "ERROR: Cannot open the file.\n";
+    }
+    
+    // Read the only value from the file
+    cout << "Reading from the file.\n";
+    testFile >> num;
+    cout << "The value " << num << " was read.\n";
+    
+    // show the bit states
+    showState(testFile);
+    
+    // no more data in the file, but for an invalid read operation
+    cout << "Forcing a bad read operation.\n";
+    testFile >> num;
+    
+    // show the bit states 
+    showState(testFile);
+    
+    // close the file 
+    testFile.close();
+}
+// PROGRAM EXAMPLE 16 SUPPLEMENTAL FUNCTIONS
+void showState(fstream &file)
+{
+    cout << "File Status:\n";
+    cout << " eof bit: " << file.eof() << endl;
+    cout << " fail bit: " << file.fail() << endl;
+    cout << " bad bit: " << file.bad() << endl;
+    cout << " good bit: " << file.good() << endl;
+    file.clear();   // clear any bad bits
+}
+    
