@@ -60,6 +60,24 @@ struct Info
     char phone[PHONE_SIZE];
 };
 void program26();
+void program27();
+void program28();
+// supplemental functions for program 28
+long byteNum(int);
+void showRec(Info);
+void program29();
+void program30();
+// supplemental code for program 30
+const int DESC_SIZE = 31;   // description size
+const int NUM_RECORDS = 5;  // number of records
+struct InventoryItem
+{
+    char desc[DESC_SIZE];
+    int qty;
+    double price;
+};
+void program31();
+
 
 //------------------------------------------------------------------------------
 //                            Main Functions Begins
@@ -126,6 +144,16 @@ int main(int argc, char** argv) {
         program25();
     else if (decision == 26)
         program26();
+    else if (decision == 27)
+        program27();
+    else if (decision == 28)
+        program28();
+    else if (decision == 29)
+        program29();
+    else if (decision == 30)
+        program30();
+    else if (decision == 31)
+        program31();
     
     // END PROGRAM
     cout << "\nProgram Ended Successfully";
@@ -190,6 +218,16 @@ void menu()
     cout << "     -This Program uses a structure variable to STORE a record to a file.\n";
     cout << "(26) Program 12-16\n";
     cout << "     -This Program uses a structure variable to READ a record from a file.\n";
+    cout << "(27) Program 12-17\n";
+    cout << "     -This Program demonstrates the 'seekg' function.\n";
+    cout << "(28) Program 12-18\n";
+    cout << "     -This Program demonstrates the 'seekg' function.\n";
+    cout << "(29) Program 12-19\n";
+    cout << "     -This Program demonstrates the 'tellg' function.\n";
+    cout << "(30) Program 12-20\n";
+    cout << "     -This Program sets up a file of blank inventory records.\n";
+    cout << "(31) Program 12-21\n";
+    cout << "     -This Program displays the contents of the inventory item.\n";
 }
 
 // PROGRAM EXAMPLE 1
@@ -1134,7 +1172,7 @@ void program26()
 {
     // variable declaration
     Info person;
-    char ch;
+    // char ch;
     fstream people;     // file stream object
     
     // open the file for input in binary mode
@@ -1176,3 +1214,188 @@ void program26()
     cout << "(That's all the data in the file!)\n";
     people.close();
 }
+
+// PROGRAM EXAMPLE (27) 12-17
+void program27()
+{
+    // variable declaration
+    char ch;    // to hold a character
+    
+    // open the file for input
+    fstream file ("letters.txt", ios::in);
+    
+    // move to the byte 5 from the beginning of the file
+    // (the 6th byte) and read the character there.
+    file.seekg(5L, ios::beg);
+    file.get(ch);
+    cout << "Byte 5 from beginning: " << ch << endl;
+    
+    // move to the 10th byte from the end of the file and read the character there.
+    file.seekg(-10L,ios::end);
+    file.get(ch);
+    cout << "10th byte from end: " << ch << endl;
+    
+    // move to byte 3 from the current position 
+    // (the 4th byte) and read the character there
+    file.seekg(3L, ios::cur);
+    file.get(ch);
+    cout << "Byte 3 from current: " << ch << endl;
+    
+    file.close();    
+}
+
+// PROGRAM EXAMPLE 28
+void program28()
+{
+    cout << "\nProgram Example 29:\n";
+    
+    // variable declaration
+    Info person;    // to hold info about a person
+    fstream people; // File stream object
+    
+    // open the file for input in binary mode
+    people.open("people.dat", ios::in|ios::binary);
+    
+    cout << "\nProgram Example 28:\n";
+    // test for errors
+    if (!people)
+    {
+        cout << "Error opening file. Program aborting.\n";
+    }
+    
+    // read and display record 1 (the second record)
+    cout << "Here is record 1:\n";
+    people.seekg(byteNum(1), ios::beg);
+    people.read(reinterpret_cast<char *>(&person), sizeof(person));
+    showRec(person);
+    
+    // read and display record 0 (the first record)
+    cout << "Here is record 0:\n";
+    people.seekg(byteNum(0), ios::beg);
+    people.read(reinterpret_cast<char *>(&person), sizeof(person));
+    showRec(person);
+    
+    // close the file
+    people.close();
+}
+// SUPPLEMENTAL FUNCTIONS FOR PROGRAM 28
+
+//********************************************************************************************
+// Definition of function byteNum. Accepts an integer as its argument.                       *
+// Returns the byte number in the file of the record whose number is passed as the argument. *
+//********************************************************************************************
+long byteNum(int recNum)
+{
+    return sizeof(Info) * recNum;
+}
+
+//********************************************************************************************
+// Definition of function showRec. Accepts an Info structure as its argument, and displays   *
+// the structure's contents.                                                                 *
+//********************************************************************************************
+void showRec(Info record)
+{
+    cout << "Name: " << record.name << endl;
+    cout << "Age: " << record.age << endl;
+    cout << "Address Line 1: " << record.address1 << endl;
+    cout << "Address Line 2: " << record.address2 << endl;
+    cout << "Phone: " << record.phone << endl;
+}
+
+// PROGRAM EXAMPLE 29
+void program29()
+{
+    cout << "\nProgram Example 29:\n";
+    
+    // variable declaration
+    long offset;
+    long numBytes;
+    char ch;
+    char again;
+    
+    // open the file for input
+    fstream file("letters.txt", ios::in);
+    
+    // determine the number of bytes in the file
+    file.seekg(0L, ios::end);
+    numBytes = file.tellg();
+    cout << "The file has " << numBytes << " bytes.\n";
+    
+    // go back to the beginning of the file
+    file.seekg(0L, ios::beg);
+    
+    // let the user move around within the file
+    do 
+    {
+        // display the current read position
+        cout << "Currently at position " << file.tellg() << endl;
+        
+        // get a byte number from the user
+        cout << "Enter an offset from the beginning of the file: ";
+        cin >> offset;
+        
+        // move the read position to that byte, read the character there, and display it
+        if (offset >= numBytes)     // past the end of the file?
+            cout << "Cannot read past the end of the file.\n";
+        else 
+        {
+            file.seekg(offset, ios::beg);
+            file.get(ch);
+            cout << "Character read: " << ch << endl;
+        }
+        
+        // Does the user want to try this again?
+        cout << "Do it again?(y/n): ";
+        cin >> again;
+    } while (again == 'Y' || again == 'y');
+    
+    // close the file 
+    file.close();
+}
+
+// PROGRAM EXAMPLE (30) 12-20
+void program30()
+{
+    cout << "\nProgram Example 30:\n";
+    
+    // variable declaration
+    InventoryItem record = { "", 0, 0.0 };
+    
+    // open the file for binary output
+    fstream inventory("Inventory.dat", ios::out|ios::binary);
+    
+    // write the blank records
+    for (int i = 0; i < NUM_RECORDS; i++)
+    {
+        cout << "Now writing record " << i << endl;
+        inventory.write(reinterpret_cast<char *>(&record), sizeof(record));
+    }
+    // close the file
+    inventory.close();
+}
+
+// PROGRAM EXAMPLE (31) 12-21
+void program31()
+{
+    cout << "\nProgram Example 31:\n";
+    
+    // variable declaration
+    InventoryItem record;
+    
+    // open the file for binary input
+    fstream inventory("Inventory.dat", ios::in|ios::binary);
+    
+    // now read and display the records
+    inventory.read(reinterpret_cast<char *>(&record), sizeof(record));
+    
+    while ( !inventory.eof())
+    {
+        cout << "Description: " << record.desc << endl;
+        cout << "Quantity: " << record.qty << endl;
+        cout << "Price: $" << record.price << endl << endl;
+        inventory.read(reinterpret_cast<char *>(&record), sizeof(record));
+    }
+    // close the file
+    inventory.close();                   
+}
+
