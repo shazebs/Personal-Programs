@@ -187,9 +187,9 @@ void menu()
     cout << "(24) Program 12-14\n";
     cout << "     -This Program used the write and read functions with numbers.\n";
     cout << "(25) Program 12-15\n";
-    cout << "     -This Program uses a structure variable to store a record to a file.\n";
+    cout << "     -This Program uses a structure variable to STORE a record to a file.\n";
     cout << "(26) Program 12-16\n";
-    cout << "     -This Program uses a structure variable to read a record from a file.\n";
+    cout << "     -This Program uses a structure variable to READ a record from a file.\n";
 }
 
 // PROGRAM EXAMPLE 1
@@ -1098,13 +1098,13 @@ void program25()
     // open a file for binary output
     fstream people("people.dat", ios::out|ios::binary);
     
+    cout << "\nProgram Example 25:\n";
+    cout << "Enter the following data about a person:\n";
+    cin.ignore();
     do 
     {
         // get data about a person
-        cout << "\nProgram Example 25:\n";
-        cout << "Enter the following data about a person:\n";
         cout << "Name: ";
-        cin.ignore();
         cin.getline(person.name, NAME_SIZE);
         cout << "Age: ";
         cin >> person.age;
@@ -1127,22 +1127,6 @@ void program25()
     
     // close the file
     people.close();
-    
-    // my code addition
-    // open file again read the contents
-    Info displayPerson;
-    
-    people.open("people.dat", ios::in|ios::binary);
-    people.read(reinterpret_cast<char *>(&displayPerson), sizeof(displayPerson));
-    
-    cout << "\nFile Contents:\n";
-    cout << displayPerson.name << endl;
-    cout << displayPerson.age << endl;
-    cout << displayPerson.address1 << endl;
-    cout << displayPerson.address2 << endl;
-    cout << displayPerson.phone << endl;
-    
-    people.close(); // close the file again
 }
 
 // PROGRAM EXAMPLE 26
@@ -1150,7 +1134,7 @@ void program26()
 {
     // variable declaration
     Info person;
-    char again;
+    char ch;
     fstream people;     // file stream object
     
     // open the file for input in binary mode
@@ -1163,7 +1147,9 @@ void program26()
         cout << "Error opening file. Program aborting.\n";
     }
     
-    cout << "Here are the people in the file:\n\n";
+    cout << "Here are the people in the file:\n";
+    
+        cout << "--------------------------------\n";
     // read the first record from the file
     people.read(reinterpret_cast<char *>(&person), sizeof(person));
     
@@ -1176,15 +1162,17 @@ void program26()
         cout << "Address Line 1: " << person.address1 << endl;
         cout << "Address Line 2: " << person.address2 << endl;
         cout << "Phone: " << person.phone << endl;
-        
+        cout << "--------------------------------\n";
+        /*
         // wait for user to press the enter key
         cout << "\nPress the Enter key to see the next record.\n";
-        cin.get(again);
+        cin.get(ch);
+        */
         
         // read the next record from the file
         people.read(reinterpret_cast<char *>(&person), sizeof(person));
     }
     
-    cout << "That's all the data in the file!\n";
+    cout << "(That's all the data in the file!)\n";
     people.close();
 }
