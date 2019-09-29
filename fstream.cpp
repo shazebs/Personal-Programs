@@ -1,6 +1,6 @@
 /*
  * This program is used to hold all fstream example programs for quick 
- * reference and code translations. 
+ * reference and code templates/examples. 
  */
 
 /* 
@@ -14,6 +14,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <cctype>   // needed for toupper function member
 using namespace std;
 
 // FUNCTION PROTOTYPES
@@ -33,11 +34,36 @@ void program12();
 void program13();
 void program14();
 void program15();
+// supplemental functions for program 15
 bool openFileIn(fstream &, string);
 void showContents(fstream &);
 void program16();
+// supplemental function for program 16
 void showState(fstream &);
+void program17();
+void program18();
+void program19();
+void program20();
+void program21();
+void program22();
+void program23();
+void program24();
+void program25();
+// supplemental structure for program 25
+const int NAME_SIZE = 51, ADDR_SIZE = 51, PHONE_SIZE = 14;
+struct Info
+{
+    char name[NAME_SIZE];
+    int age;
+    char address1[ADDR_SIZE];
+    char address2[ADDR_SIZE];
+    char phone[PHONE_SIZE];
+};
+void program26();
 
+//------------------------------------------------------------------------------
+//                            Main Functions Begins
+//------------------------------------------------------------------------------
 int main(int argc, char** argv) {
     
     // VARIABLE DECLRATION
@@ -80,6 +106,26 @@ int main(int argc, char** argv) {
         program15();
     else if (decision == 16)
         program16();
+    else if (decision == 17)
+        program17();
+    else if (decision == 18)
+        program18();
+    else if (decision == 19)
+        program19();
+    else if (decision == 20)
+        program20();
+    else if (decision == 21)
+        program21();
+    else if (decision == 22)
+        program22();
+    else if (decision == 23)
+        program23();
+    else if (decision == 24)
+        program24();
+    else if (decision == 25)
+        program25();
+    else if (decision == 26)
+        program26();
     
     // END PROGRAM
     cout << "\nProgram Ended Successfully";
@@ -124,6 +170,26 @@ void menu()
     cout << "     -This Program passes file stream objects by reference to functions.\n";
     cout << "(16) Program 12-6\n";
     cout << "     -This Program demonstrates return value of the stream object error testing member functions.\n";
+    cout << "(17) Program 12-7\n";
+    cout << "     -This Program demonstrates how the >> operator should not be used to read data that contain whitespace characters from a file.\n";
+    cout << "(18) Program 12-8\n";
+    cout << "     -This Program uses the getline function to read a line of data from the file.\n";
+    cout << "(19) Program 12-9\n";
+    cout << "     -This Program demonstrates the getline function with a specified delimeter($).\n";
+    cout << "(20) Program 12-10\n";
+    cout << "     -This Program asks the user for a file name. File is opened and its contents are displayed on the screen.\n";
+    cout << "(21) Program 12-11\n";
+    cout << "     -This Program demonstrates the put member function.\n";
+    cout << "(22) Program 12-12\n";
+    cout << "     -This Program demonstrates reading from one file and writing to a second file.\n";
+    cout << "(23) Program 12-13\n";
+    cout << "     -This Program uses the write and read functions with characters.\n";
+    cout << "(24) Program 12-14\n";
+    cout << "     -This Program used the write and read functions with numbers.\n";
+    cout << "(25) Program 12-15\n";
+    cout << "     -This Program uses a structure variable to store a record to a file.\n";
+    cout << "(26) Program 12-16\n";
+    cout << "     -This Program uses a structure variable to read a record from a file.\n";
 }
 
 // PROGRAM EXAMPLE 1
@@ -638,7 +704,7 @@ void program15()
     fstream dataFile;
 
     cout << "\nProgram Example 15:\n";
-    if (openFileIn(dataFile, "demofile_12.4"))
+    if (openFileIn(dataFile, "demofile.txt"))
     {
         cout << "File opened successfully.\n";
         cout << "Now reading data from the file.\n\n";
@@ -729,3 +795,396 @@ void showState(fstream &file)
     file.clear();   // clear any bad bits
 }
     
+// PROGRAM EXAMPLE 17
+void program17()
+{
+    // variable declaration
+    string input;       // To hold file input
+    fstream nameFile;   // File stream object
+    
+    // open the file in input mode
+    nameFile.open("murphy.txt", ios::in);
+    
+    cout << "\nProgram Example 17:\n";
+    // if the file successfully opens, continue.
+    if (nameFile)
+    {
+        // read the contents
+        while (nameFile >> input)
+        {
+            cout << input;
+        }
+        cout << endl;
+        // close the file
+        nameFile.close();
+    }
+    else 
+    {
+        cout << "ERROR: Cannot open file.\n";
+    }
+}
+
+// PROGRAM EXAMPLE 18 
+void program18()
+{
+    // variable declaration
+    string input;       // to hold file input
+    fstream nameFile;   // File stream object
+    
+    // open the file in input mode
+    nameFile.open("murphy.txt", ios::in);
+    
+    // if the file was successfully opened, continue.
+    cout << "\nProgram Example 18:\n";
+    if (nameFile)
+    {
+        // read a line from the file
+        getline(nameFile,input);
+        
+        // while last read operation is a success, continue. 
+        while (nameFile)
+        {
+            // display the last item read
+            cout << input << endl;
+            
+            // read the next item
+            getline(nameFile,input);
+        }
+        // close the file
+        nameFile.close();
+    }
+    else
+    {
+        cout << "ERROR: Cannot open file.\n";
+    }
+}
+
+// PROGRAM EXAMPLE 19
+void program19()
+{
+    // variable declaration
+    string input;   // to hold file input
+    
+    // open the file for input
+    fstream dataFile("names2.txt", ios::in);
+    
+    // if the file was successfully opened, continue.
+    if (dataFile)
+    {
+        // read an item using '$' as a delimeter.
+        getline(dataFile, input, '$');
+        
+        // while last operation was a success, continue
+        while (dataFile)
+        {
+            // display last item read
+            cout << input << endl;
+            
+            // read another item
+            getline(dataFile, input, '$');
+        }
+        
+        // close the file
+        dataFile.close();
+    }
+    else 
+    {
+        cout << "ERROR: Cannot open file.\n";
+    }
+}
+
+// PROGRAM EXAMPLE 20
+void program20()
+{
+    // variable declaration
+    string fileName;    // to hold the file name
+    char ch;            // to hold a character
+    fstream file;       // file stream object
+    
+    // get the file name
+    cout << "\nProgram Example 20:\n";
+    cout << "Enter a file name: ";
+    //cin >> fileName   // This only reads up till whitespace
+    cin.ignore();
+    getline(cin,fileName);  // This processes whitespaces too
+    
+    
+    // open the file
+    file.open(fileName, ios::in);
+    
+    // open the file
+    file.open(fileName, ios::in);
+    
+    // if the file was successfully opened, continue.
+    if (file)
+    {
+        // get a character from the file
+        file.get(ch);
+        
+        // while last read operation is successful, continue.
+        while (file)
+        {
+            // display last character read
+            cout << ch;
+            
+            // read the next character
+            file.get(ch);
+        }
+        // close the file
+        file.close();
+    }
+    else 
+    {
+        cout << fileName << " could not be opened.\n";
+    }
+}
+
+// PROGRAM EXAMPLE 21
+void program21()
+{
+    // variable declaration
+    char ch;    // to hold a character
+    
+    // open the file for output
+    fstream dataFile("sentence.txt", ios::out);
+    
+    cout << "\nProgram Example 21:\n";
+    cout << "Type a sentence and be sure to end it with a period.\n";
+    
+    // get a sentence from the user one character at a time and write
+    // each character to the file.
+    cin.get(ch);
+    while (ch != '.')
+    {
+        dataFile.put(ch);
+        cin.get(ch);
+    }
+    
+    dataFile.put(ch);   // write the period
+    
+    // close the file
+    cout << "(Sentence has been written to a file.)\n";
+    dataFile.close();
+}
+
+// PROGRAM EXAMPLE 22
+void program22()
+{
+    // variable declaration
+    string fileName;    // to hold the file name
+    char ch;            // to hold a character
+    ifstream inFile;    // input file
+    
+    // open a file for output
+    ofstream outFile("out.txt");
+    
+    // get the input file name
+    cout << "Enter a file name: ";
+    cin.ignore();
+    getline(cin,fileName);
+    
+    // open the file for input
+    inFile.open(fileName);
+    
+    // if the input file opened successfully, continue.
+    if (inFile)
+    {
+        // read a char from file 1
+        inFile.get(ch);
+        
+        // while last read operation is a success, continue.
+        while (inFile)
+        {
+            // write Upper char to file 2
+            outFile.put(toupper(ch));
+            
+            // read another char from file 1
+            inFile.get(ch);
+        }
+        
+        // close the two files
+        inFile.close();
+        outFile.close();
+        cout << "File conversion done.\n";
+    }
+    else
+        cout << "Cannot open " << fileName << endl;
+}
+
+// PROGRAM EXAMPLE 23
+void program23()
+{
+    // Perhaps can be used for array file storages
+    // variable declaration
+    const int size = 4;
+    char data[size] = {'A', 'B', 'C', 'D'};
+    fstream file;
+    
+    // open the file for output in binary mode
+    file.open("test.dat", ios::out|ios::binary);
+    
+    // write the contents of the array to the file
+    cout << "\nProgram Example 23:\n";
+    cout << "Writing the characters to the file.\n";
+    file.write(data, sizeof(data));
+    
+    // close the file
+    file.close();
+    
+    // open the file for input in binary mode
+    file.open("test.dat", ios::in|ios::binary);
+    
+    // read the contents of the file into the array
+    cout << "Now reading the data back into memory.\n";
+    file.read(data,sizeof(data));
+    
+    // display the contents of the array
+    for (int i = 0; i < size; i++)
+    {
+        cout << data[i] << " ";
+    }
+    cout << endl;
+    
+    // close the file
+    file.close();
+}
+
+// PROGRAM EXAMPLE 24
+void program24()
+{
+    // variable declarations
+    const int size = 10;
+    fstream file;
+    int numbers[size] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    
+    // open the file for output in binary mode
+    file.open("numbers.dat", ios::out|ios::binary);
+    
+    // write the contents of the array to the file
+    cout << "\nProgram Example 24:\n";
+    cout << "Writing the data to the file.\n";
+    file.write(reinterpret_cast<char *>(numbers), sizeof(numbers));
+    
+    // close the file
+    file.close();
+    
+    // open the file for input in binary mode
+    file.open("numbers.dat", ios::in|ios::binary);
+    
+    // read the contents of the file back into a new array
+    int displayNumbers[size];
+    
+    cout << "Now reading back the data back in memory.\n";
+    file.read(reinterpret_cast<char *>(displayNumbers), sizeof(displayNumbers));
+    
+    // display the contents of the array
+    for (int i = 0; i < size; i++)
+    {
+        cout << displayNumbers[i] << " ";
+    }
+    cout << endl;
+    
+    // close the file again
+    file.close();
+}
+
+// PROGRAM EXAMPLE 25
+void program25()
+{
+    // variable declaration
+    Info person;    // to hold info aobut a person
+    char again;     // to hold Y or N
+    
+    // open a file for binary output
+    fstream people("people.dat", ios::out|ios::binary);
+    
+    do 
+    {
+        // get data about a person
+        cout << "\nProgram Example 25:\n";
+        cout << "Enter the following data about a person:\n";
+        cout << "Name: ";
+        cin.ignore();
+        cin.getline(person.name, NAME_SIZE);
+        cout << "Age: ";
+        cin >> person.age;
+        cin.ignore();       // skip over remaining newline
+        cout << "Address line 1: ";
+        cin.getline(person.address1, ADDR_SIZE);
+        cout << "Address line 2: ";
+        cin.getline(person.address2, ADDR_SIZE);
+        cout << "Phone: ";
+        cin.getline(person.phone, PHONE_SIZE);
+        
+        // write the contents of the person structure to the file
+        people.write(reinterpret_cast<char *>(&person), sizeof(person));
+        
+        // determine whether the user wants to write another record
+        cout << "Do you want to enter another record?(y/n): ";
+        cin >> again;
+        cin.ignore();
+    } while (again == 'Y' || again == 'y');
+    
+    // close the file
+    people.close();
+    
+    // my code addition
+    // open file again read the contents
+    Info displayPerson;
+    
+    people.open("people.dat", ios::in|ios::binary);
+    people.read(reinterpret_cast<char *>(&displayPerson), sizeof(displayPerson));
+    
+    cout << "\nFile Contents:\n";
+    cout << displayPerson.name << endl;
+    cout << displayPerson.age << endl;
+    cout << displayPerson.address1 << endl;
+    cout << displayPerson.address2 << endl;
+    cout << displayPerson.phone << endl;
+    
+    people.close(); // close the file again
+}
+
+// PROGRAM EXAMPLE 26
+void program26()
+{
+    // variable declaration
+    Info person;
+    char again;
+    fstream people;     // file stream object
+    
+    // open the file for input in binary mode
+    people.open("people.dat", ios::in|ios::binary);
+    
+    // test for errors
+    cout << "\nProgram Example 26:\n";
+    if (!people)
+    {
+        cout << "Error opening file. Program aborting.\n";
+    }
+    
+    cout << "Here are the people in the file:\n\n";
+    // read the first record from the file
+    people.read(reinterpret_cast<char *>(&person), sizeof(person));
+    
+    // while not at the end of the file, display the records
+    while (!people.eof())
+    {
+        // display the record
+        cout << "Name: " << person.name << endl;
+        cout << "Age: " << person.age << endl;
+        cout << "Address Line 1: " << person.address1 << endl;
+        cout << "Address Line 2: " << person.address2 << endl;
+        cout << "Phone: " << person.phone << endl;
+        
+        // wait for user to press the enter key
+        cout << "\nPress the Enter key to see the next record.\n";
+        cin.get(again);
+        
+        // read the next record from the file
+        people.read(reinterpret_cast<char *>(&person), sizeof(person));
+    }
+    
+    cout << "That's all the data in the file!\n";
+    people.close();
+}
