@@ -77,6 +77,7 @@ struct InventoryItem
     double price;
 };
 void program31();
+void program32();
 
 
 //------------------------------------------------------------------------------
@@ -154,6 +155,8 @@ int main(int argc, char** argv) {
         program30();
     else if (decision == 31)
         program31();
+    else if (decision == 32)
+        program32();
     
     // END PROGRAM
     cout << "\nProgram Ended Successfully";
@@ -228,6 +231,8 @@ void menu()
     cout << "     -This Program sets up a file of blank inventory records.\n";
     cout << "(31) Program 12-21\n";
     cout << "     -This Program displays the contents of the inventory item.\n";
+    cout << "(32) Program 12-21\n";
+    cout << "     -This Program allows the user to edit a specific record.\n";
 }
 
 // PROGRAM EXAMPLE 1
@@ -1397,5 +1402,50 @@ void program31()
     }
     // close the file
     inventory.close();                   
+}
+
+// PROGRAM EXAMPLE (32) 12-22
+void program32()
+{
+    cout << "\nProgram Example 32:\n";
+    
+    // variable declaration
+    InventoryItem record;   // to hold an inventory record
+    long recNum;            // to hold a record number
+    
+    // open the file in binary mode for input and output
+    fstream inventory("Inventory.dat", ios::in|ios::out|ios::binary);
+    
+    // get the record number of the desired record
+    cout << "Which record do you want to edit?: ";
+    cin >> recNum;
+    
+    // move to the record number of the desired record
+    inventory.seekg(recNum * sizeof(record), ios::beg);
+    inventory.read(reinterpret_cast<char *>(&record), sizeof(record));
+    
+    // display the record contents
+    cout << "Description: " << record.desc << endl;
+    cout << "Quantity: " << record.qty << endl;
+    cout << "Price: $" << record.price << endl;
+    
+    // get the new record data
+    cout << "Enter the new data:\n";
+    cout << "Description: ";
+    cin.ignore();
+    cin.getline(record.desc, DESC_SIZE);
+    cout << "Quantity: ";
+    cin >> record.qty;
+    cout << "Price: $";
+    cin >> record.price;
+    
+    // move back to the beginning of this record's position
+    inventory.seekp(recNum * sizeof(record), ios::beg);
+    
+    // write the new record over the current record 
+    inventory.write(reinterpret_cast<char *>(&record), sizeof(record));
+    
+    // close the file
+    inventory.close();  
 }
 
