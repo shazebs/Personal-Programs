@@ -1191,8 +1191,7 @@ void program26()
     }
     
     cout << "Here are the people in the file:\n";
-    
-        cout << "--------------------------------\n";
+    cout << "--------------------------------\n";
     // read the first record from the file
     people.read(reinterpret_cast<char *>(&person), sizeof(person));
     
@@ -1223,6 +1222,8 @@ void program26()
 // PROGRAM EXAMPLE (27) 12-17
 void program27()
 {
+    cout << "\nProgram Example 27:\n";
+    
     // variable declaration
     char ch;    // to hold a character
     
@@ -1251,9 +1252,7 @@ void program27()
 
 // PROGRAM EXAMPLE 28
 void program28()
-{
-    cout << "\nProgram Example 29:\n";
-    
+{    
     // variable declaration
     Info person;    // to hold info about a person
     fstream people; // File stream object
@@ -1269,13 +1268,13 @@ void program28()
     }
     
     // read and display record 1 (the second record)
-    cout << "Here is record 1:\n";
+    cout << "\nHere is record 1:\n";
     people.seekg(byteNum(1), ios::beg);
     people.read(reinterpret_cast<char *>(&person), sizeof(person));
     showRec(person);
     
     // read and display record 0 (the first record)
-    cout << "Here is record 0:\n";
+    cout << "\nHere is record 0:\n";
     people.seekg(byteNum(0), ios::beg);
     people.read(reinterpret_cast<char *>(&person), sizeof(person));
     showRec(person);
