@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 // structure for items
@@ -20,14 +21,13 @@ struct InventoryItem
 
 // Function Prototypes
 void menu();
-void StockReports(struct);
-void SalesReports(struct);
+void StockReports();
+void SalesReports();
 
 // int main
 int main()
 {
     // variable declaration
-    InventoryItem item;     // structure object
     int selection;          // menu decision
     
     
@@ -38,11 +38,11 @@ int main()
     
     if (selection == 1)
     {
-        StockReports(item);
+        StockReports();
     }
     else if (selection == 2)
     {
-        SalesReports(item);
+        SalesReports();
     }
     else if (selection == 0)
     {
@@ -67,12 +67,13 @@ void menu()
 }
 
 // Stock Reports Function
-void StockReports(struct record)
+void StockReports()
 {
     cout << "\nWelcome to the Stock Reports";
     cout << "\n-----------------------------\n";
     
     // variable declaration
+    InventoryItem item;     // structure object
     fstream file;
     char ch;
     
@@ -84,35 +85,51 @@ void StockReports(struct record)
     cout << "Enter the following information about 1 item in inventory:\n";
     cout << "Enter the name of an item: ";
     cin.ignore();
-    getline(cin, record.name);
+    getline(cin, item.name);
+    file << item.name << endl;
     cout << "Enter Price: $ ";
-    cin >> record.price;
+    cin >> item.price;
+    file << item.price << endl;
     cout << "Enter Item Color: ";
     cin.ignore();
-    getline(cin, record.color);
+    getline(cin, item.color);
+    file << item.color << endl;
     cout << "Enter Item Quantity: ";
-    cin >> record.qty;
+    cin >> item.qty;
+    file << item.qty << endl;
     
-    cout << "\nIs this a Zadig & Voltaire Handbag?(y/n): ";
+    cout << "Is this a Zadig & Voltaire Handbag?(y/n): ";
     cin >> ch;
     if (ch == 'Y' || ch == 'y')
     {
-        cout << "Enter the following about the bag:\n";
+        cout << "Enter the following about the bag in inches:\n";
         cout << "Width: ";
-        cin >> record.width;
+        cin >> item.width;
+        file << item.width << endl;
         cout << "Height: ";
-        cin >> record.height;
+        cin >> item.height;
+        file << item.height << endl;
         cout << "Depth: ";
-        cin >> record.depth;
+        cin >> item.depth;
+        file << item.depth << endl;
         cout << "Strap Drop: ";
-        cin >> record.strap;
-    }
+        cin >> item.strap;
+        file << item.strap << endl;
+    }    
+    
+    // read back the contents of the file
+    string text;
+    file.close();
+    file.open("SalesReports.txt", ios::in);
+    
+    file.read(reinterpret_cast<char *>(&item), sizeof(item));
+    
     
     
 }
 
 // Sales Reports Function
-void SalesReports(struct record)
+void SalesReports()
 {
     cout << endl << "Welcome to the Sales Reports";
     cout << "\n-----------------------------\n";
