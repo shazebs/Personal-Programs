@@ -1,7 +1,6 @@
 /* 
  * File:   StockStruct.cpp
  * Author: Shazeb
- *
  * Created on October 1, 2019, 2:13 AM
  * 
  *                                    Q&A's
@@ -28,6 +27,7 @@
  * 
  * Q: Possibility of a Phase 4?
  * A: Perhaps, I will have to go based off the needs of the business. 
+ -----------------------------------------------------------------------------
  */
 
 #include <cstdlib>
@@ -37,20 +37,29 @@
 #include <fstream>
 using namespace std;
 
-// Global Constants 
+//*******************
+// Global Constants *
+//*******************
+const double ebayFee;
+const double paypalFee;
+const double ShipFee;
+const double TAX = 7.75;
 
-// Struct - InventoryItem
+//*************************
+// Structures Declaration *
+//*************************
 struct InventoryItem
 {
     string name;
     double price;
     int qty;
-    
-    
 };
 
-// Function Prototypes
+//**********************
+// Function Prototypes *
+//**********************
 void displayChartResults();
+
 
 int main(int argc, char** argv) 
 {
@@ -68,7 +77,8 @@ int main(int argc, char** argv)
     // Open a file to be written to. 
     datFile.open("TestInventory.dat", ios::out|ios::binary);
     
-    // Get record information for all items
+    //                  Get record information for all items
+    //--------------------------------------------------------------------------
     for (int i=0; i<numItems; i++)
     {
         cout << "\nEnter the following for Item #" << i+1 << endl;
@@ -103,6 +113,19 @@ int main(int argc, char** argv)
         cout << "-----------------------------------\n";
         datFile.read(reinterpret_cast<char *>(&item), sizeof(item));
     }
+    
+    //                          Option to Edit these Records
+    //--------------------------------------------------------------------------
+    
+    
+    
+    //                          Format records into a Chart 
+    //--------------------------------------------------------------------------
+ 
+    
+    //                           
+    //--------------------------------------------------------------------------
+
 
     // End Program
     return 0;
