@@ -1,136 +1,91 @@
+/* 
+ * File:   StockStruct.cpp
+ * Author: Shazeb
+ *
+ * Created on October 1, 2019, 2:13 AM
+ * 
+ *                                    Q&A's
+ * -----------------------------------------------------------------------------
+ * Q: So am I trying to use .txt files or .dat files to store information about
+ * inventory items?
+ * A: Which ever, go based off efficiency. When I get deeper into the development
+ * of this Program I might end up having to use both. 
+ * 
+ * Q: In what sequence of steps do I have to take to get to the completion of
+ * Phase 1 of this Program? What is Phase 1?
+ * A: Phase 1 is when the Program effectively pulls up an updated Stock Report.
+ * Then based off that, I can go in and change records of inventory. I should
+ * directly add in the sales reports w/ the stock results in order to make this
+ * Program that much effective.
+ * 
+ * Q: What is Phase 2?
+ * A: Phase 2 is when I add in an ebay fees, auction pricing, and template 
+ * description box sections.
+ * 
+ * Q: Phase 3? 
+ * A: Phase 3 is when I just make minor tweaks and format debugs and use this 
+ * Program to generate a Second Stream of Income
+ * 
+ * Q: Possibility of a Phase 4?
+ * A: Perhaps, I will have to go based off the needs of the business. 
+ */
+
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include <fstream>
 using namespace std;
 
-// structure for items
+// Global Constants 
+
+// Struct - InventoryItem
 struct InventoryItem
 {
-    // Basic Measurements
     string name;
     double price;
-    string color;
     int qty;
     
-    // Z&V Bag Measurements 
-    double width;
-    double height;
-    double depth;
-    double strap;
+    
 };
-
-// Function Prototypes
-void menu();
-void StockReports();
-void SalesReports();
-
-// int main
-int main()
+int main(int argc, char** argv) 
 {
-    // variable declaration
-    int selection;          // menu decision
+    // Variable Declaration
+    int numItems;
+    fstream datFile;
     
+    // Get number of items to set up arrays
+    cout << "How many items will be included in the Stock Report: ";
+    cin >> numItems;
     
-    cout << "Welcome to Shazeb's Inventory Stock Program!\n";
-    menu();
-    cout << "Enter a Selection: ";
-    cin >> selection;
+    // Array Declaration
+    InventoryItem item[numItems];
     
-    if (selection == 1)
+    // Get record information for all items
+    for (int i=0; i<numItems; i++)
     {
-        StockReports();
-    }
-    else if (selection == 2)
-    {
-        SalesReports();
-    }
-    else if (selection == 0)
-    {
-        cout << "You have chosen to End the Program." << endl;
+        cout << "Enter the following for Item #" << i+1 << endl;
+        cout << "Name: ";
+        cin.ignore();
+        getline(cin, item[i].name);
+        cout << "Price: $ ";
+        cin >> item[i].price;
+        cout << "Quantity: ";
+        cin >> item[i].qty;
+        cout << endl;
     }
     
-    // end program
-    cout << "\nProgram has successfully ended.";
+    // Open a file to be written to. 
+    datFile.open("TestInventory.dat", ios::out|ios::binary);
+    
+    // Write the records.
+    for (int i = 0; i < numItems; i++)
+    {
+        cout << "Now writing record " << i << endl;
+        datFile.write(reinterpret_cast<char *>(&item), sizeof(item));
+    }
+    
+    // End Program
     return 0;
 }
 
-// FUNCTION DECLARATIONS
-//----------------------
-// Menu Function
-void menu()
-{
-    cout << "       MENU        " << endl;
-    cout << "-------------------" << endl;
-    cout << "(1) Stock Reports" << endl;
-    cout << "(2) Sales Reports" << endl;
-    cout << "(0) End Program" << endl; 
-}
-
-// Stock Reports Function
-void StockReports()
-{
-    cout << "\nWelcome to the Stock Reports";
-    cout << "\n-----------------------------\n";
-    
-    // variable declaration
-    InventoryItem item;     // structure object
-    fstream file;
-    char ch;
-    
-    // Open a file named (StockReports.txt) --> later on i will implement .dat files
-    file.open("StockReports.txt", ios::out);
-    
-    // Write a template item entry into the file
-    cout << "We are going to create a new Stock Report." << endl;
-    cout << "Enter the following information about 1 item in inventory:\n";
-    cout << "Enter the name of an item: ";
-    cin.ignore();
-    getline(cin, item.name);
-    file << item.name << endl;
-    cout << "Enter Price: $ ";
-    cin >> item.price;
-    file << item.price << endl;
-    cout << "Enter Item Color: ";
-    cin.ignore();
-    getline(cin, item.color);
-    file << item.color << endl;
-    cout << "Enter Item Quantity: ";
-    cin >> item.qty;
-    file << item.qty << endl;
-    
-    cout << "Is this a Zadig & Voltaire Handbag?(y/n): ";
-    cin >> ch;
-    if (ch == 'Y' || ch == 'y')
-    {
-        cout << "Enter the following about the bag in inches:\n";
-        cout << "Width: ";
-        cin >> item.width;
-        file << item.width << endl;
-        cout << "Height: ";
-        cin >> item.height;
-        file << item.height << endl;
-        cout << "Depth: ";
-        cin >> item.depth;
-        file << item.depth << endl;
-        cout << "Strap Drop: ";
-        cin >> item.strap;
-        file << item.strap << endl;
-    }    
-    
-    // read back the contents of the file
-    string text;
-    file.close();
-    file.open("SalesReports.txt", ios::in);
-    
-    file.read(reinterpret_cast<char *>(&item), sizeof(item));
-    
-    
-    
-}
-
-// Sales Reports Function
-void SalesReports()
-{
-    cout << endl << "Welcome to the Sales Reports";
-    cout << "\n-----------------------------\n";
-}
