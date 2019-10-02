@@ -48,6 +48,10 @@ struct InventoryItem
     
     
 };
+
+// Function Prototypes
+void displayChartResults();
+
 int main(int argc, char** argv) 
 {
     // Variable Declaration
@@ -61,10 +65,13 @@ int main(int argc, char** argv)
     // Array Declaration
     InventoryItem item[numItems];
     
+    // Open a file to be written to. 
+    datFile.open("TestInventory.dat", ios::out|ios::binary);
+    
     // Get record information for all items
     for (int i=0; i<numItems; i++)
     {
-        cout << "Enter the following for Item #" << i+1 << endl;
+        cout << "\nEnter the following for Item #" << i+1 << endl;
         cout << "Name: ";
         cin.ignore();
         getline(cin, item[i].name);
@@ -72,19 +79,31 @@ int main(int argc, char** argv)
         cin >> item[i].price;
         cout << "Quantity: ";
         cin >> item[i].qty;
-        cout << endl;
-    }
-    
-    // Open a file to be written to. 
-    datFile.open("TestInventory.dat", ios::out|ios::binary);
-    
-    // Write the records.
-    for (int i = 0; i < numItems; i++)
-    {
-        cout << "Now writing record " << i << endl;
         datFile.write(reinterpret_cast<char *>(&item), sizeof(item));
     }
+    // close the file
+    datFile.close();
     
+    //                          Read back the records
+    //--------------------------------------------------------------------------
+    // open the file in read mode
+    datFile.open("TestInventory.dat", ios::in|ios::binary);
+    
+    datFile.read(reinterpret_cast<char *>(&item), sizeof(item));
+    
+    cout << "\n-----------------------------------";
+    cout << "\nReading Back From the File:\n";
+    cout << "-----------------------------------\n";
+    for (int i = 0; i < numItems; i++)
+    {
+        cout << "(RECORD " << i << ")\n";
+        cout << "Name: " << item[i].name << endl;
+        cout << "Price: $ " << item[i].price << endl;
+        cout << "Quantity: " << item[i].qty << endl;
+        cout << "-----------------------------------\n";
+        datFile.read(reinterpret_cast<char *>(&item), sizeof(item));
+    }
+
     // End Program
     return 0;
 }
