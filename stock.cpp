@@ -64,8 +64,9 @@ void displayChartResults();
 int main(int argc, char** argv) 
 {
     // Variable Declaration
-    int numItems;
-    fstream datFile;
+    int numItems;      // number of stock items
+    int recNum;        // record number 
+    fstream datFile;   // file object 
     
     // Get number of items to set up arrays
     cout << "How many items will be included in the Stock Report: ";
@@ -113,11 +114,45 @@ int main(int argc, char** argv)
         cout << "-----------------------------------\n";
         datFile.read(reinterpret_cast<char *>(&item), sizeof(item));
     }
+    // close the file
+    datFile.close();
     
     //                          Option to Edit these Records
     //--------------------------------------------------------------------------
-    
-    
+    // Open file for input and output
+    datFile.open("TestInventory.dat", ios::in|ios::out|ios::binary);
+ 
+    // Get the record number of the desired record
+    cout << "\nWhich record do you want to edit?: ";
+    cin >> recNum;
+ 
+    // Move to the record number of the desired record
+    datFile.seekg(recNum * sizeof(record), ios::beg);
+    datFile.read(reinterpret_cast<char *>(&item), sizeof(item));
+ 
+    // Display the record contents
+    cout << "Name: " << item.name << endl;
+    cout << "Price: $ " << item.price << endl;
+    cout << "Quantity: " << item.qty << endl;
+ 
+    // Get the new record data
+    cout << "Enter the new data:\n";
+    cout << "Name: ";
+    cin.ignore();
+    getline(cin, item.name);
+    cout << "Price: $ ";
+    cin >> item.price;
+    cout << "Quantity: ";
+    cin >> item.qty;
+ 
+    // Move back to the beginning of this record's position
+    datFile.seekp(recNum * sizeof(item), ios::beg);
+ 
+    // write the new record over the current record
+    datFile.write(reinterpret_cast<char *>(&item), sizeof(item));
+ 
+    // Close the file again
+    datFile.close();
     
     //                          Format records into a Chart 
     //--------------------------------------------------------------------------
@@ -129,5 +164,12 @@ int main(int argc, char** argv)
 
     // End Program
     return 0;
+}
+//                                Function Prototypes
+//------------------------------------------------------------------------------
+// Function Display Chart Results
+void displayChartResults()
+{
+   cout << "Function call displayChartResults() has been successfully accessed.\n";
 }
 
