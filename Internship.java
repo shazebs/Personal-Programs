@@ -136,6 +136,7 @@ class Intern {
     public String getLocation() {return Location;}
 
 
+
 // ---------------------------------------------
     // 'Additional' Methods
     // ---------------------------------------------
@@ -189,6 +190,7 @@ public class Internship {
                 "Bellevue, Washington");
 
 
+
         // CREATE DROPBOX INTERNSHIP
         Intern DropBox = new Intern();
         //
@@ -201,15 +203,17 @@ public class Internship {
         DropBox.setLocation("United States");
 
 
+
         // CREATE BLIZZARD INTERNSHIP
         Intern Blizzard = new Intern();
         //
         Blizzard.setInternshipTitle("Blizzard Gaming/Software");
-        Blizzard.setRequirements("C++,Python,Java,API's,Javascript, and CSS.");
+        Blizzard.setRequirements("C++,Python,Java,API's,Javascript,and CSS.");
         Blizzard.setInternshipPeriod("11-12 weeks Full Time");
         Blizzard.setStartDate("May or June 2021");
         Blizzard.setEndDate("August or September 2021");
         Blizzard.setLocation("Irvine, California");
+
 
 
         // CREATE LENOVO INTERNSHIP
@@ -217,16 +221,18 @@ public class Internship {
         //
         Lenovo.setInternshipTitle("Lenovo Android Engineer");
         Lenovo.setInternshipPeriod("Summer 2021");
-        Lenovo.setRequirements("Android Development Tools,Java,C++ or Python, and mobile app familiarity");
+        Lenovo.setRequirements("Android Development Tools,Java,C++ or Python,and mobile app familiarity.");
         Lenovo.setLocation("North Carolina");
+
 
 
         // CREATE SPLUNK INTERNSHIP
         Intern Splunk = new Intern();
         //
         Splunk.setInternshipTitle("Splunk Product Security");
-        Splunk.setRequirements("C++,Python,Java,UNIX/LINUX,GO,JavaScript, and pursuing a Bachelor's Degree");
+        Splunk.setRequirements("C++,Python,Java,UNIX/LINUX,GO,JavaScript,and pursuing a Bachelor's Degree.");
         Splunk.setLocation("United States");
+
 
 
         // CREATE PETSMART INTERNSHIP
@@ -234,8 +240,9 @@ public class Internship {
         //
         PetSmart.setInternshipTitle("PetSmart IT Engineer");
         PetSmart.setInternshipPeriod("10 week paid summer");
-        PetSmart.setRequirements("Graduating by May 2022,React,Java script,.net");
+        PetSmart.setRequirements("Graduating by May 2022,React,Java script,or .net.");
         PetSmart.setLocation("Tuscon, Arizona");
+
 
 
         // CREATE APPLE INTERNSHIP
@@ -244,22 +251,72 @@ public class Internship {
         Apple.setInternshipTitle("Apple Software Engineering");
         Apple.setLocation("Santa Clara Valley(Cupertino), California");
         Apple.setInternshipPeriod("12 weeks for Winter,Spring, or Summer 2021");
-        Apple.setRequirements("Java,C++,Python,Html,CSS,Javascript, so basically back-end programming proficiency");
+        Apple.setRequirements("Java,C++,Python,Html,CSS,Javascript,so basically back-end programming proficiency.");
+
 
 
         // CREATE MICROSOFT INTERNSHIP
         Intern Microsoft = new Intern();
         //
         Microsoft.setInternshipTitle("Microsoft Quantum Programming Internship");
-        Microsoft.setRequirements("C++,Python,or other programming languages");
+        Microsoft.setRequirements("C++,Python,or other programming languages.");
         Microsoft.setLocation("Redmond, Washington");
 
 
-        // new Intern object goes here...
+
+        // CREATE ACTIVISION INTERNSHIP
+        Intern Activision = new Intern();
+        //
+        Activision.setInternshipTitle("Activision/Treyarch Engineering");
+        Activision.setInternshipPeriod("12-week full time");
+        Activision.setRequirements("C++,Algorithms,Data Structures,Python, and pursuing a Bachelor's in Computer Science.");
+        Activision.setLocation("Santa Monica, California");
+
+
+
+        // CREATE FEDEX INTERNSHIP
+        Intern FedEx = new Intern();
+        //
+        FedEx.setInternshipTitle("FedEx Information Technology");
+        FedEx.setInternshipPeriod("10-week assignment");
+        FedEx.setRequirements("C++,Java,Python,HTML5,Javascript,and Python.");
+        FedEx.setLocation("Lakeland, Florida");
+
+
+        // CREATE CBS INTERNSHIP
+        //
+        Intern CBS = new Intern();
+        CBS.setInternshipTitle("ViacomCBS Mobile Development");
+        CBS.setInternshipPeriod("Summer 2021");
+        CBS.setLocation("United States");
+        CBS.setRequirements("Java,Scrum,Android Studio,IOS,and Xcode.");
+
+
+
+        // CREATE NVIDIA INTERNSHIP
+        Intern NVIDIA = new Intern();
+        //
+        NVIDIA.setInternshipTitle("NVIDIA SOFTWARE INTERN");
+        NVIDIA.setInternshipPeriod("Summer 2021");
+        NVIDIA.setRequirements("Linux,C++,Python,Android,and Chrome.");
+        NVIDIA.setLocation("Santa Clara, California");
+
+
+
+        /*
+        Intern HP = new Intern();
+        //
+        HP.setRequirements("C++,SDK familiarity,iOS,Android,and Documentation");
+        HP.setLocation("Spring, Texas or Palo Alto, California");
+        HP.setInternshipTitle("HP Innovations Software Developer");
+        HP.setInternshipPeriod("Summer 2021");
+        */
+
 
 
         // Print Report
-        System.out.printf("%s%s%s%s%s%s", TMobile, DropBox, Blizzard, Lenovo, PetSmart, Apple);
+        System.out.printf("%s%s%s%s%s%s%s%s%s%s",
+                TMobile, DropBox, Blizzard, Lenovo, PetSmart, Apple, Activision, FedEx, CBS, NVIDIA);
         System.out.println();
 
     }
