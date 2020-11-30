@@ -19,7 +19,7 @@ import java.security.SecureRandom;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class RandomSentences {
+public class RandomSentenceGenerator {
     // Create Random number generator
     private static final SecureRandom randomNumbers = new SecureRandom();
 
