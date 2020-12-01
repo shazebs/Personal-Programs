@@ -302,6 +302,39 @@ public class Internship {
         NVIDIA.setLocation("Santa Clara, California");
 
 
+        // CREATE EA INTERNSHIP
+        Intern EA = new Intern();
+        //
+        EA.setInternshipTitle("EA Software Engineer");
+        EA.setLocation("Redwood City, CA");
+        EA.setInternshipPeriod("12-weeks paid full-time");
+        EA.setRequirements("Competency in C++,knowledge on API's and SDK's,pursuing a Bachelor's in Computer Science.");
+
+
+
+        // CREATE ESRI INTERNSHIP
+        Intern Esri = new Intern();
+        //
+        Esri.setInternshipTitle("Esri Software Development and Engineering");
+        Esri.setInternshipPeriod("12 weeks Summer 2021");
+        Esri.setRecruitingStart("September 1st, 2020");
+        Esri.setRecruitingEnd("December 31, 2020 @ 5:00 PM");
+        Esri.setLocation("United States");
+        Esri.setRequirements("C++,Python,Java,JavaScript,HTML5,iOS,and Android or Windows mobile technology.");
+
+
+
+        // CREATE OSISOFT INTERNSHIP
+        Intern OSIsoft = new Intern();
+        //
+        OSIsoft.setInternshipTitle("OSIsoft Software Developer");
+        OSIsoft.setInternshipPeriod("Summer 2021");
+        OSIsoft.setStartDate("May 17 or June 28");
+        OSIsoft.setEndDate("August 6 or September 10");
+        OSIsoft.setLocation("Scottsdale, Arizona");
+        OSIsoft.setRequirements("3.0 GPA,C++,HTML5,and JavaScript.");
+
+
 
         /*
         Intern HP = new Intern();
@@ -315,8 +348,8 @@ public class Internship {
 
 
         // Print Report
-        System.out.printf("%s%s%s%s%s%s%s%s%s%s",
-                TMobile, DropBox, Blizzard, Lenovo, PetSmart, Apple, Activision, FedEx, CBS, NVIDIA);
+        System.out.printf("%s%s%s%s%s%s%s%s%s%s%s%s%s",
+                TMobile, DropBox, Blizzard, Lenovo, PetSmart, Apple, Activision, FedEx, CBS, NVIDIA, EA, Esri, OSIsoft);
         System.out.println();
 
     }
