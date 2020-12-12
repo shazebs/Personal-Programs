@@ -25,12 +25,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import javafx.scene.control.Hyperlink;
+
 
 //------------------------------------------------------
 public class JavaFX_Sample_2_Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        // Hyperlinks
+        Hyperlink githubLink = new Hyperlink("https://github.com/shazebs/Personal-Programs");
 
 
 
@@ -86,9 +91,17 @@ public class JavaFX_Sample_2_Main extends Application {
         ImageView loginScreenImage = new ImageView(sampleImage1);
 
         // Create some label controls
-        Label usernameLabel = new Label("Username"); // child node 1
-        usernameLabel.setTextFill(Color.web("#4263f5"));
-        usernameLabel.setFont(new Font("Arial", 25));
+        // Label usernameLabel = new Label("Username"); // child node 1
+        // usernameLabel.setTextFill(Color.web("#4263f5"));
+        // usernameLabel.setFont(new Font("Arial", 25));
+        Hyperlink usernameLink = new Hyperlink("Username");
+        usernameLink.setTextFill(Color.web("#4263f5"));
+        usernameLink.setFont(new Font("Arial", 25));
+
+        usernameLink.setOnAction(e -> {
+           usernameLink.setText("This feature is not yet available");
+        });
+
 
         Label passwordLabel = new Label("Password"); // child node 2
         passwordLabel.setTextFill(Color.web("#4263f5"));
@@ -96,10 +109,17 @@ public class JavaFX_Sample_2_Main extends Application {
 
         Label forgotPasswordLabel = new Label("Forgot Password?"); // child node 3
         forgotPasswordLabel.setFont(new Font(16));
-        Label signUpLabel = new Label("Sign Up"); // child node 4
-        signUpLabel.setFont(new Font(16));
 
-        loginRoot.getChildren().addAll(loginScreenImage,usernameLabel, passwordLabel, forgotPasswordLabel, signUpLabel);
+
+        // Label signUpLabel = new Label("Sign Up"); // child node 4
+        // signUpLabel.setFont(new Font(16));
+        Hyperlink signUpLink = new Hyperlink("Sign Up");
+
+        signUpLink.setOnAction(e -> {
+           signUpLink.setText("This feature is not yet available!");
+        });
+
+        loginRoot.getChildren().addAll(loginScreenImage, usernameLink, passwordLabel, forgotPasswordLabel, signUpLink);
 
 
         // Create a Scene for the Login Screen Window
