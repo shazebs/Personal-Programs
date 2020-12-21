@@ -29,7 +29,7 @@ import javafx.scene.control.Hyperlink;
 
 
 //------------------------------------------------------
-public class JavaFX_Sample_2_Main extends Application {
+public class LoginTemplate extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
