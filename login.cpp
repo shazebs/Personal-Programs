@@ -4,7 +4,7 @@ using namespace std;
 
 // CONSTANT VARIABLES
 const string USER1 = "shazebs";
-const string USER1_PASSWORD = "soraskingdom96";
+const string USER1_PASSWORD = "barfbarf8";
 
 // Function Prototypes.
 void Login();
