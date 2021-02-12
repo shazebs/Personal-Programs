@@ -47,7 +47,7 @@ int main(int argc, char** argv) {
     
     
     // TEST OUTPUT
-    
+    cout << "\n\nThank You 4 Using This Toy Program!\n\n\nAuthor:  Shazeb Suhail\nContact:  909-747-4865\nBeaumont, California";
     
     //
     
