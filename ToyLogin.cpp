@@ -1,92 +1,76 @@
-#include <iostream>
+/* 
+ * File:   workout_logs.cpp
+ * Author: Shazeb Suhail
+ *
+ * Created on November 5, 2020, 3:11 PM
+ */
+
 #include <cstdlib>
+#include <iostream>
 using namespace std;
 
-// CONSTANT VARIABLES
-const string USER1 = "shazebs";
-const string USER1_PASSWORD = "barfbarf8";
-
-// Function Prototypes.
-void Login();
-
-int main() {
-
-    // variable declaration
-    string username;
+// Function Prototypes
+void OutputDetails(string, string, string, string, string, string, string, string);
 
 
-    // Login Screen.
-    Login();
+int main(int argc, char** argv) {
+
+    // Main Method's Local Variables
+    string sessionTitle = "null";    // workout session title
+    string exerciseName = "null";    // name of exercise
+    string reps = "null";   // number of reps
+    string sets = "null";   // number of sets
+    string lbs = "null";    // value of lbs lifted
+    string grade = "null"; // grade given to exercise session
+    string date = "null";  // date of workout session
+    string hours = "null"; // to hold time length of workout session in hours
 
 
-    // end program.
-    cout << "\nProgram has ended. Goodbye!\n";
-    cout << "\nThank You 4 Checking Out This Toy Program.\n\nAuthor: Shazeb Suhail\nContact:909-747-4865" << endl;
-        return 0;
+    // Get user inputs for 1 workout session
+    cout << "Enter name for workout: ";
+    getline(cin, sessionTitle);
+    cout << "Enter workout date: ";
+   getline(cin, date);
+    cout << "Enter exercise name: ";
+    getline(cin, exerciseName);
+    cout << "Enter max lbs lifted: ";
+    getline(cin, lbs);
+    cout << "Enter number of sets: ";
+    getline(cin, sets);
+    cout << "Enter numbe" << "of reps:  ";
+    getline(cin, reps);
+    cout << "Enter grade given to workout: ";
+    getline(cin, grade);
+    cout << "Enter session time length in hours: ";
+    getline(cin, hours);
+
+
+    // OutputDetails: Method Call
+    OutputDetails(sessionTitle,exerciseName,reps,sets,lbs,grade,date,hours);
+
+    // End Program.
+    cout << "\nThank You 4 Checking Out This Toy Program.\n\nAuthor: Shazeb Suhail\nContact:909-747-4865\nBeaumont, California" << endl;
+    return 0;
+}
+// End of Main Method.
+// ...now moving onto: 
+// Function Declarations
+
+void OutputDetails(string title, string exercise, string reps, string sets, string lbs,
+                   string grade, string date, string hours) {
+
+    // Local variables
+    // ...none so far.
+
+    // Output results
+    cout << endl;
+    cout << "Title: " << title << endl;
+    cout << "Date:  " << date << endl;
+    cout << "Lift:  " << exercise << endl;
+    cout << "LBS:   " << lbs << endl;
+    cout << "Sets:  " << sets << endl;
+    cout << "Reps:  " << reps << endl;
+    cout << "Grade: " << grade << endl;
+    cout << "Time:  " << hours << endl;
 
 }
-
-void Login() {
-    // variable declaration
-    string username, password;
-    char choice; // y or n
-
-    // Prompt user to enter a username.
-    cout << "Enter username: ";
-    cin >> username;
-
-
-// RUN THIS CODE IF USER'S LOGIN INFO DOES NOT EXIST.
-    if (username != USER1) {
-        // prompt user that their username is not in the database.
-        cout << "Sorry. That username does not exist.\n"
-             << "Would you like to create an account? (y/n): ";
-        cin >> choice;
-
-        // *input validation*
-        while (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N') {
-            cout << "ERROR, invalid input!\n"
-                 << "Would you like to create an account? (y/n): ";
-            cin >> choice;
-        }
-
-        // if statement if user does not want to create a username.
-        if (choice == 'n' || choice == 'N') {
-            cout << "You decided NOT to create a username.";
-        }
-
-            // if statement if user wants to create a username.
-        else if (choice == 'y' || choice == 'Y') {
-
-            // get user to input desired username.
-            cout << "Enter a username without spaces: ";
-            cin >> username;
-
-            // get user to input a password now.
-            cout << "Enter a password without spaces: ";
-            cin >> password;
-
-            // Output user's desired login credentials.
-            cout << endl;
-            cout << "Your desired login credentials:\n";
-            cout << "Username: " << username << endl;
-            cout << "Password: " << password << endl;
-        }
-    }
-
-
-// RUN THIS CODE IF USER'S LOGIN INFO DOES EXIST.
-    else if (username == USER1) {
-        // Output a welcome back prompt.
-        cout << "Welcome Back, " << username << "!\n";
-        cout << "Now try running the program with a different username!\n\n";
-    }
-}
-
-/* ADDITIONAL NOTES
-Q: So what is this program?
-A: This program is being created so that it can be a database for workout logs.
-
-
-
-*/
