@@ -148,6 +148,10 @@ public class MacroNutrients {
         System.out.print(ANSI_RED);
         System.out.print("\nProgram has ended.");
         System.out.print(ANSI_RESET);
+        System.out.printf(
+                "%n%nNext on the list to do: \n" + ANSI_GREEN +
+                        "\t+ make time to add micro nutrients to the menu items." + ANSI_RESET
+        );
         System.exit(99);
     }
 
@@ -232,8 +236,8 @@ public class MacroNutrients {
                 }
 
             } catch (Exception e) {
-                System.err.println("An error has occurred.");
-                System.exit(99);
+                System.err.println("You cannot enter letters or unknown character commands!\n");
+                break;
             }
             //
         } while (choice != 0);
