@@ -44,11 +44,11 @@ public class MacroNutrients {
         System.out.println();
 
         // Array - Data Structure
-        FoodItem[] foodItems = new FoodItem[36];
+        FoodItem[] foodItems = new FoodItem[43];
         //
         foodItems[1]  = new FoodItem("Greek Yogurt",             12, 8,  0);
         foodItems[2]  = new FoodItem("Danimals",                 2,  11, 0);
-        foodItems[3]  = new FoodItem("8 Turkey Slices",          16, 6,  8);
+        foodItems[3]  = new FoodItem("8 Turkey aqSlices",          16, 6,  8);
         foodItems[4]  = new FoodItem("Slice of Bread",           3,  16, 1);
         foodItems[5]  = new FoodItem("Burger Bun",               4,  28, 2);
         foodItems[6]  = new FoodItem("Beef Patty",               17, 6,  28);
@@ -68,8 +68,30 @@ public class MacroNutrients {
         foodItems[20] = new FoodItem("Masoor ki Daal",           1,  2.5,0);
         foodItems[21] = new FoodItem("Chicken Patty",            10, 11, 11);
         foodItems[22] = new FoodItem("4 Hot'n'Spicy Wings",      11, 3,  13);
-        foodItems[23] = new FoodItem("Naan #1",                  9,  38, 6);
-        foodItems[24] = new FoodItem("Naan #2",                  9,  53, 9);
+        foodItems[23] = new FoodItem("Tandoori Plain Naan",      9,  38, 6);
+            foodItems[23].saturatedFat = (int) 3.5;
+            foodItems[23].transFat = 0;
+            foodItems[23].cholesterol = 0;
+            foodItems[23].sodium = 170;
+            foodItems[23].dietaryFiber = 1;
+            foodItems[23].totalSugars = 3;
+            foodItems[23].addedSugars = 2;
+            foodItems[23].vitaminD = 0;
+            foodItems[23].calcium = 21;
+            foodItems[23].iron = 2;
+            foodItems[23].potassium = 50;
+        foodItems[24] = new FoodItem("Ashoka Tandoori Naan",     9,  53, 9);
+            foodItems[24].saturatedFat = 5;
+            foodItems[24].transFat = 0;
+            foodItems[24].cholesterol = 20;
+            foodItems[24].sodium = 360;
+            foodItems[24].dietaryFiber = 2;
+            foodItems[24].totalSugars = 0;
+            foodItems[24].addedSugars = 0;
+            foodItems[24].vitaminD = 0;
+            foodItems[24].calcium = 60;
+            foodItems[24].iron = 2;
+            foodItems[24].potassium = 0;
         foodItems[25] = new FoodItem("Sesame-Seed Burger Buns",  7,  37, 3.5);
         foodItems[26] = new FoodItem("Whole Wheat Bread",        4,  11, 0.5);
         foodItems[27] = new FoodItem("Mini-Tortilla",            2,  21, 1);
@@ -90,13 +112,13 @@ public class MacroNutrients {
         foodItems[31] = new FoodItem("Cane's Chicken Finger",   13, 5, 6);
             foodItems[31].saturatedFat = 1;
             foodItems[31].transFat = 0;
-            foodItems[31].cholestral = 40;
+            foodItems[31].cholesterol = 40;
             foodItems[31].sodium = 190;
             foodItems[31].dietaryFiber = 1;
         foodItems[32] = new FoodItem("Cane's Crinkle-Cut Fries",       5, 49, 19);
             foodItems[32].saturatedFat = 1;
             foodItems[32].transFat = 0;
-            foodItems[32].cholestral = 0;
+            foodItems[32].cholesterol = 0;
             foodItems[32].sodium = 310;
             foodItems[32].dietaryFiber = 7;
             foodItems[32].totalSugars = 1;
@@ -108,19 +130,86 @@ public class MacroNutrients {
         foodItems[34] = new FoodItem("Cane's Sauce", 0, 6, 19);
             foodItems[34].saturatedFat = 3;
             foodItems[34].transFat = 0;
-            foodItems[34].cholestral = 10;
+            foodItems[34].cholesterol = 10;
             foodItems[34].sodium = 580;
             foodItems[34].totalSugars = 4;
             foodItems[34].dietaryFiber = 0;
         foodItems[35] = new FoodItem("Cane's Chicken Sandwich", 48, 66, 39);
             foodItems[35].saturatedFat = 6;
             foodItems[35].transFat = 0;
-            foodItems[35].cholestral = 120;
+            foodItems[35].cholesterol = 120;
             foodItems[35].sodium = 1470;
             foodItems[35].dietaryFiber = 5;
             foodItems[35].totalSugars = 13;
-
-
+        foodItems[36] = new FoodItem("Sprite Can (12 fl oz)", 0, 38, 0);
+            foodItems[36].totalSugars = 38;
+            foodItems[36].addedSugars = 38;
+            foodItems[36].sodium = 65;
+        foodItems[37] = new FoodItem("Kawan Plain Paratha", 4, 35, 14);
+            foodItems[37].saturatedFat = 8;
+            foodItems[37].transFat = 0;
+            foodItems[37].cholesterol = 0;
+            foodItems[37].sodium = 260;
+            foodItems[37].dietaryFiber = 2;
+            foodItems[37].totalSugars = 3;
+            foodItems[37].addedSugars = 3;
+            foodItems[37].vitaminD = 0;
+            foodItems[37].calcium = 16;
+            foodItems[37].iron = 1;
+            foodItems[37].potassium = 60;
+        foodItems[38] = new FoodItem("Naked Blue Machine", 2, 76, 0);
+            foodItems[38].saturatedFat = 0;
+            foodItems[38].transFat = 0;
+            foodItems[38].cholesterol = 0;
+            foodItems[38].sodium = 20;
+            foodItems[38].dietaryFiber = 3;
+            foodItems[38].totalSugars = 55;
+            foodItems[38].addedSugars = 0;
+            foodItems[38].vitaminD = 0;
+            foodItems[38].vitaminC = 114;
+            foodItems[38].vitaminE = 40;
+            foodItems[38].vitaminA = 0;
+            foodItems[38].calcium = 50;
+            foodItems[38].iron = (int) 0.7;
+            foodItems[38].potassium = 700;
+            foodItems[38].niacin = 38;
+            foodItems[38].vitaminB6 = (int) 3.8;
+            foodItems[38].vitaminB12 = (int) 11.4;
+            foodItems[38].pantothenicAcid = 19;
+        foodItems[39] = new FoodItem("Naked Kale Blazer", 4, 40, 0);
+        foodItems[40] = new FoodItem("Naked Orange Carrot Mango", 2, 55, 0);
+            foodItems[40].saturatedFat = 0;
+            foodItems[40].transFat = 0;
+            foodItems[40].cholesterol = 0;
+            foodItems[40].sodium = 50;
+            foodItems[40].dietaryFiber = 2;
+            foodItems[40].totalSugars = 49;
+            foodItems[40].addedSugars = 0;
+            foodItems[40].vitaminD = 0;
+            foodItems[40].vitaminC = 90;
+            foodItems[40].vitaminE = 0;
+            foodItems[40].vitaminA = 850;
+            foodItems[40].calcium = 40;
+            foodItems[40].iron = 1.5;
+            foodItems[40].potassium = 840;
+            foodItems[40].niacin = 38;
+            foodItems[40].vitaminB6 = 0;
+            foodItems[40].vitaminB12 = 0;
+            foodItems[40].pantothenicAcid = 0;
+        foodItems[41] = new FoodItem("Naked Power-C", 2, 55, 0);
+        foodItems[42] = new FoodItem("Naked Tropical Guava", 3, 62, 0);
+            foodItems[42].saturatedFat = 0;
+            foodItems[42].transFat = 0;
+            foodItems[42].cholesterol = 0;
+            foodItems[42].sodium = 15;
+            foodItems[42].dietaryFiber = 9;
+            foodItems[42].totalSugars = 50;
+            foodItems[42].addedSugars = 0;
+            foodItems[42].vitaminD = 0;
+            foodItems[42].iron = 0.4;
+            foodItems[42].vitaminC = 135;
+            foodItems[42].calcium = 50;
+            foodItems[42].potassium = 800;
 
 
 
@@ -267,54 +356,151 @@ public class MacroNutrients {
     /*                  displayMacros(ArrayList<Int>)           */
     public static void displayMacros(ArrayList<Integer> intArray,
                                        FoodItem[] foodArray) {
-        // function variables
+        // MacroNutrients running totals
         double totalMacros = 0;
         double totalCalories = 0;
         double totalProtein = 0;
         double totalCarb = 0;
         double totalFat = 0;
+        // MicroNutrient running totals
+        double totalSugars = 0;
+        double totalAddedSugars = 0;
+        double totalCholesterol = 0;
+        double totalSodium = 0;
+        double totalCalcium = 0;
+        double totalIron = 0;
+        double totalPotassium = 0;
+        double totalDietaryFiber = 0;
+        double totalNiacin = 0;
+        double totalRiboflavin = 0;
+        double totalThiamine = 0;
+        double totalPantothenicAcid = 0;
+        double totalSaturatedFat = 0;
+        double totalTransFat = 0;
+        double totalPolyunsaturatedFat = 0;
+        double totalMonounsaturatedFat = 0;
+        double totalVitaminA = 0;
+        double totalVitaminB6 = 0;
+        double totalVitaminB12 = 0;
+        double totalVitaminC = 0;
+        double totalVitaminD = 0;
+        double totalVitaminE = 0;
 
         for (int i = 0; i < intArray.size(); i++) {
 
-            // print data
+            // print MacroNutrient data
             totalProtein  += foodArray[intArray.get(i)].getProtein();
             totalCarb     += foodArray[intArray.get(i)].getCarb();
             totalFat      += foodArray[intArray.get(i)].getFat();
             totalCalories += foodArray[intArray.get(i)].getTotalCalories();
             totalMacros   += foodArray[intArray.get(i)].getTotalMacros();
+
+            // print MicroNutrient data
+            totalSugars             += foodArray[intArray.get(i)].totalSugars;
+            totalAddedSugars        += foodArray[intArray.get(i)].addedSugars;
+            totalCholesterol        += foodArray[intArray.get(i)].cholesterol;
+            totalSodium             += foodArray[intArray.get(i)].sodium;
+            totalCalcium            += foodArray[intArray.get(i)].calcium;
+            totalIron               += foodArray[intArray.get(i)].iron;
+            totalPotassium          += foodArray[intArray.get(i)].potassium;
+            totalDietaryFiber       += foodArray[intArray.get(i)].dietaryFiber;
+            totalRiboflavin         += foodArray[intArray.get(i)].riboflavin;
+            totalThiamine           += foodArray[intArray.get(i)].thiamine;
+            totalPantothenicAcid    += foodArray[intArray.get(i)].pantothenicAcid;
+            totalSaturatedFat       += foodArray[intArray.get(i)].saturatedFat;
+            totalTransFat           += foodArray[intArray.get(i)].transFat;
+            totalPolyunsaturatedFat += foodArray[intArray.get(i)].polyunsaturatedFat;
+            totalMonounsaturatedFat += foodArray[intArray.get(i)].monounsaturatedFat;
+            totalVitaminA           += foodArray[intArray.get(i)].vitaminA;
+            totalVitaminB6          += foodArray[intArray.get(i)].vitaminB6;
+            totalVitaminB12         += foodArray[intArray.get(i)].vitaminB12;
+            totalVitaminC           += foodArray[intArray.get(i)].vitaminC;
+            totalVitaminD           += foodArray[intArray.get(i)].vitaminD;
+            totalVitaminE           += foodArray[intArray.get(i)].vitaminE;
+
         }
 
-        // print the results
-        System.out.println();
         System.out.printf(
-                        "%s %.0fg\n" +
+                        "%n%s %.0fg\n" +
                         "%s \n" +
                         "%-9s %.0fg\n" +
                         "%-9s %.0fg\n" +
                         "%-9s %.0fg\n" +
-                        "(%.0f Calories) \n" +
-                        "%s \n",
+                        "(%.0f Calories)\n" +
+                        "%s\n\n" +
 
-                /*
-                MacroNutrients:
-                -------------------
-                Protein:  54g (19%)
-                Carbs:    172g (61%)
-                Fats:     56g (20%)
-                -------------------
-                Total: 282g
-                (1404 Calories)
-                 */
+                        /*
+                        -------------------
+                        Protein:  54g (19%)
+                        Carbs:    172g (61%)
+                        Fats:     56g (20%)
+                        -------------------
+                        Total: 282g
+                        (1404 Calories)
+                         */
 
-                "Macros:",
-                totalMacros,
+                        "%s \n" +           // MicroNutrients
+                        "%s \n" +           // -----------------
+
+                        "%-20s %.0fg\n" +   // Total Sugars:
+                        "%-20s %.0fg\n" +   // Added Sugars:
+                        "%-20s %.0fmg\n" +  // Cholesterol:
+                        "%-20s %.0fmg\n" +   // Sodium:
+                        "%-20s %.0fmg\n" +   // Calcium:
+                        "%-20s %.0fmg\n" +   // Iron:
+                        "%-20s %.0fmg\n" +   // Potassium:
+                        "%-20s %.0fg\n" +   // Dietary Fiber:
+                        "%-20s %.0fg\n" +   // Niacin:
+                        "%-20s %.0fg\n" +   // Riboflavin:
+                        "%-20s %.0fg\n" +   // Thiamine:
+                        "%-20s %.0fg\n" +   // Pantothenic Acid:
+                        "%-20s %.0fg\n" +   // Saturated Fat:
+                        "%-20s %.0fg\n" +   // TransFat:
+                        "%-20s %.0fg\n" +   // Polyunsaturated Fat:
+                        "%-20s %.0fg\n" +   // Monounsaturated Fat:
+                        "%-20s %.0fmcg\n" +   // Vitamin A:
+                        "%-20s %.0fmg\n" +   // Vitamin B6:
+                        "%-20s %.0fmg\n" +   // Vitamin B12:
+                        "%-20s %.0fmg\n" +   // Vitamin C:
+                        "%-20s %.0fmg\n" +   // Vitamin D:
+                        "%-20s %.0fmg\n"  +  // Vitamin E:
+                        "%s\n\n",
+
+
+                "Macros:", totalMacros,
                 "---------------",
                 "Proteins:", totalProtein,
                 "Carbs:",    totalCarb,
                 "Fats:",     totalFat,
                 totalCalories,
-                "---------------"
-        );
+                "---------------",
+
+                "MicroNutrients:",
+                "-----------------------",
+                "Total Sugars:",        totalSugars,
+                "Added Sugars:",        totalAddedSugars,
+                "Cholesterol:",         totalCholesterol,
+                "Sodium:",              totalSodium,
+                "Calcium:",             totalCalcium,
+                "Iron:",                totalIron,
+                "Potassium:",           totalPotassium,
+                "Dietary Fiber:",       totalDietaryFiber,
+                "Niacin:",              totalNiacin,
+                "Riboflavin:",          totalRiboflavin,
+                "Thiamine:",            totalThiamine,
+                "Pantothenic Acid:",    totalPantothenicAcid,
+                "Saturated Fat:",       totalSaturatedFat,
+                "TransFat:",            totalTransFat,
+                "Polyunsaturated Fat:", totalPolyunsaturatedFat,
+                "Monounsaturated Fat:", totalMonounsaturatedFat,
+                "Vitamin A:",           totalVitaminA,
+                "Vitamin B6:",          totalVitaminB6,
+                "Vitamin B12:",         totalVitaminB12,
+                "Vitamin C:",           totalVitaminC,
+                "Vitamin D:",           totalVitaminD,
+                "Vitamin E:",           totalVitaminE,
+                "-----------------------"
+                );
     }
 
 
@@ -368,21 +554,26 @@ class FoodItem {
     private double protein, carb, fat;
 
     // micronutrient variables
-    int totalSugars; // in grams
-    int addedSugars; // avoid this category
-    int cholestral; // in miligrams
-    int sodium; // salt in miligrams
-    int calcium; // bones
-    int iron;
-    int potassium;
-    int vitaminD; // bones
-    int dietaryFiber; // in grams
+    double totalSugars; // in grams
+    double addedSugars; // avoid this category
+    double cholesterol; // in mg
+    double sodium; // salt in mg
+    double calcium; // bones mg
+    double iron; // mg
+    double potassium; // mg
+    double vitaminD; // bones // mcg
+    double vitaminA;
+    double vitaminE;
+    double vitaminC;
+    double vitaminB12;
+    double vitaminB6;
+    double dietaryFiber; // in grams
     double niacin;
     double riboflavin;
     double thiamine; // vitamin B₁
-    // fats
-    int saturatedFat; // in grams
-    int transFat; // in grams
+    double pantothenicAcid;
+    double saturatedFat; // in grams
+    double transFat; // in grams
     double polyunsaturatedFat;
     double monounsaturatedFat;
 
