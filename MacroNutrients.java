@@ -44,11 +44,11 @@ public class MacroNutrients {
         System.out.println();
 
         // Array - Data Structure
-        FoodItem[] foodItems = new FoodItem[43];
+        FoodItem[] foodItems = new FoodItem[45];
         //
         foodItems[1]  = new FoodItem("Greek Yogurt",             12, 8,  0);
         foodItems[2]  = new FoodItem("Danimals",                 2,  11, 0);
-        foodItems[3]  = new FoodItem("8 Turkey aqSlices",          16, 6,  8);
+        foodItems[3]  = new FoodItem("8 Turkey aqSlices",        16, 6,  8);
         foodItems[4]  = new FoodItem("Slice of Bread",           3,  16, 1);
         foodItems[5]  = new FoodItem("Burger Bun",               4,  28, 2);
         foodItems[6]  = new FoodItem("Beef Patty",               17, 6,  28);
@@ -210,6 +210,27 @@ public class MacroNutrients {
             foodItems[42].vitaminC = 135;
             foodItems[42].calcium = 50;
             foodItems[42].potassium = 800;
+        foodItems[43] = new FoodItem("Tropicana Orange Juice", 2, 26, 0);
+            foodItems[43].sodium = 0;
+            foodItems[43].totalSugars = 22;
+            foodItems[43].addedSugars = 0;
+            foodItems[43].vitaminD = 0;
+            foodItems[43].potassium = 450;
+            foodItems[43].calcium = 20;
+            foodItems[43].vitaminC = 78;
+        foodItems[44] = new FoodItem("Progresso Chicken Tortilla Soup", 11, 31, 2);
+            foodItems[44].saturatedFat = 0;
+            foodItems[44].transFat = 0;
+            foodItems[44].cholesterol = 15;
+            foodItems[44].sodium = 1350;
+            foodItems[44].dietaryFiber = 5;
+            foodItems[44].totalSugars = 7;
+            foodItems[44].addedSugars = 0.5;
+            foodItems[44].vitaminD = 0;
+            foodItems[44].calcium = 90;
+            foodItems[44].iron = 2.3;
+            foodItems[44].potassium = 1000;
+
 
 
 
@@ -262,7 +283,7 @@ public class MacroNutrients {
         System.out.printf("    %-24s %8s  %5s %6s\n",
                 "Food Item #", "Protein", "Carb", "Fat");
         System.out.print(ANSI_RESET);
-        System.out.println("---------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------");
 
         // loop and display food items
         for (int i = 1; i < arr.length; i++) {
@@ -282,7 +303,7 @@ public class MacroNutrients {
 
 
             // print data
-            System.out.printf("%-27s %-8.0f %-6.0f %-5.0f \n",
+            System.out.printf("%-40s %-8.0f %-6.0f %-5.0f \n",
                     // #. 'itemName' 'protein' 'carb' 'fat' "\n"
                     arr[i].getItemName(),
                     arr[i].getProtein(),
@@ -290,7 +311,7 @@ public class MacroNutrients {
                     arr[i].getFat()
             );
         } // end of loop
-        System.out.println("---------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------");
     }
 
 
@@ -554,28 +575,28 @@ class FoodItem {
     private double protein, carb, fat;
 
     // micronutrient variables
-    double totalSugars; // in grams
-    double addedSugars; // avoid this category
-    double cholesterol; // in mg
-    double sodium; // salt in mg
-    double calcium; // bones mg
-    double iron; // mg
-    double potassium; // mg
-    double vitaminD; // bones // mcg
-    double vitaminA;
-    double vitaminE;
-    double vitaminC;
-    double vitaminB12;
-    double vitaminB6;
-    double dietaryFiber; // in grams
-    double niacin;
-    double riboflavin;
-    double thiamine; // vitamin B₁
-    double pantothenicAcid;
-    double saturatedFat; // in grams
-    double transFat; // in grams
-    double polyunsaturatedFat;
-    double monounsaturatedFat;
+    double totalSugars;     // in grams
+    double addedSugars;     // avoid this category
+    double cholesterol;     // mg - less than 200 mg daily limit
+    double sodium;          // salt mg - less than 2,300 mg daily limit
+    double calcium;         // bones mg - 1000 mg daily requirement
+    double iron;            // mg - 8.7 mg daily requirement
+    double potassium;       // mg - 3,500-4,700 mg daily requirement
+    double vitaminD;        // bones mg - 20 mcg daily requirement
+    double vitaminA;        // 900 mcg daily requirement
+    double vitaminE;        // 15 mg daily daily requirement
+    double vitaminC;        // 90 mg daily daily requirement
+    double vitaminB12;      // 6 mcg
+    double vitaminB6;       // 1.7 mg
+    double dietaryFiber;    // in grams
+    double niacin;          // 16 mg daily limit
+    double riboflavin;      // 1.3 mg daily limit
+    double thiamine;        // vitamin B₁ - 1.2 mg daily limit
+    double pantothenicAcid; // vitamin B5 - 5-10 mg daily limit
+    double saturatedFat;    // 16 to 22 g daily limit
+    double transFat;        // 2g daily limit
+    double polyunsaturatedFat; // <22 g daily limit
+    double monounsaturatedFat; // <44 g daily limit
 
 
 
