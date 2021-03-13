@@ -13,15 +13,25 @@ def newline(n) :
     print(n * space)
 # end of function newline
 
-print("first line!")
-newline(1)
-print("second line!")
-newline(1)
-print("third line!")   
-print("fourth line! (no newline prior)") 
+u = 145
+v = 389
+print(f'{u+v} < {u-v} \n')
 
-# the bottom is just some random test code
-print(time.clock_gettime(time))
-    
-        
-    
+x = 99
+x1 = x
+x2 = -x
+print(f'U of 99 = ({x1} , {x2})')
+x = 1
+x1 = x
+x2 = -x
+print(f'U of 1 = ({x1} , {x2})')
+x = 2
+x1 = x
+x2 = -x
+print(f'U of 2 = ({x1} , {x2})')
+x = 0
+x1 = x
+x2 = -x
+print(f'U of 0 = ({x1} , {x2})')
+
+
