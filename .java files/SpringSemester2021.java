@@ -41,6 +41,12 @@ public class SpringSemester2021 {
         String[][] CSC_17C_HW = {
                 // {"Triangular Matrix (DUE: Wed. February 24th)", "INCOMPLETE"},
                 {"2/17/21 Wednesday Word of the Day", "COMPLETE"},
+                {"2/22/21 Monday Word of the Day", "COMPLETE"},
+                {"2/24/21 Wednesday Word of the Day", "INCOMPLETE"},
+                {"3/01/21 Monday Word of the Day", "PENDING"},
+                {"3/03/21 Wednesday Word of the Day", "COMPLETE"},
+                {"3/08/21 Monday Word of the Day", "PENDING"},
+                {"Triangular Matrix (DUE: Mon. March 8th)", "COMPLETE"},
                 {"Homework Review 1 Dynamic Objects (DUE: Wed. March 3rd)", "INCOMPLETE"},
                 {"Homework Review 2 Dynamic Objects (DUE: Tue. March 9th)", "INCOMPLETE"},
                 {"Lab 3 SimpleVector (DUE: Wed. March 10th)", "INCOMPLETE"},
@@ -71,21 +77,27 @@ public class SpringSemester2021 {
         };
         String[][] CSC_11_HW = {
                 {"Introduction due feb 28", "COMPLETE"},
-                {"Acquire Raspberry Pi", "PENDING"}
+                {"Acquire Raspberry Pi", "COMPLETE"},
+                {"Architecture Powerpoint", "PENDING"},
+                {"Architecture Questions #1-3", "PENDING"},
+                {"Architecture Assignment", "PENDING"}
         };
         String[][] CSC_7_HW = {
                 {"2/17/21 Wednesday Word of the Day", "COMPLETE"},
                 {"Install Netbeans due feb 22", "COMPLETE"},
-                {"Homework Chapter 1 due mar 2", "INCOMPLETE"},
+                {"2/23/21 Monday Word of the Day", "COMPLETE"},
+                {"2/24/21 Wednesday Word of the Day", "INCOMPLETE"},
+                {"3/08/21 Monday Word of the Day", "PENDING"},
+                {"Homework Chapter 1 due mar 2", "COMPLETE"},
                 {"Quiz 1 due mar 2", "INCOMPLETE"},
                 {"Lab Luhn Algorithm 1 due mar 2", "COMPLETE"},
-                {"Homework Chapter 2 due mar 4", "INCOMPLETE"},
+                {"Homework Chapter 2 due mar 15", "PENDING"},
                 {"Quiz 2 due mar 4", "INCOMPLETE"},
-                {"Lab Truth Tables due mar 4", "INCOMPLETE"},
+                {"Lab Truth Tables due mar 10", "PENDING"},
                 {"Quiz 3 due mar 9", "INCOMPLETE"},
                 {"Homework Chapter 3 due mar 16", "INCOMPLETE"},
                 {"Quiz 4 due mar 16", "INCOMPLETE"},
-                {"Lab Luhn Algorithm 2 due mar 18", "INCOMPLETE"},
+                {"Lab Luhn Algorithm 2 due mar 18", "PENDING"},
                 {"Lab Luhn Algorithm 3 due mar 23", "INCOMPLETE"},
                 {"Homework Assignment 4 due mar 25", "INCOMPLETE"},
                 {"Quiz 5 due mar 25", "INCOMPLETE"},
@@ -108,22 +120,23 @@ public class SpringSemester2021 {
                 {"Lab Project 2 Mastermind AI due may 30", "INCOMPLETE"}
         };
         String[][] CSC_7_READINGS = {
-                {"Chapter 1 Slides", "PENDING"}
+                {"Chapter 1 Slides", "PENDING"},
+                {"Discreet Mathematics Chapter 1 Reading", "PENDING"}
         };
         String[][] MAT_1B_HW = {
-                {"HW #01: (5.3) Fundamental Theorem of Calculus due feb 22", "#'s: 2,8,11,17,22,29,35,43,55,62,63,68,69", "PENDING"},
-                {"HW #02: (5.4) Indefinite Integrals and the Net Change Theorem due feb 22", "#'s: 2,10,12,16,18,27,35,38,40,46,60,61", "PENDING"},
-                {"HW #03: (5.5) The Substitution Rule due feb 22", "#'s: 7,10,11,17,21,23,40,42,48,60,65,70,88,89","PENDING"},
-                {"HW #04: (7.1) Integration by Parts", "#'s: 3,7,10,12,16,21,27,32,36,38,40,42,57,58", "PENDING"},
-                {"HW #05: (7.2) Trigonometric Integrals", "#'s:3,6,10,14,17,20,23,26,31,33,36,40,44,48", "PENDING"},
-                {"HW #06: (7.3) Trigonometric Substitution", "#'s: 4,7,12,16,19,23,26,30", "INCOMPLETE"},
-                {"HW #07: (7.4) Integration of Rational Functions by Partial Fractions", "#'s: 12,16,20,34,40,47", "INCOMPLETE"},
-                {"HW #08: (7.5) Strategy for Integration", "1,7,14,22,31,32,39,45,52,57,65,67,74,80", "INCOMPLETE"},
-                {"HW #09: (7.8) Improper Integrals", "#'s: 1,9,10,13,16,21,24,26,29,33,36,40,50,52,54", "INCOMPLETE"},
-                {"HW #10: (7.6) Integration Using Tables", "#'s: 3,7,9,11,14,17,20,24,26,30", "INCOMPLETE"},
-                {"HW #11: Approximate Integration", "#'s: 10,11,15,18", "INCOMPLETE"},
+                {"HW #01: (5.3) Fundamental Theorem of Calculus due feb 22", "#'s: 2,8,11,17,22,29,35,43,55,62,63,68,69", "COMPLETE"},
+                {"HW #02: (5.4) Indefinite Integrals and the Net Change Theorem due feb 22", "#'s: 2,10,12,16,18,27,35,38,40,46,60,61", "COMPLETE"},
+                {"HW #03: (5.5) The Substitution Rule due feb 22", "#'s: 7,10,11,17,21,23,40,42,48,60,65,70,88,89","COMPLETE"},
+                {"HW #04: (7.1) Integration by Parts", "#'s: 3,7,10,12,16,21,27,32,36,38,40,42,57,58", "COMPLETE"},
+                {"HW #05: (7.2) Trigonometric Integrals", "#'s:3,6,10,14,17,20,23,26,31,33,36,40,44,48", "COMPLETE"},
+                {"HW #06: (7.3) Trigonometric Substitution", "#'s: 4,7,12,16,19,23,26,30", "COMPLETE"},
+                {"HW #07: (7.4) Integration of Rational Functions by Partial Fractions", "#'s: 12,16,20,34,40,47", "COMPLETE"},
+                {"HW #08: (7.5) Strategy for Integration", "#'s: 1,7,14,22,31,32,39,45,52,57,65,67,74,80", "PENDING"},
+                {"HW #09: (7.8) Improper Integrals", "#'s: 1,9,10,13,16,21,24,26,29,33,36,40,50,52,54", "PENDING"},
+                {"HW #10: (7.6) Integration Using Tables", "#'s: 3,7,9,11,14,17,20,24,26,30", "PENDING"},
+                {"HW #11: (7.7) Approximate Integration", "#'s: 10,11,15,18", "PENDING"},
                 //
-                {"Exam #1", "", "INCOMPLETE"},
+                {"Exam #1", "", "COMPLETE"},
                 //
                 {"HW #12: (6.1) Area Between Curves", "#'s: 1,4,11,12,19,25,26,29,31,50,53, & Sec 7.1 #57,58", "PENDING"},
                 {"HW #13: (6.2) Volumes (Part I and Part II)", "1,6,9,13,15,18,21,25,28,42,48,54,55", "PENDING"},
@@ -158,6 +171,36 @@ public class SpringSemester2021 {
                 //
                 {"Exam #4", "", "INCOMPLETE"}
         };
+        String[][] MAT_1B_RECORDINGS = {
+                {"(5.3) Lecture", "COMPLETE"},
+                {"(5.4) Lecture", "COMPLETE"},
+                {"(5.5) Lecture", "COMPLETE"},
+                {"(7.1) Lecture", "COMPLETE"},
+                {"(7.2) Lecture", "COMPLETE"},
+                {"(7.3) Lecture", "COMPLETE"},
+                {"(7.4) Lecture", "COMPLETE"},
+                {"(7.5) Lecture", "COMPLETE"},
+                {"(7.6) Lecture", "INCOMPLETE"},
+                {"(7.6) Text Reading", "PENDING"},
+                {"(7.7) Lecture", "INCOMPLETE"},
+                {"(7.7) Text Reading", "PENDING"},
+                {"(7.8) Lecture", "PENDING"}
+        };
+        String[][] CIS_830_HW = {
+                {"Attendance 02/23/21", "COMPLETE"},
+                {"Attendance 02/25/21", "COMPLETE"},
+                {"In-class Exercise 02/25/21", "COMPLETE"},
+                {"Homework Assignment 01", "COMPLETE"},
+                {"Attendance 03/02/21", "COMPLETE"},
+                {"In-class Exercise 03/02/21", "COMPLETE"},
+                {"Attendance 03/04/21", "PENDING"},
+                {"Attendance 03/09/21", "PENDING"},
+                {"In-class Exercise 03/09/21", "PENDING"},
+                {"Attendance 03/11/21", "PENDING"},
+                {"In-class Exercise 03/11/21", "PENDING"},
+                {"Homework Assignment 02", "PENDING"}
+
+        };
         //
         //
         //
@@ -169,7 +212,9 @@ public class SpringSemester2021 {
         do {
             System.out.printf(
                     "%s",
-                    black + whiteback + "\tMENU:\n" + reset + green + "[1] : " + reset + "All Things Homework\n"
+                    black + whiteback + "\tMENU:\n" + reset
+                    + green + "[1] : " + reset + "Homework\n"
+                    + green + "[2] : " + reset + "Contacts\n"
                     + red + "[0] :" + reset + " Exit Program\n"
             );
             try {
@@ -181,18 +226,20 @@ public class SpringSemester2021 {
                         loopCondition = false;
                         break;
 
+                        // [1] All Things Homework
                     case 1 :
                         // Print Homework assignments from each class
                         int menuOption;
 
                         do {
                         // Menu Format
-                        System.out.printf("%s \n%s \n%s \n%s \n%s \n%s\n",
+                        System.out.printf("%s \n%s \n%s \n%s \n%s \n%s \n%s %n",
                             (green + "[1] : " + reset + "ALL ASSIGNMENTS"),
                             (green + "[2] : " + reset + "CSC-17C Assignments (C++ Data Structures)"),
                             (green + "[3] : " + reset + "CSC-11 Assignments (Computer Architecture and Organization: Assembly)"),
                             (green + "[4] : " + reset + "CSC-7 Assignments (Discrete Mathematics)"),
                             (green + "[5] : " + reset + "MAT-1B Assignments (Calculus II)"),
+                            (green + "[6] : " + reset + "CIS-830 Assignments (Introduction Python)"),
                             (red + "[0] : " + reset + "GO BACK")
                          );
 
@@ -208,6 +255,8 @@ public class SpringSemester2021 {
                                         printHW(CSC_7_HW, "CSC-7 Assignments");
                                         printHW(CSC_7_READINGS, "CSC-7 Text Readings");
                                         printNewHW(MAT_1B_HW, "MAT-1B Assignments");
+                                        printHW(MAT_1B_RECORDINGS, "MAT-1B Lecture Recordings");
+                                        printHW(CIS_830_HW, "CIS_830 Assignments");
                                         break;
                                     case 2:
                                         printHW(CSC_17C_HW, "CSC-17C Assignments");
@@ -221,7 +270,11 @@ public class SpringSemester2021 {
                                         printHW(CSC_7_READINGS, "CSC-7 Text Readings");
                                         break;
                                     case 5:
-                                        printNewHW(MAT_1B_HW, "MAT_1B Assignments");
+                                        printNewHW(MAT_1B_HW, "MAT-1B Assignments");
+                                        printHW(MAT_1B_RECORDINGS, "MAT-1B Lecture Recordings");
+                                        break;
+                                    case 6:
+                                        printHW(CIS_830_HW, "CIS_830 Assignments");
                                         break;
                                     case 0:
                                         break;
@@ -235,22 +288,38 @@ public class SpringSemester2021 {
                         newline();
                         break;
 
+                        // [2] All Things Contacts
                     case 2:
-                        /*
-                        // function call
-                        private static void beginCase2() {
-                            // function variables
 
-                            // new function call
-                            private static void notes() {
-                                // function variables
+                        try  {
+                            // variables
+                            String[][] Professor_Info = {
+                                    {"Mark E. Lehr", "CSC-17C", "CSC-7", "CIS-830", "EMAIL"},
+                                    {"Paul Conrad", "CSC-11", "EMAIL"},
+                                    {"Veasna Chiek", "MAT-1B", "EMAIL"},
+                                    {"Paul Dalba", "CIS-830", "pdalba@ucr.edu"},
+                                    {"Jessica Hutchison", "Network Kinection", "jessica@mynetkinect.com", "(714)644-1127"}
+                            };
 
-
+                            // Display professor information
+                            System.out.print(yellow + "\nProfessors:\n" + reset);
+                            int flag = 1;
+                            for (int i = 0; i < Professor_Info.length; i++) {
+                                System.out.print(cyan + (flag++) + ". " + reset);
+                                for (int j = 0; j < Professor_Info[i].length; j++) {
+                                    System.out.print(Professor_Info[i][j] + " || ");
+                                }
+                                newline();
                             }
-
+                            newline();
                         }
-                         */
-                        break;
+                        catch (Exception e)
+                        {
+                            System.err.println("Something went wrong! Programs crashed.");
+                            // e.printStackTrace();
+                        }
+
+                        break; // from Switch case 2
 
                     // Last Switch Option
                     default:
@@ -347,6 +416,18 @@ public class SpringSemester2021 {
 
             // line breaks
             newline(2);
+        }
+    }
+
+    // output rows and columns of a two-dimensional array
+    private static void outputArray(String[][] array) { // (String version)
+        // loop through array's rows.
+        for (int row = 0; row < array.length; row++) {
+            // loop through columns of current row.
+            for (int column = 0; column < array[row].length; column++) {
+                System.out.printf("%d  ", array[row][column]);
+            }
+            newline();
         }
     }
 
