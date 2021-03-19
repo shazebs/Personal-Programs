@@ -8,6 +8,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// main Class
 public class CoinCalculator {
 
     // create constants
@@ -16,35 +17,61 @@ public class CoinCalculator {
     final static double  NICKEL = 0.05;
     final static double   PENNY = 0.01;
 
+    // COlORS
+    //
+    // text color
+    public static final String reset = "\u001B[0m";
+    public static final String black = "\u001B[30m";
+    public static final String red = "\u001B[31m";
+    public static final String green = "\u001B[32m";
+    public static final String yellow = "\u001B[33m";
+    public static final String blue = "\u001B[34m";
+    public static final String purple = "\u001B[35m";
+    public static final String cyan = "\u001B[36m";
+    public static final String white = "\u001B[37m";
+
+
+// main method
     public static void main(String[] args) {
         // Create  a Scanner
         Scanner input = new Scanner(System.in);
 
         // Create a Cash and Coin object
-        String previousDate = "12/16/20";
-        double previousTotal = 223.58;
-        Cash currentCash = new Cash(51.14,48.15,8.00); // 12-5-20
-        Coins currentCoin = new Coins(51,42,32,237); // 12-4-20
+        String previousDate  = "2/4/21";
+        double previousTotal = 1696.63; // after i received $551 from Rooha's mama and papa
+        //
+        double Bot_Future$   = 152.64;
+        int registrationFund = 271;
+        Cash  currentCash    = new Cash(483.37,58.18,209);
+        Coins currentCoin    = new Coins(83,69,46,279);
 
         System.out.println("\nAuthor@ Shazeb");
         System.out.println("\t'Piggy-Bank'");
         System.out.print(currentCash); // prints 'Checkings', 'Savings', and 'Cash'
         System.out.print(currentCoin); // prints 'TOTAL'
+        System.out.printf("Paycheck:  $ %,.2f%n", Bot_Future$);
 
         // print 'Total Money = $' and 'Previous Total = $'
-        double totalMoney = currentCash.getTotal() + currentCoin.getTotal();
+        double totalMoney =
+                currentCash.getTotal() + currentCoin.getTotal() + Bot_Future$;
         //
-        System.out.println("\nPrevious Total: $ " + previousTotal);
-        System.out.printf("Current Total: %s%,.2f\n", " $ ", totalMoney);
+        System.out.printf("\nPrevious Total: $ %,.2f%n", previousTotal);
+        System.out.printf(" Current Total:%s%,.2f\n", " $ ", totalMoney);
 
 
+        // if-else statement for + or - current money change
         if (previousTotal > totalMoney) {
-            System.out.printf("(-$%,.2f since %s)\n", (previousTotal- totalMoney), previousDate);
+            System.out.printf("%s(-$%,.2f since %s)%s\n", red,
+                    (previousTotal- totalMoney), previousDate, reset);
+            // System.out.print(reset);
         }
         else if (previousTotal < totalMoney) {
-            System.out.printf("(+$%,.2f since %s)\n", (totalMoney - previousTotal), previousDate);
+            System.out.printf("%s(+$%,.2f since %s)%s\n", green,
+                    (totalMoney - previousTotal), previousDate, reset);
+            // System.out.print(reset);
         }
 
+        // try...catch
         try {
             System.out.println();
             System.out.println("> loop method below (must finish) < ");
@@ -73,8 +100,9 @@ public class CoinCalculator {
         catch (InputMismatchException e) {
             System.err.println("You have to enter an integer value.\nProgram Terminated.");
         }
-
+        //
         System.err.println("Program has successfully ended.");
+
 
     } // End of Main Method
 
@@ -94,7 +122,7 @@ public class CoinCalculator {
         }
         if (rolls > 0) {
             System.out.println("\\\\");
-            System.out.printf("(%d rolls of $10.00 quarters,\n", rolls);
+            System.out.printf("(You can make %d rolls of $10.00 quarters,\n", rolls);
             System.out.printf("with %.2f left in loose coins)\n", total);
         }
     }
@@ -106,6 +134,7 @@ public class CoinCalculator {
         // local variables
         double total = DIME * dimes;
         System.out.printf("Total Dimes = $%,.2f\n", total);
+        System.out.println("\\\\");
 
         int rolls = 0;
         while ( (total - 5.00) >= 0 ) {
@@ -113,7 +142,6 @@ public class CoinCalculator {
             total -= 5.00;
         }
         if (rolls > 0) {
-            System.out.println("\\\\");
             System.out.printf("(You can make %d rolls of $5.00 dimes,\n", rolls);
             System.out.printf("with %.2f left in loose coins)\n", total);
         }
@@ -160,11 +188,13 @@ public class CoinCalculator {
     }
 
 
-
+    // print total coins count
     public static void calcTotal(int quarters, int dimes, int nickels, int pennies) {
         // local variables
         double total = (QUARTER * quarters) + (DIME * dimes) +  (NICKEL * nickels) + (PENNY * pennies);
+        System.out.print(green);
         System.out.printf("\nTOTAL Coins = $%,.2f\n", total);
+        System.out.print(reset);
     }
 
 
@@ -194,8 +224,8 @@ class Coins {
 
     // toString
     public String toString() {
-        return String.format("%s:%7s$%,.2f\n",
-                "TOTAL", " $ ", (quarters + dimes + nickels + pennies));
+        return String.format("%s:%7s%,.2f\n",
+                "Coins", " $ ", (quarters + dimes + nickels + pennies));
     }
 }
 
