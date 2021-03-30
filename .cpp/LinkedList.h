@@ -158,8 +158,26 @@ public :
     }
 };
 
-LinkedList::~LinkedList() {
+LinkedList::~LinkedList() 
+{
+    ListNode *nodePtr;  // to traverse the list
+    ListNode *nextNode; // to point to the next node
 
+    // Position nodePtr at the head of the list.
+    nodePtr = head;
+
+    // While nodePtr is not at the end of the list...
+    while (nodePtr != nullptr)
+    {
+        // Save a pointer to the next node.
+        nextNode = nodePtr->next;
+
+        // delete the current node.
+        delete nodePtr;
+
+        // position nodePtr at the next node.
+        nodePtr = nextNode;
+    }
 }
 
 #endif //UNTITLED2_NUMBERLIST_H
