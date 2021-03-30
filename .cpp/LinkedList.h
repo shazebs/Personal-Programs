@@ -2,10 +2,10 @@
 // Created by shazebs on 3/29/2021.
 //
 
-#ifndef UNTITLED2_NUMBERLIST_H
-#define UNTITLED2_NUMBERLIST_H
+#ifndef UNTITLED2_LINKEDLIST_H
+#define UNTITLED2_LINKEDLIST_H
 
-class NumberList
+class LinkedList
 {
 private :
     // Declare a structure for the list
@@ -19,11 +19,11 @@ private :
 
 public :
     // Constructor
-    NumberList()
+    LinkedList()
         { head = nullptr; }
 
     // Destructor
-    // ~NumberList();
+    ~LinkedList();
 
     // Linked list operations
     void appendNode(double num)
@@ -157,5 +157,9 @@ public :
         }
     }
 };
+
+LinkedList::~LinkedList() {
+
+}
 
 #endif //UNTITLED2_NUMBERLIST_H
