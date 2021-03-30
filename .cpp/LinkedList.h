@@ -108,7 +108,7 @@ public :
             return;
         // Determine if the first node is the one.
         if (head->value == num) {
-            nodePtr = head;
+            nodePtr = head->next;
             delete head;
             head = nodePtr;
         }
