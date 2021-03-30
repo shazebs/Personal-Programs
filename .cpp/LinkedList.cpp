@@ -1,40 +1,51 @@
 #include <iostream>
 #include <cstdlib>
-#include "NumberList.h"
+#include "LinkedList.h"
 using namespace std;
 
 int main()
 {
     // Define a NumberList object
-    NumberList list;
+    LinkedList list;
 
     // Append some values to the list.
     list.appendNode(2.5);
     list.appendNode(7.9);
     list.appendNode(12.6);
 
-    // Display the values in the list.
-    cout << endl;
-    cout << "Linked List Contents:\n";
+    // Display the list.
+    cout << "\nHere are the initial values:\n";
     list.displayList();
-
-    // Insert a node in the middle of the list.
-    // .insertNode(double num) execution
-    list.insertNode(10.5);
-
-    // .displayList() execution
     cout << endl;
-    cout << "Linked List Contents (version 2):\n";
-    list.displayList();
 
-    // .deleteNode(double num) execution
+    // Delete the middle node.
+    cout << "Now deleting the node in the middle.\n";
     list.deleteNode(7.9);
-    list.deleteNode(5.5);
 
-    // .displayList() execution
-    cout << endl;
-    cout << "Linked List Contents (version 3):\n";
+    // Display the list.
+    cout << "Here are the nodes left.\n";
     list.displayList();
+    cout << endl;
+
+    // Delete the last node.
+    cout << "Now deleting the last node.\n";
+    list.deleteNode(12.6);
+
+    // Display the list
+    cout << "Here are the nodes left.\n";
+    list.displayList();
+    cout << endl;
+
+    // Delete the only node left in the list.
+    cout << "Now deleting the only remaining node.\n";
+    list.deleteNode(2.5);
+
+    // Display the list.
+    cout << "Here are the nodes left.\n";
+    list.displayList();
+
+    // End Program
+    cout << "\nEnd Program.";
 
     // ** All Methods have been implemented **
     /*
@@ -42,10 +53,7 @@ int main()
      LinkedList.insert(Object x)
      LinkedList.display()           // type: void
      LinkedList.delete(Object x)
-
-
      */
 
-    // End Program
     return 0;
 }
