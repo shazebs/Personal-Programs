@@ -11,10 +11,21 @@
 using namespace std;
 
 // User's Libraries
-#include "Link.h"
+// #include "Link.h"
 
 //
 // Structure
+//
+
+struct Link 
+{
+    int data;
+    Link *nodePtr; 
+};
+
+
+// 
+// Classes
 //
 
 template <class T>
@@ -61,119 +72,29 @@ int displayMenu();
 
 static Link *frontLink = nullptr;
 static Link *lastLink = nullptr;
+static Link *tempLink = nullptr; 
 
 // 
 // Main Method.
 // 
 
 int main(int argc, char** argv) 
-{
+{        
     // Local Variables
-    // Link *front = nullptr; 
-    
-    
-    // Create a Link Node
-    Link *link1 = new Link;
-    Link *link2 = new Link;
-    Link *link3 = new Link;
-    Link *link4 = new Link;
-    Link *link5 = new Link;
-    
-    // Fill the Structures with Data
-    link1->data = 1; 
-    link2->data = 2;
-    link3->data = 3;
-    link4->data = 4; 
-    link5->data = 5; 
-    
-    // Initialize the Link ptrs
-    link1->nodePtr = link2;
-    link2->nodePtr = link3;
-    link3->nodePtr = link4;
-    link4->nodePtr = link5; 
-    link5->nodePtr = nullptr;
-    
-    // frontLink = link3; 
-    
-    /*
-    // Set the front of the link
-    frontLink = link1;
-    
-    
-    // Print the list
-    printList(frontLink); 
-    
-    
-    // Destroy the list 
-    destroyList(frontLink); 
-    
-    
-    // Create a New List with FillList Function.
-    cout << "\nA new list has now been created:\n";
-    frontLink = fillList(10); 
-    printList(frontLink); 
-    
-    
-    // Method Call to Create Link Function.
-    Link *createdLink = createLink(999); 
-    cout << "\nCreated Link Data = " << createdLink->data << endl; 
-    
-    
-    // Try the PushFront Function.
-    pushFront(createdLink); newline(1); 
-    printList(frontLink); 
-    
-    
-    // Try the PushBack Function.
-    Link *createdLink2 = createLink(1010); 
-    pushBack(createdLink2); newline(1);
-    printList(frontLink); 
-    
-    
-    // Try the Pop Front Function.
-    newline(1); 
-    Link *popped = popFront(); 
-    cout << "You popped " << popped->data << " from the front of the list.\n";
-    cout << "The list is now:\n"; 
-    printList(frontLink); 
-    
-    
-    // Try the Pop Back Function.
-    newline(1);
-    Link *popped2 = popBack(); 
-    cout << "You popped " << popped2->data << " from the back of the list.\n";
-    printList(frontLink); 
-    
-    
-    // Try to Pop Another Link from the back.
-    popped2 = popBack();
-    cout << "You popped " << popped2->data << " from the back of the list.\n";
-    printList(frontLink); 
-    
-    
-    
-    // Destroy the List. 
-    newline(1);     
-    
-    // Try to Print the List.
-    printList(frontLink); 
-    
-    
-    // Create a New List.
-    newline(1); 
-    Link *newList = fillList(3); 
-    frontLink = newList;     
-    printList(link1); 
-    */
-    
     int choice = -1; 
+    int value; // To Hold Random Values. 
+    int temp;  // To Hold Random Values. 
     Link *pop = new Link; 
+    Link *add = new Link; 
+    
     
     
     // Display the Program Title.
     cout << "WELCOME TO SHAZEB SUHAIL'S LINKED LIST PROGRAM ASSIGNMENT" << endl;
     cout << "---------------------------------------------------------" << endl; 
     cout << "***WARNING***\n(Only Enter Integer Values or Code Will Break.)\n\n"; 
+    
+    // Start the MENU LOOPING. 
     do 
     {
         choice = displayMenu(); 
@@ -220,20 +141,21 @@ int main(int argc, char** argv)
                          << "[3] : popBack()\n"
                          << "[4] : pushFront()\n"   
                          << "[5] : pushBack()\n"
-                         << "[6] : destroyList()\n"
-                         << "[7] : <- Go Back to Main Menu.\n"
+                         << "[6] : createLink()\n"   
+                         << "[7] : destroyList()\n"
+                         << "[8] : <- Go Back to Main Menu.\n"
                          << "(Make a Selection): "; 
                     cin >> menuChoice; 
 
                     // Input Validation.
-                    while (menuChoice < 1 || menuChoice > 7)
+                    while (menuChoice < 1 || menuChoice > 8)
                     {
                         cout << "Error! Enter a valid menu option: ";
                         cin >> menuChoice; 
                     }
                     
                     // Break out of loop if User chooses to go back to Main Menu.
-                    if (menuChoice == 7) break; 
+                    if (menuChoice == 8) break; 
 
                     newline(1); 
                     switch(menuChoice) 
@@ -247,7 +169,7 @@ int main(int argc, char** argv)
                         case 2: 
                             if (!frontLink) 
                             {
-                                cout << "The List is Empty. No Link can be Popped.\n"; 
+                                cout << "The List is Empty. No Link can be Popped from the Front.\n"; 
                             }
                             else 
                             {
@@ -259,36 +181,108 @@ int main(int argc, char** argv)
                         
                         // Pop Back Switch Case.
                         case 3:  
-                            if (!frontLink)
+                            if (!frontLink) // If frontLink Does Not Exist,
                             {
-                                cout << "The List is empty. No Link can be Popped.\n"; 
+                                // Display an Error Message.
+                                cout << "The List is Empty. No Link can be Popped from the Back.\n"; 
                             }
+                            // Otherwise, if frontLink isn't Pointing to a Null Link, 
                             else if (frontLink->nodePtr == nullptr)
                             {
+                                // Pop the Only Link Left on the List. 
                                 pop = popFront(); 
-                                cout << "You Popped \'" << pop->data << "\' from the Front of the List.\n"; 
+                                // Display the Popped Link's Data. 
+                                cout << "You Popped \'" << pop->data << "\' from the Back of the List.\n"; 
                             }
+                            // Else if, List has More Than 1 Link, 
                             else 
                             {
+                                // Begin the Function. 
                                 pop = popBack(); 
+                                cout << "You Popped \'" << pop->data << "\' from the Back of the List.\n"; 
                             }
                             
                             
                             break; 
 
+                        // PushFront Function Switch Case.    
                         case 4: 
-                            cout << "You chose to Push a New Link to the Front of the List\n"; 
+                            cout << "Enter a Value to Add to the Front of the List: "; 
+                            cin >> value; 
+                            
+                            // Create the New Link then Push it to the Front of the List. 
+                            pushFront(createLink(value));    
+                            cout << "The Link has been Added to the Front of the List.\n"; 
+                            
                             break; 
-
+                        
+                            
+                        // PushBack Function Switch Case. 
                         case 5: 
-                            cout << "You chose to Push a New Link to the Back of the List\n"; 
+                            cout << "Enter a Value to Add to the Back of the List: "; 
+                            cin >> value;
+                            
+                             
+                            // If No Link Exists in the List. Set frontLink to New Link. 
+                            if (frontLink == nullptr)
+                            {
+                                frontLink = createLink(value); 
+                            }
+                            else  
+                            { // At this point, a frontLink Exists.
+                                pushBack(createLink(value)); // Create a New Link. 
+                            }
+                            
                             break; 
-
+                        
+                            
+                        // CreateLink Function Switch Case.     
                         case 6: 
-                            cout << "You chose to destroy the list.\n"; 
+                            cout << "Enter an Int Value for the New Link: "; 
+                            cin >> value; 
+                            
+                            pop = createLink(value); 
+                            
+                            cout << "link value = " << pop->data << endl;  
+                            cout << "\nChoose What to do with the Link.\n"
+                                 << "[1] : pushFront()\n"
+                                 << "[2] : pushBack()\n"
+                                 << "[3] : Cancel CreateLink()\n"
+                                 << "(Make a Selection): "; 
+                            cin >> temp; 
+                            
+                            // Input Validation.
+                            while (temp < 1 || temp > 3)
+                            {
+                                cout << "Error! Enter a valid menu option: ";
+                                cin >> temp; 
+                            }
+                            
+                            switch (temp)
+                            {
+                                case 1: 
+                                    pushFront(createLink(value)); 
+                                    break; 
+                                    
+                                case 2: 
+                                    pushBack(createLink(value)); 
+                                    break; 
+                                    
+                                default: 
+                                    cout << "Something went wrong! x_X\n"; 
+                            }
+                            
+                            break; 
+                        
+                        // DestroyList Function Switch Case.
+                        case 7: 
+                            destroyList(frontLink); 
+                            frontLink = nullptr; 
+                            lastLink = nullptr; 
+                            
                             break; 
 
-                        case 7: 
+                        case 8: 
                             cout << "You chose to go back to the Main Menu.\n"; 
                             break; 
 
@@ -297,7 +291,7 @@ int main(int argc, char** argv)
                     } 
                     
                     
-                } while (menuChoice != 7 || menuChoice != 6); 
+                } while (menuChoice != 8); 
                 
                 
                 newline(1); 
@@ -355,6 +349,19 @@ int displayMenu()
 
 
 
+// Create a Link.
+Link *createLink(int data)
+{
+    // Create a New Link.
+    Link *newLink = new Link; 
+    newLink->data = data; 
+    newLink->nodePtr = nullptr;
+    
+    return newLink; 
+}
+
+
+
 
 
 // Push Front Overloaded Function. 
@@ -370,29 +377,33 @@ void pushFront(Link *newFront)
 
 // Push Back Function. 
 void pushBack(Link *link)
-{
-    // Function Variables
-    Link *next = frontLink; // Ptr to Traverse the Linked List.
+{   
+    // lastLink->nodePtr = link; 
+    // lastLink = lastLink->nodePtr; 
     
-    if (!next)
+    // Traverse the List to the End. 
+    Link *next = frontLink; 
+    Link *temp = link; 
+    
+    if (!frontLink)
     {
-        cout << "The list is empty.\n"; 
+        frontLink = link;
     }
-    else 
+    else if (frontLink)
     {
-        while(next) // While Next Node Link is True, Traverse the List.
+        while (next)
         {
-            if (next->nodePtr == nullptr)
-                break; 
-            else
-                next = next->nodePtr; 
-        } 
+            if ( next->nodePtr == nullptr)
+            {
+                next->nodePtr = temp; 
+                break;
+            }
 
-        next->nodePtr = link;
-        link->nodePtr = nullptr; // Set Last Link's nodePtr to nullptr.
+            next = next->nodePtr; 
+        }
     }
+   
 }
-
 
 
 
@@ -415,95 +426,37 @@ Link *popFront()
 
 
 
-/*
-// Pop the Last Link in the list.
-Link *popBack()
-{
-    Link *nextLink = frontLink;
-    Link *poppedLink = new Link;
-    poppedLink->nodePtr = nullptr;
-    
-    // If Only One Link Exists in the List.
-    if (frontLink->nodePtr == nullptr)
-    {
-        // The frontLink appears to be the Only Link. So Pop the Front Link. 
-        poppedLink->data = frontLink->data; 
-        poppedLink->nodePtr = nullptr; 
-        frontLink = nullptr; 
-    }
-    // If more than One Link Exists in the List. 
-    else 
-    {
-        cout << "exectute b" << endl; 
-        // Traverse the List.
-        while (nextLink)
-        {
-            nextLink = nextLink->nodePtr;
-        }
-
-        poppedLink->data = nextLink->data; // Initialize poppedLink->data
-
-        // Traverse the List Again and Remove nodePtr to Popped Link. 
-        Link *temp = frontLink; 
-        
-        while(temp)
-        {
-            if (temp->nodePtr->nodePtr == nullptr) 
-            {
-                temp->nodePtr = nullptr;
-                break;
-            } 
-            else
-            {
-                temp = temp->nodePtr;
-            }
-        }
-    }
-    
-    return poppedLink; 
-} */
-
-
+// Pop the Last Link in the List. 
 Link *popBack() 
 {
     Link *nextLink = frontLink; // create a Temporary Link and Assign it to the frontLink.
+    Link *poppedLink = new Link; // To Hold the Popped Link.
     
-    if (nextLink) // If now, new temp = true, aim its ptr to the nearest null ptr. 
+    // Traverse the List. 
+    while (nextLink->nodePtr)
     {
-        // while (nextLink ) // While nextLink 
+        // Try to Pop a Link from the Back of the List. 
+        if ( (nextLink->nodePtr)->nodePtr == nullptr )
+        {
+            // Initialize Last Link in the List.
+            poppedLink = nextLink->nodePtr; 
+
+            // Stop Pointing to the Last Link on the List. 
+            nextLink->nodePtr = nullptr; 
+            
+            // Initialize Last Link.
+            lastLink = nextLink; 
+
+            // return the popped Link
+            return poppedLink;  
+        }   
+        // Otherwise, Move to the Next Link. 
+        else
+            nextLink = nextLink->nodePtr;        
     }
-    else if (!nextLink)
-        cout << "frontLink does not exist." << endl;
-    
-    
-    // Loop to the End of the List. 
-   //  while (nextLink != )
-    
-    
-    
-    
-    
-    // display frontLink data; 
-    cout << "frontLink->data = " << nextLink->data << endl;
     
     // return back a poppedLink. 
-    return nextLink; 
-}
-
-
-
-
-
-
-// Create a Link.
-Link *createLink(int data)
-{
-    // Create a New Link.
-    Link *newLink = new Link; 
-    newLink->data = data; 
-    newLink->nodePtr = nullptr;
-    
-    return newLink; 
+    return poppedLink;
 }
 
 
@@ -514,27 +467,27 @@ Link *createLink(int data)
 Link *fillList(int n)
 {
     // Initially create the front ptr
-    Link *front = new Link; 
-    front->data = 1; 
-    front->nodePtr = nullptr; 
+    Link *next = new Link; 
+    next->data = 1; 
+    next->nodePtr = nullptr; 
     
     // If n > 1, then fill with data
-    Link *temp = front; 
+    Link *temp = next; 
     
     for (int i=1; i < n; i++)
     {
         Link *newLink = new Link; 
         newLink->data = i+1; 
         newLink->nodePtr = nullptr; 
-        front->nodePtr = newLink; 
-        front = newLink; 
+        next->nodePtr = newLink; 
+        next = newLink; 
         
     }
     // Initialize lastLink. 
-    lastLink = front; 
+    lastLink = next; 
     
     // Return the correct frontLink. 
-    return front = temp; 
+    return next = temp; 
 }
 
 
@@ -558,6 +511,7 @@ void printList(Link *link)
     {
         if (i >= 1) 
             cout << "link" << i << "= "; i++; 
+            
         cout << link->data << endl; // Print the Node's Data. 
         link = link->nodePtr; // Set Next Equal To Next Node on the Linked List.
     }
@@ -572,10 +526,9 @@ void printList(Link *link)
 
 
 
-
 // Destroy the List.
 void destroyList(Link *link)
-{    
+{ 
     // Traverse the List and Destroy the Link Nodes.
     while (link != nullptr)
     {
@@ -586,24 +539,5 @@ void destroyList(Link *link)
     delete link; 
     
     if (link == nullptr)
-        cout << "The list has been deleted from memory.\n"; 
+        cout << "The List has been Deleted From Memory.\n"; 
 }
-
-
-
-// Push a Link to the Front of a Linked List. 
-/*
-void pushFront(Link *front)
-{
-    // Function Variables.
-    int value;
-    
-    cout << "Enter an Int Value to be pushed to the front of the linked list: ";
-    cin >> value; 
-    
-    // Create a New Link.
-    Link *newLink = new Link; 
-    newLink->data = value; 
-    newLink->nodePtr = front; 
-    front = newLink; 
-} */
