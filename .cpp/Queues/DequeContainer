@@ -1,0 +1,33 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+// This Function Utilizes the Deque Container.
+
+int main()
+{
+    const int MAX = 8;  // Max Value
+    int count;          // Loop Counter
+
+    // Define a Queue object.
+    queue<int> iQueue;
+
+    // Enqueue a Series of Numbers.
+    cout << "I Will Now Enqueue Items...\n";
+    for (int i=0; i < MAX; i++)
+    {
+        cout << "Pushing " << i << endl;
+        iQueue.push(i);
+    }
+
+    // Dequeue and Display the Numbers...\n;
+    cout << "\nI Will Now Dequeue Items...\n";
+    for (int i=0; i < MAX; i++)
+    {
+        cout << "Popping " << iQueue.front() << endl; // queue.front() returns the data of front node.
+        iQueue.pop();   // Remove Front Node.
+    }
+
+    cout << "\nEnd Program.";
+    return 0;
+}
