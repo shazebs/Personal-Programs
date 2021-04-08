@@ -1,0 +1,287 @@
+// Author: Shazeb Suhail
+// Date:   3/31/21
+// Time:   11:56 PM
+
+#include <iostream>
+#include <string>
+// #include "Stack.h"
+using namespace std;
+
+
+
+
+// Stack Template
+template <class T>
+class Stack
+{
+private:
+    T *stackArray;
+    int stackSize;
+    int top;
+
+public:
+    // Constructor
+    Stack(int);
+
+    // Copy constructor
+    Stack(const Stack&);
+
+    // Destructor
+    ~Stack();
+
+    // Stack operations
+    void push(T);
+    void pop(T &);
+    bool isFull();
+    bool isEmpty();
+};
+
+
+
+
+
+//***********************************************
+// Constructor                                  *
+// This constructor creates an empty stack.     *
+// The size parameter is the size of the stack. *
+//***********************************************
+
+template <class T>
+Stack<T>::Stack(int size)
+{
+    stackArray = new T[size];
+    stackSize = size;
+    top = -1;
+}
+
+//**********************************************
+// Copy constructor                            *
+//**********************************************
+template <class T>
+Stack<T>::Stack(const Stack &obj)
+{
+    // Create the stack array.
+    if (obj.stackSize > 0)
+        stackArray = new T[obj.stackSize]; // a new array is declared
+    else
+        stackArray = nullptr;
+
+    // Copy the stackSize attribute.
+    stackSize = obj.stackSize;
+
+    // Copy the stack contents.
+    for (int x = 0; x < stackSize; x++)
+        stackArray[x] = obj.stackArray[x];
+
+    // Set the top of the stack
+    top = obj.top; // initialize top to -1
+}
+
+//**********************************************
+// Destructor                                  *
+//**********************************************
+template <class T>
+Stack<T>::~Stack()
+{
+    if (stackSize > 0)
+        delete []stackArray;
+}
+//**********************************************
+// Member function push pushes the argument    *
+// onto the stack.                             *
+//**********************************************
+template <class T>
+void Stack<T>::push(T item)
+{
+    if (isFull())
+        cout << "The stack is full.\n";
+    else
+    {
+        top++; // increment starting from -1 by adding 1
+        stackArray[top] = item; // the stackArray at a given index is initialized an int value
+    }
+}
+
+//**********************************************
+// Member function pop pops the value at the   *
+// top of the stack off, and copies it into    *
+// the variable passed as an argument.         *
+//**********************************************
+template <class T>
+void Stack<T>::pop(T &item)
+{
+    if (isEmpty())
+        cout << "The stack is empty.\n";
+    else
+    {
+        item = stackArray[top];
+        top--;
+    }
+}
+
+//**********************************************
+// Member function isFull returns true if the  *
+// stack is empty, or false otherwise.         *
+//**********************************************
+template <class T>
+bool Stack<T>::isFull()
+{
+    bool status;
+
+    if (top == stackSize - 1)
+        status = true;
+    else
+        status = false;
+
+    return status;
+}
+
+//****************************************************
+// Member function isFull returns true if the stack  *
+// is full, or false otherwise.                      *
+//****************************************************
+template <class T>
+bool Stack<T>::isEmpty()
+{
+    bool status;
+
+    if (top == -1)
+        status = true;
+    else
+        status = false;
+
+    return status;
+}
+
+
+
+
+// Constants for the menu choices
+const int PUSH_CHOICE = 1,
+          POP_CHOICE = 2,
+          QUIT_CHOICE = 3;
+
+
+
+
+// Function Prototypes
+void menu(int &);
+void getStackSize(int &);
+void pushItem(Stack<string>&);
+void popItem(Stack<string>&);
+
+
+
+
+
+// Start of Main Method.
+int main()
+{
+    // Local Variables
+    int stackSize;  // The stack size
+    int choice;     // To hold a menu choice
+
+    // Get the stack size.
+    getStackSize(stackSize);
+
+    // Create the stack.
+    Stack<string> stack(stackSize);
+
+    do
+    {
+        // Get the user's menu choice.
+        menu(choice);
+
+        // Perform the user's choice.
+        if (choice != QUIT_CHOICE)
+        {
+            switch(choice)
+            {
+                case PUSH_CHOICE:
+                    pushItem(stack);
+                    break;
+                case POP_CHOICE:
+                    popItem(stack);
+            }
+        }
+    } while (choice != QUIT_CHOICE);
+
+
+    // End.
+    cout << "\nEnd Program.";
+    return 0;
+}
+
+//***************************************************
+// The getStackSize function gets the desired stack *
+// size, which is assigned to the reference         *
+// parameter.                                       *
+//***************************************************
+void getStackSize(int &size)
+{
+    // Get the desired stack size.
+    cout << "How big should I make the stack? ";
+    cin >> size;
+
+    // Validate the size.
+    while (size < 1)
+    {
+        cout << "Enter 1 or greater: ";
+        cin >> size;
+    }
+}
+
+//**********************************************************
+// The menu function displays the menu and gets the user's *
+// choice, which is assigned to the reference parameter.   *
+//**********************************************************
+void menu(int &choice)
+{
+    // Display the menu and get the user's choice.
+    cout << "\nWhat do you want to do?\n"
+         << PUSH_CHOICE
+         << " - Push an item onto the stack\n"
+         << POP_CHOICE
+         << " - Pop and item off the stack\n"
+         << QUIT_CHOICE
+         << " - Quit the program\n"
+         << "Enter your choice: ";
+    cin >> choice;
+
+    // Validate the choice
+    while (choice < PUSH_CHOICE || choice > QUIT_CHOICE)
+    {
+        cout << "Enter a valid choice: ";
+        cin >> choice;
+    }
+}
+
+//**********************************************
+// The pushItem function gets an item from the *
+// user and pushes it onto the stack.          *
+//**********************************************
+void pushItem(Stack<string> &stack)
+{
+    string item;
+
+    // Get an item to push onto the stack.
+    cin.ignore();
+    cout << "Enter and item: ";
+    getline(cin, item);
+    stack.push(item);
+}
+
+//***************************************************
+// The popItem function pops an item from the stack *
+//***************************************************
+void popItem(Stack<string> &stack)
+{
+    string item = "";
+
+    // Pop the item.
+    stack.pop(item);
+
+    // Display the item
+    if (item != "")
+        cout << item << " was popped.\n";
+}
