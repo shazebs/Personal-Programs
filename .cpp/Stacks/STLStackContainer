@@ -1,0 +1,43 @@
+// Author: Shazeb Suhail
+// Date:   4/1/21
+// Time:   3:51 AM
+
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+// This program demonstrates the STL stack container adapter.
+
+int main()
+{
+    // Local Variables
+    const int MAX = 8;  // Max value to store in the stack
+    int count;          // Loop counter
+
+    // Define an STL stack.
+    stack<int, vector<int>> stack;
+
+    // Push values onto the stack.
+    for (count = 2; count < MAX; count += 2)
+    {
+        cout << "Pushing " << count << endl;
+        stack.push(count);
+    }
+
+    // Display the size of the stack.
+    cout << "The size of the stack is ";
+    cout << stack.size() << endl;
+
+    // Pop the values off the stack.
+    for (count = 2; count < MAX; count += 2) {
+        cout << "Popping " << stack.top() << endl;
+        stack.pop();
+    }
+
+    // Test to see if there are anymore values on the stack.
+    stack.pop();
+
+    // End.
+    cout << "\nEnd Program.";
+    return 0;
+}
