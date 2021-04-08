@@ -1,0 +1,181 @@
+#include <iostream>
+#include <string>
+// #include "DynamicQueue.h"
+using namespace std;
+
+
+
+// DynamicQueue Template
+template <class T>
+class DynamicQueue
+{
+private :
+    // Structure for the Queue Nodes.
+    struct QueueNode
+    {
+        T value;            // Value in a Node.
+        QueueNode *nodePtr; // Pointer to the Next Node.
+    };
+
+    QueueNode *front;   // The Front of the Queue.
+    QueueNode *rear;    // The Rear of the Queue.
+    int numItems;       // Number of Items in the Queue.
+
+public :
+    // Constructor.
+    DynamicQueue();
+
+    // Destructor.
+    ~DynamicQueue();
+
+    // Queue Operations.
+    void enqueue(T);
+    void dequeue(T &);
+    bool isEmpty() const;
+    bool isFull() const;
+    void clear();
+};
+
+
+//******************************************
+// The Constructor Creates an Empty Queue. *
+//******************************************
+template <class T>
+DynamicQueue<T>::DynamicQueue()
+{
+    front = nullptr;
+    rear = nullptr;
+    numItems = 0;
+}
+
+//*************
+// Destructor *
+//*************
+template <class T>
+DynamicQueue<T>::~DynamicQueue()
+{
+    clear();
+}
+
+//*********************************************
+// Function Enqueue Inserts the Value in Num  *
+// at the Rear of the Queue.                  *
+//*********************************************
+template <class T>
+void DynamicQueue<T>::enqueue(T item)
+{
+    // Create a QueueNode Class Object.
+    QueueNode *newNode = nullptr;
+
+    // Create a New Node and Store Num There.
+    newNode = new QueueNode;
+    newNode->value = item;
+    newNode->nodePtr = nullptr;
+
+    // Adjust Front and Rear as Necessary.
+    if (isEmpty()) // If List is Empty...
+    { // Set Both Front and Rear Pointers to the New Node.
+        front = newNode;
+        rear = newNode;
+    }
+    else
+    {
+        // Add New Node to the End of the List.
+        rear->nodePtr = newNode;
+        rear = newNode; // Update the Rear Pointer to New Node.
+    }
+
+    // Update NumItems.
+    numItems++;
+}
+
+
+//**********************************************
+// Function Dequeue Removes the Value at the   *
+// Front of the Queue, and Copies it into Num. *
+//**********************************************
+template <class T>
+void DynamicQueue<T>::dequeue(T &item) // The Passed Argument's Address in Re-Initialized.
+{
+    // Create a QueueNode Class Object.
+    QueueNode *temp = nullptr;
+
+    if (isEmpty()) // If the List is Empty...
+    {   // Print List is Empty.
+        cout << "The Queue is Empty.\n";
+    }
+    else
+    {
+        // Save the Front Node Value in Num.
+        item = front->value;
+
+        // Remove the Front Node and Delete It.
+        temp = front;
+        front = front->nodePtr;
+        delete temp;
+
+        // Update NumItems.
+        numItems--;
+    }
+}
+
+
+//*********************************************
+// Function isEmpty Returns True if the Queue *
+// is Empty, and False Otherwise.             *
+//*********************************************
+template <class T>
+bool DynamicQueue<T>::isEmpty() const
+{
+    bool status;
+
+    if (numItems > 0)
+        status = false;
+    else
+        status = true;
+    return status;
+}
+
+//*********************************************************
+// Function Clear Dequeues All the Elements in the Queue. *
+//*********************************************************
+template <class T>
+void DynamicQueue<T>::clear()
+{
+    T value; // Dummy Variable for Dequeue.
+
+    while (!isEmpty())
+        dequeue(value);
+}
+
+
+// GLOBAL CONSTANTS
+const int QUEUE_SIZE = 5;
+
+int main()
+{
+    string name;
+
+    // Create a Queue.
+    DynamicQueue<string> stringQueue;
+
+    // Enqueue Some Names.
+    for (int i=0; i < QUEUE_SIZE; i++)
+    {
+        cout << "Enter a Name: ";
+        getline(cin, name);
+        stringQueue.enqueue(name);
+    }
+
+    // Dequeue the Names and Display Them.
+    cout << "\nHere are the Names You Entered:\n";
+    for (int i=0; i < QUEUE_SIZE; i++)
+    {
+        stringQueue.dequeue(name);
+        cout << name << endl;
+    }
+
+    // End.
+    cout << "\nEnd Program.";
+    return 0;
+}
