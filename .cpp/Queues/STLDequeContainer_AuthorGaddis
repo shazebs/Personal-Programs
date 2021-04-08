@@ -1,0 +1,33 @@
+#include <iostream>
+#include <deque>
+using namespace std;
+
+// This Function Utilizes the Deque Container.
+
+int main()
+{
+    const int MAX = 8;  // Max Value.
+    int count;          // Loop Counter.
+
+    // Create a Deque Object.
+    deque<int> deque;
+
+    // Enqueue a Series of Numbers.
+    cout << "I will now enqueue items...\n";
+    for (count = 2; count < MAX; count+= 2)
+    {
+        cout << "Pushing " << count << endl;
+        deque.push_back(count); // PushBack Function Call.
+    }
+
+    // Dequeue and Display the Numbers.
+    cout << "I will now dequeue items...\n";
+    for (count = 2; count < MAX; count += 2)
+    {
+        cout << "Popping " << deque.front() << endl; // Front() Method Call.
+        deque.pop_front();
+    }
+
+    cout << "\nEnd Program.";
+    return 0;
+}
