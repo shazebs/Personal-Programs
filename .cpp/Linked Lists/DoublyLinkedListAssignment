@@ -1,0 +1,219 @@
+// Author: Shazeb Suhail
+// Date:   4/8/21
+// Time:   8:00 PM
+
+#include <iostream>
+using namespace std;
+
+
+// Doubly Link Node Structure.
+struct Link {
+    // Structure Variables.
+    int data;
+    Link *forward;
+    Link *backward;
+
+    // Constructor (Default).
+    Link() { forward = nullptr; backward = nullptr; }
+
+    // Constructor 2.
+    Link(int n)
+    {
+        data = n;
+        forward = nullptr;
+        backward = nullptr;
+    }
+
+    // Destructor.
+    ~Link() { delete forward; delete backward; }
+};
+
+
+//
+// Function Prototypes.
+//
+
+void printList(Link *);         // implemented ☑
+void printListReverse(Link *);  // implemented ☑
+void pushFront(Link *);         // implemented ☑
+void pushBack(Link *);          // implemented ☑
+Link *popFront();               // implemented ☑
+Link *popBack();                // implemented ☑
+// FUNCTIONS TO IMPLEMENT:
+void insertLink();              // implemented ☒
+void deleteLink();              // implemented ☒
+void sortList();                // implemented ☒
+void insertBefore();            // implemented ☒
+void insertAfter();             // implemented ☒
+
+
+// Global Constants.
+Link *frontLink = nullptr; // Front Link of the Doubly Linked List.
+Link *backLink = nullptr;  // Back Link of the Doubly Linked List.
+Link *tempLink = nullptr; // Doubly Link Node for Temporary Computations.
+
+
+// Start of Main Method.
+int main() // Print Title of Program.
+{   cout << "WELCOME TO SHAZEB'S DOUBLY LINKED LIST PROGRAM ASSIGNMENT" << endl;
+
+    // Create a Doubly Linked List.
+    Link *link1 = new Link(3);
+    Link *link2 = new Link(5);
+    Link *link3 = new Link(7);
+    Link *link4 = new Link(9);
+
+
+    // Initialize Link Pointers.
+    link1->forward = link2;
+    link1->backward = nullptr;
+    //
+    link2->forward = link3;
+    link2->backward = link1;
+    //
+    link3->forward = link4;
+    link3->backward = link2;
+    //
+    link4->forward = nullptr;
+    link4->backward = link3;
+    //
+    frontLink = link1;
+    backLink = link4;
+
+
+    // Print the the List.
+    cout << "The Doubly Linked List Printed:" << endl;
+    printList(frontLink);
+
+
+    // Print List in Reverse.
+    cout << endl << "The Doubly Linked List Printed in Reverse:" << endl;
+    printListReverse(backLink);
+
+
+    // Push Front a New Link.
+    cout << endl;
+    Link *newFront = new Link(11);
+    cout << "Pushing to the Front of the Doubly Linked List '11'...\n";
+    pushFront(newFront);
+    cout << "The Doubly Linked List Printed:" << endl;
+    printList(frontLink); cout << endl;
+
+
+    // Push Back a New Link.
+    Link *newBack = new Link(13);
+    cout << "Pushing to the Back of the Doubly Linked List '13'...\n";
+    pushBack(newBack);
+    cout << "The Doubly Linked List Printed in Reverse:" << endl;
+    printListReverse(backLink);
+
+
+    // Pop the Front Link.
+    cout << "\nPopping '11' from the Front of the List...\n";
+    tempLink = popFront();
+    cout << "Popped Link Value: " << tempLink->data << endl;
+    cout << "The Doubly Linked List Printed:\n";
+    printList(frontLink);
+
+
+    // Pop the Back Link.
+    cout << "\nPopping '13' from the Back of the List...\n";
+    tempLink = popBack();
+    cout << "Popped Link Value: " << tempLink->data << endl;
+    cout << "The Doubly Linked List Printed in Reverse:\n";
+    printListReverse(backLink);
+
+
+
+    // End Program.
+    cout << "\nEnd Program.";
+    return 999;
+
+} // End of Main Method.
+
+
+//
+// Function Declarations.
+//
+
+// Print List Function Declaration.
+void printList(Link *link)
+{
+    Link *front = link; // Temp Link to Traverse the List.
+    // Loop and display the items.
+    while (front != nullptr) {
+        cout << front->data << endl; // Print Data of Current Link in Loop.
+        front = front->forward;      // Move to the Next Link on the Chain.
+    }
+}
+
+
+// Print List in Reverse Function Declaration.
+void printListReverse(Link *link)
+{
+    Link *back = link; // Temp Link to Traverse the List.
+    // Print the List in Reverse.
+    while (back != NULL)
+    {
+        cout << back->data << endl; // Print Data of Current Link in Loop.
+        back = back->backward;      // Move to the Next Link on the Chain.
+    }
+}
+
+
+// Push Front Function Declaration.
+void pushFront(Link *newFront)
+{
+    // Initialize Current Front Link's backward PTR to New Front Link.
+    frontLink->backward = newFront;
+    // Initialize New Front Link's forward PTR to Current Front Link.
+    newFront->forward = frontLink;
+    // Update the Front Link.
+    frontLink = newFront;
+}
+
+
+// Push Back Function Declaration.
+void pushBack(Link *newBack)
+{
+    // Initialize Current Back Link forward PTR to New Back Link.
+    backLink->forward = newBack;
+    // Add New Back Link to End of List.
+    newBack->backward = backLink;
+    // Update the Back Link.
+    backLink = newBack;
+}
+
+
+// Pop Front Function Declaration.
+Link *popFront()
+{
+    // Link Object to Hold Front Link.
+    Link *poppedLink = frontLink;
+    // Update the Front Link.
+    frontLink = frontLink->forward;
+    // Null the Updated Front Link's backward PTR.
+    frontLink->backward = nullptr;
+    // Null the Popped Link's forward and backward PTRS.
+    poppedLink->forward = nullptr;
+    poppedLink->backward = nullptr;
+    // Return Popped Link.
+    return poppedLink;
+}
+
+
+// Pop Back Function Declaration.
+Link *popBack()
+{
+    // Create a Popped Link Object to Return.
+    Link *poppedLink = backLink;
+    // Update the Back Link.
+    backLink = backLink->backward;
+    // Null the Updated Back Link's forward PTR.
+    backLink->forward = nullptr;
+    // Null the Popped Link's forward and backward PTRS.
+    poppedLink->backward = nullptr;
+    poppedLink->forward = nullptr;
+    // Return Popped Link.
+    return poppedLink;
+}
