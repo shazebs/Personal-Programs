@@ -2,6 +2,9 @@
 // Date:   4/8/21
 // Time:   8:00 PM
 
+
+// #include <Windows.h>
+// HANDLE h = GetStdHandle( STD_OUTPUT_HANDLE );
 #include <iostream>
 using namespace std;
 
@@ -33,18 +36,19 @@ struct Link {
 // Function Prototypes.
 //
 
-void printList(Link *);         // implemented ☑
-void printListReverse(Link *);  // implemented ☑
+void printList();               // implemented ☑
+void printListReverse();        // implemented ☑
 void pushFront(Link *);         // implemented ☑
 void pushBack(Link *);          // implemented ☑
 Link *popFront();               // implemented ☑
 Link *popBack();                // implemented ☑
+Link *createLink(int);          // implemented ☑
 // FUNCTIONS TO IMPLEMENT:
-void insertLink();              // implemented ☒
-void deleteLink();              // implemented ☒
+// void insertLink();           // implemented ☒  (Tip: Insert Sorted Already)
+void deleteLink(int);           // implemented ☑
 void sortList();                // implemented ☒
-void insertBefore();            // implemented ☒
-void insertAfter();             // implemented ☒
+void insertBefore(int,int);     // implemented ☑
+void insertAfter(int,int);      // implemented ☑
 
 
 // Global Constants.
@@ -81,14 +85,21 @@ int main() // Print Title of Program.
     backLink = link4;
 
 
+    // ** TEST CODE **
+
+    // SetConsoleTextAttribute(h, FOREGROUND_GREEN);
+    // system("pause:");
+    // SetConsoleTextAttribute(h, RemoveFontMemResourceEx(h));
+
+
     // Print the the List.
     cout << "The Doubly Linked List Printed:" << endl;
-    printList(frontLink);
+    printList();
 
 
     // Print List in Reverse.
     cout << endl << "The Doubly Linked List Printed in Reverse:" << endl;
-    printListReverse(backLink);
+    printListReverse();
 
 
     // Push Front a New Link.
@@ -97,7 +108,7 @@ int main() // Print Title of Program.
     cout << "Pushing to the Front of the Doubly Linked List '11'...\n";
     pushFront(newFront);
     cout << "The Doubly Linked List Printed:" << endl;
-    printList(frontLink); cout << endl;
+    printList(); cout << endl;
 
 
     // Push Back a New Link.
@@ -105,7 +116,7 @@ int main() // Print Title of Program.
     cout << "Pushing to the Back of the Doubly Linked List '13'...\n";
     pushBack(newBack);
     cout << "The Doubly Linked List Printed in Reverse:" << endl;
-    printListReverse(backLink);
+    printListReverse();
 
 
     // Pop the Front Link.
@@ -113,7 +124,7 @@ int main() // Print Title of Program.
     tempLink = popFront();
     cout << "Popped Link Value: " << tempLink->data << endl;
     cout << "The Doubly Linked List Printed:\n";
-    printList(frontLink);
+    printList();
 
 
     // Pop the Back Link.
@@ -121,8 +132,55 @@ int main() // Print Title of Program.
     tempLink = popBack();
     cout << "Popped Link Value: " << tempLink->data << endl;
     cout << "The Doubly Linked List Printed in Reverse:\n";
-    printListReverse(backLink);
+    printListReverse();
 
+
+    // Delete a Link.
+    cout << "\nDeleting '5' from the List...\n";
+    deleteLink(5);
+    cout << "The Link has been Deleted.\n";
+    cout << "The Doubly Linked List Printed:\n";
+    printList();
+
+
+    // Delete Another Link.
+    cout << "\nDeleting '7' from the List...\n";
+    deleteLink(7);
+    cout << "The Link has been Deleted.\n";
+    cout << "The Doubly Linked List Printed in Reverse:\n";
+    printListReverse();
+
+
+    // Insert Before Function Call.
+    cout << "\nInserting '3' Before '3'...\n";
+    insertBefore(3,3);
+    cout << "The Link has been Inserted.\n";
+    cout << "The Doubly Linked List Printed:\n";
+    printList();
+
+
+    // Insert Before Function Call a Second Time.
+    cout << "\nInserting '25' Before '9'...\n";
+    insertBefore(25,9);
+    cout << "The Link has been Inserted.\n";
+    cout << "The Doubly Linked List Printed in Reverse:\n";
+    printListReverse();
+
+
+    // Insert After Function Call.
+    cout << "\nInserting '24' After '25'...\n";
+    insertAfter(24,25);
+    cout << "The Link has been Inserted.\n";
+    cout << "The Doubly Linked List Printed:\n";
+    printList();
+
+
+    // Insert After Function Call a Second Time.
+    cout << "\nInserting '8' After '9'...\n";
+    insertAfter(8,9);
+    cout << "The Link has been Inserted.\n";
+    cout << "The Doubly Linked List Printed In Reverse:\n";
+    printListReverse();
 
 
     // End Program.
@@ -137,26 +195,42 @@ int main() // Print Title of Program.
 //
 
 // Print List Function Declaration.
-void printList(Link *link)
+void printList()
 {
-    Link *front = link; // Temp Link to Traverse the List.
-    // Loop and display the items.
-    while (front != nullptr) {
-        cout << front->data << endl; // Print Data of Current Link in Loop.
-        front = front->forward;      // Move to the Next Link on the Chain.
+    Link *front = frontLink; // Temp Link to Traverse the List.
+
+    if (!front)
+        cout << "The List is Empty.\n";
+    else
+    {
+        // Loop and display the items.
+        // SetConsoleTextAttribute(h, FOREGROUND_BLUE);
+        while (front != nullptr) {
+            cout << front->data << "  "; // Print Data of Current Link in Loop.
+            front = front->forward;      // Move to the Next Link on the Chain.
+        } cout<<endl;
+        // SetConsoleTextAttribute(h, RemoveFontMemResourceEx(h));
     }
 }
 
 
 // Print List in Reverse Function Declaration.
-void printListReverse(Link *link)
+void printListReverse()
 {
-    Link *back = link; // Temp Link to Traverse the List.
-    // Print the List in Reverse.
-    while (back != NULL)
+    Link *back = backLink; // Temp Link to Traverse the List.
+
+    if (!back)
+        cout << "The List is Empty." << endl;
+    else
     {
-        cout << back->data << endl; // Print Data of Current Link in Loop.
-        back = back->backward;      // Move to the Next Link on the Chain.
+        // Print the List in Reverse.
+        // SetConsoleTextAttribute(h, FOREGROUND_RED);
+        while (back != NULL)
+        {
+            cout << back->data << "  "; // Print Data of Current Link in Loop.
+            back = back->backward;      // Move to the Next Link on the Chain.
+        } cout<<endl;
+        // SetConsoleTextAttribute(h, RemoveFontMemResourceEx(h));
     }
 }
 
@@ -214,6 +288,164 @@ Link *popBack()
     // Null the Popped Link's forward and backward PTRS.
     poppedLink->backward = nullptr;
     poppedLink->forward = nullptr;
-    // Return Popped Link.
+    // Return Popped Link.♥$
     return poppedLink;
+}
+
+
+// Create Link Function Declaration.
+Link *createLink(int value)
+{
+    Link *newLink = new Link(value);
+    return newLink;
+}
+
+
+// Delete Link Function Declaration.
+void deleteLink(int value) // Deleted the Link that Contains the Value Passed.
+{
+    // Create a Link to Traverse the List.
+    Link *next = frontLink;
+
+    // Check if List is Empty.
+    if (next == nullptr) {
+        cout << "The List is Empty." << endl;
+    }
+    else if (next->data == value)
+    {
+        // Update the Front Link.
+        frontLink = frontLink->forward;
+        // Null the New Front Link's backward PTR.
+        frontLink->backward = nullptr;
+        cout << "The Link has been Removed from the List.\n";
+    }
+    else // Traverse the List.
+    {
+        // Move to the Next Link to Starting Looping.
+        next = next->forward;
+
+        // Traverse the List.
+        while (next->data != value)
+            next = next->backward; // Move to the Next Link on the Chain.
+
+        // Remove the Selected Link by Re-Initializing the forward and backward PTRS.
+        (next->backward)->forward = next->forward;
+        (next->forward)->backward = next->backward;
+
+        // Null the Link that is to be Deleted.
+        next = nullptr;
+    }
+}
+
+
+// Insert Before Function Declaration.
+void insertBefore(int value, int position)
+{
+    Link *newLink = createLink(value);
+    Link *next = frontLink;
+
+    if (!next) // If a Front Link Doesn't Exist.
+    {   // Make the New Link the Front Link.
+        frontLink = newLink;
+    }
+    else if (frontLink->data == position)
+    {
+        pushFront(newLink);
+    }
+    else
+    {
+        // Traverse the List While Link Data Does Not Equal Value Passed.
+        while (next->data != position)
+            next = next->forward;
+
+        /*
+        if (next->data == position)
+            cout << "The Correct Position Has Been Found!\n";
+        */
+
+        // Set the New Link's forward and backward PTRS.
+        newLink->forward = next;
+        newLink->backward = next->backward;
+
+        // Set the Previous Link's forward PTR to New Link.
+        (newLink->backward)->forward = newLink;
+
+        // Set Next Link's backward PTR to New Link.
+        next->backward = newLink;
+    }
+}
+
+
+// Insert After Function Declaration.
+void insertAfter(int value, int position)
+{
+    Link *newLink = new Link(value);
+    Link *iterator = frontLink;
+
+    // If Front Link Does Not Exist.
+    if (!iterator) {
+        cout << "The List is Empty.\n";
+    }
+    // If Front Link Equals the Position We are Looking For.
+    else if (frontLink->data == position)
+    {
+        // Check If Front Link Is the Only Link In the Chain.
+        if (frontLink->forward == nullptr)
+        {
+            // If Front Link is the Only Item, PushBack (After) the New Link.
+            pushBack(newLink);
+        }
+        // Else If Front Link's Isn't the Only Link in the Chain...
+        else if (frontLink->forward != nullptr)
+        {
+            // Insert New Link Between Front Link and Next Link.
+            // Set New Link's forward PTR to Next Link.
+            newLink->forward = frontLink->forward;
+            // Set New Link's backward PTR to the Front Link.
+            newLink->backward = frontLink;
+            // Set Next Link's backward PTR to New Link.
+            (newLink->forward)->backward = newLink;
+            // Set Front Link's forward PTR to New Link.
+            frontLink->forward = newLink;
+        }
+    }
+    // Else If FrontLink Is Not the Correct Position.
+    else
+    {
+        iterator = frontLink->forward;
+        // Loop Until the Correct Position Has Been Found.
+        while (iterator->data != position)
+            iterator = iterator->forward;
+
+        // If the End of the List Has Been Reached and Still No Position...
+        if (iterator == nullptr)
+        {
+            // Print and Error Message.
+            cout << "The Position We Are Looking For Does Not Exist.\n";
+            cout << "No Link Can Be Inserted After.\n";
+        }
+        // Else If the Correct Position Has Been Found...
+        else if (iterator->data == position)
+        {
+            // And If We're At the Back of the List...
+            if (iterator == backLink)
+            {   // Push Back the New Link.
+                pushBack(newLink);
+            }
+            // Else If We're Not At the Back of the List.
+            else // Insert New Link Between the Current Link and the Next Link;
+            {
+                // Set New Link's forward PTR to Next Link.
+                newLink->forward = iterator->forward;
+                // Set New Link's backward PTR to the Current Link.
+                newLink->backward = iterator;
+                // Set Next Link's backward PTR to New Link.
+                (newLink->forward)->backward = newLink;
+                // Set Current Link's forward PTR to New Link.
+                iterator->forward = newLink;
+            }
+        }
+        else
+            cout << "Something Went Wrong! x_X" << endl;
+    }
 }
