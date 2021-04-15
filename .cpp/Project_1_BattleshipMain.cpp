@@ -1,3 +1,7 @@
+// Author: Shazeb Suhail 
+// Date:   4/13/21
+// Time:   3:00 PM 
+
 #include <iostream>
 #include <list>
 #include <stack>
@@ -12,21 +16,9 @@ using namespace std;
 
 
 // User's Libraries.
-
-
-// Structures.
-// SHIP STRUCTURES.
-struct CarrierShip
-{   int carrier = 5; }; // occupies 5 spots
-struct BattleShip
-{   int battleship = 4; };  // occupies 4 spots
-struct CruiserShip
-{   int cruiser = 3; }; // occupies 3 spots
-struct SubmarineShip
-{   int submarine = 3; };   // occupies 3 spots
-struct DestroyerShip
-{   int destroyer = 2; };   // occupies 2 spots
-
+#include "PlayerDetails.h"
+#include "Ships.h"
+#include "StringLink.h"
 
 //
 // Function Prototypes.
@@ -38,39 +30,6 @@ void displayGrid();
 void print2dArray(string [][11]);
 void createPlayer();
 
-
-struct StringLink
-{
-    string data;
-    StringLink *forward;
-    StringLink *backward;
-
-    // Default Constructor.
-    StringLink()
-    {
-        forward = nullptr;
-        backward = nullptr;
-    }
-    // Constructor 2.
-    StringLink(string value)
-    {
-        data = value;
-        forward = nullptr;
-        backward = nullptr;
-    }
-    // Destructor
-    ~StringLink()
-    {
-        delete &data;
-        delete forward;
-        delete backward;
-    }
-};
-
-
-// Function Prototypes.
-
-
 // Global Constants.
 StringLink *strFrontLink = nullptr;
 
@@ -81,21 +40,22 @@ int main()
     // Title.
     cout << "Welcome to Battleship!" << endl;
 
-    // Local Variables.
 
-
-    // Work With Input
     // MainMenu();
     // displayGrid();
     createPlayer();
-
-    // Display Output
 
 
     // End Program.
     cout << "\n\nGame Over.";
     return 0;
 }
+
+
+//
+// Function Declarations
+// 
+
 
 void MainMenu() {
     // Function Variables.
@@ -131,6 +91,7 @@ void MainMenu() {
 }
 
 
+// Start New Game Function. 
 void StartNewGame()
 {
     // Function Variables.
@@ -139,28 +100,29 @@ void StartNewGame()
 }
 
 
-// Display Grid Function Declaration.
+
+// Display the Grid Function. 
 void displayGrid()
 {
     string grid[11][11] =
             {
-
-            {"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
-            {"A", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"B", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"C", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"D", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"E", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"F", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"G", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"H", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"I", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
-            {"J", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
-
+                    {"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"},
+                    {"A", "X", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                    {"B", "-", "X", "-", "-", "-", "-", "-", "-", "-", "-"},
+                    {"C", "-", "-", "X", "-", "-", "-", "-", "O", "-", "-"},
+                    {"D", "-", "-", "-", "X", "-", "-", "-", "O", "-", "-"},
+                    {"E", "-", "-", "-", "-", "X", "-", "-", "O", "-", "-"},
+                    {"F", "-", "-", "-", "-", "-", "-", "-", "O", "-", "-"},
+                    {"G", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                    {"H", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                    {"I", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"},
+                    {"J", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-"}
             };
-    // Print Grid.
+    // Print the Grid.
     print2dArray(grid);
 }
+
+
 
 
 // Print 2D Array Function Declaration.
@@ -171,11 +133,13 @@ void print2dArray(string array[][11])
     {
         for (int x = 0; x < 11; x++)
         {
-        cout << setw(5) << array[i][x];
+            cout << setw(5) << array[i][x];
         }
         cout << endl;
     }
 }
+
+
 
 
 // Create Player Function Declaration.
@@ -205,9 +169,9 @@ void createPlayer()
         ships.push("'Carrier'");
 
 
-        // Display Directions.
+        // Initialize ships popped off shipsStack.
         cout << "\nIt is now time to initialize your "
-             << ships.top() << "..." << endl << endl;
+             << ships.top() << " " << name << ".\n\n";
         ships.pop();
 
         // Display Grid.
@@ -217,14 +181,32 @@ void createPlayer()
         for (int i = 0; i < 5; i++)
         {
             string pin;
+            cout << "(" << 5-i << " spots remaining) : "; 
             cout << "\nEnter Position " << i+1 << ": ";
-            cin >> pin;
+            cin.ignore();
+            getline(cin,pin);
             newline(1);
             
-            // Display Grid. 
-            displayGrid(); 
+            if (i == 0)
+            {
+                cout << "(" << 5-i << " spot remaining) : Current Coordinates = None initialized.\n";
+                cout << "Enter Position " << i+1 << ": "; 
+                cin.ignore(); 
+                getline(cin,pin);
+                newline(1); 
+            }
+            else 
+            {
+                cout << "(" << 5-i << " spots remaining) : Current Coordinates = "
+                     << 
+            }
+            
+
+            // Display Grid.
+            displayGrid();
         }
-        
+
         cout << "\nThe coordinates have been initialized!\n\n";
     }
 }
+
