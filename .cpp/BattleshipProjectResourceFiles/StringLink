@@ -1,0 +1,27 @@
+struct StringLink
+{
+    string data;
+    StringLink *forward;
+    StringLink *backward;
+
+    // Default Constructor.
+    StringLink()
+    {
+        forward = nullptr;
+        backward = nullptr;
+    }
+    // Constructor 2.
+    StringLink(string value)
+    {
+        data = value;
+        forward = nullptr;
+        backward = nullptr;
+    }
+    // Destructor
+    ~StringLink()
+    {
+        delete &data;
+        delete forward;
+        delete backward;
+    }
+};
