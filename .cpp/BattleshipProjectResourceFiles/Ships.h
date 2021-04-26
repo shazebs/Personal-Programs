@@ -106,7 +106,7 @@ void printTextArtBoat(stack<string> boat)
     }
     else
     {
-        cout << "Error Code: ~456 has occured.Check your code.\n";
+        cout << "Error Code: ~456 has occurred.Check your code.\n";
     }
 }
 
