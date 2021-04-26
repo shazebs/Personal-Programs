@@ -8,6 +8,74 @@
 #include "Grids.h"
 #include "Pins.h"
 #include "Ships.h"
+#include <iostream>
+using namespace std;
+
+// Global Constants
+static string enemyName;
+
+// shipPinsInfo
+int shipPinsInfo(stack<string> ship)
+{
+    if (ship.top() == "'Carrier'")
+        return 5;
+    else if (ship.top() == "'Battleship'")
+        return 4;
+    else if (ship.top() == "'Cruiser'")
+        return 3;
+    else if (ship.top() == "'Submarine'")
+        return 3;
+    else if (ship.top() == "'Destroyer'")
+        return 2;
+    else
+        return 0;
+}
+
+// Check if Pin exists.
+string doesPinExist(string pin)
+{
+    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
+    {
+        if (iterate->first == pin)
+            return "true";
+    }
+    // Else
+    return "false";
+}
+
+// returnPinCoordinates
+void returnPinCoordinates(string pin, int &row, int &col)
+{
+    for (int i=0; i<11; i++)
+    {
+        for (int j=0; j<11; j++)
+        {
+            if (sampleGrid[i][j] == pin && grid[i][j] != shipSymbol) {
+                row = i;
+                col = j;
+            }
+            else if (sampleGrid[i][j] == pin && grid[i][j] == shipSymbol)
+                row = 99;
+        }
+    }
+}
+
+// initPinCoordinates
+void initPinCoordinates(int row, int col, string symbol)
+{
+    grid[row][col] = symbol;
+}
+
+// resetGridPin
+void resetGridPin(int x, int y, string pin)
+{
+    grid[x][y] = "_";
+    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
+    {
+        if (iterate->first == pin)
+            iterate->second = "_";
+    }
+}
 
 // Create Player Function Declaration.
 void createPlayer()
@@ -232,7 +300,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
-                                            // if col is larger.
+                                        // if col is larger.
                                         else if (col > col2)
                                         {
                                             spaces = col - col2;
