@@ -6,6 +6,9 @@
 #define PROJECT_1_PINS_H
 
 #include "Grids.h"
+#include "PlayerDetails.h"
+#include "Ships.h"
+#include "StringLink.h"
 using namespace std;
 
 // Global Constants.
@@ -25,7 +28,6 @@ array<string, 3> pSubmarine;
 array<string, 2> pDestroyer;
 
 
-
 // dummy value for pop up computations.
 string pinName;
 
@@ -33,33 +35,185 @@ string pinName;
 // Pins Operations Functions.
 
 
-// Check if Pin exists.
-string doesPinExist(string pin)
+// initEnemyPins
+void initEnemyPins(set<string> ship, string enemyIcon)
 {
-    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
-    {
-        if (iterate->first == pin)
-            return "true";
+    // Loop thru rows
+    for (int row=0; row<11; row++)
+    { // Loop thru cols
+        for (int col=0; col<11; col++)
+        {
+            // check to see if egrid index matches an enemy coordinate.
+            set<string>::iterator iter;
+            // Loop thru set container.
+            for (iter = ship.begin(); iter != ship.end(); iter++)
+            {
+                // if an item from set element matches array item, initialize that item to something.
+                if (*iter == sampleGrid[row][col])
+                    egrid[row][col] = enemyIcon;
+            }
+        }
     }
-    // Else
-    return "false";
 }
 
-// shipPinsInfo
-int shipPinsInfo(stack<string> ship)
+// intiEnemyFleet
+void initEnemyFleet()
 {
-    if (ship.top() == "'Carrier'")
-        return 5;
-    else if (ship.top() == "'Battleship'")
-        return 4;
-    else if (ship.top() == "'Cruiser'")
-        return 3;
-    else if (ship.top() == "'Submarine'")
-        return 3;
-    else if (ship.top() == "'Destroyer'")
-        return 2;
-    else
-        return 0;
+    int r = rand()%6;
+    // int r = rand()%20;
+
+    // Select a random template for enemy ships to be set as.
+    // Bot
+    if (r == 0)
+    {
+        cout << "The enemy team will be led by Bot.\n";
+        enemyName = "Bot";
+
+        set<string> eCarrier = {"A10", "B10", "C10", "D10", "E10"};
+        set<string> eBattleship = {"C3", "C4", "C5", "C6"};
+        set<string> eCruiser = {"G1", "H1", "I1"};
+        set<string> eSubmarine = {"J5", "I5", "H5"};
+        set<string> eDestroyer = {"A1", "A2"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+        // Somi
+    else if (r == 1)
+    {
+        cout << "The enemy team will be led by Somi.\n";
+        enemyName = "Somi";
+
+        set<string> eCarrier = {"B3", "C3", "D3", "E3", "F3"};
+        set<string> eBattleship = {"G6", "G7", "G8", "G9"};
+        set<string> eCruiser = {"A10", "B10", "C10"};
+        set<string> eSubmarine = {"F1", "G1", "H1"};
+        set<string> eDestroyer = {"J4", "J5"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+        //
+    else if (r == 2)
+    {
+        cout << "The enemy team will be led by Teddy.\n";
+        enemyName = "Teddy";
+
+        set<string> eCarrier = {"I10", "H10", "G10", "F10", "E10"};
+        set<string> eBattleship = {"B5", "C5", "D5", "E5"};
+        set<string> eCruiser = {"A8", "B8", "C8"};
+        set<string> eSubmarine = {"A1", "A2", "A3"};
+        set<string> eDestroyer = {"J2", "J3"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+    else if (r == 3)
+    {
+        cout << "The enemy team will be led by Googoo.\n";
+        enemyName = "Googoo";
+
+        set<string> eCarrier = {"A4", "B4", "C4", "D4", "E4"};
+        set<string> eBattleship = {"E6", "E7", "E8", "E9"};
+        set<string> eCruiser = {"J8", "J9", "J10"};
+        set<string> eSubmarine = {"I2", "I3", "I4"};
+        set<string> eDestroyer = {"I1", "J1"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+    else if (r == 4) {
+        cout << "The enemy team will be led by Zoya.\n";
+        enemyName = "Zoya";
+
+        set<string> eCarrier = {"B2", "C2", "D2", "E2", "F2"};
+        set<string> eBattleship = {"B1", "C1", "D1", "E1"};
+        set<string> eCruiser = {"H2", "H3", "H4"};
+        set<string> eSubmarine = {"A7", "B7", "C7"};
+        set<string> eDestroyer = {"H7", "H8"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+    else if (r == 5) {
+        cout << "The enemy team will be led by Binty.\n";
+        enemyName = "Binty";
+
+        set<string> eCarrier = {"I5", "I6", "I7", "I8", "I9"};
+        set<string> eBattleship = {"A6", "B6", "C6", "D6"};
+        set<string> eCruiser = {"F5", "G5", "H5"};
+        set<string> eSubmarine = {"A9", "B9", "C9"};
+        set<string> eDestroyer = {"F4", "G4"};
+
+        // Initialize Enemy Pins.
+        initEnemyPins(eCarrier, enemySymbol);
+        initEnemyPins(eBattleship, enemySymbol);
+        initEnemyPins(eCruiser, enemySymbol);
+        initEnemyPins(eSubmarine, enemySymbol);
+        initEnemyPins(eDestroyer, enemySymbol);
+    }
+    else if (r == 6) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 7) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 8) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 9) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 10) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 11) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 12) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 13) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 14) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 15) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 16) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 17) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 18) {
+        cout << "template" << r << endl;
+    }
+    else if (r == 19) {
+        cout << "template" << r << endl;
+    }
 }
 
 // Input Validation Function. Declaration.
@@ -77,41 +231,6 @@ bool inputValidation(int row, int col)
         return true;
     }
 }
-
-// returnPinCoordinates
-void returnPinCoordinates(string pin, int &row, int &col)
-{
-    for (int i=0; i<11; i++)
-    {
-        for (int j=0; j<11; j++)
-        {
-            if (sampleGrid[i][j] == pin && grid[i][j] != shipSymbol) {
-                row = i;
-                col = j;
-            }
-            else if (sampleGrid[i][j] == pin && grid[i][j] == shipSymbol)
-                row = 99;
-        }
-    }
-}
-
-// initPinCoordinates
-void initPinCoordinates(int row, int col, string symbol)
-{
-    grid[row][col] = symbol;
-}
-
-// resetGridPin
-void resetGridPin(int x, int y, string pin)
-{
-    grid[x][y] = "_";
-    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
-    {
-        if (iterate->first == pin)
-            iterate->second = "_";
-    }
-}
-
 
 // displayExistingPins
 void displayExistingPins()
