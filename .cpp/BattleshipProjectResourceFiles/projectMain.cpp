@@ -40,8 +40,8 @@ int initializeNewPin(string, int &, int &);
 void initEnemyFleet();
 void initRowStringLinks();
 void initColStringLinks();
-int shipPinsInfo(stack<string>);
 string doesPinExist(string);
+void switchTurns();
 
 
 // Global Constants.
@@ -57,7 +57,17 @@ int main()
     // Create a random number generator.
     srand(static_cast<unsigned int>(time(0)));
 
+    /*
+    string str;
     // Pre-cursor text calls.
+    do {
+        initEnemyFleet();
+        displayEnemyGrid();
+        cout << "Try again? (y/n): ";
+        getline(cin, str);
+        if (str == "y" || str == "Y")
+            clearEnemyGrid();
+    } while (str == "y" || str == "Y");*/
 
     // Method Calls.
     MainMenu();
@@ -68,11 +78,10 @@ int main()
 }
 // End of Main Method.
 
+
 //
 // Function Declarations.
 //
-
-
 
 // Main Menu Function Declaration.
 void MainMenu() {
@@ -112,110 +121,30 @@ void MainMenu() {
 // Start New Game Function Declaration.
 void StartNewGame()
 {
-    createPlayer();
-    initEnemyFleet();
+    // createPlayer();
 
-    // Display some output.
-    cout << "Player's Grid:\n"; displayGrid(); newline(2);
-    cout << "Enemy's Grid:\n"; displayEnemyGrid(); newline(2);
+    cout << "Searching for opponent...done.\n";
+    initEnemyFleet(); newline(1);
+    displayGrid();
+    switchTurns();
+
 }
 
-// initEnemyPins
-void initEnemyPins(set<string> ship, string enemyIcon)
+// Where i left off on.
+void switchTurns()
 {
-    for (int row=0; row<11; row++)
-    {
-        for (int col=0; col<11; col++)
-        {
-            // check to see if egrid index matches an enemy coordinate.
-            set<string>::iterator iter;
-            for (iter = ship.begin(); iter != ship.end(); iter++)
-            {
-                if (*iter == sampleGrid[row][col])
-                    egrid[row][col] = enemyIcon;
-            }
-        }
-    }
+    QueueLink *player1 = new QueueLink("Shazbot");
+    QueueLink *player2 = new QueueLink(enemyName);
+
+    player1->addToBack(player2);
+
+    cout << "It is " << getQueueData(player1) << "'s turn.\n";
+    player1->removeFromFront();
+    player2->addToBack(player1);
+    cout << "It is now " << getQueueData(player2) << "'s turn.\n";
 }
 
-void initEnemyFleet()
-{
-    // int r = rand()%20;
-    int r = 0;
 
-    // Select a random template for enemy ships to be set as.
-    if (r == 0) {
-        set<string> eCarrier = {"A10", "B10", "C10", "D10", "E10"};
-        set<string> eBattleship = {"C3", "C4", "C5", "C6"};
-        set<string> eCruiser = {"G1", "H1", "I1"};
-        set<string> eSubmarine = {"J5", "I5", "H5"};
-        set<string> eDestroyer = {"A1", "A2"};
-
-        // Initialize Enemy Pins.
-        initEnemyPins(eCarrier, "/\\");
-        initEnemyPins(eBattleship, "/\\");
-        initEnemyPins(eCruiser, "/\\");
-        initEnemyPins(eSubmarine, "/\\");
-        initEnemyPins(eDestroyer, "/\\");
-    }
-    else if (r == 1) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 2) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 3) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 4) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 5) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 6) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 7) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 8) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 9) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 10) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 11) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 12) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 13) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 14) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 15) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 16) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 17) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 18) {
-        cout << "template" << r << endl;
-    }
-    else if (r == 19) {
-        cout << "template" << r << endl;
-    }
-}
 
 
 
