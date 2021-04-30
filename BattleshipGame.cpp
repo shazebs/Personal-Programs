@@ -721,13 +721,13 @@ bool tryForHit(string pin)
     // Display Coordinates.
     // cout << "[ " << x << " , " << y << " ]" << endl;
 
-    // Hit Block.
+    // Initialize hit. 
     if (egrid[x][y] == enemySymbol)
     {
         ehitgrid[x][y] = hitSymbol;
         return (hit = true);
     }
-    // Miss Block.
+    // initialize miss. 
     else if (egrid[x][y] != enemySymbol)
     {
         ehitgrid[x][y] = missSymbol;
@@ -801,6 +801,7 @@ void TakeTurnsFiringMissiles()
 
             if (grid[x][y] == shipSymbol)
             {
+                cout << front->data << " landed a HIT! Switch Turns.\n";
                 grid[x][y] = hitSymbol;
                 switchTurns();
                 enemyScore++;
