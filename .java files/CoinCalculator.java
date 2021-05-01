@@ -39,21 +39,21 @@ public class CoinCalculator {
         // Create a Cash and Coin object
         String previousDate  = "2/4/21";
         double previousTotal = 1696.63; // after i received $551 from Rooha's mama and papa
+        double investments = 470 + 100 + 100;
         //
-        double Bot_Future$   = 152.64;
-        int registrationFund = 271;
-        Cash  currentCash    = new Cash(483.37,58.18,209);
-        Coins currentCoin    = new Coins(83,69,46,279);
+        // double Bot_Future$   = 524.76;
+        Cash  currentCash    = new Cash(1009.84,101.03,48/*ones*/+ 100/*fives*/+ 260/*tens*/+ 800/*twenties*/);
+        Coins currentCoin    = new Coins(103,79,53,212);
 
         System.out.println("\nAuthor@ Shazeb");
         System.out.println("\t'Piggy-Bank'");
         System.out.print(currentCash); // prints 'Checkings', 'Savings', and 'Cash'
         System.out.print(currentCoin); // prints 'TOTAL'
-        System.out.printf("Paycheck:  $ %,.2f%n", Bot_Future$);
+        // System.out.printf("Paycheck:  $ %,.2f%n", Bot_Future$);
 
         // print 'Total Money = $' and 'Previous Total = $'
         double totalMoney =
-                currentCash.getTotal() + currentCoin.getTotal() + Bot_Future$;
+                currentCash.getTotal() + currentCoin.getTotal() + investments;
         //
         System.out.printf("\nPrevious Total: $ %,.2f%n", previousTotal);
         System.out.printf(" Current Total:%s%,.2f\n", " $ ", totalMoney);
