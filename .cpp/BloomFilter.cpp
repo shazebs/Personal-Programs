@@ -31,6 +31,18 @@ public:
 
     IntNode *head = nullptr;
     IntNode *tail = nullptr;
+    
+    ~IntLink() 
+    {
+        IntNode *next = head; 
+        while (next) 
+        {
+            IntNode *temp = next; 
+            next = next->forward;
+            delete temp;
+        }
+        delete next;
+    }
 
     // IntLink Operations.
 
@@ -130,6 +142,7 @@ int main()
     cout << "\nEnter a name to check if it exists in the list: ";
     cin >> name;
     hashName(name,hash1,hash2,hash3);
+    cout << name << "'s hash values: ";
     cout << hash1 <<" "<< hash2 <<" "<< hash3<<endl;
 
     // Output results of hash search.
@@ -170,6 +183,9 @@ int main()
             cout << *v_it << " ";
         } cout << endl;
     }
+    
+    
+    // Clean up memory.
 
 
     // Display end program message.
@@ -243,5 +259,3 @@ void hashName(string name,int &h1,int &h2,int &h3)
 
     h1 = x; h2 = y; h3 = z;
 }
-
-
