@@ -18,6 +18,10 @@ import java.lang.SecurityException;
 import java.util.NoSuchElementException;
 import java.util.FormatterClosedException;
 import java.util.Formatter;
+import java.lang.IllegalStateException;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 
 public class WorkoutLogs {
@@ -34,8 +38,11 @@ public class WorkoutLogs {
     public static final String purple = "\u001B[35m";
     public static final String cyan = "\u001B[36m";
     public static final String white = "\u001B[37m";
+    // private static Object NoSuchElementException;
+    // private static Object IllegalStateException;
 
-    // start of main method
+
+    // Start of Main.
     public static void main(String[] args) throws IOException {
         // Scanner object
         Scanner in = new Scanner(System.in);
@@ -65,9 +72,9 @@ public class WorkoutLogs {
 
         // Last statement
         System.out.print(green + "\nProgram successfully ended." + reset);
-        System.exit(9);
-
+        System.exit(999);
     }
+    // End of Main.
 
     // > functions list <
 
@@ -160,7 +167,7 @@ public class WorkoutLogs {
 
 
         // ask if user wants to save the workout log
-        System.out.println("Save this workout log?");
+        System.out.println("Save this workout log in a .txt file?");
         System.out.print(green + "(y/n): " + reset);
         char choice = in.next().charAt(0);
 
@@ -168,8 +175,6 @@ public class WorkoutLogs {
             saveFile(in, exercise, names, weights); // call to function 4
         else
             System.out.println(yellow + "You chose to not to save the file." + reset);
-
-
     }
 
     // function 4
@@ -178,7 +183,7 @@ public class WorkoutLogs {
                                 String[] array1, String[] array2)
                                 throws IOException {
 
-        try (Formatter file = new Formatter("workout1.txt")) {
+        try (Formatter file = new Formatter("ExerciseSheet.txt")) {
             // write to the file
             file.format("%s\n%s\n",
                     session.sessionDate,
@@ -205,7 +210,6 @@ public class WorkoutLogs {
         // function variables
 
         System.out.println(yellow + "This feature is not yet available." + reset);
-
     }
 
     // function 6
