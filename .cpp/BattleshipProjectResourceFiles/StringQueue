@@ -5,71 +5,18 @@
 #ifndef PROJECT_1_STRINGQUEUE_H
 #define PROJECT_1_STRINGQUEUE_H
 
-struct QueueLink {
-    string name;
-    QueueLink *forward;
-    QueueLink *backward;
+struct Queue
+{
+    string data;
+    Queue *nodePtr;
 
-    QueueLink() {forward = nullptr; backward = nullptr;}
-    QueueLink(string data)
-    {
-        name = data;
-        forward = nullptr;
-        backward = nullptr;
+    Queue() {nodePtr = nullptr;}
+
+    Queue(string val) {
+        data = val;
+        nodePtr = nullptr;
     }
-
-    // QueueLink Operations.
-    void addToBack(QueueLink *link);
-    void removeFromFront();
 };
-
-// Global Constants.
-QueueLink *front = nullptr;
-
-// Function Definitions.
-
-string getQueueData(QueueLink *link)
-{
-    return link->name;
-}
-
-
-void QueueLink::addToBack(QueueLink *link)
-{
-    if (!front)
-    {
-        front = link;
-    }
-    else if (front)
-    {
-        // Loop to end of list.
-        QueueLink *it = front; // to traverse the queue.
-        while (it != nullptr)
-        {
-            if (it->backward == nullptr)
-            {
-                it->backward = link;
-                link->forward = it;
-            }
-        }
-    }
-}
-
-void QueueLink::removeFromFront()
-{
-    QueueLink *iterator = front;
-    QueueLink *remove;
-
-    if (!front)
-        cout << "The queue is empty.\n";
-    else
-    {
-        remove = front;
-        front = front->backward;
-        front->forward = nullptr;
-        remove->backward = nullptr;
-    }
-}
 
 
 #endif //PROJECT_1_STRINGQUEUE_H
