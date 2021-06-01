@@ -4,6 +4,7 @@
 
 #ifndef PROJECT_1_STRINGLINK_H
 #define PROJECT_1_STRINGLINK_H
+
 #include <set>
 #include <iostream>
 using namespace std;
@@ -53,6 +54,5 @@ struct StringLink
         }
     }
 };
-
 
 #endif //PROJECT_1_STRINGLINK_H
