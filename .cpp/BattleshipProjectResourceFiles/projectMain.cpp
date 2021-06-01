@@ -41,7 +41,7 @@ void initRowStringLinks();
 void initColStringLinks();
 string doesPinExist(string);
 void startTurnsQueue();
-bool tryForHit(string);
+string tryForHit(string);
 void getPinCoordinates(string,int &, int &);
 
 
@@ -134,11 +134,12 @@ void getPinCoordinates(string pin, int &x, int &y)
 }
 
 // Try for a hit or miss.
-bool tryForHit(string pin)
+string tryForHit(string pin)
 {
     // Function Variables.
     int x,y;
     bool hit = false;
+    string temp = "";
 
     // Find pin's grid coordinates. (at this point we already know pin exists).
     // Look through egrid for pin.
@@ -153,20 +154,20 @@ bool tryForHit(string pin)
         if (ehitgrid[x][y] == hitSymbol)
         {
             cout << "This location was already hit!\n";
-            return hit;
+            return "error";
         }
         else {
             ehitgrid[x][y] = hitSymbol;
-            return (hit = true);
+            return "true";
         }
     }
-    // Miss Block.
+        // Miss Block.
     else if (egrid[x][y] != enemySymbol)
     {
         ehitgrid[x][y] = missSymbol;
-        return hit;
+        return "false";
     }
-    return NULL;
+    return "false";
 }
 
 // take turns firing missiles.
@@ -200,9 +201,9 @@ void TakeTurnsFiringMissiles()
 
             if (doesPinExist(pin) == "true") // if pin's existence equals true.
             {
-                bool hit = tryForHit(pin);
+                string hit = tryForHit(pin);
 
-                if (hit)
+                if (hit == "true")
                 {
                     cout << front->data << " landed a HIT! Switch Turns.\n";
                     switchTurns();
@@ -210,10 +211,10 @@ void TakeTurnsFiringMissiles()
                     if (userScore == 17)
                         break;
                 }
-                else if (hit == false) {
+                else if (hit == "error") {
                     cout << front->data << " must try again.\n";
                 }
-                else
+                else if (hit == "false")
                 {
                     cout << front->data << " MISSED! Switch Turns...\n";
                     switchTurns();
@@ -229,10 +230,11 @@ void TakeTurnsFiringMissiles()
 
 
 
-        // Enemy's Turn to Fire Missiles.
+            // Enemy's Turn to Fire Missiles.
         else if (front->data == enemyName) {
 
-            // Display code block's instruction.
+            // Display code block's instruction.A4
+
             cout << front->data << " will now take aim.\n";
 
             // Fire at a random player grid coordinate.
