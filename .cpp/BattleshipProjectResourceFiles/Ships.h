@@ -111,7 +111,3 @@ void printTextArtBoat(stack<string> boat)
 }
 
 #endif //PROJECT_1_SHIPS_H
-
-
-
-
