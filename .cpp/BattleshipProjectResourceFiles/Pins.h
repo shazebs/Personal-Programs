@@ -32,10 +32,11 @@ array<string, 2> pDestroyer;
 string pinName;
 
 
-// Pins Operations Functions.
+///////////////////////////////////////////////////////////////////////////////////////////////
+// Pins Operations Functions //////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
-
-// initEnemyPins
+// Initialize Enemy Pins.
 void initEnemyPins(set<string> ship, string enemyIcon)
 {
     // Loop thru rows
@@ -56,7 +57,7 @@ void initEnemyPins(set<string> ship, string enemyIcon)
     }
 }
 
-// intiEnemyFleet
+// initialize enemy fleet using templates.
 void initEnemyFleet()
 {
     int r = rand()%6;
