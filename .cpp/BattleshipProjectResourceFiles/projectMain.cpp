@@ -10,7 +10,6 @@
 #include <queue>
 #include <map>
 #include <set>
-#include <ctime>
 #include <iomanip>
 #include <string>
 using namespace std;
@@ -41,11 +40,15 @@ void initEnemyFleet();
 void initRowStringLinks();
 void initColStringLinks();
 string doesPinExist(string);
-void switchTurns();
+void startTurnsQueue();
+bool tryForHit(string);
+void getPinCoordinates(string,int &, int &);
 
 
 // Global Constants.
 StringLink *strFrontLink = nullptr;
+Queue *front;
+Queue *back;
 
 
 // Start of Main Method.
@@ -56,18 +59,6 @@ int main()
 
     // Create a random number generator.
     srand(static_cast<unsigned int>(time(0)));
-
-    /*
-    string str;
-    // Pre-cursor text calls.
-    do {
-        initEnemyFleet();
-        displayEnemyGrid();
-        cout << "Try again? (y/n): ";
-        getline(cin, str);
-        if (str == "y" || str == "Y")
-            clearEnemyGrid();
-    } while (str == "y" || str == "Y");*/
 
     // Method Calls.
     MainMenu();
@@ -82,6 +73,7 @@ int main()
 //
 // Function Declarations.
 //
+
 
 // Main Menu Function Declaration.
 void MainMenu() {
@@ -118,38 +110,235 @@ void MainMenu() {
     }
 }
 
+// Move front of queue to back of the line in queue.
+void switchTurns()
+{
+    back->nodePtr = nullptr;
+    front->nodePtr = back;
+    back = front;
+    front = front->nodePtr;
+}
+
+// Get Pin Coordinates.
+void getPinCoordinates(string pin, int &x, int &y)
+{
+    for (int row=1;row<11;row++) {
+        for(int col=1;col<11;col++) {
+            if (sampleGrid[row][col] == pin) {
+                x = row;
+                y = col;
+                break;
+            }
+        }
+    }
+}
+
+// Try for a hit or miss.
+bool tryForHit(string pin)
+{
+    // Function Variables.
+    int x,y;
+    bool hit = false;
+
+    // Find pin's grid coordinates. (at this point we already know pin exists).
+    // Look through egrid for pin.
+    getPinCoordinates(pin,x,y);
+
+    // Display Coordinates.
+    // cout << "[ " << x << " , " << y << " ]" << endl;
+
+    // Hit Block.
+    if (egrid[x][y] == enemySymbol)
+    {
+        if (ehitgrid[x][y] == hitSymbol)
+        {
+            cout << "This location was already hit!\n";
+            return hit;
+        }
+        else {
+            ehitgrid[x][y] = hitSymbol;
+            return (hit = true);
+        }
+    }
+    // Miss Block.
+    else if (egrid[x][y] != enemySymbol)
+    {
+        ehitgrid[x][y] = missSymbol;
+        return hit;
+    }
+    return NULL;
+}
+
+// take turns firing missiles.
+void TakeTurnsFiringMissiles()
+{
+    // Function Variables.
+    int userScore = 0;
+    int enemyScore = 0;
+    int pinx = 0, piny = 0; // to hold coordinate pairs.
+
+    do {
+        cout << "\nScore: (17 Points to Win)\n"
+             << name << " = " << userScore << endl
+             << enemyName << " = " << enemyScore << endl;
+        newline(1);
+
+        // PLAYER FIRES MISSILES>
+        if (front->data == name)
+        {
+            // Display Grids.
+            cout << name << "'s Grid:\n";
+            displayGrid(); newline(1);
+            cout << enemyName << "'s Grid:\n";
+            displayEHitGrid();
+            newline(1);
+
+            string pin;
+            cout << front->data << ", please enter a coordinate to fire at.\n:";
+            getline(cin, pin); // get input.
+
+
+            if (doesPinExist(pin) == "true") // if pin's existence equals true.
+            {
+                bool hit = tryForHit(pin);
+
+                if (hit)
+                {
+                    cout << front->data << " landed a HIT! Switch Turns.\n";
+                    switchTurns();
+                    userScore++;
+                    if (userScore == 17)
+                        break;
+                }
+                else if (hit == false) {
+                    cout << front->data << " must try again.\n";
+                }
+                else
+                {
+                    cout << front->data << " MISSED! Switch Turns...\n";
+                    switchTurns();
+                    continue;
+                }
+            }
+            else if (doesPinExist(pin) == "false") // else if pin does not exist...try again.
+            {
+                cout <<"The pin does not exist. Try again.\n";
+                continue;
+            }
+        }
+
+
+
+        // Enemy's Turn to Fire Missiles.
+        else if (front->data == enemyName) {
+
+            // Display code block's instruction.
+            cout << front->data << " will now take aim.\n";
+
+            // Fire at a random player grid coordinate.
+            int x, y;
+            x = (rand()%10)+1;
+            y = (rand()%10)+1;
+
+            // ** Test Output **
+            cout << "ROW = " << x << " and COL = " << y << endl;
+
+            if (grid[x][y] == shipSymbol)
+            {
+                cout << front->data << " landed a HIT! Switch Turns.\n";
+                grid[x][y] = hitSymbol;
+                switchTurns();
+                enemyScore++;
+
+                if (enemyScore == 17)
+                    break;
+
+            }
+            else if (grid[x][y] == hitSymbol || grid[x][y] == missSymbol)
+            {
+                // Try again.
+                /*
+                cout << front->data
+                     << " already fired a missile at this pin. "
+                     << "Opponent will try again.\n"; */
+                continue;
+
+            }
+            else if (grid[x][y] == "-") {
+
+                cout << front->data << " MISSED! Switch Turns...\n";
+                grid[x][y] = missSymbol;
+                switchTurns();
+                continue;
+
+            }
+        }
+
+
+    } //WHILE LOOP CONDITIONS
+    while (userScore != 17 | enemyScore != 17);
+    newline(1);
+
+    // Print Out Winning Result.
+    if (userScore == 17)
+    {
+        // Display Grids.
+        cout << name << "'s Grid:\n";
+        displayGrid(); newline(1);
+        cout << enemyName << "'s Grid:\n";
+        displayEHitGrid();
+        newline(1);
+
+        cout << name << " has WON!!!\n"
+             << "FINAL SCORE:\n"
+             << name << " = " << userScore << endl
+             << enemyName << " = " << enemyScore << endl;
+    }
+    else if (enemyScore == 17)
+    {
+        // Display Grids.
+        cout << name << "'s Grid:\n";
+        displayGrid(); newline(1);
+        cout << enemyName << "'s Grid:\n";
+        displayEHitGrid();
+        newline(1);
+
+        cout << enemyName << " has WON!!!\n"
+             << "FINAL SCORE:\n"
+             << name << " = " << userScore << endl
+             << enemyName << " = " << enemyScore << endl;
+    }
+}
+
+
 // Start New Game Function Declaration.
 void StartNewGame()
 {
-    // createPlayer();
+    // Initialize player 1's ships.
+    createPlayer();
 
+    // Quick Prompt.
     cout << "Searching for opponent...done.\n";
-    initEnemyFleet(); newline(1);
-    displayGrid();
-    switchTurns();
+    initEnemyFleet();
 
+    // Function Calls.
+    startTurnsQueue();
+    TakeTurnsFiringMissiles();
 }
 
 // Where i left off on.
-void switchTurns()
+void startTurnsQueue()
 {
-    QueueLink *player1 = new QueueLink("Shazbot");
-    QueueLink *player2 = new QueueLink(enemyName);
+    Queue *link1 = new Queue(name);
+    Queue *link2 = new Queue(enemyName);
 
-    player1->addToBack(player2);
-
-    cout << "It is " << getQueueData(player1) << "'s turn.\n";
-    player1->removeFromFront();
-    player2->addToBack(player1);
-    cout << "It is now " << getQueueData(player2) << "'s turn.\n";
+    link2->nodePtr = link1;
+    front = link1;
+    back = link2;
 }
 
 
 
-
-
-
-
-
-
-
+/*
+ *
+ */
