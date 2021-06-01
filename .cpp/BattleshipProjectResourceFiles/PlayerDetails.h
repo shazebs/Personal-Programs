@@ -12,7 +12,21 @@
 using namespace std;
 
 // Global Constants
-static string enemyName;
+static string enemyName = "player2";
+static string name = "player1";
+
+// Check if Pin exists.
+string doesPinExist(string pin)
+{
+    // Loop through the GridMap.
+    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
+    {
+        if (iterate->first == pin)
+            return "true";
+    }
+    // Else
+    return "false";
+}
 
 // shipPinsInfo
 int shipPinsInfo(stack<string> ship)
@@ -29,18 +43,6 @@ int shipPinsInfo(stack<string> ship)
         return 2;
     else
         return 0;
-}
-
-// Check if Pin exists.
-string doesPinExist(string pin)
-{
-    for (iterate = gridMap.begin(); iterate != gridMap.end(); iterate++)
-    {
-        if (iterate->first == pin)
-            return "true";
-    }
-    // Else
-    return "false";
 }
 
 // returnPinCoordinates
@@ -80,7 +82,6 @@ void resetGridPin(int x, int y, string pin)
 // Create Player Function Declaration.
 void createPlayer()
 {
-    string name;
     int input;
 
     cout << "Enter Name for Player 1:\n";
@@ -137,7 +138,7 @@ void createPlayer()
 
                     cout << ":";
                     getline(cin, pin1);
-                    cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
+                    // cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
 
                     if (doesPinExist(pin1) == "true") {
                         returnPinCoordinates(pin1, row, col);
@@ -154,7 +155,7 @@ void createPlayer()
                             // Initialize last coordinate.
                             cout << "Enter last coordinate "<< shipPinsInfo(ships)-1 << " spaces away:";
                             getline(cin, pin2);
-                            cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
+                            // cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
                             if (doesPinExist(pin2) == "true")
                             {
                                 returnPinCoordinates(pin2, row2, col2);
@@ -173,7 +174,9 @@ void createPlayer()
                                     // If Same Row.
                                     if (row == row2)
                                     {
-                                        cout << "The pins are in the same row.\n";
+                                        // cout << "The pins are in the same row.\n";
+
+                                        // set pins not in reverse.
                                         if (col2 > col)
                                         {
                                             spaces = col2 - col;
@@ -203,6 +206,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -214,6 +218,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
+                                        // set pins in reverse.
                                         else if (col > col2)
                                         {
                                             spaces = col - col2;
@@ -244,6 +249,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -256,11 +262,12 @@ void createPlayer()
                                             }
                                         }
                                     }
-                                        // If Same Column.
+                                    // If Same Column.
                                     else if (col == col2)
                                     {
-                                        cout << "The pins are in the same column.\n";
-                                        // if col2 is larger.
+                                        // cout << "The pins are in the same column.\n";
+
+                                        // set pins not in reverse.
                                         if (row2 > row)
                                         {
                                             spaces = row2 - row;
@@ -289,6 +296,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -300,7 +308,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
-                                        // if col is larger.
+                                        // set pins in reverse.
                                         else if (col > col2)
                                         {
                                             spaces = col - col2;
@@ -329,6 +337,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -397,7 +406,7 @@ void createPlayer()
 
                     cout << ":";
                     getline(cin, pin1);
-                    cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
+                    // cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
 
                     if (doesPinExist(pin1) == "true") {
                         returnPinCoordinates(pin1, row, col);
@@ -414,7 +423,7 @@ void createPlayer()
                             // Initialize last coordinate.
                             cout << "Enter last coordinate "<< shipPinsInfo(ships)-1 << " spaces away:";
                             getline(cin, pin2);
-                            cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
+                            // cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
                             if (doesPinExist(pin2) == "true")
                             {
                                 returnPinCoordinates(pin2, row2, col2);
@@ -433,7 +442,9 @@ void createPlayer()
                                     // If Same Row.
                                     if (row == row2)
                                     {
-                                        cout << "The pins are in the same row.\n";
+                                        // cout << "The pins are in the same row.\n";
+
+                                        // set pins not in reverse.
                                         if (col2 > col)
                                         {
                                             spaces = col2 - col;
@@ -461,6 +472,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -472,6 +484,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
+                                        // set pins in reverse.
                                         else if (col > col2)
                                         {
                                             spaces = col - col2;
@@ -500,6 +513,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -512,10 +526,11 @@ void createPlayer()
                                             }
                                         }
                                     }
-                                        // Else if Same Column.
+                                    // Else if Same Column.
                                     else if (col == col2)
                                     {
-                                        cout << "The pins are in the same column.\n";
+                                        // cout << "The pins are in the same column.\n";
+                                        // set pins not in reverse.
                                         if (row2 > row)
                                         {
                                             spaces = row2 - row;
@@ -542,6 +557,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -553,7 +569,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
-                                            // if row is larger than row2
+                                        // set pins in reverse.
                                         else if (row > row2)
                                         {
                                             spaces = row - row2;
@@ -580,6 +596,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -654,7 +671,7 @@ void createPlayer()
 
                     cout << ":";
                     getline(cin, pin1);
-                    cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
+                    // cout << "~Does Pin exist: " << doesPinExist(pin1) << endl;
 
                     if (doesPinExist(pin1) == "true") {
                         returnPinCoordinates(pin1, row, col);
@@ -671,7 +688,7 @@ void createPlayer()
                             // Initialize last coordinate.
                             cout << "Enter last coordinate "<< shipPinsInfo(ships)-1 << " spaces away:";
                             getline(cin, pin2);
-                            cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
+                            // cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
                             if (doesPinExist(pin2) == "true")
                             {
                                 returnPinCoordinates(pin2, row2, col2);
@@ -690,7 +707,8 @@ void createPlayer()
                                     // If Same Row.
                                     if (row == row2)
                                     {
-                                        cout << "The pins are in the same row.\n";
+                                        // cout << "The pins are in the same row.\n";
+                                        // set pins not in reverse.
                                         if (col2 > col)
                                         {
                                             spaces = col2 - col;
@@ -717,6 +735,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -728,6 +747,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
+                                        // set pins in reverse.
                                         else if (col > col2)
                                         {
                                             spaces = col - col2;
@@ -755,6 +775,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -773,10 +794,11 @@ void createPlayer()
                                             flag = false;
                                         }
                                     }
-                                        // Else if Same Column.
+                                    // If Same Column.
                                     else if (col == col2)
                                     {
-                                        cout << "The pins are in the same column.\n";
+                                        // cout << "The pins are in the same column.\n";
+                                        // Initialize pin in forwardly.
                                         if (row2 > row)
                                         {
                                             spaces = row2 - row;
@@ -802,6 +824,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -813,6 +836,7 @@ void createPlayer()
                                                 flag = false;
                                             }
                                         }
+                                        // initialize pins in reverse.
                                         else if (row > row2)
                                         {
                                             spaces = row - row2;
@@ -838,6 +862,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -930,7 +955,7 @@ void createPlayer()
                             // Initialize last coordinate.
                             cout << "Enter last coordinate "<< shipPinsInfo(ships)-1 << " spaces away:";
                             getline(cin, pin2);
-                            cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
+                            // cout << "~Does Pin exist: " << doesPinExist(pin2) << endl;
                             if (doesPinExist(pin2) == "true")
                             {
                                 returnPinCoordinates(pin2, row2, col2);
@@ -949,7 +974,7 @@ void createPlayer()
                                     // If Same Row.
                                     if (row == row2)
                                     {
-                                        cout << "The pins are in the same row.\n";
+                                        // cout << "The pins are in the same row.\n";
                                         if (col2 > col)
                                         {
                                             spaces = col2 - col;
@@ -965,6 +990,7 @@ void createPlayer()
                                                 initPinCoordinates(row2, col2, shipSymbol);
 
                                                 // Print text art boat.
+                                                newline(1);
                                                 printTextArtBoat(ships); newline(1);
                                                 flag = true;
                                             }
@@ -991,6 +1017,7 @@ void createPlayer()
                                                 initPinCoordinates(row2, col2, shipSymbol);
 
                                                 // Print text art boat.
+                                                newline(1);
                                                 printTextArtBoat(ships); newline(1);
                                                 flag = true;
                                             }
@@ -1012,7 +1039,7 @@ void createPlayer()
                                     else if (col == col2)
                                     {
                                         int spaces = 0;
-                                        cout << "The pins are in the same column.\n";
+                                        // cout << "The pins are in the same column.\n";
                                         if (row2 > row)
                                         {
                                             spaces = row2 - row;
@@ -1037,6 +1064,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -1072,6 +1100,7 @@ void createPlayer()
                                                     initPinCoordinates(row2, col2, shipSymbol);
 
                                                     // Print text art boat.
+                                                    newline(1);
                                                     printTextArtBoat(ships); newline(1);
                                                     flag = true;
                                                 }
@@ -1138,11 +1167,8 @@ void createPlayer()
         // Display Prompt if all coordinates are successfully initialized.
         // displayGrid(); newline(1);
         cout << "End of player's ship initialization."; newline(2);
-        displayGrid(); newline(1);
     }
 }
 
 
 #endif //PROJECT_1_PLAYERDETAILS_H
-
-
