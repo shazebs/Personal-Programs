@@ -1,1 +1,193 @@
-// hello
+/*
+ * Author: Shazeb Suhail
+ * Date:   6-2-21
+ * Time:   9:03 PM
+ */
+
+#include <iostream>
+#include <iomanip>
+#include <chrono>
+using namespace std;
+using namespace chrono;
+
+
+/////////////////////////////// Start of Main ///////////////////////////////
+int main()
+{
+    // Local Variables.
+    int numHours, numSecs;
+    const int clerk1ServingTime = 60,    // in seconds
+              clerk2ServingTime = 30,    // in seconds
+              clerk3ServingTime = 45,    // in seconds
+              clerk4ServingTime = 60;    // in seconds (sub-in variable)
+
+    // Get an input from the user to initiate the queue simulation.
+    cout << "Enter <integer> number of hours a bank is open to run a simulation: ";
+    cin >> numHours;
+    // convert the input into seconds.
+    numSecs = ( (numHours * 60) * 60 );
+
+
+    // Begin the simulation loop.
+    // Clerks' serve time count.
+    int clerk1_counter =0,
+        clerk2_counter =0,
+        clerk3_counter =0;
+    // Clerks' total served count.
+    int clerk1_served =0,
+        clerk2_served =0,
+        clerk3_served =0;
+    // Customer line capacities.
+    int clerk1_line =0,
+        clerk2_line =0,
+        clerk3_line =0,
+        customerLine =0;
+    // ...
+    int customAddition =0;
+    int customerLineCount =0;
+    int customerTotalCount =0;
+
+    bool clrk1=false, clrk2=false, clrk3=false;
+
+
+    // loop body
+    // Set a timing analysis start.
+    auto start = high_resolution_clock::now();
+    // ...
+    for (int i=1;i<=numSecs;i++)
+    {
+        cout << i << " seconds"<<endl; // simulate passage of time.
+
+
+        /////////////////////////////////////// clerks serving customers process ///////////////////////////////////////
+        // ...
+        // Clerk 1's serving process.
+        if (clerk1_counter == clerk1ServingTime) { // if clerk 1's minute is up...
+            clerk1_served++; // clerk1 has now served a customer.
+            clerk1_line--; // that customer has now left clerk 1's line.
+            clrk1 = false; // clerk 1 is no longer busy.
+            clerk1_counter = 0; // reset clerk 1's serving counter.
+            cout<<"Clerk_1 has now served: "<<clerk1_served<<" customers.\n";
+            cout<<"There are "<<customerLineCount<<" customers remaining in the main line.\n";
+            // display customers served count.
+            cout<<customerTotalCount<<" customers have entered the line and ";
+            cout<<(clerk1_served + clerk2_served + clerk3_served)<<" customers have now been served.\n";
+        } else if ( (clerk1_counter != clerk1ServingTime) && clrk1) {
+            clerk1_counter++;
+            // ...
+        } // Clerk 2's serving process.
+        if (clerk2_counter == clerk2ServingTime) { // if clerk 2's 30 seconds are up...
+            clerk2_served++; // clerk 2 has now served a customer.
+            clerk2_line--; // that customer has now left clerk 2's line.
+            clrk2 = false; // clerk 2 is no longer busy.
+            clerk2_counter = 0; // reset clerk 2's serving counter.
+            cout<<"Clerk_2 has now served: "<<clerk2_served<<" customers.\n";
+            cout<<"There are "<<customerLineCount<<" customers remaining in the main line.\n";
+            // display customers served count.
+            cout<<customerTotalCount<<" customers have entered the line and ";
+            cout<<(clerk1_served + clerk2_served + clerk3_served)<<" customers have now been served.\n";
+        } else if ( (clerk2_counter != clerk2ServingTime) && clrk2) {
+            clerk2_counter++;
+            // ...
+        } // Clerk 3's serving process.
+        if (clerk3_counter == clerk3ServingTime) { // if clerk 3's 45 seconds are up...
+            clerk3_served++; // clerk 3 has now served a customer.
+            clerk3_line--; // that customer has now left clerk 3's line.
+            clrk3 = false; // clerk 3 is no longer busy.
+            clerk3_counter = 0; // reset clerk 3's serving counter.
+            cout<<"Clerk_3 has now served: "<<clerk3_served<<" customers.\n";
+            cout<<"There are "<<customerLineCount<<" customers remaining in the main line.\n";
+            // display customers served count.
+            cout<<customerTotalCount<<" customers have entered the line and ";
+            cout<<(clerk1_served + clerk2_served + clerk3_served)<<" customers have now been served.\n";
+        } else if ( (clerk3_counter != clerk3ServingTime) && clrk3) {
+            clerk3_counter++;
+        }
+
+
+
+        ///////////////////////////////// Handle the process of customers entering the line ////////////////////////////
+        // ...
+        if (++customAddition == 15) {
+            cout<<"A new customer has entered the line."<<endl; // ping that a new customer has arrived.
+            customAddition = 0; // reset the customer arrival time count.
+            customerLineCount++; // add a customer to the queue line.
+            customerTotalCount++; // add to the total number of customers to keep track of how many enter the line.
+            cout << "There are now " << customerLineCount << " customers in the main line.\n";
+
+            if (clrk1 == false) {
+                cout<<"Clerk_1 is available to service the customer next in line.\n";
+            }
+            else if (clrk2 == false) {
+                cout<<"Clerk_2 is available to service the customer next in line.\n";
+            }
+            else if (clrk3 == false) {
+                cout<<"Clerk_3 is available to service the customer next in line.\n";
+            }
+            else {
+                cout<<"There are no available clerks. "<<customerLineCount<<" customers must wait in the main line.\n";
+            }
+
+        }
+
+
+
+        ////////////////////////////////////////// find an open clerk //////////////////////////////////////////////////
+        // ...
+        if(clrk1 == false && customerLineCount > 0){
+            clrk1 = true; // clerk 1 is now busy with a customer.
+            clerk1_line++; // that customer was added to clerk 1's line.
+            customerLineCount--; // that customer has now left the main line.
+            clerk1_counter = 0; // begin clerk 1's serving time.
+            cout<<"A customer has entered Clerk_1's line.\n";
+            cout<<"Clerk_1 is currently servicing " << clerk1_line << " customers.\n";
+            cout <<"There are now " << customerLineCount << " customers in the main line.\n";
+        }
+        else if (clrk2 == false && customerLineCount > 0){
+            clrk2 = true; // clerk 2 is now busy with a customer.
+            clerk2_line++; // that customer was added to clerk 2's line.
+            customerLineCount--; // that customer has now left the main line.
+            clerk2_counter = 0; // begin clerk 2's serving time.
+            cout<<"A customer has entered Clerk_2's line.\n";
+            cout<<"Clerk_2 is currently servicing " << clerk2_line << " customers.\n";
+            cout <<"There are now " << customerLineCount << " customers in the main line.\n";
+        }
+        else if (clrk3 == false && customerLineCount > 0){
+            clrk3 = true; // clerk 3 is now busy with a customer.
+            clerk3_line++; // that customer was added to clerk 2's line.
+            customerLineCount--; // that customer has now left the main line.
+            clerk3_counter = 0; // begin clerk 2's serving time.
+            cout<<"A customer has entered Clerk_3's line.\n";
+            cout<<"Clerk_3 is currently servicing " << clerk3_line << " customers.\n";
+            cout <<"There are now " << customerLineCount << " customers in the main line.\n";
+        }
+
+    }
+    // Display the timing analysis end time.
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<seconds>(stop-start);
+    cout << "\nTime to loop: " << duration.count() << " seconds.\n\n";
+
+
+    // Additional Calculations
+    double totalServed = clerk1_served + clerk2_served + clerk3_served;
+    double findAverage = ( (clerk1_served*clerk1ServingTime) +
+                      (clerk2_served*clerk2ServingTime) +
+                      (clerk3_served*clerk3ServingTime) );
+    findAverage = findAverage / totalServed;
+
+
+    // ** Test Output **
+    cout << "** RESULTS **\n";
+    cout << "Total number of customers who entered the line = " << customerTotalCount << endl;
+    cout << "Clerk_1 served " << clerk1_served << " customers.\n";
+    cout << "Clerk_2 served " << clerk2_served << " customers.\n";
+    cout << "Clerk_3 served " << clerk3_served << " customers.\n";
+    cout << "Total served = " << totalServed << " customers.\n";
+    cout << "Average customer wait time = " << setprecision(2) << findAverage << " seconds.\n";
+
+    // End.
+    cout<<"\nEnd Program.";
+    return 0;
+}
+/////////////////////////////// End of Main ///////////////////////////////
