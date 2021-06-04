@@ -40,26 +40,3 @@ int main()
  * 8 = "T,U,V"
  * 9 = "W,X,Y,Z"
  */
-    // Create a list that will hold 512 random 3-letter initials.
-    /*
-     * The best way to implement this structure should be
-     * a fixed array, map, or linked list.
-     */
-
-    // Exit Program.
-    cout<<"\nEnd Program";
-    return 999;
-}
-
-// Number Keypad with Alphabetical Letters.
-/*
- * 1 = ""
- * 2 = "A,B,C"
- * 3 = "D,E,F"
- * 4 = "G,H,I"
- * 5 = "J,K,L"
- * 6 = "M,N,O"
- * 7 = "P,Q,R,S"
- * 8 = "T,U,V"
- * 9 = "W,X,Y,Z"
- */
