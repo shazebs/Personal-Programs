@@ -16,24 +16,6 @@ using namespace chrono;
 
 // Main.
 int main()
-{/*
- * Author: Shazeb Suhail
- * Date:   6-3-21
- * Time:   5:40 PM
- */
-
-#include <iostream>
-#include <chrono>
-#include <iomanip>
-using namespace std;
-using namespace chrono;
-
-// Structures.
-
-// Functions.
-
-// Main.
-int main()
 {
     // Create a list that will hold 512 random 3-letter initials.
     /*
