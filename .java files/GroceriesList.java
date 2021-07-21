@@ -1,156 +1,81 @@
-// Author: @shazebs
-// Date:   12/27/20
-// Time:   10:28 PM
-
-// library imports
+/*
+Author: Shazeb Suhail
+Date:   7-20-21
+Time:   11:00 PM
+ */
 import java.util.Scanner;
 
-public class GroceriesList {
+public class Random2 {
+
+    // COlORS
+    //
+    // text color
+    public static final String reset = "\u001B[0m";
+    public static final String black = "\u001B[30m";
+    public static final String red = "\u001B[31m";
+    public static final String green = "\u001B[32m";
+    public static final String yellow = "\u001B[33m";
+    public static final String blue = "\u001B[34m";
+    public static final String purple = "\u001B[35m";
+    public static final String cyan = "\u001B[36m";
+    public static final String white = "\u001B[37m";
+
+
+    // Main method.
     public static void main(String[] args) {
-        // create Scanner object
         Scanner input = new Scanner(System.in);
 
-        String[] groceriesPurchaseList = {
-                "Water bottles",
-                "Orange juice",
-                "Simply watermelon juice",
-                "Simply fruit punch juice",
-                "Milk jugs",
-                "Canola oil",
-                "Cashews",
-                "Peanuts",
-                "Apples",
-                "Bananas",
-                "Grapes",
-                "Eggs",
-                "Yogurt",
-                "Potatoes",
-                "Sensodyne toothpaste",
-                "Optic white toothpaste",
-                "Crest toothpaste",
-                "Body wash",
-                "Almond Milk",
-                "Turkey Slices",
-                "Cereal",
-                "Burger patties",
-                "Burger buns",
-                "Band-aids",
-                "Ketchup",
-                "Red Rooster hot sauce",
-                "Chicken",
-                "Beef",
-                "Salmon",
-                "Chicken drumsticks",
-                "Frozen entrees",
-                "Macaroni & chicken breast entrees",
-                "Serrano peppers",
-                "Cauliflower",
-                "Bell peppers",
-                "Carrots",
-                "Bread",
-                "Pediasure shakes",
-                "Canned Soups",
-                "Large supreme pizza",
-                "Sponges",
-                "Toilet paper",
-                "Tomato seeds"
-        };
+        // local variables
+        boolean check = true;
 
-        String[] groceriesAtHomeList = {
-                "Corn cobs",
-                "Chocolate chip waffles",
-                "Mixed vegetables",
-                "Onions",
-                "Tomatoes",
-                "Cilantro",
-                "Leeks",
-                "Butter",
-                "Mayo",
-                "Glazed bagels",
-                "Mirchi ground",
-                "Bread crumbs",
-                "Salt",
-                "Lemon pepper",
-                "Black pepper",
-                "Sugar",
-                "Rice",
-                "Protein cookies",
-                "Cake rusk",
-                "Nutrition bars",
-                "Popsicles",
-                "Waffle fries",
-                "Puff pastries",
-                "Hot pockets x 7",
-                "Orange chicken x 1",
-                "Small cheese pizza x 1",
-                "Fettuccine Alfredo x 3",
-                "Seekh kababs x 8",
-                "Shami kababs x 10",
-                "Mustard greens x 2",
-                "Broccoli x 1",
-                "Syrup",
-                "Nutella",
-                "Peanut butter",
-                "Raw honey",
-                "Basmati rice",
-                "Mini tortillas"
-        };
+        do {
+            System.out.println(yellow + "Store Menu" + reset);
+            displayMenu();
 
+            System.out.print("Pick a store: ");
+            String storeNum = input.nextLine();
 
-        // Stater Bros gift card amounts
-        double  card_0970 = 25.00,
-                card_6966 = 25.00,
-                card_5920 = 25.00,
-                card_6994 = 25.00,
-                card_3986 = 25.00,
-                card_0950 = 25.00;
-
-        double total = card_0970 + card_6966 + card_5920 +
-                        card_6994 + card_3986 + card_0950;
-
-
-        // Print outputs
-        System.out.println();
-        System.out.printf("-- We have %s food items at home.\n",
-                groceriesAtHomeList.length);
-        System.out.printf("-- We need %s food items from the store.\n",
-                groceriesPurchaseList.length);
-        //
-        System.out.printf("\nTOTAL money to spend $ %,.2f\n", total);
-
-
-
-        // Print grocery list
-        printArrayObjects(groceriesPurchaseList,
-                " > Grocery shopping list <", 9);
-        System.out.println();
-        // Print food at home
-        printArrayObjects(groceriesAtHomeList,
-                "> Food at home <", 9);
-
-
-
-        // System.exit()
-        System.err.print("\nProgram successfully ended.");
-
-    }
-    //
-    // Function Declarations
-    //
-    // method to print array contents
-    public static void printArrayObjects(String[] array, String arrayName, int x) {
-
-        System.out.printf("\n%s\n", arrayName);
-        for (int i = 0; i < array.length; i++) {
-
-            if (i < x) { // less than a specific amount
-                System.out.print(i + 1 + ".  ");
-                System.out.println(array[i]);
-            } else {
-                System.out.print(i + 1 + ". ");
-                System.out.println(array[i]);
+            // switch menu
+            switch (storeNum) {
+                case "1":
+                    System.out.println("You chose " +
+                            green + "Aldi's" + reset + "!");
+                    break;
+                case "2":
+                    System.out.println("You chose " +
+                            green + "Albertsons" + reset + "!");
+                    break;
+                case "3":
+                    System.out.println("You chose " +
+                            green + "Rio Ranch Market" + reset + "!");
+                    break;
+                default:
+                    System.out.println(yellow + "Incorrect input! " +
+                            "Menu is now closed." + reset);
+                    check = false;
+                    break;
             }
-        }
+            newline();
+        } while (check != false);
 
+
+        // End Program Tag.
+        System.out.print(red + "Program has ended." + reset);
+        System.exit(999);
     }
-} // end of main method.
+
+    // Function List
+
+    // display menu function
+    public static void displayMenu() {
+        System.out.print(cyan);
+        System.out.println("1. Aldis");
+        System.out.println("2. Albertsons");
+        System.out.println("3. Rio Ranch Market");
+        System.out.print(reset);
+    }
+
+    // newline function
+    public static void newline() {System.out.println();}
+    public static void newline(int n) { for(int i=0;i<n;i++)newline();}
+}
