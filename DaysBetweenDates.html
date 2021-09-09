@@ -1,0 +1,517 @@
+<!-- 
+Author: Shazeb Suhail
+Date:   8/22/21
+Time:   8:40 PM
+-->
+
+<!DOCTYPE html>
+<html>
+    
+    <!-- Start of Head Section--> 
+    <head>
+        <meta charset = "utf-8">
+        <title>Days Calculator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <!-- Start of Script --> 
+        <script>
+            
+            // Start of Calculate Function 
+            function calculate() {
+        
+                // Dates one and two.
+                var month_1 = document.getElementById("month_1").value;
+                var day_1 = document.getElementById("day_1").value;
+                var year_1 = document.getElementById("year_1").value; 
+                // 
+                var month_2 = document.getElementById("month_2").value;
+                var day_2 = document.getElementById("day_2").value;
+                var year_2 = document.getElementById("year_2").value; 
+                
+                console.log(month_1 + "/" + day_1 + "/" + year_1);
+                console.log(month_2 + "/" + day_2 + "/" + year_2);
+
+
+                function switchMonthToNum(monthName) {
+                    switch(monthName) 
+                    {
+                        case 'January':
+                            return 1;
+                            break;
+                        case 'February':
+                            return 2;
+                            break;
+                        case 'March':
+                            return 3;
+                            break;
+                        case 'April':
+                            return 4;
+                            break; 
+                        case 'May':
+                            return 5;
+                            break;
+                        case 'June': 
+                            return 6;
+                            break;
+                        case 'July': 
+                            return 7;
+                            break;  
+                        case 'August': 
+                            return 8;
+                            break;
+                        case 'September': 
+                            return 9;
+                            break;
+                        case 'October': 
+                            return 10;
+                            break;
+                        case 'November': 
+                            return 11;
+                            break;
+                        case 'December': 
+                            return 12;
+                            break;
+                        default: 
+                            console.log("switchMonthToNum() error occurred.");                      
+                    }
+                }
+
+                month_1 = switchMonthToNum(month_1); 
+                month_2 = switchMonthToNum(month_2); 
+
+                console.log("month_1 = " + month_1);
+                console.log("month_2 = " + month_2); 
+
+                var monthDays = [
+                    31, // jan
+                    28, // feb
+                    31, // mar
+                    30, // apr
+                    31, // may
+                    30, // jun
+                    31, // jul
+                    31, // aug
+                    30, // sep
+                    31, // oct
+                    30, // nov
+                    31  // dec
+                ]; 
+
+                if (month_1 == false || day_1 == false || month_2 == false || day_2 == false) {
+                    alert("Dates were not entered correctly. Try again.");
+                }
+                else {
+                    // gets days out of 365
+                    function getDayOfYear(month, day) 
+                    {
+                        var totalDays = 0; 
+                        for (var i=0; i < month-1; i++) {
+                            totalDays += monthDays[i]; 
+                        }
+                        return totalDays + (parseInt(day, 10));
+                    }
+                    var dayOne = getDayOfYear(month_1, day_1);
+                    var dayTwo = getDayOfYear(month_2, day_2); 
+
+                    console.log("dayOne = " + dayOne); 
+                    console.log("dayTwo = " + dayTwo); 
+                    
+                    // turn year strings into numbers
+                    year_1 = parseInt(year_1, 10); 
+                    year_2 = parseInt(year_2, 10); 
+
+                    // if (year_1 == year_2) 
+                    if (year_1 == year_2) {
+                        if (dayOne <= dayTwo) {
+                            var numDays = (dayTwo - dayOne); 
+                            alert("Days = " + numDays);
+                        } else {
+                            var numDays = (dayOne - dayTwo); 
+                            alert("Days = " + numDays);
+                        }
+                    }
+                    else if (year_1 < year_2) {
+                        var yearsBetween = (year_2 - year_1); 
+                        if (yearsBetween == 1) {
+                            var numDays = (365-dayOne); 
+                            numDays += dayTwo;
+                            alert("Days = " + numDays); 
+                        }
+                        else if (yearsBetween > 1) {
+                            console.log(yearsBetween); 
+                            var numDays = ((yearsBetween-1) * 365); 
+                            console.log("yearsBetween days = " + numDays); 
+                            numDays += (365-dayOne); 
+                            console.log("numDays + (365-dayOne) = " + numDays); 
+                            numDays += dayTwo; 
+                            alert("Days = " + numDays); 
+                        }
+                    }
+                    else if (year_1 > year_2) {
+                        var yearsBetween = (year_1 - year_2); 
+                        if (yearsBetween == 1) {
+                            var numDays = (365-dayTwo); 
+                            numDays += dayOne;
+                            alert("Days = " + numDays); 
+                        }
+                        else if (yearsBetween > 1) {
+                            console.log(yearsBetween); 
+                            var numDays = ((yearsBetween-1) * 365); 
+                            numDays += (365-dayTwo); 
+                            numDays += dayOne; 
+                            alert("Days = " + numDays); 
+                        }
+                    }
+                }
+            }
+            // End of Calculate Function 
+        
+        </script>
+        <!-- End of Script -->  
+        
+        
+        
+        <!-- Start of Styles Section --> 
+        <!-- background-image:url(https://img.nbc.com/sites/nbcunbc/files/images/2021/6/29/DAYS-2048x1152-Sm.png); -->
+        <!-- background-image:url(https://gmedia.playstation.com/is/image/SIEPDC/days-of-play-background-block-desktop-01-en-28apr21?$facebook$); --> 
+        <!-- background-image:url(https://orsted.com/-/media/www/images/corp/campaign/spacesafari/space-safari-background.png); -->
+        <!-- background-image:url(https://ik.imagekit.io/theartling/prod/original_images/soyoung.jpeg?tr=w-1650); --> 
+        <style>
+            
+            label.default {
+                font-size:32px;
+            }
+            button.calc {
+                width:175px;
+                height:60px;
+                background-color:white;
+                color:black;
+                font-size:30%; 
+                margin-top:3%;
+            }
+            body.default {
+                background-image:url(https://1.bp.blogspot.com/-wD6UL7GNeX8/VgGEzchoF0I/AAAAAAAABNo/UsSDulmYwJU/s2048/05%2BAstronauts%2Bon%2BMars%2BTotal%2BRecall%2B1990%2Bmovie%2Bimage.jpg);
+                background-size:cover;
+                background-position:center;
+                text-align:center;
+                background-repeat:repeat-y; 
+                font-size:300%;
+                color:white;
+                font-weight:bold;
+                background-color:black;
+            }
+            h1.default {
+                font-size:30px; 
+                line-height:0.3;
+                margin:2.5%;
+                color:black;
+            }
+            span.white {
+                background-color:white;
+                font-size:125%;
+            }
+            input.default {
+                height:30px;
+                font-size:35%;
+                text-align:center;
+            }
+            a.shazebalopolis {
+                font-size:35%;
+                color:white;
+            }
+            select.month {
+                height:50px;
+                font-size:40%;
+            }
+            select.day {
+                height:50px;
+                font-size:40%; 
+            }
+        
+        </style>
+        <!-- End of Styles Section --> 
+        
+    </head>
+    <!-- End of Head Section --> 
+    
+    
+    
+    <!-- Start of Body --> 
+    <body class="default">
+        
+        <!-- ///////////////////// First Date ////////////////// --> 
+        <h1 class="default"><span class="white">Enter First Date</span></h1>
+        <div style="border: 5px solid white; padding:2%;">
+        <!-- Enter First Month --> 
+        <label class="default">First month (1-12):</label>
+            <!-- <input class="default" id="month_1" placeholder="..." style="width:10%;"> -->
+            <select class="month" id="month_1" onChange="monthChange1();">
+                <option value="" disabled selected>...</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        <br>
+        <!-- Enter First Day --> 
+        <label class="default">Enter month day:</label>
+            <!-- <input class="default" id="day_1" placeholder="..." style="width:10%;"> -->
+            <select class="day" id="day_1">
+                <option value="" disabled selected>...</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option id="month_1_29">29</option>
+                <option id="month_1_30">30</option>
+                <option id="month_1_31">31</option>
+            </select>
+        <br>
+        <!-- Enter First Year --> 
+        <label class="default">Enter year:</label>
+            <!-- <input class="default" id="year_1" placeholder="..." style="width:15%;"> -->
+            <select class="month" id="year_1">
+                <!-- <option value="" disabled selected>...</option> -->
+                <script>
+                    for (var i=1900; i<2200; i++){
+                        if (i == 2021) {
+                            var line = ('<option selected=\"selected\">'+i+'</option>'); 
+                            document.write(line);
+                        } else {
+                            var line = ('<option>'+i+'</option>');
+                            document.write(line);
+                        }
+                    }
+                </script>
+            </select>
+        <br>
+        </div>
+        
+        <!-- newline -->
+        
+        <!-- ///////////////////// Second Date ////////////////// --> 
+        <!-- Title -->
+        <h1 class="default"><span class="white">Enter Second Date</span></h1>
+        <!-- Div box-->
+        <div style="border: 5px solid white; padding:2%;">
+        <!-- Month 2 Label --> 
+        <label class="default">Second month (1-12):</label>
+            <!-- Month 2 <select> tag -->
+            <select class="month" id="month_2" onChange="monthChange2();">
+                <option value="" disabled selected>...</option>
+                <option>January</option>
+                <option>February</option>
+                <option>March</option>
+                <option>April</option>
+                <option>May</option>
+                <option>June</option>
+                <option>July</option>
+                <option>August</option>
+                <option>September</option>
+                <option>October</option>
+                <option>November</option>
+                <option>December</option>
+            </select>
+        <br>
+        <!-- Day 2 Label  --> 
+        <label class="default">Enter month day:</label>
+            <!-- <input class="default" id="day_2" placeholder="..." style="width:10%;"> -->
+            <!-- Day 2 <select> tag -->
+            <select class="day" id="day_2">
+                <option value="" disabled selected>...</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option id="month_2_29">29</option>
+                <option id="month_2_30">30</option>
+                <option id="month_2_31">31</option>
+            </select>
+        <br>
+        <!-- Year 2 Label --> 
+        <label class="default">Enter year:</label>
+        <!-- Year 2 <select> tag -->
+            <select class="month" id="year_2">
+                <script>
+                    for (var i=1900; i<2200; i++){
+                        if (i == 2021) {
+                            var line = ('<option selected=\"selected\">'+i+'</option>'); 
+                            document.write(line);
+                        } else {
+                            var line = ('<option>'+i+'</option>');
+                            document.write(line);
+                        }
+                    }
+                </script>
+            </select>
+            <br>
+        </div>
+
+        <script>
+            // Month Change 1 function
+            function monthChange1() {
+                var selected = document.getElementById('month_1').value;
+                console.log('Month Selected: ' + selected);
+
+                if (selected == 'February') {
+                    var temp1 = document.getElementById('month_1_31');
+                    var temp2 = document.getElementById('month_1_30');
+                    var temp3 = document.getElementById('month_1_29');
+                    temp1.disabled = true;
+                    console.log("February 31st has been disabled.");
+                    temp2.disabled = true;
+                    console.log("February 30th has been disabled.");
+                    temp3.disabled = true;
+                    console.log("February 29th has been disabled."); 
+                    // fix day to 28th
+                    var currentDay = document.getElementById('day_1').value;
+                    if (currentDay == 31 || currentDay == 30 || currentDay == 29) {
+                        var resetDay = document.getElementById('day_1');
+                        resetDay.value = 28;
+                    }
+                }
+                else if (selected == 'April' || selected == 'June' || selected == 'September' || selected == 'November') {
+                    var temp1 = document.getElementById('month_1_31');
+                    var temp2 = document.getElementById('month_1_30');
+                    var temp3 = document.getElementById('month_1_29');
+                    temp1.disabled = true;
+                    temp2.disabled = false;
+                    temp3.disabled = false;
+                    console.log(selected + " 31st has been disabled.");
+                    var currentDay = document.getElementById('day_1').value;
+                    if (currentDay == 31) {
+                        var resetDay = document.getElementById('day_1');
+                        resetDay.value = 30;
+                    }
+                } else {
+                    var temp1 = document.getElementById('month_1_31');
+                    var temp2 = document.getElementById('month_1_30');
+                    var temp3 = document.getElementById('month_1_29');
+                    temp1.disabled = false;
+                    temp2.disabled = false;
+                    temp3.disabled = false;
+                    console.log("All <option> tags are available."); 
+                }
+            }
+
+            // Month Change 2 function
+            function monthChange2() {
+                var selected = document.getElementById('month_2').value;
+                console.log('Month Selected: ' + selected);
+
+                if (selected == 'February') {
+                    var temp1 = document.getElementById('month_2_31');
+                    var temp2 = document.getElementById('month_2_30');
+                    var temp3 = document.getElementById('month_2_29');
+                    temp1.disabled = true;
+                    console.log("February 31st has been disabled.");
+                    temp2.disabled = true;
+                    console.log("February 30th has been disabled.");
+                    temp3.disabled = true;
+                    console.log("February 29th has been disabled."); 
+                    // fix day to 28th
+                    var currentDay = document.getElementById('day_2').value;
+                    if (currentDay == 31 || currentDay == 30 || currentDay == 29) {
+                        var resetDay = document.getElementById('day_2');
+                        resetDay.value = 28;
+                    }
+                }
+                else if (selected == 'April' || selected == 'June' || selected == 'September' || selected == 'November') {
+                    var temp1 = document.getElementById('month_2_31');
+                    var temp2 = document.getElementById('month_2_30');
+                    var temp3 = document.getElementById('month_2_29');
+                    temp1.disabled = true;
+                    temp2.disabled = false;
+                    temp3.disabled = false;
+                    console.log(selected + " 31st has been disabled.");
+                    var currentDay = document.getElementById('day_2').value;
+                    if (currentDay == 31) {
+                        var resetDay = document.getElementById('day_2');
+                        resetDay.value = 30;
+                    }
+                } else {
+                    var temp1 = document.getElementById('month_2_31');
+                    var temp2 = document.getElementById('month_2_30');
+                    var temp3 = document.getElementById('month_2_29');
+                    temp1.disabled = false;
+                    temp2.disabled = false;
+                    temp3.disabled = false;
+                    console.log("All <option> tags are available."); 
+                }
+            }
+        </script>
+        
+        
+        
+        <!-- Calculate Button --> 
+        <button class="calc" id="calculateButton" onclick="calculate()"><b>Calculate Days</b></button>
+        
+        
+        
+        <!-- Return to Shazebalopois --> 
+        <p style="margin-bottom:10%; line-height:0;">
+            <a class="shazebalopolis" href="index.html">Click here to go back to Shazebalopolis</a>
+        </p>
+    
+    
+    </body>  
+    <!-- End of Body --> 
+    
+</html>
