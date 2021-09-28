@@ -44,18 +44,25 @@ public class MacroNutrients {
         System.out.println();
 
         // Array - Data Structure
-        FoodItem[] foodItems = new FoodItem[45];
+        FoodItem[] foodItems = new FoodItem[53];
         //
         foodItems[1]  = new FoodItem("Greek Yogurt",             12, 8,  0);
         foodItems[2]  = new FoodItem("Danimals",                 2,  11, 0);
-        foodItems[3]  = new FoodItem("8 Turkey aqSlices",        16, 6,  8);
-        foodItems[4]  = new FoodItem("Slice of Bread",           3,  16, 1);
-        foodItems[5]  = new FoodItem("Burger Bun",               4,  28, 2);
-        foodItems[6]  = new FoodItem("Beef Patty",               17, 6,  28);
+        foodItems[3]  = new FoodItem("8 Turkey Slices",          16, 6,  8);
+        foodItems[4]  = new FoodItem("Slice of White Bread",     3,  16, 1);
+        foodItems[5]  = new FoodItem("Plain Burger Bun",         4,  28, 2);
+        foodItems[6]  = new FoodItem("Frozen Beef Patty",        17, 6,  28);
         foodItems[7]  = new FoodItem("4 Seekh Khebabs",          16, 2,  6);
         foodItems[8]  = new FoodItem("Bowl of Cereal",           2,  31, 1.5);
         foodItems[9]  = new FoodItem("1 cup of milk",            8,  13, 9);
         foodItems[10] = new FoodItem("White Egg",                6,  0,  5);
+            foodItems[10].saturatedFat = 1.5;
+            foodItems[10].cholesterol = 185;
+            foodItems[10].sodium = 70;
+            foodItems[10].vitaminD = 1;
+            foodItems[10].calcium = 28;
+            foodItems[10].iron = 1;
+            foodItems[10].potassium = 69;
         foodItems[11] = new FoodItem("1 Scoop Protein Powder",   24, 8,  2.5);
         foodItems[12] = new FoodItem("1 Cup Almond Milk",        1,  21, 2.5);
         foodItems[13] = new FoodItem("Hot Pocket",               9,  40, 11);
@@ -66,20 +73,31 @@ public class MacroNutrients {
         foodItems[18] = new FoodItem("1 serving Mustard Greens", 2,  4,  0);
         foodItems[19] = new FoodItem("White Potato",             6,  63, 0.5);
         foodItems[20] = new FoodItem("Masoor ki Daal",           1,  2.5,0);
-        foodItems[21] = new FoodItem("Chicken Patty",            10, 11, 11);
+        foodItems[21] = new FoodItem("Breaded Chicken Patty",    12, 11, 11);
+            foodItems[21].saturatedFat = 2.5;
+            foodItems[21].transFat = 0;
+            foodItems[21].cholesterol = 35;
+            foodItems[21].sodium = 460;
+            foodItems[21].dietaryFiber = 0;
+            foodItems[21].totalSugars = 1;
+            foodItems[21].addedSugars = 0;
+            foodItems[21].vitaminD = 0;
+            foodItems[21].iron = 1;
+            foodItems[21].calcium = 0;
+            foodItems[21].potassium = 130;
         foodItems[22] = new FoodItem("4 Hot'n'Spicy Wings",      11, 3,  13);
-        foodItems[23] = new FoodItem("Tandoori Plain Naan",      9,  38, 6);
-            foodItems[23].saturatedFat = (int) 3.5;
+        foodItems[23] = new FoodItem("Plain Naan",6,39,4);
+            foodItems[23].saturatedFat = 1.5;
             foodItems[23].transFat = 0;
-            foodItems[23].cholesterol = 0;
-            foodItems[23].sodium = 170;
-            foodItems[23].dietaryFiber = 1;
+            foodItems[23].cholesterol = 5;
+            foodItems[23].sodium = 240;
+            foodItems[23].dietaryFiber = 0;
             foodItems[23].totalSugars = 3;
             foodItems[23].addedSugars = 2;
             foodItems[23].vitaminD = 0;
-            foodItems[23].calcium = 21;
-            foodItems[23].iron = 2;
-            foodItems[23].potassium = 50;
+            foodItems[23].calcium =36;
+            foodItems[23].iron = 0.9;
+            foodItems[23].potassium = 53;
         foodItems[24] = new FoodItem("Ashoka Tandoori Naan",     9,  53, 9);
             foodItems[24].saturatedFat = 5;
             foodItems[24].transFat = 0;
@@ -93,7 +111,30 @@ public class MacroNutrients {
             foodItems[24].iron = 2;
             foodItems[24].potassium = 0;
         foodItems[25] = new FoodItem("Sesame-Seed Burger Buns",  7,  37, 3.5);
+            foodItems[25].saturatedFat = 1;
+            foodItems[25].polyunsaturatedFat = 1.5;
+            foodItems[25].monounsaturatedFat = 1;
+            foodItems[25].sodium = 470;
+            foodItems[25].dietaryFiber = 1;
+            foodItems[25].totalSugars = 4;
+            foodItems[25].addedSugars = 4;
+            foodItems[25].calcium = 90;
+            foodItems[25].iron = 2.2;
+            foodItems[25].potassium = 70;
+            foodItems[25].thiamine = 0.3;
+            foodItems[25].riboflavin = 0.3;
+            foodItems[25].niacin = 3.2;
+            foodItems[25].folate = 120;
         foodItems[26] = new FoodItem("Whole Wheat Bread",        4,  11, 0.5);
+            foodItems[26].sodium = 110;
+            foodItems[26].dietaryFiber = 2;
+            foodItems[26].totalSugars = 1;
+            foodItems[26].calcium = 50;
+            foodItems[26].iron = 0.8;
+            foodItems[26].thiamine = 0.1;
+            foodItems[26].riboflavin = 0.04;
+            foodItems[26].niacin = 0.9;
+            foodItems[26].folate = 15;
         foodItems[27] = new FoodItem("Mini-Tortilla",            2,  21, 1);
         foodItems[28] = new FoodItem("Nutrition Bar",            10, 15, 12);
 
@@ -177,21 +218,21 @@ public class MacroNutrients {
             foodItems[38].vitaminB12 = (int) 11.4;
             foodItems[38].pantothenicAcid = 19;
         foodItems[39] = new FoodItem("Naked Kale Blazer", 4, 40, 0);
-        foodItems[40] = new FoodItem("Naked Orange Carrot Mango", 2, 55, 0);
+        foodItems[40] = new FoodItem("Naked Orange Carrot Mango", 1, 29, 0);
             foodItems[40].saturatedFat = 0;
             foodItems[40].transFat = 0;
             foodItems[40].cholesterol = 0;
-            foodItems[40].sodium = 50;
-            foodItems[40].dietaryFiber = 2;
-            foodItems[40].totalSugars = 49;
+            foodItems[40].sodium = 25;
+            foodItems[40].dietaryFiber = 1;
+            foodItems[40].totalSugars = 26;
             foodItems[40].addedSugars = 0;
             foodItems[40].vitaminD = 0;
-            foodItems[40].vitaminC = 90;
+            foodItems[40].vitaminC = 48;
             foodItems[40].vitaminE = 0;
-            foodItems[40].vitaminA = 850;
-            foodItems[40].calcium = 40;
-            foodItems[40].iron = 1.5;
-            foodItems[40].potassium = 840;
+            foodItems[40].vitaminA = 450;
+            foodItems[40].calcium = 20;
+            foodItems[40].iron = 0.7;
+            foodItems[40].potassium = 440;
             foodItems[40].niacin = 38;
             foodItems[40].vitaminB6 = 0;
             foodItems[40].vitaminB12 = 0;
@@ -230,7 +271,82 @@ public class MacroNutrients {
             foodItems[44].calcium = 90;
             foodItems[44].iron = 2.3;
             foodItems[44].potassium = 1000;
-
+        foodItems[45] = new FoodItem("Garlic Naan", 6, 38, 4);
+            foodItems[45].saturatedFat = 1.5;
+            foodItems[45].transFat = 0;
+            foodItems[45].cholesterol = 5; // mg
+            foodItems[45].sodium = 230;
+            foodItems[45].dietaryFiber = 0;
+            foodItems[45].totalSugars = 3;
+            foodItems[45].addedSugars = 2;
+            foodItems[45].vitaminD = 0;
+            foodItems[45].calcium = 36;
+            foodItems[45].iron = 0.9;
+            foodItems[45].potassium = 52;
+        foodItems[46] = new FoodItem("Shami Kebab", 10, 2.5, 2.5);
+            foodItems[46].saturatedFat = 2.5;
+            foodItems[46].transFat = 0;
+            foodItems[46].cholesterol = 42.5;
+            foodItems[46].sodium = 30;
+            foodItems[46].dietaryFiber = 1;
+            foodItems[46].totalSugars = 1;
+        foodItems[47] = new FoodItem("Two Mini-Cheeseburgers", 16, 29, 18);
+            foodItems[47].saturatedFat = 8;
+            foodItems[47].transFat = 1;
+            foodItems[47].cholesterol = 30;
+            foodItems[47].sodium = 620;
+            foodItems[47].dietaryFiber = 1;
+            foodItems[47].totalSugars = 3;
+            foodItems[47].addedSugars = 2;
+            foodItems[47].vitaminD = 0;
+            foodItems[47].calcium = 101;
+            foodItems[47].iron = 3;
+            foodItems[47].potassium = 220;
+        foodItems[48] = new FoodItem("Thin Crust BBQ Chicken Pizza", 47, 101, 32);
+            foodItems[48].saturatedFat = 16;
+            foodItems[48].transFat = 1;
+            foodItems[48].cholesterol = 105;
+            foodItems[48].sodium = 1940;
+            foodItems[48].dietaryFiber = 4;
+            foodItems[48].totalSugars = 27;
+            foodItems[48].addedSugars = 22;
+            foodItems[48].vitaminD = 0;
+            foodItems[48].calcium = 660;
+            foodItems[48].iron = 7.0;
+            foodItems[48].potassium = 640;
+        foodItems[49] = new FoodItem("Slice of Cheese",3,2,4);
+            foodItems[49].saturatedFat = 2.5;
+            foodItems[49].cholesterol = 15;
+            foodItems[49].sodium = 250;
+            foodItems[49].totalSugars = 2;
+            foodItems[49].vitaminD = 1.2;
+            foodItems[49].calcium = 340;
+        foodItems[50] = new FoodItem("Rotisserie Chicken Breast",10,2,0.5);
+            foodItems[50].cholesterol = 25;
+            foodItems[50].sodium = 450;
+            foodItems[50].totalSugars = 1;
+            foodItems[50].iron = 1.12;
+        foodItems[51] = new FoodItem("Angus Beef Hot Dog",6,2,15);
+            foodItems[51].saturatedFat = 6;
+            foodItems[51].transFat = 0.5;
+            foodItems[51].cholesterol = 30;
+            foodItems[51].sodium = 490;
+            foodItems[51].potassium = 340;
+            foodItems[51].iron = 2;
+        foodItems[52] = new FoodItem("Hot Dog Bun",4,27,1.5);
+            foodItems[52].monounsaturatedFat = 0.5;
+            foodItems[52].sodium = 260;
+            foodItems[52].dietaryFiber = 1;
+            foodItems[52].totalSugars = 4;
+            foodItems[52].addedSugars = 4;
+            foodItems[52].calcium = 60;
+            foodItems[52].iron = 1.9;
+            foodItems[52].thiamine = 0.19;
+            foodItems[52].niacin = 1.7;
+            foodItems[52].zinc = 1.5;
+            foodItems[52].potassium = 40;
+            foodItems[52].riboflavin = 0.12;
+            foodItems[52].folate = 105;
 
 
 
@@ -238,18 +354,18 @@ public class MacroNutrients {
         // Local variables
         ArrayList<Integer> menuChoices = new ArrayList<Integer>();
 
+
+
+        // METHOD CALLS
+
         // display food menu
         displayMenu(foodItems);
-
         // initialize menuChoices array
         initMenuChoices(menuChoices, foodItems);
-
         // print macro results
         displayMacros(menuChoices,foodItems);
-
         // ...
         dailyMacrosArray();
-
 
 
 
@@ -267,6 +383,7 @@ public class MacroNutrients {
 
 
     // Main methods
+
     //
     /*                  displayMenu()               */
     public static void displayMenu(FoodItem[] arr) {
@@ -280,7 +397,7 @@ public class MacroNutrients {
 
         // print category titles
         System.out.print(ANSI_YELLOW);
-        System.out.printf("    %-24s %8s  %5s %6s\n",
+        System.out.printf("    %-24s %20s  %6s %6s\n",
                 "Food Item #", "Protein", "Carb", "Fat");
         System.out.print(ANSI_RESET);
         System.out.println("--------------------------------------------------------------------------");
@@ -288,11 +405,11 @@ public class MacroNutrients {
         // loop and display food items
         for (int i = 1; i < arr.length; i++) {
 
-            // start of Raising Cane's menu
-            if (i == 31) {
-                System.out.print("\n\\\\ Raising Cane's\n");
-
-            }
+//            // start of Raising Cane's menu
+//            if (i == 31) {
+//                System.out.print("\n\\\\ Raising Cane's\n");
+//
+//            }
 
             // numbering formatting
             if (i < 10) {
@@ -313,7 +430,6 @@ public class MacroNutrients {
         } // end of loop
         System.out.println("----------------------------------------------------------------------------");
     }
-
 
 
     //
@@ -353,8 +469,6 @@ public class MacroNutrients {
         } while (choice != 0);
 
     }
-
-
 
 
     // find out how many servings ?
@@ -406,6 +520,10 @@ public class MacroNutrients {
         double totalVitaminC = 0;
         double totalVitaminD = 0;
         double totalVitaminE = 0;
+        double totalZinc = 0;
+        double totalFolate = 0;
+
+
 
         for (int i = 0; i < intArray.size(); i++) {
 
@@ -438,6 +556,8 @@ public class MacroNutrients {
             totalVitaminC           += foodArray[intArray.get(i)].vitaminC;
             totalVitaminD           += foodArray[intArray.get(i)].vitaminD;
             totalVitaminE           += foodArray[intArray.get(i)].vitaminE;
+            totalZinc               += foodArray[intArray.get(i)].zinc;
+            totalFolate             += foodArray[intArray.get(i)].folate;
 
         }
 
@@ -484,7 +604,9 @@ public class MacroNutrients {
                         "%-20s %.0fmg\n" +   // Vitamin B12:
                         "%-20s %.0fmg\n" +   // Vitamin C:
                         "%-20s %.0fmg\n" +   // Vitamin D:
-                        "%-20s %.0fmg\n"  +  // Vitamin E:
+                        "%-20s %.0fmg\n" +  // Vitamin E:
+                        "%-20s %.0fmg\n" +  // Zinc:
+                        "%-20s %.0fmcg\n" +  // Folate:
                         "%s\n\n",
 
 
@@ -520,6 +642,8 @@ public class MacroNutrients {
                 "Vitamin C:",           totalVitaminC,
                 "Vitamin D:",           totalVitaminD,
                 "Vitamin E:",           totalVitaminE,
+                "Zinc:",                totalZinc,
+                "Folate:",              totalFolate,
                 "-----------------------"
                 );
     }
@@ -554,6 +678,7 @@ public class MacroNutrients {
 
 
 } // end of class MacroNutrients.java
+
 
 
 
@@ -597,12 +722,17 @@ class FoodItem {
     double transFat;        // 2g daily limit
     double polyunsaturatedFat; // <22 g daily limit
     double monounsaturatedFat; // <44 g daily limit
+    double zinc;                // 11mg recommended daily amount
+    double folate;              // 400 mcg daily recommendation
 
 
 
     // constructor #0
     FoodItem(){} // no-args
     //
+
+
+
     // constructor #1
     FoodItem(String item, double p, double c, double f) {
         itemName = item;
@@ -611,7 +741,9 @@ class FoodItem {
         fat = f;
     }
 
+
     // SET METHODS
+
     // set 'itemName'
     public void setItemName(String item) {
         itemName = item;
@@ -656,11 +788,11 @@ class FoodItem {
         );
     }
 
+
     // get total macros
     public double getTotalMacros() {
         return (protein + carb + fat);
     }
-
 
 
 } // end of class FoodItem.java
