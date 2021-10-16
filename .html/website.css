@@ -1,0 +1,126 @@
+body {
+    margin-top:20px;
+    margin-bottom:20px;
+    font-family:monospace;
+    background-color:black;
+    color: lightgreen;
+    /* font-size:1.75em; */
+    /* background-image:url(https://www.syfy.com/sites/syfy/files/styles/1200x680/public/2021/01/farawaystars_0.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment:fixed; */
+}
+
+a {
+    color:white;
+    font-weight:bold;
+}
+
+h1 {
+    font-size: 2em;
+    color: white;
+    text-align:center;
+}
+
+hr {
+    color:lightseagreen;
+    margin-bottom:3%;
+}
+
+summary {
+    /* list-style-type: none; */
+    padding:18px;
+    font-size:1.75em;
+}
+
+p.nohover:hover {
+    cursor:progress;
+}
+
+.navbar-background {
+    background-image: url(https://www.nasa.gov/sites/default/files/thumbnails/image/hubble_birthofstars_0.jpg);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:cover;
+    /* background-attachment:fixed; */
+}
+
+/* Classes */ 
+
+#navbar-elements div {
+    /* flex-wrap:wrap; */
+    margin:none;
+    display:block;
+    border-style:solid;
+    border-color:lightseagreen;
+    border-width:1.5px;
+    /* padding-top:20px;
+    padding-bottom:20px; */
+    /* padding:20px; */
+    font-weight:bold;
+    background-color:black;
+    opacity:0.55;
+}
+#navbar-elements div:hover {
+    opacity: 1;
+    text-align:center;
+    color:lightgreen;
+    background-color:black;
+    /* background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat; */
+    cursor:pointer;
+    filter:brightness(0.8);
+    /* animation-name: slide-right;
+    animation-duration:0.35s;
+    animation-iteration-count:var(1); */
+}
+#navbar-elements section {
+    padding:15px;
+}
+
+#navbar-border {
+    margin-right:auto;
+    border: 1.5px solid lightseagreen;
+}
+
+#left { text-align: left; }
+#right { text-align: right; }
+#center { text-align: center;}
+
+#drop-down-text:hover {
+    color:white;
+}
+
+#image-cover {
+    /* max-width:60%; */
+    /* display: block;  */
+    margin: 0.1vw; 
+    width: 25vw; 
+    height: 25vw;
+}
+#image-cover:hover {
+    /* max-width:60%; */
+    /* display: block;  */
+    /* margin: 0.1vw;  */
+    width:65%;
+    height:auto;
+}
+
+#white {
+    color:white;
+}
+
+/* @keyframes slide-right {
+    from {text-align:left;}
+    to {text-align:center;}
+} */
+
+summary:hover {
+    background-color: black;
+    color:lightgreen;
+}
+
+.description {
+    color:white;
+}
