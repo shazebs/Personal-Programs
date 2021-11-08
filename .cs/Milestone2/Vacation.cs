@@ -15,15 +15,16 @@ namespace Whiteboard
         public string description { get; set; }
         public float price { get; set; }
         public string photoURL { get; set; }
+        public int quantity { get; set; }
         public override string ToString()
         {
-            return vacationName + " package tour to " + location + " starting " +
+            return vacationName + " package tour to " + location + "\n\tStarting date: " +
                     startingDate.Month + "/" + startingDate.Day + "/" + startingDate.Year + " for " + daysOfTrip + " days\n\tDescription: " +
-                    description + " priced at $" + price + " - " +
-                    photoURL + "\n"; 
+                    description + "\n\tPriced at $" + price + "\n\t" +
+                    photoURL + "\n\tQuantity: " + quantity + "\n";
         }
         // Constructor. 
-        public Vacation(string vacationName, string location, DateTime startingDate, int daysOfTrip, string description, float price, string photoURL)
+        public Vacation(string vacationName, string location, DateTime startingDate, int daysOfTrip, string description, float price, string photoURL, int quantity)
         {
             this.vacationName = vacationName;
             this.location = location;
@@ -31,7 +32,8 @@ namespace Whiteboard
             this.daysOfTrip = daysOfTrip;
             this.description = description;
             this.price = price;
-            this.photoURL = photoURL; 
+            this.photoURL = photoURL;
+            this.quantity = quantity; 
         }
     }
 }
