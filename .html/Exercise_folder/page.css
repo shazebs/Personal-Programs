@@ -3,6 +3,10 @@ body.exercises {
     font-size:1.25em;
 }
 
+footer {
+    height:200px; 
+}
+
 /* Flexbox */
 div.container {
     display:flex;
@@ -27,4 +31,16 @@ div.orange-box {
 .box-title {
     text-decoration:underline;
     text-align:center;
+}
+
+.exercise-log {
+    background-color:lightgoldenrodyellow;
+    width:100%;
+    padding:5px 0px 5px 0px; 
+    border: 1px solid black; 
+}
+.exercise-log h4 {
+    /* padding-top:5px; */
+    /* padding-bottom:5px; */
+    /* text-decoration:underline; */
 }
