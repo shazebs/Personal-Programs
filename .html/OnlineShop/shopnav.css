@@ -1,0 +1,74 @@
+nav.navbar {
+    margin-top:15px;
+    list-style-type: none;
+    display:flex;
+    flex-wrap:wrap;
+    /* justify-content:space-between; */
+    font-size:1.35em;
+    border-top:2px solid red;
+    border-bottom:2px solid red;
+    border:2px solid red;
+    color:black;
+    font-family:sans-serif;
+    background-color: ghostwhite;
+}
+nav.navbar li {
+    margin:10px 13px;
+}
+nav.navbar span:hover {
+    cursor:pointer;
+}
+
+li:hover {
+    color:red;
+    font-weight:bolder;
+}
+
+footer {
+    margin-top:15px;
+}
+
+#page_title {
+    text-align:center;
+    display:none;
+}
+
+#nav-firstchild {
+    margin-left:auto;
+}
+
+#nav-lastchild {
+    margin-right:auto;
+}
+
+/* CSS for smaller screen sizes */ 
+@media (max-width: 850px) {
+    nav.navbar {
+        text-align:center;
+        flex-direction: column;
+        border:none;
+        border-bottom:1px solid red;
+        border-top: 1px solid red;
+        background-color: transparent;
+        color:white;
+    }
+    hr {
+        display:none;
+    }
+    li span:hover {
+        background-color: white;
+        color:red;
+        
+    }
+    li {
+        margin: 10px 0px;
+    }
+    #nav-firstchild {
+        margin-left:auto;
+        margin-right:auto;
+    }
+    #nav-lastchild {
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
