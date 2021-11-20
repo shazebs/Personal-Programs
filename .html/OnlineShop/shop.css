@@ -1,0 +1,110 @@
+body.playboy {
+    background-color: black; /* page background color */
+    color:white; /* main font color */ 
+}
+.shop-title {
+    text-align:center;
+    font-size:3.5em;
+}
+footer {
+    height:100px;
+    text-align:center;
+    font-family:sans-serif;
+}
+
+div.nav-container {
+    display:flex;
+    justify-content: center;
+}
+div.nav-container-div {
+    width:80%; 
+}
+
+
+div.shop-selection {
+    background-color:transparent;
+    width:100%;  
+    height:auto;
+    display:flex;
+    flex-wrap:wrap;
+    /* justify-content: center; */
+    margin: auto;
+}
+div.shop-selection img {
+    width:300px;
+    height:300px;
+    border: 3px solid white;
+    margin-bottom:10px
+}
+div.shop-selection img:hover {
+    cursor:pointer;
+    opacity:0.8;
+}
+
+.product-title {
+    text-align:center;
+    padding:20px;
+    font-size:2em;
+    font-family: sans-serif;
+}
+
+
+div.container {
+    /* background-color: blue; */
+    color:white; 
+    /* width:300px; */
+    width:auto;
+    height:auto; 
+    display:flex; 
+    flex-direction:column;
+    /* justify-content: center; */
+    align-items: center;
+    /* border:2px solid crimson; */
+    position:relative;
+    margin:5px;
+}
+img.default {
+    /* width: 150%;  */
+    margin:5px 0px; 
+}
+section.id {
+    padding: 8px 0px; 
+    font-size:145%; 
+    font-family: sans-serif;
+}
+section.price {
+    font-family:sans-serif;
+    font-size:115%; 
+    padding-bottom:30px;
+}
+div.container button {
+    margin-top:10px;
+    position:absolute;
+    bottom:15px;
+    right:auto;
+}
+div.product-list {
+    display:flex;
+    flex-wrap:wrap;
+    margin-left:auto;
+    margin-right:auto;
+    justify-content:center;    
+    /* justify-content: space-evenly; */
+}
+
+/* Styling for screen size <= 800px */ 
+@media (max-width:850px) {
+    h1.shop-title {
+        font-size:2.5em;
+    }
+    div.nav-container-div {
+        width:100%;
+    }
+}
+
+/* Styling for screen size <= 600px */ 
+@media (max-width: 500px) {
+    h1.shop-title {
+        font-size:1.8em;
+    }
+}
