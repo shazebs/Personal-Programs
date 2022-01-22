@@ -9,23 +9,45 @@ namespace ChessBoardConsoleApp
 {
 	class Program
 	{
+		// global properties 
 		static Board myBoard = new Board(8);
 
+		// main method 
 		static void Main(string[] args)
 		{
 			// show the empty chess board
 			printBoard(myBoard);
 
 			// ask the user for an x andy coordinate where we will place a piece
+			Cell currentCell = setCurrentCell(); 
+			currentCell.CurrentlyOccupied = true; 
 
 			// calculate all legal moves for that piece
 
 			// print the chess board. Use an x for occupied square. Use a + for legal move. Use . for empty cell.
-
+			printBoard(myBoard);
+			
 			// wait for another enter key press before ending the program.
 			Console.ReadLine(); 
 		}
+		
+		// functions 
+		
+		// set current cell function 
+		private static Cell setCurrentCell()
+		{
+			// get x and y coordinates from the user. return a cell location.
+			Console.WriteLine ( "Enter the current row number" ); 
+			int currentRow = int.Parse( Console.ReadLine() );
+			Console.WriteLine ( "Enter the current row number" ); 
+			int currentCol = int.Parse( Console.ReadLine() ); 
+			
+			myBoaord.theGrid [ currentRow, currentCol ]; 
+		}
 
+		
+		
+		// print boad (function) 
 		private static void printBoard(Board myBoard)
 		{
 			// print the chess board to the console. Use X for the piece location. + 
@@ -43,10 +65,12 @@ namespace ChessBoardConsoleApp
 						Console.Write(".");
 				}
 
-				Console.WriteLine();
+				Console.WriteLine(); // newline after row end
 			}
 
 			Console.WriteLine("================================================");
 		}
+		
+		
 	}
 }
