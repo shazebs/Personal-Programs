@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 // driver class
-public class MacroNutrients {
+public class Main {
 
     // create Scanner
     static Scanner input = new Scanner(System.in);
