@@ -4,27 +4,37 @@ Date:   8/27/21
 Time:   12:22 AM 
 --> 
 
+
 <!-- Start of PHP script --> 
 <?php
+
 // INSERT INTO `notes` (`sno`, `title`, `description`, `tstamp`) VALUES (NULL, 'buy books', 'Please by books from store.', current_timestamp());
-$insert = false;
-$insertElse = false;
-$update = false;
-$delete = false;
-// Connect to the Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$databse = "notes"; 
+
+  $insert = false;
+  $insertElse = false;
+  $update = false;
+  $delete = false;
+
+  // Connect to the Database details
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $databse = "notes"; 
+
 
 // Create a connection
 $conn = mysqli_connect($servername, $username, $password, $databse); 
+
+
 
 // Die if the connection was not successful
 if (!$conn) {
   die("Sorry we failed to connect: ". mysqli_connect_error()); 
 }
 
+
+
+// if ( what ? )
 if(isset($_GET['delete'])){
   $sno = $_GET['delete'];  
   $delete = true;
@@ -32,62 +42,95 @@ if(isset($_GET['delete'])){
   $result = mysqli_query($conn, $sql);
 }
 
-if($_SERVER['REQUEST_METHOD'] == "POST"){
-  if (isset($_POST['snoEdit'])){
+
+
+// POST method handling 
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+  
+  if (isset($_POST['snoEdit']))
+  {  
     // update the record 
     $sno = $_POST['snoEdit']; 
     $title = $_POST["titleEdit"]; 
     $description = $_POST["descriptionEdit"]; 
 
+    // query some SQL 
     $sql = "UPDATE `notes` SET `title` = \"$title\" , `description` = '$description' WHERE `notes`.`sno` = $sno"; 
     $result = mysqli_query($conn, $sql);
 
-    if ($result){
+    // update (flag) 
+    if ($result)
       $update = true;
-    } else {
+    else 
       echo "We could not update the record successfully.";
-    }
+    
   } 
-  else {
+  else 
+  {
+    // update variables 
     $title = $_POST["title"]; 
     $description = $_POST["description"]; 
 
+    // query some SQL 
     $sql = "INSERT INTO `notes` (`title`, `description`) VALUES ('$title', '$description')"; 
     $result = mysqli_query($conn, $sql); 
 
-    if ($result){
+    
+    // print success or error message for record insertion completion 
+    if ($result) 
+    {
       // echo "The record has been inserted successfully! <br>"; 
       $insert = true;
-    } else {
+    } 
+    else 
+    {
       // echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn); 
       $insertElse = true;
     }
-  }
-}
+    
+  } // end of else 
+  
+} // end of if 
+
 ?> <!-- End of PHP scipt -->  
+
+
+
 
 <!-- start of HTML document --> 
 <!doctype html>
 <html lang="en">
 
+  
+  
   <!-- Start of Head section --> 
   <head>
+    
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
     
+    
+    <!-- Tab Title --> 
     <title>iNotes - Notes taking made easy</title>
     
   </head>
   <!-- End of Head section --> 
+  
+  
 
+  
   <!-- start of body --> 
   <body>
 
+    
+    
     <!-- Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -120,6 +163,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         </div>
       </div>
     </div>
+    
+    
+    
 
     <!-- start of Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -153,6 +199,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       </nav> 
       <!-- end of navbar -->
     
+    
+    
+    
+    
      <!-- Start of PHP script --> 
       <?php
       if ($insert){
@@ -185,6 +235,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       }
       ?> <!-- End of PHP script --> 
     
+    
+    
+   
+    
       <!-- start of iNotes Form -->
       <div class="container my-4">
           <h2>Add a Note to iNotes</h2>
@@ -203,6 +257,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           </form>
       </div> 
       <!-- end of Form -->
+    
+    
+    
 
       <!-- Start of Data Table --> 
       <div class="container my-4">
@@ -234,8 +291,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           </tbody>
         </table>
       </div>
-      <!-- End of Data table --> 
       <hr>
+      <!-- End of Data table --> 
+    
+    
+    
+    
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -246,12 +307,18 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
     
+    
+    
+    
     <!-- Javascript --> 
     <script>
       $(document).ready( function () {
           $('#myTable').DataTable();
       } );
     </script>
+    
+    
+    
 
     <script>
       // For edit button modal toggle
@@ -289,6 +356,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       })
     </script>
     <!-- End of Javascript --> 
+    
+    
+    
+    
 
   </body>
   <!-- End of body --> 
