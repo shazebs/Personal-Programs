@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessBoardConsoleApp
+namespace ChessBoard
 {
 	public class Board
 	{
@@ -30,6 +30,9 @@ namespace ChessBoardConsoleApp
 					theGrid[i, j] = new Cell(i, j);
 			}
 		}
+		
+		
+		// methods
 
 		public void MarkNextLegalMoves(Cell currentCell, string chessPiece)
 		{
