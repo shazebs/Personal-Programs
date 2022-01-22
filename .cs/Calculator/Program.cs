@@ -1,4 +1,3 @@
-﻿ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +10,26 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            // declare variables
+        
+            // local variables
             float num1 = 0;
             float num2 = 0;
+
 
             // display title of console app
             Console.WriteLine("Console Calculator in C#\r");
             Console.WriteLine("------------------------\n");
 
+
             // get input for 'num1' from user.
             Console.WriteLine("Type a number, and then press Enter");
             num1 = Convert.ToInt32(Console.ReadLine());
 
+
             // get input for 'num2' from user. 
             Console.WriteLine("Type another number, and then press Enter");
             num2 = Convert.ToInt32(Console.ReadLine());
+
 
             // ask the user to choose an option.
             Console.WriteLine("Choose an option from the following list:");
@@ -35,7 +39,8 @@ namespace Calculator
             Console.WriteLine("\td - Divide");
             Console.Write("Your option? "); 
 
-            // create a switch menu 
+
+            // switch menu demonstration
             switch (Console.ReadLine())
             {
                 case "a":
@@ -57,9 +62,12 @@ namespace Calculator
                     Console.WriteLine($"Your result: {num1} / {num2} = " + (num1 / num2)); 
                     break;
             }
+            
+            
             // wait for user to respond before closing.
             Console.WriteLine("Press any key to close the Calculator console app...");
             Console.ReadKey();
+            
         }
     }
 }
