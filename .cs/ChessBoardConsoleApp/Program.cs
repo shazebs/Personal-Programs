@@ -23,6 +23,7 @@ namespace ChessBoard
 			currentCell.CurrentlyOccupied = true;
 
 			// calculate all legal moves for that piece
+			myBoard.MarkNextLegalMoves(currentCell, "Knight"); 
 
 			// print the chess board. Use an x for occupied square. Use a + for legal move. Use . for empty cell.
 			printBoard(myBoard);
@@ -71,7 +72,6 @@ namespace ChessBoard
 
 			Console.WriteLine("================================================");
 		}
-
 
 	}
 }
