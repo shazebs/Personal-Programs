@@ -3,7 +3,7 @@ Programming Code for Personal Use
 
 please check out my :
 
-.java , .cpp, .cs , .html , .php , and .js   folders
+.cpp, .cs , .html , .java , .js, .php, .py  --- folders
 
 
 
