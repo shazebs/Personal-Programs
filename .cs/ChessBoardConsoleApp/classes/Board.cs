@@ -12,7 +12,7 @@ namespace ChessBoard
 		public int Size { get; set; }
 
 		// 2d array of type cell
-		public Cell[,] theGrid{ get; set; }
+		public Cell[,] theGrid { get; set; }
 
 		// constructor
 		public Board(int s)
@@ -30,8 +30,8 @@ namespace ChessBoard
 					theGrid[i, j] = new Cell(i, j);
 			}
 		}
-		
-		
+
+
 		// methods
 
 		public void MarkNextLegalMoves(Cell currentCell, string chessPiece)
@@ -76,6 +76,8 @@ namespace ChessBoard
 				default:
 					break;
 			}
+
+			theGrid[currentCell.RowNumber, currentCell.ColumnNumber].CurrentlyOccupied = true; 
 		}
 	}
 }
