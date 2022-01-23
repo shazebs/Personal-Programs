@@ -1,5 +1,5 @@
 # Personal-Programs
--- Programming Code for Personal Use 
+-- Programming Code for Personal Use.
 
 -- Check out my --- [ .cpp | .cs | .html | .java | .js | .php | .py ] --- folders
 
