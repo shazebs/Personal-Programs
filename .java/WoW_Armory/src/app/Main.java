@@ -20,6 +20,15 @@ public class Main
     public static final String white = "\u001B[37m";
     
     
+    // arrays 
+    static ArrayList<SalableProduct> products = new ArrayList<>(); 
+    static ArrayList<SalableProduct> shoppingCart = new ArrayList<>(); 
+    // 
+    static ArrayList<Weapon> weapons = new ArrayList<>(); 
+    static ArrayList<Armor> armors = new ArrayList<>(); 
+    static ArrayList<Health> healths = new ArrayList<>(); 
+    
+    
     // main method
     public static void main(String[] args)
     {
@@ -28,17 +37,14 @@ public class Main
         
         // local variables 
         String userChoice = ""; 
-        
-        // arrays 
-        ArrayList<SalableProduct> products = new ArrayList<>(); 
-        ArrayList<SalableProduct> shoppingCart = new ArrayList<>(); 
-        // 
-        ArrayList<Weapon> weapons = new ArrayList<>(); 
-        ArrayList<Armor> armors = new ArrayList<>(); 
-        ArrayList<Health> healths = new ArrayList<>(); 
- 
+         
         // display welcome message
-        System.out.println("\nWelcome to the World of Warcraft (WoW) Armory store!");
+        System.out.println("----------------------------------------------------------"); 
+        System.out.println("-- Welcome to the World of Warcraft (WoW) Armory store! --");
+        System.out.println("----------------------------------------------------------"); 
+        
+        // initialize starting inventory
+        initializeInventory(); 
         
         do 
         { 
@@ -62,7 +68,7 @@ public class Main
         				break;
         				
         			case "4": 
-        				System.out.println("You are now exiting the program...Good-bye!"); 
+        				System.out.println("You have exited the WoW Armory store...good-bye!"); 
         				System.exit(0);
         				
         			case "":
@@ -128,23 +134,108 @@ public class Main
     						"(4) : Exit"); 
     }
     
+    
     // view store inventory function 
     public static void viewInventory()
     {
-    	System.out.println("You chose to 'view' store inventory!"); 
+    	// local function variables
+    	int inventoryItems = products.size(); 
+    	
+    	
+    	// display number of items in the inventory
+    	if (inventoryItems == 0)
+    		System.out.println("Inventory is empty."); 
+    	else 
+    		System.out.println("Inventory has " + inventoryItems + " items.");
+    	
+    	
+    	// loop and display all items in inventory 
+        System.out.println("----------------------------------------------------------"); 
+    	int count = 0; 
+    	for (SalableProduct item : products)
+    	{
+    		count++; 
+    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
+    	}
+        System.out.println("----------------------------------------------------------"); 
     }
+    
     
     // manage store inventory function 
     public static void manageInventory()
     {
-		System.out.println("You chose to 'manage' store inventory!"); 
+    	// local function variables
+    	int inventoryItems = products.size(); 
+    	
+    	if (inventoryItems == 0)
+    		System.out.println("Inventory is empty. You cannot manage this list right now."); 
+    	else 
+    		System.out.println("Inventory has " + inventoryItems + " items.");
     }
+    
     
     // view shopping cart function 
     public static void viewCart()
     {
-		System.out.println("You chose to 'view' shopping cart!");
+    	// local function variables
+    	int cartItems = shoppingCart.size(); 
+    	
+    	if (cartItems == 0)
+    		System.out.println("Your shopping cart is empty."); 
+    	else 
+    		System.out.println("Your shopping cart has " + cartItems + " items.");
     }
+    
+    
+    // initialize starting inventory function
+    public static void initializeInventory()
+    {
+    	// create 2 Weapon objects
+    	Weapon weapon = new Weapon(); 
+    	weapon.setName("Sword");
+    	weapon.setDescription("iLvl 117");
+    	weapon.setPrice(55.55);
+    	weapon.setQuantity(3);
+    	products.add(weapon); 
+    	// 
+    	weapon.setName("Mace");
+    	weapon.setDescription("iLvl 120");
+    	weapon.setPrice(67.89);
+    	weapon.setQuantity(2);
+    	products.add(weapon);    
+    	
+    	    	
+    	// create 2 Armor objects
+    	Armor armor = new Armor(); 
+    	armor.setName("Helmet"); 
+    	armor.setDescription("iLvl 115");
+    	armor.setPrice(35.65);
+    	armor.setQuantity(4);
+    	products.add(armor); 
+    	//
+    	armor.setName("Gauntlets"); 
+    	armor.setDescription("iLvl 113");
+    	armor.setPrice(78.23);
+    	armor.setQuantity(6);
+    	products.add(armor); 
+    	
+    	    	
+    	// create 2 Health objects
+    	Health health = new Health(); 
+    	health.setName("Small Potion");
+    	health.setDescription("Restores 5,000 HP");
+    	health.setPrice(20.00);
+    	health.setQuantity(8);
+    	products.add(health);
+    	//
+    	health.setName("Large Potion");
+    	health.setDescription("Restores 10,000 HP");
+    	health.setPrice(50.00);
+    	health.setQuantity(4);
+    	products.add(health); 
+    }
+    
+    
 }
 
 
