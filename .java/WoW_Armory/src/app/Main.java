@@ -87,33 +87,6 @@ public class Main
         	} 
         	
         } while ( userChoice != "4" ); 
-        
-
-        /*
-        
-        // Instantiate some objects
-        Weapon weapon1 = new Weapon();
-        weapon1.setName("Recruit's Decapitator of the Quickblade");
-        weapon1.setDescription("Soulbound Two-Handed Axe dealing 53-111 damage with an iLvl 120.");
-        weapon1.setPrice(8757.50);
-        weapon1.setQuantity(5);
-        //
-        Armor armor1 = new Armor();
-        armor1.setName("Ceremonious Helm");
-        armor1.setDescription("Plate armor, worn on head, soulbound with iLvl 117.");
-        armor1.setPrice(3861.80);
-        armor1.setQuantity(1);
-        //
-        Health health1 = new Health();
-        health1.setName("Spiritual Healing Potion");
-        health1.setDescription("Restores 10,000 health. (5 Min Cooldown)");
-        health1.setPrice(75.00);
-        health1.setQuantity(3);
-
-        // print some output
-        System.out.printf("%s%n%s%n%s%n", weapon1, armor1, health1);
-        
-        */
 
     } // end of main 
     
@@ -191,48 +164,51 @@ public class Main
     public static void initializeInventory()
     {
     	// create 2 Weapon objects
-    	Weapon weapon = new Weapon(); 
-    	weapon.setName("Sword");
-    	weapon.setDescription("iLvl 117");
-    	weapon.setPrice(55.55);
-    	weapon.setQuantity(3);
-    	products.add(weapon); 
+    	Weapon weapon1 = new Weapon(); 
+    	weapon1.setName("Sword");
+    	weapon1.setDescription("iLvl 117");
+    	weapon1.setPrice(55.55);
+    	weapon1.setQuantity(3);
+    	products.add(weapon1); 
     	// 
-    	weapon.setName("Mace");
-    	weapon.setDescription("iLvl 120");
-    	weapon.setPrice(67.89);
-    	weapon.setQuantity(2);
-    	products.add(weapon);    
+    	Weapon weapon2 = new Weapon(); 
+    	weapon2.setName("Mace");
+    	weapon2.setDescription("iLvl 120");
+    	weapon2.setPrice(67.89);
+    	weapon2.setQuantity(2);
+    	products.add(weapon2);    
     	
     	    	
     	// create 2 Armor objects
-    	Armor armor = new Armor(); 
-    	armor.setName("Helmet"); 
-    	armor.setDescription("iLvl 115");
-    	armor.setPrice(35.65);
-    	armor.setQuantity(4);
-    	products.add(armor); 
+    	Armor armor1 = new Armor(); 
+    	armor1.setName("Helmet"); 
+    	armor1.setDescription("iLvl 115");
+    	armor1.setPrice(35.65);
+    	armor1.setQuantity(4);
+    	products.add(armor1); 
     	//
-    	armor.setName("Gauntlets"); 
-    	armor.setDescription("iLvl 113");
-    	armor.setPrice(78.23);
-    	armor.setQuantity(6);
-    	products.add(armor); 
+    	Armor armor2 = new Armor(); 
+    	armor2.setName("Gauntlets"); 
+    	armor2.setDescription("iLvl 113");
+    	armor2.setPrice(78.23);
+    	armor2.setQuantity(6);
+    	products.add(armor2); 
     	
     	    	
     	// create 2 Health objects
-    	Health health = new Health(); 
-    	health.setName("Small Potion");
-    	health.setDescription("Restores 5,000 HP");
-    	health.setPrice(20.00);
-    	health.setQuantity(8);
-    	products.add(health);
+    	Health health1 = new Health(); 
+    	health1.setName("Small Potion");
+    	health1.setDescription("Restores 5,000 HP");
+    	health1.setPrice(20.00);
+    	health1.setQuantity(8);
+    	products.add(health1);
     	//
-    	health.setName("Large Potion");
-    	health.setDescription("Restores 10,000 HP");
-    	health.setPrice(50.00);
-    	health.setQuantity(4);
-    	products.add(health); 
+    	Health health2 = new Health(); 
+    	health2.setName("Large Potion");
+    	health2.setDescription("Restores 10,000 HP");
+    	health2.setPrice(50.00);
+    	health2.setQuantity(4);
+    	products.add(health2); 
     }
     
     
@@ -270,3 +246,4 @@ public class Main
  * 
  * 
  */
+
