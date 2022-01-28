@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main 
 {
-	// COlORS (not working ?)
+    // COlORS (not working ?)
     //
     // text color
     public static final String reset = "\u001B[0m";
