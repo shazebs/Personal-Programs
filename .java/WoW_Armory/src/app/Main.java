@@ -144,6 +144,10 @@ public class Main
     		System.out.println("Inventory is empty. You cannot manage this list right now."); 
     	else 
     		System.out.println("Inventory has " + inventoryItems + " items.");
+    	
+
+        System.out.println("----------------------------------------------------------"); 
+        System.out.println("----------------------------------------------------------"); 
     }
     
     
@@ -157,6 +161,10 @@ public class Main
     		System.out.println("Your shopping cart is empty."); 
     	else 
     		System.out.println("Your shopping cart has " + cartItems + " items.");
+    	
+
+        System.out.println("----------------------------------------------------------"); 
+        System.out.println("----------------------------------------------------------"); 
     }
     
     
@@ -170,6 +178,7 @@ public class Main
     	weapon1.setPrice(55.55);
     	weapon1.setQuantity(3);
     	products.add(weapon1); 
+    	weapons.add(weapon1); 
     	// 
     	Weapon weapon2 = new Weapon(); 
     	weapon2.setName("Mace");
@@ -177,6 +186,7 @@ public class Main
     	weapon2.setPrice(67.89);
     	weapon2.setQuantity(2);
     	products.add(weapon2);    
+    	weapons.add(weapon2);
     	
     	    	
     	// create 2 Armor objects
@@ -186,6 +196,7 @@ public class Main
     	armor1.setPrice(35.65);
     	armor1.setQuantity(4);
     	products.add(armor1); 
+    	armors.add(armor1);    	
     	//
     	Armor armor2 = new Armor(); 
     	armor2.setName("Gauntlets"); 
@@ -193,6 +204,7 @@ public class Main
     	armor2.setPrice(78.23);
     	armor2.setQuantity(6);
     	products.add(armor2); 
+    	armors.add(armor2); 
     	
     	    	
     	// create 2 Health objects
@@ -202,6 +214,7 @@ public class Main
     	health1.setPrice(20.00);
     	health1.setQuantity(8);
     	products.add(health1);
+    	healths.add(health1); 
     	//
     	Health health2 = new Health(); 
     	health2.setName("Large Potion");
@@ -209,6 +222,7 @@ public class Main
     	health2.setPrice(50.00);
     	health2.setQuantity(4);
     	products.add(health2); 
+    	healths.add(health2); 
     }
     
     
