@@ -28,13 +28,13 @@ public class Main
     static ArrayList<Armor> armors = new ArrayList<>(); 
     static ArrayList<Health> healths = new ArrayList<>(); 
     
+    // Scanner object
+    static Scanner in = new Scanner(System.in);
+    
     
     // main method
     public static void main(String[] args)
     {
-        // Scanner object
-        Scanner in = new Scanner(System.in);
-        
         // local variables 
         String userChoice = ""; 
          
@@ -52,8 +52,14 @@ public class Main
         	printMenu(); 
         	try
         	{
-        		userChoice = in.nextLine(); newline(); 
-        		switch( userChoice.trim() )
+        		// for Scanner input errors
+        		if (in.hasNext())
+        			in.reset(); 
+        		
+        		// read a menu input from user 
+        		userChoice = in.next(); 
+        		newline(); 
+        		switch( userChoice )
         		{
         			case "1":
         				viewInventory(); 
@@ -70,6 +76,7 @@ public class Main
         			case "4": 
         				System.out.println("You have exited the WoW Armory store...good-bye!"); 
         				System.exit(0);
+        				break;
         				
         			case "":
         				System.out.println("Input cannot be blank! Try again."); 
@@ -100,7 +107,7 @@ public class Main
     // print menu function 
     public static void printMenu()
     {
-    	System.out.println("Make a selection:\n" +
+    	System.out.println("-- MAIN MENU --\nMake a selection:\n" +
     						"(1) : View Store Inventory\n" +
     						"(2) : Manage Store Inventory\n" +
     						"(3) : View Shopping Cart\n" + 
@@ -113,13 +120,13 @@ public class Main
     {
     	// local function variables
     	int inventoryItems = products.size(); 
-    	
+    	char userChoice = '0'; 
     	
     	// display number of items in the inventory
     	if (inventoryItems == 0)
     		System.out.println("Inventory is empty."); 
     	else 
-    		System.out.println("Inventory has " + inventoryItems + " items.");
+    		System.out.println("Here are all items in the inventory:");
     	
     	
     	// loop and display all items in inventory 
@@ -130,6 +137,33 @@ public class Main
     		count++; 
     		System.out.printf("-- Item #%d --\n%s%n", count, item); 
     	}
+    	
+    	try {
+    		System.out.println("Would you like to purchase an item (y/n): ");
+        	userChoice = in.next().charAt(0);
+        	
+        	while (userChoice == 'y')
+        	{
+        		System.out.println("Enter the Item # you want to purchase:"); 
+        		int itemChosen = in.nextInt();
+        		
+        		shoppingCart.add(products.get(itemChosen-1)); 
+        		
+        		System.out.println("You added Item #" + itemChosen + " to your cart. Add another? (y/n):");
+        		userChoice = in.next().charAt(0);
+        	} 
+        	
+        	// end of purchasing items message
+        	if (userChoice != 'y' && shoppingCart.size() > 0)
+        		System.out.println("You chose not to buy anything else. Proceed to shopping cart if you wish to purchase your items.");
+        	else if (userChoice != 'y')
+        		System.out.println("You chose not to buy anything.");
+    	}
+    	catch (Exception e)
+    	{
+    		System.err.println("You entered something invalid, back to main menu you go."); 
+    	}
+    	in.nextLine(); 
         System.out.println("----------------------------------------------------------"); 
     }
     
@@ -164,6 +198,12 @@ public class Main
     	
 
         System.out.println("----------------------------------------------------------"); 
+        int count = 0; 
+    	for (SalableProduct item : shoppingCart)
+    	{
+    		count++; 
+    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
+    	}
         System.out.println("----------------------------------------------------------"); 
     }
     
@@ -176,7 +216,7 @@ public class Main
     	weapon1.setName("Sword");
     	weapon1.setDescription("iLvl 117");
     	weapon1.setPrice(55.55);
-    	weapon1.setQuantity(3);
+    	weapon1.setQuantity(1);
     	products.add(weapon1); 
     	weapons.add(weapon1); 
     	// 
@@ -184,7 +224,7 @@ public class Main
     	weapon2.setName("Mace");
     	weapon2.setDescription("iLvl 120");
     	weapon2.setPrice(67.89);
-    	weapon2.setQuantity(2);
+    	weapon2.setQuantity(1);
     	products.add(weapon2);    
     	weapons.add(weapon2);
     	
@@ -194,7 +234,7 @@ public class Main
     	armor1.setName("Helmet"); 
     	armor1.setDescription("iLvl 115");
     	armor1.setPrice(35.65);
-    	armor1.setQuantity(4);
+    	armor1.setQuantity(1);
     	products.add(armor1); 
     	armors.add(armor1);    	
     	//
@@ -202,7 +242,7 @@ public class Main
     	armor2.setName("Gauntlets"); 
     	armor2.setDescription("iLvl 113");
     	armor2.setPrice(78.23);
-    	armor2.setQuantity(6);
+    	armor2.setQuantity(1);
     	products.add(armor2); 
     	armors.add(armor2); 
     	
@@ -212,7 +252,7 @@ public class Main
     	health1.setName("Small Potion");
     	health1.setDescription("Restores 5,000 HP");
     	health1.setPrice(20.00);
-    	health1.setQuantity(8);
+    	health1.setQuantity(1);
     	products.add(health1);
     	healths.add(health1); 
     	//
@@ -220,7 +260,7 @@ public class Main
     	health2.setName("Large Potion");
     	health2.setDescription("Restores 10,000 HP");
     	health2.setPrice(50.00);
-    	health2.setQuantity(4);
+    	health2.setQuantity(1);
     	products.add(health2); 
     	healths.add(health2); 
     }
