@@ -126,22 +126,27 @@ public class Main
     	if (inventoryItems == 0)
     		System.out.println("Inventory is empty."); 
     	else 
-    		System.out.println("Here are all items in the inventory:");
+    		System.out.println("Here are all " + inventoryItems + " items in the inventory:");
     	
     	
-    	// loop and display all items in inventory 
         System.out.println("----------------------------------------------------------"); 
+        // loop and display all items in inventory 
     	int count = 0; 
     	for (SalableProduct item : products)
     	{
     		count++; 
     		System.out.printf("-- Item #%d --\n%s%n", count, item); 
     	}
+    	System.out.println("----------------------------------------------------------"); 
     	
-    	try {
+    	
+    	// try adding items from inventory into shopping cart 
+    	try 
+    	{
     		System.out.println("Would you like to purchase an item (y/n): ");
         	userChoice = in.next().charAt(0);
         	
+        	// keep looping if user wants to add more items to shopping cart 
         	while (userChoice == 'y')
         	{
         		System.out.println("Enter the Item # you want to purchase:"); 
@@ -158,13 +163,119 @@ public class Main
         		System.out.println("You chose not to buy anything else. Proceed to shopping cart if you wish to purchase your items.");
         	else if (userChoice != 'y')
         		System.out.println("You chose not to buy anything.");
+        	
     	}
-    	catch (Exception e)
-    	{
+    	catch (Exception e) {
     		System.err.println("You entered something invalid, back to main menu you go."); 
     	}
-    	in.nextLine(); 
+    	
+    	in.nextLine(); // fix any scanner input errors 
+    }
+    
+    
+    // view shopping cart function 
+    public static void viewCart()
+    {
+    	// local function variables
+    	int cartItems = shoppingCart.size(); 
+    	int userChoice = -1;
+    	
+    	// display number of items in shopping cart message 
+    	if (cartItems == 0)
+    		System.out.println("Your shopping cart is empty."); 
+    	else 
+    		System.out.println("Your shopping cart has " + cartItems + " items.");
+    	
+
         System.out.println("----------------------------------------------------------"); 
+        // loop and display shopping cart items
+        int count = 0; 
+    	for (SalableProduct item : shoppingCart) {
+    		count++; 
+    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
+    	}
+    	System.out.println("----------------------------------------------------------"); 
+    	
+    	
+    	// See if user wants to purchase items or remove items
+    	if (cartItems != 0) 
+    	{
+	    	try 
+	    	{
+	    		System.out.println("-- SHOPPING CART MENU --\nMake a selection:\n(a) Purchase all items\n(b) Remove an item from cart\n(c) Clear entire cart\n(d) Cancel\n"); 
+	    		userChoice = in.next().charAt(0);
+	    		
+	    	} catch (Exception e) {
+	    		System.err.println("You entered something invalid, back to main menu you go.");
+	    	}
+	    		
+    		switch(userChoice)
+    		{
+    		
+	    		case 'a': 
+	    			System.out.println("You chose to purchase all items!"); 
+	    			
+	    			// sum up total for shopping cart 
+	    			double total = 0.00; 
+	    			for (SalableProduct item : shoppingCart) {
+	    				total = total + item.getPrice(); 
+	    			}
+	    			System.out.printf("You spent $%,.2f at the WoW Armory. Thank You, please come again!%n", total); 
+	    			
+	    			// remove all items from shopping cart 
+	    			shoppingCart.clear();
+	    			break;
+	    			
+	    			
+	    		case 'b':
+	    			System.out.println("You chose to remove an item from cart."); 
+	    			
+	    			// try removing items from shopping cart 
+	    	    	try 
+	    	    	{
+	    	    		while(shoppingCart.size() != 0)
+	    	    		{
+	    	    			System.out.println("Enter the Item # you want to remove: ");
+	    	    			int removeItem = in.nextInt(); 		    	    			
+	    	    			shoppingCart.remove(removeItem-1); 
+	    	    			System.out.println("You removed Item #" + removeItem + " from shopping cart."); 
+	    	    			
+	    	    			System.out.println("Want to remove another item? (y/n): "); 
+	    	    			char decision = in.next().charAt(0); 
+	    	    			if (decision != 'y') break; 
+	    	    		}
+	    	        	
+	    	        	// end of purchasing items message
+	    	        	if (shoppingCart.size() == 0)
+	    	        		System.out.println("Your shopping cart is now empty.");		
+	    	        	else 
+	    	        		System.out.println("Returning to Main Menu. Please re-view your shopping cart to see your updated cart items."); 
+	    	    	}
+	    	    	catch (Exception e) {
+	    	    		System.err.println("You entered something invalid, back to main menu you go."); 
+	    	    	}
+	    			break;
+	    			
+	    			
+	    		case 'c':
+	    			System.out.println("You chose to clear entire cart."); 
+	    			shoppingCart.clear(); 
+	    			
+	    			break;
+	    			
+	    			
+	    		case 'd':
+	    			System.out.println("You chose to do nothing."); 
+	    			break;
+	    			
+	    			
+	    		default:
+	    			System.out.println("You entered something invalid, back to main menu you go.");
+	    			break; 
+    		}	    	
+    	}
+    	
+    	in.nextLine(); // fix any scanner input errors 
     }
     
     
@@ -181,32 +292,10 @@ public class Main
     	
 
         System.out.println("----------------------------------------------------------"); 
+        System.out.println("(Inventory management is currently not available.)"); 
         System.out.println("----------------------------------------------------------"); 
     }
-    
-    
-    // view shopping cart function 
-    public static void viewCart()
-    {
-    	// local function variables
-    	int cartItems = shoppingCart.size(); 
-    	
-    	if (cartItems == 0)
-    		System.out.println("Your shopping cart is empty."); 
-    	else 
-    		System.out.println("Your shopping cart has " + cartItems + " items.");
-    	
-
-        System.out.println("----------------------------------------------------------"); 
-        int count = 0; 
-    	for (SalableProduct item : shoppingCart)
-    	{
-    		count++; 
-    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
-    	}
-        System.out.println("----------------------------------------------------------"); 
-    }
-    
+       
     
     // initialize starting inventory function
     public static void initializeInventory()
