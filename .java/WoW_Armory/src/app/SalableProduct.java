@@ -8,20 +8,22 @@ public class SalableProduct
     private String description;
     private double price;
     private int quantity;
+    private int iLvl; 
 
     // constructor(s)
     public SalableProduct(){
-        name = "";
-        description = "";
-        price = 0.00;
-        quantity = 0;
+        this.name = "";
+        this.description = "";
+        this.price = 0.00;
+        this.quantity = 0;
+        this.iLvl = 0; 
     }
     public SalableProduct(String a, String b, double c, int d)
     {
-        name = a;
-        description = b;
-        price = c;
-        quantity = d;
+    	this.name = a;
+    	this.description = b;
+    	this.price = c;
+    	this.quantity = d;
     }
 
     // class methods
