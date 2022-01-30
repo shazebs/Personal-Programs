@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Milestone_1
+namespace Minesweeper_pt2
 {
     class Program
     {
         static bool gameOver = false;
-        static bool userWin = false; 
+        static bool userWin = false;
 
         // Main Method
         static void Main(string[] args)
@@ -33,14 +33,14 @@ namespace Milestone_1
             board.setupLiveNeighbors(getDifficulty(board));
 
             // call board calculateLiveNeighbors method
-            board.calculateLiveNeighbors(); 
+            board.calculateLiveNeighbors();
 
             // display board in console 
-            printBoardWithNeighbors(board); newline(); 
+            printBoardWithNeighbors(board); newline();
             printBoardv3(board);
 
             // start a while loop to keep playing the game. 
-            while(!gameOver)
+            while (!gameOver)
             {
                 // local variables within loop 
                 int row = -1, col = -1;
@@ -60,16 +60,16 @@ namespace Milestone_1
                             yellow(); Console.WriteLine("Enter a row number: "); reset();
                             row = int.Parse(Console.ReadLine());
                         }
-                        valid = true; 
+                        valid = true;
                     }
                     catch
                     {
-                        red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset(); 
+                        red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset();
                     }
                 } while (!valid);
 
                 // validate column input 
-                valid = false; 
+                valid = false;
                 do
                 {
                     try
@@ -91,20 +91,21 @@ namespace Milestone_1
                 } while (!valid);
 
                 // mark that coordinate on the grid. 
-                markCoordinate(board, row, col); 
+                markCoordinate(board, row, col);
             }
-            if (gameOver && userWin == false) {
-                red();  Console.WriteLine("User hit a bomb and lost."); reset();
+            if (gameOver && userWin == false)
+            {
+                red(); Console.WriteLine("User hit a bomb and lost."); reset();
             }
             else if (gameOver && userWin)
             {
-                green(); Console.WriteLine("User has cleared the board and won!"); reset(); 
+                green(); Console.WriteLine("User has cleared the board and won!"); reset();
             }
 
             // wait to exit program 
-            newline(); printBoardWithNeighbors(board); newline(); 
+            newline(); printBoardWithNeighbors(board); newline();
             red(); Console.WriteLine("-- Game Over --"); reset();
-            Console.ReadLine(); 
+            Console.ReadLine();
         }
 
         // Functions
@@ -113,50 +114,51 @@ namespace Milestone_1
             // local function variables 
 
             // mark the grid coordinate
-            if ( board.grid[row, col].isLive == true)
+            if (board.grid[row, col].isLive == true)
             {
-                red(); Console.WriteLine("You hit a bomb!"); reset(); 
+                red(); Console.WriteLine("You hit a bomb!"); reset();
                 board.grid[row, col].isVisited = true;
                 // mark game as over
-                userWin = false; 
-                gameOver = true; 
+                userWin = false;
+                gameOver = true;
             }
             else
             {
-                green(); Console.WriteLine("Not a bomb"); reset(); 
+                green(); Console.WriteLine("Not a bomb"); reset();
                 board.grid[row, col].isVisited = true;
 
-                // did user win check
+                // check if user has won
                 bool boardCleared = false;
                 int totalSweep = 0;
-                int totalCorrect = 0;  
+                int totalCorrect = 0;
                 for (var i = 0; i < board.size; i++)
                 {
                     for (var j = 0; j < board.size; j++)
                     {
                         if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9)
                         {
-                            totalSweep++; 
+                            totalSweep++;
                         }
                         if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9 && board.grid[i, j].isVisited)
                         {
-                            totalCorrect++; 
+                            totalCorrect++;
                         }
                     }
                 }
                 if (totalSweep == totalCorrect)
                 {
                     userWin = true;
-                    gameOver = true; 
+                    gameOver = true;
                 }
             }
-            printBoardv3(board); 
+            // newline(); printBoardWithNeighbors(board); newline(); /* turn this off to play without help */ 
+            printBoardv3(board);
         }
 
         // print board (version 3) 
         static void printBoardv3(Board board)
         {
-            newline(); 
+            newline();
             // ROW LOOP
             for (var r = 0; r < board.size; r++)
             {
@@ -167,7 +169,7 @@ namespace Milestone_1
                     if (r == 0 && c == 0)
                     {
                         Console.Write("   "); // beginning padding
-                        yellow(); 
+                        yellow();
                         for (var k = 0; k < board.size; k++)
                         {
                             if (k < 10)
@@ -175,21 +177,21 @@ namespace Milestone_1
                             else
                                 Console.Write($" {k} ");
                         }
-                        reset(); 
+                        reset();
                         newline(2);
                     }
 
                     // Print row number
                     if (c == 0)
                     {
-                        yellow(); 
+                        yellow();
                         if (r < 10)
                             Console.Write($" {r} ");
                         else
                             Console.Write($"{r} ");
-                        reset(); 
+                        reset();
                     }
-                    
+
 
                     // if Cell hasn't been clicked yet
                     if (board.grid[r, c].isVisited == false)
@@ -201,8 +203,8 @@ namespace Milestone_1
                         switch (board.grid[r, c].liveNeighbors)
                         {
                             case 0:
-                                cyan(); 
-                                Console.Write($"  - "); reset(); 
+                                cyan();
+                                Console.Write($"  - "); reset();
                                 break;
 
                             case 1:
@@ -233,27 +235,29 @@ namespace Milestone_1
                 }
                 newline(); // newline after every row
             }
-            newline(); 
+            newline();
         }
 
         static void printBoard(Board board)
         {
             // loop through rows
-            for (var x=0; x<board.size; x++)
+            for (var x = 0; x < board.size; x++)
             {
                 // Create column indices
-                if (x == 0) {
-                    for (var k = 0; k < board.size; k++) {
+                if (x == 0)
+                {
+                    for (var k = 0; k < board.size; k++)
+                    {
                         if (k < 10)
-                            Console.Write($"  {k} "); 
-                        else 
+                            Console.Write($"  {k} ");
+                        else
                             Console.Write($" {k} ");
                     }
                     newline(2);
                 }
 
                 // loop through columns 
-                for (var y=0; y<board.size; y++)
+                for (var y = 0; y < board.size; y++)
                 {
                     // if cell hasn't been clicked. 
                     if (board.grid[x, y].isVisited == false)
@@ -266,21 +270,21 @@ namespace Milestone_1
                     }
 
                     // else-if cell has been clicked. 
-                    else if (board.grid[x, y].isVisited) 
+                    else if (board.grid[x, y].isVisited)
                     {
-                        red(); Console.Write("  * "); reset(); 
+                        red(); Console.Write("  * "); reset();
                     }
                 }
 
                 Console.WriteLine($"    {x}"); // print row indices
             }
-            newline(); 
+            newline();
         }
 
         public static void printBoardWithNeighbors(Board board)
         {
             yellow(); Console.WriteLine("Here is the board printed showing liveNeighbors for all Cells."); reset();
-            newline(); 
+            newline();
 
             // loop through rows
             for (var x = 0; x < board.size; x++)
@@ -304,11 +308,11 @@ namespace Milestone_1
                     // if cell hasn't been clicked. 
                     if (board.grid[x, y].isVisited == false)
                     {
-                        switch(board.grid[x, y].liveNeighbors)
+                        switch (board.grid[x, y].liveNeighbors)
                         {
                             case 0:
                                 Console.Write($"  - ");
-                                break; 
+                                break;
 
                             case 1:
                                 darkGreen(); Console.Write($"  {board.grid[x, y].liveNeighbors} "); reset();
@@ -390,8 +394,10 @@ namespace Milestone_1
             int size = 0; // var to return 
 
             // Get input from user for board size
-            while (size < 10 || size > 50) {
-                try {
+            while (size < 10 || size > 50)
+            {
+                try
+                {
                     // display instructions for user input
                     yellow(); Console.Write("Enter a size for your board (10-50): "); reset();
 
@@ -399,11 +405,13 @@ namespace Milestone_1
                     size = int.Parse(Console.ReadLine());
 
                     // print error message (if appropriate) L
-                    if (size < 10 || size > 50) {
+                    if (size < 10 || size > 50)
+                    {
                         red(); Console.WriteLine("Error! Incorrect size range, try again!");
                     }
                 }
-                catch { // exceptions 
+                catch
+                { // exceptions 
                     red();
                     Console.WriteLine("Error! You entered something invalid, try again!");
                     reset();
@@ -429,11 +437,13 @@ namespace Milestone_1
                     difficulty = float.Parse(Console.ReadLine());
 
                     // print error message (if appropriate)
-                    if (difficulty < 1 || difficulty > 99) {
+                    if (difficulty < 1 || difficulty > 99)
+                    {
                         red(); Console.WriteLine("Error! Incorrect range for difficulty, try again!");
                     }
                 }
-                catch {
+                catch
+                {
                     red(); Console.WriteLine("Error! You entered something invalid, try again!");
                 }
             }
@@ -445,7 +455,7 @@ namespace Milestone_1
             green(); Console.WriteLine($"You set the game difficulty to {difficulty}%"); reset();
 
             // calculate how many bombs should be active according to user inputted difficulty 
-            int liveBombs = (int)((board.size*2) * (difficulty / 100));
+            int liveBombs = (int)((board.size * 2) * (difficulty / 100));
 
             // at least one bomb should be active if difficulty percentage is too low 
             if (liveBombs == 0) liveBombs = 1;
@@ -453,7 +463,7 @@ namespace Milestone_1
             // display to user number of live bombs on the board
             // Console.WriteLine($"Live Bombs: {liveBombs}"); // (display only for debugging purposes) 
 
-            return (float) liveBombs;
+            return (float)liveBombs;
         }
 
         // Console coloring functions
