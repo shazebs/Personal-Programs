@@ -7,44 +7,48 @@ public class SalableProduct
     private String name;
     private String description;
     private double price;
-    private int quantity;
-    private int iLvl; 
+    int iLvl;
 
     // constructor(s)
     public SalableProduct(){
-        this.name = "";
-        this.description = "";
-        this.price = 0.00;
-        this.quantity = 0;
-        this.iLvl = 0; 
+        name = "";
+        description = "";
+        price = 0.00;
+        iLvl = 0;
     }
     public SalableProduct(String a, String b, double c, int d)
     {
-    	this.name = a;
-    	this.description = b;
-    	this.price = c;
-    	this.quantity = d;
+        name = a;
+        description = b;
+        price = c;
+        iLvl = d;
     }
 
     // class methods
 
-    // setters
+    /**
+     * 
+     * @param Setter Methods
+     */
     public void setName(String x) { this.name = x; }
     public void setDescription(String x) { this.description = x; }
     public void setPrice(double x) { this.price = x; }
-    public void setQuantity(int x) { this.quantity = x; }
+    public void setItemLevel(int x) { this.iLvl = x; }
 
-    // getters
+    /**
+     * 
+     * @return Getter methods 
+     */
     public String getName() { return name; }
     public String getDescription() { return description; }
     public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
+    public int getItemLevel() { return iLvl; }
 
     // toString
     @Override
     public String toString()
     {
-        return String.format("Item Name: %s\nDescription: %s\nPrice: $%,.2f\nQuantity: %d\n",
-                name, description, price, quantity);
+        return String.format("%s\n%s\n$%,.2f\niLvl %d\n",
+                name, description, price, iLvl);
     }
 }
