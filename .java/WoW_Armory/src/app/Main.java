@@ -4,6 +4,11 @@ package app;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author shazebs
+ *
+ */
 public class Main 
 {
 	// COlORS (not working ?)
@@ -24,15 +29,18 @@ public class Main
     static ArrayList<SalableProduct> products = new ArrayList<>(); 
     static ArrayList<SalableProduct> shoppingCart = new ArrayList<>(); 
     // 
-    static ArrayList<Weapon> weapons = new ArrayList<>(); 
+    /* static ArrayList<Weapon> weapons = new ArrayList<>(); 
     static ArrayList<Armor> armors = new ArrayList<>(); 
-    static ArrayList<Health> healths = new ArrayList<>(); 
+    static ArrayList<Health> healths = new ArrayList<>(); */
     
     // Scanner object
     static Scanner in = new Scanner(System.in);
     
     
-    // main method
+    /**
+     * 
+     * @param args 
+     */
     public static void main(String[] args)
     {
         // local variables 
@@ -240,9 +248,11 @@ public class Main
 	    	    			shoppingCart.remove(removeItem-1); 
 	    	    			System.out.println("You removed Item #" + removeItem + " from shopping cart."); 
 	    	    			
-	    	    			System.out.println("Want to remove another item? (y/n): "); 
-	    	    			char decision = in.next().charAt(0); 
-	    	    			if (decision != 'y') break; 
+	    	    			if (shoppingCart.size() != 0) {
+	    	    				System.out.println("Want to remove another item? (y/n): "); 
+	    	    				char decision = in.next().charAt(0); 
+	    	    				if (decision != 'y') break; 
+	    	    			}
 	    	    		}
 	    	        	
 	    	        	// end of purchasing items message
@@ -260,7 +270,7 @@ public class Main
 	    		case 'c':
 	    			System.out.println("You chose to clear entire cart."); 
 	    			shoppingCart.clear(); 
-	    			
+	    			System.out.println("Your shopping cart is now empty."); 
 	    			break;
 	    			
 	    			
@@ -301,57 +311,56 @@ public class Main
     public static void initializeInventory()
     {
     	// create 2 Weapon objects
-    	Weapon weapon1 = new Weapon(); 
-    	weapon1.setName("Sword");
-    	weapon1.setDescription("iLvl 117");
-    	weapon1.setPrice(55.55);
-    	weapon1.setQuantity(1);
-    	products.add(weapon1); 
-    	weapons.add(weapon1); 
+    	Sword sword = new Sword(); 
+    	sword.setName("Jaithys, the Prison Blade");
+    	sword.setDescription("224-374 Damage");
+    	sword.setPrice(15370.46);
+    	sword.iLvl = 259;
+    	products.add(sword); 
+    	// weapons.add(sword); 
     	// 
-    	Weapon weapon2 = new Weapon(); 
-    	weapon2.setName("Mace");
-    	weapon2.setDescription("iLvl 120");
-    	weapon2.setPrice(67.89);
-    	weapon2.setQuantity(1);
-    	products.add(weapon2);    
-    	weapons.add(weapon2);
+    	Bow bow = new Bow(); 
+    	bow.setName("Rae'shalare, Death's Whisper");
+    	bow.setDescription("212-287 Damage");
+    	bow.setPrice(23226.85);
+    	bow.iLvl = 233;
+    	products.add(bow);    
     	
     	    	
     	// create 2 Armor objects
-    	Armor armor1 = new Armor(); 
-    	armor1.setName("Helmet"); 
-    	armor1.setDescription("iLvl 115");
-    	armor1.setPrice(35.65);
-    	armor1.setQuantity(1);
-    	products.add(armor1); 
-    	armors.add(armor1);    	
+    	Shield shield = new Shield(); 
+    	shield.setName("Guard of the Sundered Defender"); 
+    	shield.setDescription("1,992 Block");
+    	shield.setPrice(8016.86);
+    	shield.iLvl = 259;
+    	products.add(shield); 
+    	// armors.add(shield);    	
     	//
-    	Armor armor2 = new Armor(); 
-    	armor2.setName("Gauntlets"); 
-    	armor2.setDescription("iLvl 113");
-    	armor2.setPrice(78.23);
-    	armor2.setQuantity(1);
-    	products.add(armor2); 
-    	armors.add(armor2); 
+    	Helmet helmet = new Helmet(); 
+    	helmet.setName("Dark Tormentor's Gaze"); 
+    	helmet.setDescription("195 Armor");
+    	helmet.setPrice(6321.23);
+    	helmet.iLvl = 252;
+    	products.add(helmet); 
+    	// armors.add(helmet); 
     	
     	    	
     	// create 2 Health objects
-    	Health health1 = new Health(); 
-    	health1.setName("Small Potion");
-    	health1.setDescription("Restores 5,000 HP");
-    	health1.setPrice(20.00);
-    	health1.setQuantity(1);
-    	products.add(health1);
-    	healths.add(health1); 
+    	Potion potion = new Potion(); 
+    	potion.setName("Spiritual Healing Potion");
+    	potion.setDescription("Restores 10,000 HP");
+    	potion.setPrice(50.00);
+    	potion.iLvl = 0;
+    	products.add(potion);
+    	// healths.add(potion); 
     	//
-    	Health health2 = new Health(); 
-    	health2.setName("Large Potion");
-    	health2.setDescription("Restores 10,000 HP");
-    	health2.setPrice(50.00);
-    	health2.setQuantity(1);
-    	products.add(health2); 
-    	healths.add(health2); 
+    	Food food = new Food(); 
+    	food.setName("Mon'Dazi");
+    	food.setDescription("Restores 7,692 HP");
+    	food.setPrice(200.00);
+    	food.iLvl = 0;
+    	products.add(food); 
+    	// healths.add(heal); 
     }
     
     
@@ -389,4 +398,3 @@ public class Main
  * 
  * 
  */
-
