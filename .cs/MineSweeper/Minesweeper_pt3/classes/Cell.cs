@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    public class Cell
+    class Cell
     {
         // Properties 
+
         public int row { get; set; }
         public int col { get; set; }
         public bool isVisited { get; set; }
@@ -16,25 +17,26 @@ namespace Minesweeper
         public int liveNeighbors { get; set; }
         public bool hasFlag { get; set; }
 
+
         // Constructors 
-        public Cell() 
+
+        public Cell()
         {
             this.col = -1;
             this.row = -1;
             this.isVisited = false;
             this.isLive = false;
             this.liveNeighbors = 0;
-            this.hasFlag = false; 
+            this.hasFlag = false;
         }
-        // Constructor 2
-        public Cell(int row, int col) 
+        public Cell(int row, int col)
         {
             this.row = row;
             this.col = col;
             this.isVisited = false;
             this.isLive = false;
             this.liveNeighbors = 0;
-            this.hasFlag = false; 
-        } 
+            this.hasFlag = false;
+        }
     }
 }
