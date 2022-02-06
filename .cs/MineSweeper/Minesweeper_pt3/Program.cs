@@ -12,14 +12,14 @@ namespace Minesweeper
         static bool gameOver = false;
         static bool userWin = false;
 
-        // main method
+        // main method 
         static void Main(string[] args)
         {
             // declare local variables
             int size = 0;
             float difficulty = 0;
 
-            // display welcome message
+            // Display welcome message
             cyan(); Console.WriteLine("Welcome to Minesweeper!"); reset();
 
             // get board size from user 
@@ -27,10 +27,9 @@ namespace Minesweeper
 
             // create a new Board object
             Board board = new Board(size); // set to default(10)
-            board.size = size; // set official board size 
+            board.size = size;
 
             // set game difficulty for board object 
-            // (aka: call board setupLiveNeighbors method) 
             board.setupLiveNeighbors(getDifficulty(board));
 
             // call board calculateLiveNeighbors method
@@ -38,29 +37,34 @@ namespace Minesweeper
 
             // display board in console 
             printBoardWithNeighbors(board); newline();
-            printBoardv3(board);
+            printBoard(board);
+
 
             // start a while loop to keep playing the game. 
             while (!gameOver)
             {
-                // local variables within loop 
+                // local variables within game loop 
                 int row = -1, col = -1;
                 bool valid = false;
 
-                // display instructions to Game User
+                // get row input  
                 do
                 {
-                    // validate row input 
+                    // get user input 
                     try
                     {
                         yellow(); Console.WriteLine("Enter a row number: "); reset();
                         row = int.Parse(Console.ReadLine());
+
+                        // validate user's input 
                         while (row < 0 || row > board.size - 1)
                         {
                             red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset();
                             yellow(); Console.WriteLine("Enter a row number: "); reset();
                             row = int.Parse(Console.ReadLine());
                         }
+
+                        // valid input has been entered 
                         valid = true;
                     }
                     catch // any exceptions 
@@ -68,108 +72,181 @@ namespace Minesweeper
                         red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset();
                     }
                 } while (!valid);
- 
+
+
+                // get column input 
                 valid = false;
                 do
                 {
-                    // validate column input 
+                    // get user input 
                     try
                     {
-                        // display instruction
                         yellow(); Console.WriteLine("Enter a column number: "); reset();
                         col = int.Parse(Console.ReadLine());
 
-                        // keep looping until valid input is set 
+                        // validate user input 
                         while (col < 0 || col > board.size - 1)
                         {
                             red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset();
                             yellow(); Console.WriteLine("Enter a column number: "); reset();
                             col = int.Parse(Console.ReadLine());
                         }
+
+                        // valid input has been entered 
                         valid = true;
                     }
-                    catch
+                    catch // any exceptions
                     {
                         red(); Console.WriteLine($"Error! Please enter a whole number 0-{board.size - 1}, try again."); reset();
                     }
                 } while (!valid);
 
+
                 // mark that coordinate on the grid. 
-                markCoordinate(board, row, col);
+               markCoordinate(board, row, col);
+
             }
 
-            // display win or loss output to console 
-            if (gameOver && userWin == false)
-            {
+            // game over results 
+            // -----------------
+            // user loss
+            if (gameOver && userWin == false) {
                 red(); Console.WriteLine("User hit a bomb and lost."); reset();
             }
-            else if (gameOver && userWin)
-            {
+            // user win 
+            else if (gameOver && userWin) {
                 green(); Console.WriteLine("User has cleared the board and won!"); reset();
             }
+
 
             // wait to exit program 
             newline(); printBoardWithNeighbors(board); newline();
             red(); Console.WriteLine("-- Game Over --"); reset();
             Console.ReadLine();
-        }
+
+        } // end of main method 
+
 
         // Functions
-        static void markCoordinate(Board board, int row, int col)
-        {
-            // local function variables 
 
-            // mark grid coordinate
+        public static void floodFill(Board board, int row, int col)
+        {
+            // check to see if cell has already been visited 
+            if (board.grid[row, col].isVisited == true)
+            {
+                return;
+            }
+            else // cell has not yet been visited 
+            {
+                // mark cell as visited
+                board.grid[row, col].isVisited = true;
+
+                // if cell has 0 live neighbors , flood fill if possible 
+                if (board.grid[row, col].liveNeighbors == 0)
+                {
+                    // go south 
+                    if (row + 1 < board.size && board.grid[row + 1, col].isVisited == false)
+                    {
+                        floodFill(board, row + 1, col);
+                    }
+                    // go north 
+                    if (row - 1 >= 0 && board.grid[row - 1, col].isVisited == false)
+                    {
+                        floodFill(board, row - 1, col);
+                    }
+                    // go east 
+                    if (col + 1 < board.size && board.grid[row, col + 1].isVisited == false)
+                    {
+                        floodFill(board, row, col + 1);
+                    }
+                    // go west 
+                    if (col - 1 >= 0 && board.grid[row, col - 1].isVisited == false)
+                    {
+                        floodFill(board, row, col - 1);
+                    }
+                    // go NE
+                    if (row - 1 >= 0 && col + 1 < board.size && board.grid[row - 1, col + 1].isVisited == false)
+                    {
+                        floodFill(board, row - 1, col + 1);
+                    }
+                    // go NW
+                    if (row - 1 >= 0 && col - 1 >= 0 && board.grid[row - 1, col - 1].isVisited == false)
+                    {
+                        floodFill(board, row - 1, col - 1);
+                    }
+                    // go SE
+                    if (row + 1 < board.size && col + 1 < board.size && board.grid[row + 1, col + 1].isVisited == false)
+                    {
+                        floodFill(board, row + 1, col + 1);
+                    }
+                    // go SW
+                    if (row + 1 < board.size && col - 1 >= 0 && board.grid[row + 1, col - 1].isVisited == false)
+                    {
+                        floodFill(board, row + 1, col - 1);
+                    }
+                }
+                else // no flood fill was possible 
+                    return;
+            }
+        }
+
+        public static void markCoordinate(Board board, int row, int col)
+        {
+            // if user hit a bomb, game over 
             if (board.grid[row, col].isLive == true)
             {
-                // display bomb hit message 
+                // print "hit bomb" message 
                 red(); Console.WriteLine("You hit a bomb!"); reset();
                 board.grid[row, col].isVisited = true;
 
-                // mark game as over, break out of loop 
+                // mark game as over
                 userWin = false;
                 gameOver = true;
             }
+            else if (board.grid[row, col].liveNeighbors == 0)
+            {
+                floodFill(board, row, col);
+            }
+            // user did not hit a bomb, continue game 
             else
             {
-                // display not a bomb success message 
+                // print "bomb not hit" message 
                 green(); Console.WriteLine("Not a bomb"); reset();
                 board.grid[row, col].isVisited = true;
+            }
 
-                // check if user has won
-                bool boardCleared = false;
-                int totalSweep = 0;
-                int totalCorrect = 0;
-
-                // loop through grid and see if all correct cells have been visited 
-                for (var i = 0; i < board.size; i++)
+            // CHECK TO SEE IF USER HAS WON
+            // local variables 
+            bool boardCleared = false;
+            int totalSweep = 0;
+            int totalCorrect = 0;
+            // loop through grid and calculate number of safe cells visited
+            for (var i = 0; i < board.size; i++)
+            {
+                for (var j = 0; j < board.size; j++)
                 {
-                    for (var j = 0; j < board.size; j++)
+                    if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9)
                     {
-                        if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9)
-                        {
-                            totalSweep++;
-                        }
-                        // (repetitive) 
-                        if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9 && board.grid[i, j].isVisited)
-                        {
-                            totalCorrect++;
-                        }
+                        totalSweep++;
+                    }
+                    if (board.grid[i, j].liveNeighbors > 0 && board.grid[i, j].liveNeighbors < 9 && board.grid[i, j].isVisited)
+                    {
+                        totalCorrect++;
                     }
                 }
-                // if all cells with live neighbors have been visited, declare user win and break out of loop 
-                if (totalSweep == totalCorrect)
-                {
-                    userWin = true;
-                    gameOver = true;
-                }
             }
-            // newline(); printBoardWithNeighbors(board); newline(); /* turn this off to play without help */ 
-            printBoardv3(board);
+            // check if user has won  
+            if (totalSweep == totalCorrect)
+            {
+                userWin = true;
+                gameOver = true;
+            }
+
+            // newline(); printBoardWithNeighbors(board); newline(); // turn this off to play without help 
+            printBoard(board);
         }
 
-        // print board (version 3) 
-        static void printBoardv3(Board board)
+        public static void printBoard(Board board)
         {
             newline();
             // ROW LOOP
@@ -236,6 +313,13 @@ namespace Minesweeper
                                 cyan(); Console.Write($"  {board.grid[r, c].liveNeighbors} "); reset();
                                 break;
 
+                            case 5:
+                            case 6:
+                            case 7:
+                            case 8:
+                                magenta(); Console.Write($"  {board.grid[r, c].liveNeighbors} "); reset();
+                                break; 
+
                             case 9:
                                 red(); Console.Write($"  {board.grid[r, c].liveNeighbors} "); reset();
                                 break;
@@ -247,49 +331,6 @@ namespace Minesweeper
                     }
                 }
                 newline(); // newline after every row
-            }
-            newline();
-        }
-
-        static void printBoard(Board board)
-        {
-            // loop through rows
-            for (var x = 0; x < board.size; x++)
-            {
-                // Create column indices
-                if (x == 0)
-                {
-                    for (var k = 0; k < board.size; k++)
-                    {
-                        if (k < 10)
-                            Console.Write($"  {k} ");
-                        else
-                            Console.Write($" {k} ");
-                    }
-                    newline(2);
-                }
-
-                // loop through columns 
-                for (var y = 0; y < board.size; y++)
-                {
-                    // if cell hasn't been clicked. 
-                    if (board.grid[x, y].isVisited == false)
-                    {
-                        /*if (y > 9)
-                            Console.Write("  ~ ");
-                        else
-                            Console.Write("  ~ ");*/
-                        Console.Write("  - ");
-                    }
-
-                    // else-if cell has been clicked. 
-                    else if (board.grid[x, y].isVisited)
-                    {
-                        red(); Console.Write("  * "); reset();
-                    }
-                }
-
-                Console.WriteLine($"    {x}"); // print row indices
             }
             newline();
         }
@@ -392,12 +433,12 @@ namespace Minesweeper
             newline();
         }
 
-        static void getTurnFromUser()
+        public static void getTurnFromUser()
         {
             // ... 
         }
 
-        static void initializeGame()
+        public static void initializeGame()
         {
             // ... 
         }
@@ -479,7 +520,9 @@ namespace Minesweeper
             return (float)liveBombs;
         }
 
+
         // Console coloring functions
+
         public static void red() { Console.ForegroundColor = ConsoleColor.Red; }
         public static void cyan() { Console.ForegroundColor = ConsoleColor.Cyan; }
         public static void yellow() { Console.ForegroundColor = ConsoleColor.Yellow; }
@@ -491,7 +534,9 @@ namespace Minesweeper
         public static void gray() { Console.ForegroundColor = ConsoleColor.Gray; }
         public static void reset() { Console.ResetColor(); }
 
+
         // Utility functions
+
         public static void newline() { Console.WriteLine(); }
         public static void newline(int x) { for (var i = 0; i < x; i++) newline(); }
     }
