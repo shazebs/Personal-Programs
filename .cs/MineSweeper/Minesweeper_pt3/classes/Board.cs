@@ -6,24 +6,27 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    public class Board
+    class Board
     {
         // Properties 
+
         public Cell[,] grid { get; set; }
         public float difficulty { get; set; }
         public int size { get; set; }
         public int totalBombs { get; set; }
         public int hiddenBombs { get; set; }
 
+
         // Constructors 
+
         public Board()
         {
             //... 
         }
-        public Board(int size) 
+        public Board(int size)
         {
             // size the grid. 
-            this.grid = new Cell[size, size]; 
+            this.grid = new Cell[size, size];
 
             // loop through grid. 
             for (int x = 0; x < size; x++)
@@ -32,21 +35,23 @@ namespace Minesweeper
                 {
                     // place a Cell into selected grid index
                     // and initialize Cell row/col properties. 
-                    grid[x,y] = new Cell(x,y);
+                    grid[x, y] = new Cell(x, y);
                 }
             }
         }
 
+
         // Methods
+
         public void setupLiveNeighbors(float difficulty)
         {
             // Display to user number of live bombs 
-            Program.red(); 
+            Program.red();
             Console.WriteLine($"This board has: {difficulty} live bombs.");
             Program.reset();
 
             // initialize total number of live bombs
-            this.totalBombs = (int) difficulty;
+            this.totalBombs = (int)difficulty;
 
             // create a random number generator
             Random rand = new Random();
@@ -56,16 +61,16 @@ namespace Minesweeper
             {
                 // select random coordinates on the grid 
                 int x = rand.Next(this.size);
-                int y = rand.Next(this.size); 
+                int y = rand.Next(this.size);
 
                 /* set a bomb at this grid coordinate if Cell does not already have live bomb 
                  otherwise, try again at new coordinate */
-                if (this.grid[x,y].isLive == false)
+                if (this.grid[x, y].isLive == false)
                 {
                     this.grid[x, y].isLive = true;
                     bombsInit++;
 
-                    /* (for debugging purposes only - uncomment as necessary) */ 
+                    /* (for debugging purposes only - uncomment as necessary) */
                     // Console.WriteLine($"Bomb #{bombsInit} has been set!");
                     // this.grid[x, y].isVisited = true;
                 }
@@ -100,7 +105,7 @@ namespace Minesweeper
                     {
                         grid[r, c].liveNeighbors = 9;
                         continue;   // move to next Cell
-                    } 
+                    }
 
 
                     // (for board corner Cells only)
@@ -112,7 +117,7 @@ namespace Minesweeper
                         int nearbyBombs = 0;
 
                         // forward check
-                        if (grid[r, c + 1].isLive) nearbyBombs++; 
+                        if (grid[r, c + 1].isLive) nearbyBombs++;
 
                         // bottom-right 
                         if (grid[r + 1, c + 1].isLive) nearbyBombs++;
@@ -122,15 +127,15 @@ namespace Minesweeper
 
                         // set liveNeighbors
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
                     // top-right corner
-                    else if (r == 0 && c == this.size-1)
+                    else if (r == 0 && c == this.size - 1)
                     {
                         // Console.WriteLine($"You are at top-right corner cell at coordinates [{r}, {c}]");
 
-                        int nearbyBombs = 0; 
+                        int nearbyBombs = 0;
 
                         // backward
                         if (grid[r, c - 1].isLive) nearbyBombs++;
@@ -142,11 +147,11 @@ namespace Minesweeper
                         if (grid[r + 1, c].isLive) nearbyBombs++;
 
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
                     // bottom-left corner 
-                    else if (r == this.size-1 && c == 0)
+                    else if (r == this.size - 1 && c == 0)
                     {
                         // Console.WriteLine($"You are at bottom-left corner cell at coordinates [{r}, {c}]");
 
@@ -162,11 +167,11 @@ namespace Minesweeper
                         if (grid[r, c + 1].isLive) nearbyBombs++;
 
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
                     // bottom-right corner 
-                    else if (r == this.size-1 && c == this.size-1)
+                    else if (r == this.size - 1 && c == this.size - 1)
                     {
                         // Console.WriteLine($"You are at bottom-right corner cell at coordinates [{r}, {c}]");
 
@@ -182,13 +187,13 @@ namespace Minesweeper
                         if (grid[r, c - 1].isLive) nearbyBombs++;
 
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
 
                     // (for Cells on board sides only) 
                     // top-side
-                    if (r == 0) 
+                    if (r == 0)
                     {
                         int nearbyBombs = 0;
 
@@ -213,7 +218,7 @@ namespace Minesweeper
                     }
 
                     // right-side
-                    else if (c == this.size - 1) 
+                    else if (c == this.size - 1)
                     {
                         int nearbyBombs = 0;
 
@@ -234,13 +239,13 @@ namespace Minesweeper
 
                         // set liveNeighbors
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
                     // bottom-side
-                    else if (r == this.size - 1) 
+                    else if (r == this.size - 1)
                     {
-                        int nearbyBombs = 0; 
+                        int nearbyBombs = 0;
 
                         // forward
                         if (grid[r, c + 1].isLive) nearbyBombs++;
@@ -259,11 +264,11 @@ namespace Minesweeper
 
                         // set liveNeighbors
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
 
                     // left-side
-                    else if (c == 0) 
+                    else if (c == 0)
                     {
                         int nearbyBombs = 0;
 
@@ -284,12 +289,12 @@ namespace Minesweeper
 
                         // set liveNeighbors
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
-                    
+
 
                     // (for Cells in-between)
-                    if ( (r > 0 && r < this.size-1) && (c > 0 && c < this.size-1) )
+                    if ((r > 0 && r < this.size - 1) && (c > 0 && c < this.size - 1))
                     {
                         int nearbyBombs = 0;
 
@@ -315,11 +320,11 @@ namespace Minesweeper
                         if (grid[r, c - 1].isLive) nearbyBombs++;
 
                         // top-left
-                        if (grid[r - 1, c - 1].isLive) nearbyBombs++; 
+                        if (grid[r - 1, c - 1].isLive) nearbyBombs++;
 
                         // set liveNeighbors
                         grid[r, c].liveNeighbors = nearbyBombs;
-                        continue; 
+                        continue;
                     }
                 }
             }
