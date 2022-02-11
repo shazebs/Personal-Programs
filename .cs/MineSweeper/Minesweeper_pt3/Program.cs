@@ -9,8 +9,8 @@ namespace Minesweeper
     class Program
     {
         // global variables 
-        static bool gameOver = false;
-        static bool userWin = false;
+        public static bool gameOver = false;
+        public static bool userWin = false;
 
         // main method 
         static void Main(string[] args)
@@ -36,7 +36,7 @@ namespace Minesweeper
             board.calculateLiveNeighbors();
 
             // display board in console 
-            printBoardWithNeighbors(board); newline();
+            // printBoardWithNeighbors(board); newline();
             printBoard(board);
 
 
@@ -50,9 +50,17 @@ namespace Minesweeper
                 // get row input  
                 do
                 {
+                    // set flag conditional loop 
+                    while (board.setFlag())
+                    {
+                        printBoard(board); 
+                    }
+
                     // get user input 
                     try
                     {
+                        green(); 
+                        Console.WriteLine("\nOkay time to play...");
                         yellow(); Console.WriteLine("Enter a row number: "); reset();
                         row = int.Parse(Console.ReadLine());
 
@@ -103,24 +111,28 @@ namespace Minesweeper
 
 
                 // mark that coordinate on the grid. 
-               markCoordinate(board, row, col);
+                markCoordinate(board, row, col);
 
             }
+            // show all cells on the grid  
+            newline(); printBoardWithNeighbors(board); newline();
+
 
             // game over results 
             // -----------------
             // user loss
-            if (gameOver && userWin == false) {
+            if (gameOver && userWin == false)
+            {
                 red(); Console.WriteLine("User hit a bomb and lost."); reset();
             }
             // user win 
-            else if (gameOver && userWin) {
+            else if (gameOver && userWin)
+            {
                 green(); Console.WriteLine("User has cleared the board and won!"); reset();
             }
 
-
-            // wait to exit program 
-            newline(); printBoardWithNeighbors(board); newline();
+            // wait to exit program
+            Console.WriteLine("Your score cannot be shown at this time."); 
             red(); Console.WriteLine("-- Game Over --"); reset();
             Console.ReadLine();
 
@@ -190,6 +202,7 @@ namespace Minesweeper
             }
         }
 
+        
         public static void markCoordinate(Board board, int row, int col)
         {
             // if user hit a bomb, game over 
@@ -238,6 +251,7 @@ namespace Minesweeper
             // check if user has won  
             if (totalSweep == totalCorrect)
             {
+                green(); Console.WriteLine("All safe cells have been revealed!");
                 userWin = true;
                 gameOver = true;
             }
@@ -245,6 +259,7 @@ namespace Minesweeper
             // newline(); printBoardWithNeighbors(board); newline(); // turn this off to play without help 
             printBoard(board);
         }
+        
 
         public static void printBoard(Board board)
         {
@@ -283,8 +298,13 @@ namespace Minesweeper
                     }
 
 
+                    // if Cell has a flag 
+                    if (board.grid[r, c].hasFlag == true)
+                    {
+                        red(); Console.Write("  * "); reset();
+                    }
                     // if Cell hasn't been clicked yet
-                    if (board.grid[r, c].isVisited == false)
+                    else if (board.grid[r, c].isVisited == false)
                     {
                         Console.Write("  ? ");
                     }
@@ -318,7 +338,7 @@ namespace Minesweeper
                             case 7:
                             case 8:
                                 magenta(); Console.Write($"  {board.grid[r, c].liveNeighbors} "); reset();
-                                break; 
+                                break;
 
                             case 9:
                                 red(); Console.Write($"  {board.grid[r, c].liveNeighbors} "); reset();
@@ -389,7 +409,7 @@ namespace Minesweeper
                                 break;
 
                             default:
-                                gray(); Console.Write($"  {board.grid[x, y].liveNeighbors} "); reset();
+                                magenta(); Console.Write($"  {board.grid[x, y].liveNeighbors} "); reset();
                                 break;
                         }
                     }
@@ -423,7 +443,7 @@ namespace Minesweeper
                                 break;
 
                             default:
-                                gray(); Console.Write($"  {board.grid[x, y].liveNeighbors} "); reset();
+                                magenta(); Console.Write($"  {board.grid[x, y].liveNeighbors} "); reset();
                                 break;
                         }
                     }
