@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    class Board
+    public class Board
     {
         // Properties 
 
@@ -345,6 +345,104 @@ namespace Minesweeper
             // ...
 
             return false; // default 
+        }
+
+        public bool setFlag()
+        {
+            // local function variable
+            bool valid = false;
+            int row = -1, col = -1;
+
+            // ask if user wants to flag a cell 
+            Program.magenta(); 
+            Console.Write("Do you want to flag a cell? (y/n): ");
+            Program.reset(); 
+            String setFlag = Console.ReadLine();
+
+            Program.magenta(); 
+            if (setFlag == "y")
+            {
+                // display what user decided to do 
+                Program.green(); 
+                Console.WriteLine("You chose to set a flag.\n");
+
+                // get row input  
+                do
+                {
+                    try
+                    {
+                        // display instruction to user 
+                        Program.cyan();
+                        Console.WriteLine("Enter the row number of the cell to flag:");
+                        Program.reset(); 
+                        row = int.Parse(Console.ReadLine());
+
+                        // validate user's input 
+                        while (row < 0 || row > size - 1)
+                        {
+                            Program.red(); Console.WriteLine($"Error! Please enter a whole number 0-{size - 1}, try again."); Program.reset();
+                            Program.cyan();
+                            Console.WriteLine("Enter the row number of the cell to flag:");
+                            Program.reset();
+                            row = int.Parse(Console.ReadLine());
+                        }
+
+                        // valid input has been entered 
+                        valid = true;
+                    }
+                    catch // any exceptions 
+                    {
+                        Program.red(); Console.WriteLine($"Error! Please enter a whole number 0-{size - 1}, try again."); Program.reset();
+                    }
+
+                } while (!valid);
+
+                // get column input 
+                valid = false;
+                do
+                {
+                    // get user input 
+                    try
+                    {
+                        // display instruction to user 
+                        Program.cyan();
+                        Console.WriteLine("Enter the column number of the cell to flag:");
+                        Program.reset();
+                        col = int.Parse(Console.ReadLine());
+
+                        // validate user input 
+                        while (col < 0 || col > size - 1)
+                        {
+                            Program.red(); Console.WriteLine($"Error! Please enter a whole number 0-{size - 1}, try again."); Program.reset();
+                            Program.cyan();
+                            Console.WriteLine("Enter the column number of the cell to flag:");
+                            Program.reset();
+                            col = int.Parse(Console.ReadLine());
+                        }
+
+                        // valid input has been entered 
+                        valid = true;
+                    }
+                    catch // any exceptions
+                    {
+                        Program.red(); Console.WriteLine($"Error! Please enter a whole number 0-{size - 1}, try again."); Program.reset();
+                    }
+                } while (!valid);
+
+                // set the flag
+                grid[row, col].hasFlag = true;
+                Program.green(); 
+                Console.WriteLine("Flag has been set!");
+                Program.reset();
+                return true; 
+            }
+            else
+            {
+                Program.red(); 
+                Console.WriteLine("You chose to not set a flag.");
+                Program.reset();
+                return false; 
+            }
         }
     }
 }
