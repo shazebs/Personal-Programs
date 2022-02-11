@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    class Cell
+    public class Cell
     {
         // Properties 
 
