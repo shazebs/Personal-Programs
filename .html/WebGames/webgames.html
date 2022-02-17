@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Game Notes</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap');
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h1.language {
+            border-bottom: 2px dashed black;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-top: 50px;
+        }
+
+        blockquote {
+            font-size: 125%;
+            line-height: 2;
+        }
+
+        p {
+            font-size: 125%;
+            background-color: black;
+            color: white;
+            padding: 15px;
+            box-shadow: 4px 4px grey;
+        }
+
+        em {
+            font-style: normal;
+            color: lime;
+        }
+
+        span {
+            color: lime;
+        }
+
+        table {
+            font-size: 125%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th {
+            background-color: lightgreen;
+            padding: 0 10px 0 10px;
+        }
+
+        tr {
+            text-align: center;
+        }
+
+        td {
+            font-weight: bold;
+        }
+
+        img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        canvas {
+            margin-top: 20px;
+            width: 100%;
+            border: 1px solid black;
+            background-color: white;
+        }
+
+        button {
+            /* padding: 7px;
+            background-color: white;
+            box-shadow: 2px 2px lightgrey; */
+            width: 50px;
+            height: 30px;
+            margin-bottom: 5px;
+
+        }
+
+        #arrowButtons {
+            width: 50px;
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+
+        footer {
+            height: 500px;
+            text-align: center;
+        }
+
+        @media (max-width: 2800px) {
+            p {
+                font-size: x-large;
+            }
+
+            table {
+                font-size: x-large;
+            }
+        }
+
+        @media (max-width: 475px) {
+            p {
+                font-size: medium;
+            }
+
+            table {
+                font-size: medium;
+            }
+
+            #redBarAnimation-btn {
+                height: auto;
+                font-size: 0.65em;
+                margin-right: auto;
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+
+<!-- start of body -->
+
+<body>
+
+    <!-- page title -->
+    <h1>&nbsp;Shazeb's Web Games Notes</h1>
+    <hr>
+
+    <br>
+    <h1 class="language">HTML Basics</h1>
+
+    <h2>- HTML Attributes -</h2>
+    <blockquote>
+        Attributes provide <b>additional information</b> about an element or a tag, while also <b>modifying</b> them.
+        Most attributes have a value; the value modifies the attribute.
+    </blockquote>
+    <p>
+        &lt;p <em>align="center"</em>&gt; <br>
+        &nbsp; This text is aligned to center <br>
+        &lt;/p&gt; <br>
+        &lt;p <em>align="right"</em>&gt; <br>
+        &nbsp; This text is aligned to right <br>
+        &lt;/p&gt;
+    </p>
+    <blockquote>
+        <mark>Attributes are always specified in the start tag, and they appear in <b>name="value"</b> pairs.</mark>
+    </blockquote>
+
+    <h2>- Attribute Measurements -</h2>
+    <blockquote>
+        The <b>&lt;hr/&gt;</b> tag is used to create a simple horizontal line. As an example, we can modify the
+        horizontal line so that it has a width of 50 pixels.
+    </blockquote>
+    <p>
+        &lt;hr <em>width="50px"</em> /&gt;
+    </p>
+    <blockquote>
+        An element's width can also be defined using <i>percentages</i>:
+    </blockquote>
+    <p>
+        &lt;hr <em>width="50%"</em> /&gt;
+    </p>
+
+
+    <h2>- Images -</h2>
+    <blockquote>
+        Images are added using the <b>&lt;img/&gt;</b> tag. For example:
+    </blockquote>
+    <p>
+        &lt;img <em>src=""tree.jpg"</em> <br>
+        &nbsp; height="150px" width="150px" /&gt;
+    </p>
+
+
+    <h2>- Image Resizing -</h2>
+    <blockquote>
+        To define an image size, use the <b>width</b> and <b>height</b> attributes. The value can be specified in
+        <b>pixels</b> or as a <b>percentage</b>:
+    </blockquote>
+    <p>
+        &lt;img src="tree.jpg" <em>height="</em>150px<em>" width="</em>150px<em>"</em> /&gt; <br>
+        &lt;img src="tree.jpg" <em>height="</em>50%<em>" width="</em>50%<em>"</em> /&gt;
+    </p>
+    <blockquote>
+        <mark>As you can see, the <b>&lt;img /&gt;</b> tag does not need a closing tag.</mark>
+    </blockquote>
+
+    <h2>- Brief HTML Summary -</h2>
+    <blockquote>
+        There are many other tags that HTML supports, such as buttons, text fields, etc. All of them have the same
+        structure of having an opening and closing tag, but not all need a closing tag and they can be modified using
+        attributes.<br>
+        This is why understanding the logic is more important than memorizing all the tag names, as you can always
+        search and find the tag that you need.
+    </blockquote>
+
+
+    <br>
+    <h1 class="language">CSS Basics</h1>
+
+    <h2>- Inline CSS -</h2>
+    <blockquote>
+        Using an inline style is one of the ways to insert a style sheet. With an inline style, a unique style is
+        applied to a single element. In order to use an inline style, add the <b>style attribute</b> to the <b>relevant
+            tag</b>. <br>For example:
+    </blockquote>
+    <p>
+        &lt;p <em>style="</em>color:white<em>;</em> background-color:gray<em>;</em><em>"</em>&gt; <br>
+        &nbsp; This is an example of inline styling. <br>
+        &lt;/p&gt;
+    </p>
+    <blockquote>
+        The <b>style</b> attribute can contain multiple CSS properties.
+    </blockquote>
+
+
+    <h2>- CSS Styles -</h2>
+    <blockquote>
+        The CSS style inside the <b>style</b> attribute are in the following format:
+    </blockquote>
+    <p>
+        <em>property : value ;</em>
+    </p>
+    <blockquote>
+        Each property definition ends with a semicolon.
+    </blockquote>
+
+
+    <h2>- CSS Properties -</h2>
+    <blockquote>
+        CSS supports many properties, such as <b>color, width, height, border,</b> etc. For example, let's create a
+        paragraph with a specified width and background color:
+    </blockquote>
+    <p>
+        &lt;p style="<em>width</em>: 50px; <em>background-color</em>: red;"&gt; <br>
+        &nbsp; This is some text <br>
+        &lt;/p&gt;
+    </p>
+
+
+    <h2>- External CSS -</h2>
+    <blockquote>
+        Another way to define CSS for an HTML page is to create a separate CSS file. This way, all the styles are
+        defined in a separate file, which is linked to the HTML.<br>
+        In order to specify a style for a specific HTML element, we need to select it. For that, we need to provide the
+        HTML element with an <b>id attribute</b>. <br>For example:
+    </blockquote>
+    <p>
+        &lt;p <em>id="name"</em>&gt; <br>
+        &nbsp; Player One <br>
+        &lt;/p&gt;
+    </p>
+    <blockquote>
+        We have given the paragraph an <b>id</b>, which can be used to select it in CSS. <mark>The value of the
+            <b>id</b> can be anything you want.</mark><br><br>
+        To select an element with a specific <b>id</b>, use a hash character, and then follow it with the id of the
+        element:
+    </blockquote>
+    <p>
+        <em>#name {</em> <br>
+        &nbsp; color: white; <br>
+        &nbsp; background-color: blue; <br>
+        <em>}</em>
+    </p>
+    <blockquote>
+        <b>Class</b> selectors work in a similar way. The major difference is that IDs can only be applied once per
+        page, while classes can be used as many times on a page as needed. <br>
+        For example, let's say we need to apply the same style to the two paragraphs that contain player names:
+    </blockquote>
+    <p>
+        &lt;p <em>class="name"</em>&gt; <br>
+        &nbsp; Player One <br>
+        &lt;/p&gt; <br>
+        &lt;hr /&gt; <br>
+        &lt;p <em>class="name"</em>&gt; <br>
+        &nbsp; Player Two <br>
+        &lt;/p&gt; <br>
+    </p>
+    <blockquote>
+        The CSS:
+    </blockquote>
+    <p>
+        <em>.name {</em> <br>
+        &nbsp; color: white; <br>
+        &nbsp; background-color: blue; <br>
+        <em>}</em>
+    </p>
+    <blockquote>
+        <mark>Note, that we need to use a <b>dot</b> before the <b>class</b> name, instead of a hash, when using an
+            <b>id</b>.</mark>
+    </blockquote>
+
+
+    <br>
+    <h1 class="language">JavaScript Basics</h1>
+
+    <h2>- JavaScript -</h2>
+    <blockquote>
+        In order to see the results of our examples, we need to generate some output. <br>For this, we will use the
+        <b>console.log ( )</b> function.
+    </blockquote>
+    <p>
+        <em>console.log ( "</em>Hello!<em>" )</em>
+    </p>
+    <blockquote>
+        The <b>console</b> is part of the web browser and allows you to log messages, run JavaScript code, and see
+        errors and warnings.
+    </blockquote>
+
+
+    <h2>- Text -</h2>
+    <blockquote>
+        To use text in JavaScript, we need to enclose it in <b>quotes</b>. The text inside quotes is called a
+        <b>string</b>.
+    </blockquote>
+
+
+    <h2>- Numbers -</h2>
+    <blockquote>
+        When working with numbers, quotes are not needed.
+    </blockquote>
+    <p>
+        console.log ( <em>24</em> ) <br>
+        console.log ( <em>3.14</em> )
+    </p>
+    <blockquote>
+        In programming, whole numbers are called <b>integers</b>, while decimals are called <b>floats</b>.
+    </blockquote>
+
+
+    <h2>- Variables -</h2>
+    <blockquote>
+        In games, we usually need to store some values and work with them during the game. That is done using
+        <b>variables</b>, which are containers for storing values. Variables can be declared using the <b>var</b>
+        keyword:
+    </blockquote>
+    <p>
+        <em>var points =</em> 42;
+    </p>
+    <blockquote>
+        <b>points</b> is the name of our variable, while <b>42</b> is the value it holds. <br><br>
+        We can use different mathematical operators with variables. For example, let's create two variables, calculate
+        their sum and output the result to the console.
+    </blockquote>
+    <p>
+        var <em>x</em> = 8; <br>
+        var <em>y</em> = 54; <br>
+        console.log ( <em>x</em> + <em>y</em> )
+    </p>
+    <blockquote>
+        Variables can be reassigned as many times as you want in order to change their values.
+    </blockquote>
+
+
+    <h2>- Operators -</h2>
+    <blockquote>
+        Here is the basic math operators with examples:
+    </blockquote>
+    <table border="2">
+        <tr>
+            <th>Operator</th>
+            <th>Description</th>
+            <th width="200">Example</th>
+        </tr>
+        <tr>
+            <td>+</td>
+            <td>Addition</td>
+            <td>25 + 5 = 30</td>
+        </tr>
+        <tr>
+            <td>-</td>
+            <td>Subtraction</td>
+            <td>25 - 5 = 20</td>
+        </tr>
+        <tr>
+            <td>*</td>
+            <td>Multiplication</td>
+            <td>10 * 20 = 200</td>
+        </tr>
+        <tr>
+            <td>/</td>
+            <td>Division</td>
+            <td>20 / 2 = 10</td>
+        </tr>
+        <tr>
+            <td>%</td>
+            <td>Modulus</td>
+            <td>56 % 3 = 2</td>
+        </tr>
+        <tr>
+            <td>++</td>
+            <td>Increment</td>
+            <td>var &nbsp;a = 10; &nbsp;a++; <br>Now a = 11</td>
+        </tr>
+        <tr>
+            <td>--</td>
+            <td>Decrement</td>
+            <td>var &nbsp;a = 10; &nbsp;a--; <br>Now a = 9</td>
+        </tr>
+    </table>
+    <blockquote>
+        <mark>Just as with math, you can use parentheses to define which operations need to be performed first.</mark>
+    </blockquote>
+
+
+    <h2>- Variables -</h2>
+    <blockquote>
+        Another way to declare a variable is to use the <b>let</b> keyword:
+    </blockquote>
+    <p>
+        <em>let</em> name = "Player One"; <br>
+        console.log ( name );
+    </p>
+    <blockquote>
+        The <b>let</b> keyword is new to JavaScript and has a number of advantages over <b>var</b>. For example,
+        <b>let</b> variables cannot be redeclared, making your code easier to maintain and less error-prone.
+    </blockquote>
+
+
+    <h2>- Decision Making -</h2>
+    <blockquote>
+        Usually, our program needs to make decisions based on some values. For example, stop the game when <b>health</b>
+        is lower than 1, or level up based on the <b>points</b>. We use <b>if</b> to specify a block of code that we
+        want to be executed if a specified condition is true.
+    </blockquote>
+    <p>
+        <em>if ( condition ) { <br>
+            &nbsp; statements <br>
+            }</em>
+    </p>
+    <blockquote>
+        The statements will only be executed if the specified condition is <b>true</b>.
+    </blockquote>
+
+
+    <h2>- Comparison Operators -</h2>
+    <blockquote>
+        Check out this table to see a breakdown of comparison operators that you can use:
+    </blockquote>
+    <table border="2">
+        <tr>
+            <th>Operator</th>
+            <th width="200">Description</th>
+            <th width="200">Example</th>
+        </tr>
+        <tr>
+            <td>==</td>
+            <td>Equal to</td>
+            <td>5 == 10 false</td>
+        </tr>
+        <tr>
+            <td>===</td>
+            <td>Identical (equal and of same type)</td>
+            <td>5 === 10 false</td>
+        </tr>
+        <tr>
+            <td>!=</td>
+            <td>Not equal to</td>
+            <td>5 != 10 true</td>
+        </tr>
+        <tr>
+            <td>!==</td>
+            <td>Not identical</td>
+            <td>10 !== 10 false</td>
+        </tr>
+        <tr>
+            <td>&gt;</td>
+            <td>Greater than</td>
+            <td>10 > 5 true</td>
+        </tr>
+        <tr>
+            <td>&gt;=</td>
+            <td>Greater than or equal to</td>
+            <td>10 >= 5 true</td>
+        </tr>
+        <tr>
+            <td>&lt;</td>
+            <td>Less than</td>
+            <td>10 &lt; 5 false</td>
+        </tr>
+        <tr>
+            <td>&lt;=</td>
+            <td>Less than or equal to</td>
+            <td>10 &lt;= 5 false</td>
+        </tr>
+    </table>
+
+
+    <h2>- Decision Making -</h2>
+    <blockquote>
+        We can use the <b>else</b> statement to specify a block of code that will execute if the condition is
+        <b>false</b>. <br>Like this:
+    </blockquote>
+    <p>
+        <em>if ( expression ) { <br>
+            &nbsp;</em>// executed if condition is true <br>
+        <em>} <br>
+            else { <br>
+        </em>&nbsp; // executed if condition is false <br>
+        <em>}</em>
+    </p>
+    <blockquote>
+        <mark>Every if condition block can have only one else statement.</mark><br><br>
+        Here is an example, that outputs a message based on the <b>points</b> value:
+    </blockquote>
+    <p>
+        if ( <em>points >= 100</em> ) { <br>
+        &nbsp; console.log ( "You win!" ); <br>
+        } <br>
+        else { <br>
+        &nbsp; console.log ( "Try again" ); <br>
+        }
+    </p>
+    <blockquote>
+        You can have as many statements as you want inside the <b>if</b> and <b>else</b>. Just remember to enclose them
+        in curly braces.
+    </blockquote>
+
+
+    <h2>- Functions -</h2>
+    <blockquote>
+        A <b>function</b> is a block of code designed to perform a particular task. For example, our game can have
+        functions like <b>hit ( ), levelUp ( ), shoot ( )</b>, etc.
+        <br>
+        <mark>The purpose of a function is to create it once and call it multiple times when needed to perform
+            particular tasks</mark>.
+    </blockquote>
+
+
+    <h2>- Defining a Function -</h2>
+    <blockquote>
+        To define a function, use the <b>function</b> keyword, followed by a <b>name</b>, followed by a set of
+        <b>parentheses ( )</b>. <br>The code to be executed by the function is placed inside curly brackets { }.
+    </blockquote>
+    <p>
+        <em>function name ( ) { <br>
+            &nbsp;//code to be executed <br>
+            }</em>
+    </p><br>
+    <blockquote>
+        Let's create a function called <b>"hit"</b> which outputs a simple message.
+    </blockquote>
+    <p>
+        function <em>hit ( ) </em>{<br>
+        &nbsp;console.log ( "Hit!" ); <br>
+        }
+    </p>
+    <blockquote>
+        <i>Do not forget the parentheses after the function name.</i>
+    </blockquote>
+
+
+    <h2>- Calling a Function -</h2>
+    <blockquote>
+        After defining our function, we can call it in our program as many times as we want. To call a function, start
+        with the name of the function, then follow it with parentheses.<br>
+        Let's call our <b>hit ( )</b> function twice:
+    </blockquote>
+    <p>
+        <em>hit ( ); <br>
+            hit ( );</em>
+    </p>
+
+
+    <h2>- Parameters -</h2>
+    <blockquote>
+        Functions can set parameters for a function within the parentheses, and can be used like variables in the
+        function. <br>
+        For example, let's add a <b>power</b> to our <b>hit ( )</b> function:
+    </blockquote>
+    <p>
+        function hit ( <em>power</em> ) { <br>
+        &nbsp;console.log ( "Hit with " + <em>power</em> ); <br>
+        }
+    </p>
+    <blockquote>
+        <mark>Note, that we used the + operator with test: this adds the two texts together and is called
+            <b>concatenation</b>.</mark><br><br>
+        Now, when calling the function, we need to pass it a value to match any or all arguments that the function's
+        parameters.<br>
+        Here is the <b>hit ( )</b> example:
+    </blockquote>
+    <p>
+        hit ( <em>69</em> ); <br>
+        hit ( <em>7</em> );
+    </p>
+    <blockquote>
+        This way, we can call our function with different parameters and generate different results based on them.<br>
+        <mark>Functions can take multiple parameters. For that, we simply need to separate them using commas, for
+            example: &nbsp;<b>hit ( power, weapon )</b></mark>
+    </blockquote>
+
+
+    <h2>- Functions -</h2>
+    <blockquote>
+        JavaScript has some useful functions built-in.<br>
+        For example, the <b>alert ( )</b> function is used to create a message box.
+    </blockquote>
+    <p>
+        <em>alert (</em> "Game Over" <em>);</em>
+    </p>
+
+
+    <h2>- Events -</h2>
+    <blockquote>
+        Functions are usually called when some event happens, for example, a button is clicked, or a keyboard key is
+        pressed.<br>
+        Here is how we can trigger-call a function when a button element is clicked:
+    </blockquote>
+    <p>
+        <em>&lt;button</em> id="<em>myButton</em>"<em>&gt;</em> <br>
+        &nbsp; Click me <br>
+        <em>&lt;/button&gt;</em>
+    </p>
+    <blockquote>
+        In order to handle the click event of the button in JavaScript, we first need to take its reference using its
+        <b>id</b>:
+    </blockquote>
+    <p>
+        let btn = <em>document.getElementById (</em> "myButton" <em>)</em>;
+    </p>
+    <blockquote>
+        The <b>document.getElementById ( )</b> function allows you to select an HTML element using its <b>id</b>
+        attribute.<br>
+        <i>Now, <b>btn</b> is a variable that refers to the button.</i><br>Here's another example where the query
+        selector targets a different <b>id</b>:
+    </blockquote>
+    <p>
+        let text = <em>document.getElementById (</em> "text" <em>)</em>;
+    </p>
+    <blockquote><br>
+        Now, as we have the button in JavaScript, we can set its <b>onclick</b> event to our desired function:
+    </blockquote>
+    <p>
+        btn<em>.onclick = hello;</em>
+    </p>
+    <blockquote>
+        <mark>Notice how the parentheses are not needed in this case for function <b>hello ( )</b>. The <b>.onclick</b>
+            property will implicitly call the function by its name when the <b>btn</b> element is clicked.</mark>
+    </blockquote>
+
+
+    <h2>- Handling Events -</h2>
+    <blockquote>
+        Here is a list of common events:
+    </blockquote>
+    <table border="2">
+        <tr>
+            <th>Event</th>
+            <th width="700">Description</th>
+        </tr>
+        <tr>
+            <td>onclick</td>
+            <td>occurs when the user clicks on an element</td>
+        </tr>
+        <tr>
+            <td>onload</td>
+            <td>occurs when an object has loaded</td>
+        </tr>
+        <tr>
+            <td>onunload</td>
+            <td>occurs once a page has unloaded ( for &lt;body&gt;)</td>
+        </tr>
+        <tr>
+            <td>onchange</td>
+            <td>occurs when the content of a form element, the selection, or the checked state have changed (for
+                &lt;input&gt;, &lt;keygen&gt;, &lt;select&gt;, and &lt;textarea&gt;)</td>
+        </tr>
+        <tr>
+            <td>onmouseover</td>
+            <td>occurs when the pointer is moved onto an element, or onto one of its children</td>
+        </tr>
+        <tr>
+            <td>onmouseout</td>
+            <td>occurs when a user moves the mouse pointer out of an element, or out of one of its children</td>
+        </tr>
+        <tr>
+            <td>onmousedown</td>
+            <td>occurs when a user presses a mouse button over an element</td>
+        </tr>
+        <tr>
+            <td>onblur</td>
+            <td>occurs when an element loses focus</td>
+        </tr>
+        <tr>
+            <td>onfocus</td>
+            <td>occurs when an element gets focus</td>
+        </tr>
+    </table>
+    <blockquote>
+        <mark>In order to handle an event, we need to assign it to a <b>handler function</b>.</mark><br><br>
+        Another important step is to make sure the document has loaded before taking the reference of an element in
+        JavaScript. This can be done using the <b>onload</b> event of the window:
+    </blockquote>
+    <p>
+        <em>window.onload = function ( ) { <br>
+        </em>&nbsp;let btn = document.getElementById ( "myButton" ); <br>
+        &nbsp;btn.onclick = hello; <br>
+        <em>};</em>
+    </p>
+    <blockquote>
+        The event handler needs to be a function, which is why the <b>function</b> keyword is used. <br>
+        <i>It is a common practice to use the <b>window.onload</b> event for executing JavaScript.</i>
+        <br><br>
+        Let's use what we learned to make a very simple game-like program. <br>
+        We will declare a <b>health</b> variable and initialize it to 100. <br>
+        Every time the <b>Hit</b> button is clicked, the <b>health</b> value will be split in half and output to the
+        console. <br>
+        When health reaches 1, we will alert "Game Over".<br>
+        Let's jump to the JavaScript:
+    </blockquote>
+    <p>
+        window.onload = function ( ) { <br>
+        &nbsp; let btn = document.getElementById ( "myButton" ); <br>
+        &nbsp; btn.onclick = hit; <br>
+        }; <br><br>
+        let health = 100;
+    </p>
+    <blockquote>
+        <mark>Once the page is loaded, we take the reference to the button and call the <b>hit ( )</b> function, when
+            it's clicked.</mark><br><br>
+        Time to make the <b>hit ( )</b> function:
+    </blockquote>
+    <p>
+        function hit ( ) { <br>
+        &nbsp; health = health / 2; <br>
+        &nbsp; if ( health &lt;= 1 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;alert ( "Game Over!" ); <br>
+        &nbsp; } <br>
+        &nbsp;&nbsp;else { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;console.log ( health ); <br>
+        &nbsp; } <br>
+        }
+    </p>
+    <blockquote>
+        Every time the <b>hit ( )</b> function is called, it updates the value of the health variable, checks if it's
+        less than 1, and outputs the corresponding messages.<br><br>
+        Here's a different, yet effective supplemental example:
+    </blockquote>
+    <p>
+        let a = 42 <br>
+        let b = 8 <br>
+        x = document.getElementById ( "submit" ); <br>
+        x.onclick = function ( ) { <br>
+        &nbsp; alert ( a - b ); <br>
+        };
+    </p>
+
+
+    <br>
+    <h1 class="language">Working with Canvas</h1>
+
+
+    <h2>- HTML5 Canvas -</h2>
+    <blockquote>
+        We have learned all the basics needed, so now we can start having some fun and maknig games! <br>
+        In order to make a game, we first need to learn how to draw on the web. <br>To draw shapes and animations for
+        our game, we will use the <b>&lt;canvas&gt;</b> tag. It became available in HTML 5, allowing you to draw on it
+        using pure JavaScript.
+        <br><mark>The canvas acts like a drawing board.</mark>
+        <br><br>
+        Let's start by setting up a basic canvas:
+    </blockquote>
+    <p>
+        &lt;<em>canvas</em> id="<em>canvas</em>" <em>width="600" height="400"</em>&gt; <br>
+        &nbsp; Your browser does not support the HTML5 canvas tag. <br>
+        &lt;/<em>canvas</em>&gt;
+    </p>
+    <blockquote>
+        We gave our canvas an <b>id</b> attribute, so that we can identify and refer it from JavaScript.
+        <br> We have set the <b>width</b> and <b>height</b> of our canvas, defining the default size of the canvas.<br>
+        <mark>The text between the canvas tags is used to define the <b>fallback</b> text, in case your user uses an old
+            browser that does not support HTML5.</mark><br><br>
+        We set <b>width</b> and <b>height</b> to our canvas. But how will it work on different screen sizes?<br> We can
+        scale our canvas to fit the screen size using CSS:
+    </blockquote>
+    <p>
+        #<em>canvas</em> { <br>
+        &nbsp; width: 100%; <br>
+        }
+    </p>
+    <blockquote>
+        This will make our canvas scale to the whole screen width.<br> <br>
+        But how do we draw on a canvas if it scales based on the screen size, which can differ for different users? <br>
+        Drawing on a canvas is done using <b>coordinates</b>. <br>
+        The initial size that we set on the canvas tag defines its coordinate space. This means that you draw inside the
+        initial set size, and canvas will automatically scale the drawings. <br>
+        <img src="canvas coordinates.JPG" width="300" height="250"> <br>
+        The upper left corner has the coordinates <b>( 0, 0 )</b> <br>
+        <mark>All drawing operations will be done within the coordinate space, irrespective of the actual size of the
+            canvas.</mark><br><br>
+        Now we have our blank canvas that scales to any screen size. But how do we draw shapes on it? <br>That's where
+        <b>JavaScript</b> comes in!
+    </blockquote>
+
+
+    <h2>- Drawing Shapes -</h2>
+    <blockquote>
+        Time to do some drawing! We created our canvas in HTML, next we need to take the reference using JavaScript:
+    </blockquote>
+    <p>
+        canvas = document.getElementById ( '<em>canvas</em>' );
+    </p>
+    <blockquote>
+        To access the drawing functions, we need to define a <b>context</b> of a 2d canvas. It is done using the
+        following syntax:
+    </blockquote>
+    <p><em>context = canvas.getContext ( "2d" );</em>
+    </p>
+    <blockquote>
+        The canvas <b>context</b> is an object with properties and functions that you can use to draw inside the canvas
+        element.<br>
+        <br>
+        To make sure the canvas is loaded before taking its reference, it is a common practice to use the <b>onload</b>
+        event of the window:
+    </blockquote>
+    <p>
+        window<em>.onload</em> = function ( ) { <br>
+        &nbsp; var canvas = document.getElementById ( "canvas" ); <br>
+        &nbsp; var context = canvas.getContext ( "2d" ); <br>
+        };
+    </p>
+
+
+    <h2>- Drawing a Line -</h2>
+    <blockquote>
+        Now when we have the context of our canvas, we can start drawing!<br>
+        The first shape we will draw is a straight line. <br>For that, we will use the following three functions:
+        <b>moveTo ( ), lineTo ( )</b> and <b>stroke ( )</b>. <br>
+        For example:
+    </blockquote>
+    <p>
+        context<em>.moveTo ( 50, 100 ); </em> <br>
+        context<em>.lineTo ( 400, 200 ); <br></em>
+        context<em>.stroke ( ); </em>
+    </p>
+    <blockquote>
+        This will draw a line from the point ( 50, 100 ) to the point ( 400, 200 ). <br>
+        <i>Remember, the size of our canvas is <b>600x400</b>.</i> This means that the upper left corner has the
+        coordinate ( 0, 0 ), while the lower right corner: ( 600, 400 ). <br><br>
+        Let's draw a diagonal line from the upper left corner to the right corner. <i>Remember, the canvas size is
+            600x400.</i>
+    </blockquote>
+    <p>
+        context.moveTo ( 0, 0 ); <br>
+        context.lineTo ( 600, 400 ); <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        <mark>Do not forget the <b>stroke ( )</b> function - it is needed to draw the line.</mark>
+        <br><br>
+        Here is an additional example that draws a line from the upper right corner of the canvas to the center. The
+        canvas has the size 300x150:
+    </blockquote>
+    <p>
+        context.moveTo ( <em>300, 0</em> ); <br>
+        context.lineTo ( <em>150, 75</em> ); <br>
+        context.stroke ( );
+    </p>
+
+
+    <h2>- Rectangle -</h2>
+    <blockquote>
+        Drawing a rectangle is done using the <b>rect ( )</b> function, which has the following syntax:
+    </blockquote>
+    <p>
+        context<em>.rect( x, y, width, height );</em>
+    </p>
+    <blockquote>
+        <b>x</b> and <b>y</b> are the starting coordinates - they will represent the upper left corner of the rectangle.
+        <br><br>
+        Let's draw a rectangle from the point ( 50, 50 ) with the size 200x150:
+    </blockquote>
+    <p>
+        context.rect ( 50, 50, 200, 150 ); <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        <mark>Similar to drawing a line, we need to call the <b>stroke ( )</b> function to draw the rectangle.</mark>
+    </blockquote>
+
+
+    <h2>- Arc -</h2>
+    <blockquote>
+        To draw a circle, we first need to understan the <b>arc ( )</b> function. It has the following syntax:
+    </blockquote>
+    <p>
+        context<em>.arc ( centerX, centerY, radius, startingAngle, endingAngle, counterclockwise );</em>
+    </p>
+    <blockquote>
+        <b>centerX</b> and <b>centerY</b> represent the center of the arc. <br><b>radius</b> is the size of the arc.<br>
+        <b>startingAngle</b> and <b>endingAngle</b> represent the start/end of the arc in <b>radians</b>. <br>
+        <i>The last parameter is optional and specifies whether the drawing should be counterclockwise or clockwise. The
+            default valuse is <b>false</b>, meaning the drawing is done clockwise.</i>
+    </blockquote>
+
+
+    <h2>- Radians -</h2>
+    <blockquote>
+        The angles for the arc are defined in <b>radians</b>. <br>
+        A radian is a unit of measure for angles that is based on the radius of a circle. We can calculate angles with
+        the help of radians and the mathematical constant <b>PI</b>.<br>
+        For example: <br>
+        <b>180° is equal to PI * radians</b><br><br>
+        Let's draw an arc that is centered at the point ( 150, 150 ), starts from the angle 0, and spans to the angle
+        180 (which is equal to PI * radians):
+    </blockquote>
+    <p>
+        context.arc ( 150, 150, 100, 0, 1 * <em>Math.Pi</em> ); <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        <b>Math.PI</b> is used to access the value of the PI constant. <br>
+        <mark>The angle 0 is at the 3 o'clock position.</mark>
+    </blockquote>
+
+
+    <h2>- Drawing a Circle -</h2>
+    <blockquote>
+        Now that we know how to make an arc, we can make a full circle.<br>
+        For that, the starting angle should be 0 while the ending angle should be equal to 360°, which is 2*PI radians.
+    </blockquote>
+    <p>
+        context.arc ( 300, 200, 100, 0, 2 * Math.PI ); <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        <mark>The circle will be centered at the center of the canvas. Since the canvas size is 600x400, its center is
+            at ( 300, 200 ).</mark>
+    </blockquote>
+
+
+    <h2>- Styles -</h2>
+    <blockquote>
+        All the shapes we drew only had a thin black outline.<br>
+        That is the default style of the <b>stroke ( )</b> function.<br>
+        We can set the color and width of the stroke using the <b>strokeStyle</b> and <b>lineWidth</b> properties.<br>
+        For example:
+    </blockquote>
+    <p>
+        context.rect ( 50, 50, 200, 150 ); <br>
+        context<em>.lineWidth = 10;</em> <br>
+        context<em>.strokeStyle = "red";</em> <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        This will result in a rectangle, which has a <b>red</b> outline of <b>10px</b>. <br><br>
+        To add fill color to our shapes, we need to use the <b>fillStyle ( )</b> function. <br>
+        For example, let's paint the inside of our rectangle green:
+    </blockquote>
+    <p>
+        context<em>.fillStyle = "green";</em> <br>
+        context<em>.fill ( );</em>
+    </p>
+    <blockquote>
+        <mark>Similar to drawing the <b>stroke ( )</b>, we need to call the <b>fill ( )</b> function to fill the shape
+            with the specified color.</mark><br><br>
+        Here is the full code to draw a rectangle and specify its outline and fill styles:
+    </blockquote>
+    <p>
+        context.arc ( 50, 50, 200, 150 ); <br><br>
+        context.fillStyle = "green"; <br>
+        context.fill ( ); <br><br>
+        context.lineWidth = 10; <br>
+        context.strokeStyle = "red"; <br>
+        context.stroke ( );
+    </p>
+    <blockquote>
+        <mark>It is recommended to use the <b>fill ( )</b> function before the <b>stroke ( )</b> function in order to
+            render the stroke correctly.</mark>
+    </blockquote>
+
+
+    <h2>- HTML Colors -</h2>
+    <blockquote>
+        We can also use <b>hex codes</b> to color our elements in css.<br>
+        For example:
+    </blockquote>
+    <p>
+        context.rect ( 50, 50, 200, 150 ) <br><br>
+        context.fillStyle = <em>"#5e9860"</em> <br>
+        context.fill ( ) <br>
+        context.lineWidth = 10
+        context.strokeStyle = <em>"#af1f1f"</em> <br>
+        context.stroke ( )
+    </p>
+    <blockquote>
+        <mark>A hexadecimal color is specified as: <b>#RRGGBB</b>, where <b>RR (red), GG (green)</b> and <b>BB
+                (blue)</b> are hexadecimal integers between <b>00</b> and <b>FF</b> specifying the <b>intensity</b> of
+            of the color.</mark>
+    </blockquote>
+
+
+    <h2>- Styles -</h2>
+    <blockquote>
+        The same <b>fillStyle ( )</b> and <b>strokeStyle ( )</b> functions can be used with circles and other
+        shapes.<br>
+        Let's make a red ball with a gray outline at the center of the canvas:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        <em>&lt;script></em> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById ( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; context.arc( 300, 200, 100, 0, 2 * Math.PI ) <br><br>
+
+        &nbsp; &nbsp; context.fillStyle = "#de4646" <br>
+        &nbsp; &nbsp; context.fill( ) <br><br>
+
+        &nbsp; &nbsp; context.lineWidth = 6 <br>
+        &nbsp; &nbsp; context.strokeStyle = "#505050" <br>
+        &nbsp; &nbsp; context.stroke( ) <br>
+        &nbsp; } <br>
+        <em>&lt;/script></em>
+        <canvas id="exCanvasStyles" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasStyles() {
+                var stylesCanvas = document.getElementById('exCanvasStyles')
+                var stylesContext = stylesCanvas.getContext("2d")
+
+                stylesContext.arc(300, 200, 100, 0, 2 * Math.PI)
+
+                stylesContext.fillStyle = "#de4646"
+                stylesContext.fill()
+
+                stylesContext.lineWidth = 6
+                stylesContext.strokeStyle = "#505050"
+                stylesContext.stroke()
+            }
+        </script>
+    </p>
+
+
+    <h2>- Multiple Shapes -</h2>
+    <blockquote>
+        In the event that we need to draw multiple shapes, we need to use the <b>beginPath ( )</b> function before each
+        shape.<br>
+        For example, let's draw a circle and a rectangle:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; <em>context.beginPath ( )</em> <br>
+        &nbsp; &nbsp; context.rect ( 50, 50, 300, 200 )<br>
+        &nbsp; &nbsp; context.fillStyle = "#1775b7" <br>
+        &nbsp; &nbsp; context.fill ( )<br><br>
+
+        &nbsp; &nbsp; <em>context.beginPath ( )</em> <br>
+        &nbsp; &nbsp; context.arc ( 300, 200, 100, 0, 2 * Math.PI ) <br>
+        &nbsp; &nbsp; context.fillStyle = "#de4646" <br>
+        &nbsp; &nbsp; context.fill ( ) <br>
+        &nbsp; } <br>
+        &lt;/script>
+        <canvas id="exCanvasMultiShapes" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasMultiShapes() {
+                var multiShapesCanvas = document.getElementById('exCanvasMultiShapes')
+                var multiShapesContext = multiShapesCanvas.getContext("2d")
+
+                multiShapesContext.beginPath()
+                multiShapesContext.rect(50, 50, 300, 200)
+                multiShapesContext.fillStyle = "#1775b7"
+                multiShapesContext.fill()
+
+                multiShapesContext.beginPath()
+                multiShapesContext.arc(300, 200, 100, 0, 2 * Math.PI)
+                multiShapesContext.fillStyle = "#de4646"
+                multiShapesContext.fill()
+            }
+        </script>
+    </p>
+
+
+    <h2>- Drawing Text -</h2>
+    <blockquote>
+        Aside from shapes you can also draw text on the canvas.<br>
+        To draw a simple line of text, we can use the <b>fillText ( )</b> function.
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; context<em>.fillText ( "Hello World", 200, 100 ) </em> <br>
+        &nbsp; } <br>
+        &lt;/script>
+        <canvas id="exCanvasText" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasText() {
+                var textCanvas = document.getElementById('exCanvasText')
+                var textContext = textCanvas.getContext("2d")
+
+                textContext.fillText("Hello World", 200, 100)
+            }
+        </script>
+        </script>
+    </p>
+    <blockquote>
+        The <b>fillText ( )</b> function takes the text and the starting coordinates as its parameters.<br><br>
+        We can set the font size and family using the <b>font</b> property:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; context<em>.font = '42px Arial'</em> <br>
+        &nbsp; &nbsp; context.fillText ( "Hello World", 200, 100 )<br>
+        &nbsp; } <br>
+        &lt;/script>
+        <canvas id="exCanvasFont" width="600" height="400"></canvas>
+        <script>
+            function exCanvasFont() {
+                var fontCanvas = document.getElementById('exCanvasFont')
+                var fontContext = fontCanvas.getContext("2d")
+
+                fontContext.font = '42px Arial'
+                fontContext.fillText("Hello World", 200, 100)
+            }
+        </script>
+    </p>
+    <blockquote>
+        <mark>Setting the font will make the context use it for all drawing operations.</mark><br><br>
+        Setting the color of the text is done similar to other shapes, using the <b>fillStyle( )</b> function:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById ( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; context.font = '42px Arial' <br>
+        &nbsp; &nbsp; context<em>.fillStyle = 'red'</em> <br>
+        &nbsp; &nbsp; context.fillText ( "Hello World", 200, 100 )<br>
+        &nbsp; } <br>
+        &lt;/script>
+        <canvas id="exCanvasTextColor" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasTextColor() {
+                let textColorCanvas = document.getElementById('exCanvasTextColor')
+                let textColorContext = textColorCanvas.getContext("2d")
+
+                textColorContext.font = '42px Arial'
+                textColorContext.fillStyle = 'red'
+                textColorContext.fillText("Hello World", 200, 100)
+            }
+        </script>
+    </p>
+    <blockquote><br>
+        You can also specify the outline color and width, similar to other shapes, using the <b>strokeStyle ( )</b>
+        function:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById ( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; context.font = '42px Arial' <br>
+        &nbsp; &nbsp; context.fillStyle = 'red' <br>
+        &nbsp; &nbsp; context.fillText ( "Hello World", 200, 100 )<br><br>
+        &nbsp; &nbsp; context<em>.lineWidth</em> = 2 <br>
+        &nbsp; &nbsp; context<em>.strokeStyle</em> = 'blue' <br>
+        &nbsp; &nbsp; context<em>.strokeText (</em> "Hello World", 200, 100 <em>)</em> <br>
+        &nbsp; } <br>
+        &lt;/script>
+        <canvas id="exCanvasTextOutline" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasTextOutline() {
+                var textOutlineCanvas = document.getElementById('exCanvasTextOutline')
+                var textOutlineContext = textOutlineCanvas.getContext("2d")
+
+                textOutlineContext.font = '42px Arial'
+                textOutlineContext.fillStyle = 'red'
+                textOutlineContext.fillText("Hello World", 200, 100)
+
+                textOutlineContext.lineWidth = 2;
+                textOutlineContext.strokeStyle = 'black'
+                textOutlineContext.strokeText("Hello World", 200, 100)
+            }
+        </script>
+    </p>
+    <blockquote>
+        <mark>Note, that we need to call the <b>strokeText ( )</b> function to draw the outline.</mark>
+    </blockquote>
+
+
+    <!-- Images -->
+    <h2>- Images -</h2>
+    <blockquote>
+        We can also add images to the canvas. <br>
+        For that, we first need to create an image object in JavaScript and set its source url. <br>
+        In our example, we will use the Sololearn logo, located in the website:
+    </blockquote>
+    <p>
+        &lt;script> <br>
+        &nbsp; var img <em>= new Image ( )</em> <br>
+        &nbsp; img<em>.src = 'https://blob.sololearn.com/avatars/sololearn.jpg'</em> <br>
+        &lt;/script>
+    </p>
+    <blockquote>
+        The code above creates a variable called <i>img</i>, which is initialized to an image, and sets its source to
+        the url.<br><br>
+        The <b>drawImage ( )</b> function is used to draw an image on the canvas. <br>It has the following syntax:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById ( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; var img = new Image ( ) <br>
+        &nbsp; &nbsp; img.src = 'https://blob.sololearn.com/avatars/sololearn.jpg'<br><br>
+
+        &nbsp; &nbsp; img<em>.onload</em> = function ( ) {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; context<em>.drawImage ( img, 50, 50, 100, 100 )</em> <br>
+        &nbsp; &nbsp; } <br>
+        &nbsp;} <br>
+        &lt;/script>
+        <canvas id="exCanvasImage" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasImage() {
+                var imageCanvas = document.getElementById('exCanvasImage')
+                var imageContext = imageCanvas.getContext("2d")
+
+                var sololearnImage = new Image()
+                sololearnImage.src = 'https://blob.sololearn.com/avatars/sololearn.jpg'
+
+                sololearnImage.onload = function () {
+                    imageContext.drawImage(sololearnImage, 50, 50, 100, 100)
+                }
+            }
+        </script>
+    </p>
+    <blockquote>
+        <b>img</b> is the image object, <b>x</b> and <b>y</b> are the starting position on the canvas.<br>
+        <mark><b>width</b> and <b>height</b> are optional parameters and can be skipped, defaulting to the original
+            image size.</mark><br>
+        <i>This will draw the image on the canvas at the position ( 50, 50 ) with the size 100x100</i>.<br><br>
+        We can draw the image with any size, different from its orignal size. <br>
+        This might cause the image to be scaled, which can result in fuzzy or blocky artifacts due to the scaling
+        process.<br>
+        The canvas automatically uses image smoothing algorithms when scaling images. For example, let's draw our image
+        in a very large size:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400"&gt;
+        &lt;/canvas> <br>
+        &lt;script> <br>
+        &nbsp;window.onload = function ( ) <br>
+        &nbsp; { <br>
+        &nbsp; &nbsp; var canvas = document.getElementById ( 'canvas' ) <br>
+        &nbsp; &nbsp; var context = canvas.getContext ( "2d" ) <br><br>
+
+        &nbsp; &nbsp; var img = new Image ( ) <br>
+        &nbsp; &nbsp; img.src = 'https://blob.sololearn.com/avatars/sololearn.jpg'<br><br>
+
+        &nbsp; &nbsp; img<em>.onload</em> = function ( ) {<br>
+        &nbsp; &nbsp; &nbsp; &nbsp; context<em>.drawImage ( img, 50, 50, 100, 100 )</em> <br>
+        &nbsp; &nbsp; } <br>
+        &nbsp;} <br>
+        &lt;/script>
+        <canvas id="exCanvasLargeImage" width="600" height="400"> </canvas>
+        <script>
+            function exCanvasLargeImage() {
+                var largeImageCanvas = document.getElementById('exCanvasLargeImage')
+                var largeImageContext = largeImageCanvas.getContext("2d")
+
+                var largeSololearnImage = new Image()
+                largeSololearnImage.src = 'https://blob.sololearn.com/avatars/sololearn.jpg'
+
+                largeSololearnImage.onload = function () {
+                    largeImageContext.drawImage(largeSololearnImage, -100, -100, 1024, 1024)
+                }
+            }
+        </script>
+    </p>
+    <blockquote>
+        <mark>You can disable this feature by setting &nbsp;<b>context.imageSmoothingEnabled = false</b></mark>
+    </blockquote>
+
+
+    <h2>- Animations -</h2>
+    <blockquote>
+        Time to animate!<br>
+        We know how to draw shapes and text on the canvas, but how to move them? <br>
+        The canvas is a drawing board, so once we draw something on it, it stays.<br>
+        In order to move an object, we need to clear the canvas, and redraw the object on its new location. <br>
+        <mark>This means that, to create an animation, we need to continuously draw on our canvas, updating the position
+            of our objects.</mark>
+        <br><br>
+        To call our drawing instructions periodically, we can use the <b>setInterval ( )</b> or <b>setTimeout ( )</b>
+        functions, which are used to call a function every x milliseconds. <br>
+        For example, let's create a rectangle, and move it horizontally on our canvas.<br>
+        First let's create a <b>draw ( )</b> function, that will draw the rectangle at a specified position:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br><br>
+        &lt;script> <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; function <em>draw ( ) {</em> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "red" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br>
+        &nbsp;&nbsp; <em>}</em> <br>
+        &lt;/script>
+    </p>
+    <blockquote>
+        <mark>The &nbsp;<b>draw ( )</b> function, if called, will draw a square of size 100x100 at the position ( x, y
+            ).</mark><br><br>
+        Next, we need to increment the x position of the square each time the <b>draw ( )</b> function is called.<br>
+        We add 10 to the x position of the square. <br>
+        In case x becomes larger than the width of the canvas, we need to reset its position to -100 so that the
+        animation loops and makes the square appear from the left side of the canvas.
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "red" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+        <em>
+            &nbsp;&nbsp;&nbsp;&nbsp; x += 10 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -100 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        </em>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; <em>setInterval ( draw, 50 )</em> <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasAnimation" width="600" height="400"></canvas>
+        <script>
+            function exCanvasAnimation() {
+                var animationCanvas = document.getElementById("exCanvasAnimation")
+                var animationContext = animationCanvas.getContext("2d")
+                var x = 0
+                var y = 100
+
+                function draw() {
+                    animationContext.beginPath()
+                    animationContext.rect(x, y, 100, 100)
+                    animationContext.fillStyle = "red"
+                    animationContext.fill()
+
+                    x += 10
+                    if (x >= 600) {
+                        x = -100
+                    }
+                }
+                setInterval(draw, 50)
+            }
+        </script>
+        <button id="redBarAnimation-btn" style="width: 100%;" onclick="exCanvasAnimation();"><b>Click here</b> to test
+            animation or press <b>refresh</b> and try
+            again</button>
+    </p>
+    <blockquote>
+        <mark>We are going to call the &nbsp;<b>draw ( )</b> function continuously. That is why we need to add the logic
+            of the animation to do it.</mark><br><br>
+        To finalize our animation, we need to clear the canvas every time we draw a new square.<br>
+        That is done using the <b>clearRect ( )</b> function:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <em>context.clearRect ( 0, 0, 600, 400 )</em> <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "red" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; x += 10 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -100 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; setInterval ( draw, 50 ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasAnimationCleared" width="600" height="400"></canvas>
+        <script>
+            function exCanvasAnimationCleared() {
+                var clearedAnimationCanvas = document.getElementById("exCanvasAnimationCleared")
+                var clearedAnimationContext = clearedAnimationCanvas.getContext("2d")
+                var x = 0
+                var y = 100
+
+                function draw() {
+                    clearedAnimationContext.clearRect(0, 0, 600, 400)
+                    clearedAnimationContext.beginPath()
+                    clearedAnimationContext.rect(x, y, 100, 100)
+                    clearedAnimationContext.fillStyle = "red"
+                    clearedAnimationContext.fill()
+
+                    x += 10
+                    if (x >= 600) {
+                        x = -100
+                    }
+                }
+                setInterval(draw, 50)
+            }
+        </script>
+    </p>
+    <blockquote>
+        The <b>clearRect ( )</b> function clears the specified area of the canvas. In our case we cleared the entire
+        canvas.<br><br>
+        It might seem a bit complex at first, however, creating animations is easy once you get the logic. <br>
+        Here are the steps for creating a basic canvas animation:<br>
+        <ol>
+            <li>clear the canvas</li>
+            <li>draw the objects in their new position</li>
+            <li>update the positions based on the logic</li>
+            <li>repeat the process.</li>
+        </ol>
+        Here is another simple animation example, which makes a ball bounce in place:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var size = <em>50</em> <br>
+        &nbsp;&nbsp; var step = <em>10</em> <br> <br>
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.arc ( 300, 200, size, 0, 2 * Math.PI ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "blue" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+        <em>
+            &nbsp;&nbsp;&nbsp;&nbsp; size += step <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; if ( size >= 150 || size &lt;= 50 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; step *= -1 <br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br></em>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; setInterval ( draw, <em>100</em> ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasBounceAnimation" width="600" height="400"></canvas>
+        <script>
+            function exCanvasBounceAnimation() {
+                var bounceAnimationCanvas = document.getElementById("exCanvasBounceAnimation")
+                var bounceAnimationContext = bounceAnimationCanvas.getContext("2d")
+                var size = 50
+                var step = 10
+
+                function draw() {
+                    bounceAnimationContext.clearRect(0, 0, 600, 400)
+
+                    bounceAnimationContext.beginPath()
+                    bounceAnimationContext.arc(300, 200, size, 0, 2 * Math.PI)
+                    bounceAnimationContext.fillStyle = "lightseagreen"
+                    bounceAnimationContext.fill()
+
+                    size += step
+                    if (size >= 150 || size <= 50) {
+                        step *= -1
+                    }
+                }
+                setInterval(draw, 100)
+            }
+        </script>
+    </p>
+
+
+    <h2>- Game Loops -</h2>
+    <blockquote>
+        Now that we have learned how to make objects move on the canvas: we need to draw continuously on the canvas,
+        each time updating the position of the object.<br>
+        In game development, this process is called <b>game loop</b>.<br>
+        The game loop contains the core game logic and updates the game. It can be responsible for moving objects,
+        creating animations, handling user input, etc.<br>
+        <i>The game loop needs to run every time something happens on the game canvas.</i><br><br>
+        However, running our <b>draw ( )</b> function with the <b>setInterval ( )</b> may cause performance
+        issues.<br>On slower devices the browser may not be able to perform the redrawing operations in the given
+        timeframe.<br>
+        <i>This will eventually cause the browser to hand and stop responding.</i><br>
+        JavaScript provides a <b>window.requestAnimationFrame ( )</b> function, which tells the browser that you want to
+        perform a redraw.<br>
+        We can use it instead of the <b>setInterval ( )</b> function, to make the browser take care of the period of
+        redraws, based on the resources of the device it is running on. <br>
+        <mark>This means that using the <b>window.requestAnimationFrame ( )</b> won't hang the browser and will take
+            into account the systems resources when performing the game loop.</mark><br><br>
+        Using <b>window.requestAnimationFrame ( )</b> is easy. <br>We simply need to call it in our <b>draw ( )</b>
+        function and provide the same <b>draw</b> function as its parameter. <br>This will cause the <b>draw ( )</b>
+        function to be called in a loop.
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "blue" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; x += 10 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -100 <br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; <em>window.requestAnimationFrame ( </em>draw<em> )</em> <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasReqAnimation" width="600" height="400"></canvas>
+        <script>
+            function exCanvasReqAnimation() {
+                var reqAnimationCanvas = document.getElementById("exCanvasReqAnimation")
+                var reqAnimationContext = reqAnimationCanvas.getContext("2d")
+                var reqAnimateX = 0
+                var reqAnimateY = 100
+
+                function draw() {
+                    reqAnimationContext.clearRect(0, 0, 600, 400)
+
+                    reqAnimationContext.beginPath()
+                    reqAnimationContext.rect(reqAnimateX, reqAnimateY, 100, 100)
+                    reqAnimationContext.fillStyle = "blue"
+                    reqAnimationContext.fill()
+
+                    reqAnimateX += 10
+                    if (reqAnimateX >= 600) {
+                        reqAnimateX = -100
+                    }
+                    window.requestAnimationFrame(draw)
+                }
+                draw()
+            }
+        </script>
+    </p>
+    <blockquote>
+        To start the loop, we need to call the <b>draw ( )</b> function when the page is loaded. <br><i>The animation
+            will be much smoother, as it will adjust based on your device.</i>
+    </blockquote>
+
+
+
+    <h2>- Frame Rate -</h2>
+    <blockquote>
+        Time to learn about some key concepts used in games. <br>
+        Each update of the canvas is called a <b>frame</b>. <br>
+        The frequency of redraws is measured by frames per seconds (<b> fps </b>). This is the amount of frames you
+        generate every second.<br>
+        In general, you will get higher <b>fps</b> on better devices, which will result in a smoother gameplay. <br>
+        That's why professional gamers spend a lot on the best possible hardware to get the maximum possible fps. <br>
+        <mark>The <b>window.requestAnimationFrame ( )</b> function usually runs at 60 frames per second ( fps ).
+        </mark><br><br>
+        When using the <b>setInterval ( )</b> function for our loop, we used 50 milliseconds for it. <br>That results in
+        1000/50 = 20 frames per seconds.<br><br>
+
+        But why <b>60fps</b>?<br>
+        Humans can process 10-12 frames per second individually. <br>
+        Anything more will be perceived as motion, and that's what makes the movements seem smoother. <br>
+        Movies generally use 24fps, but most games run at even more frames that that, usually <b>60fps.</b> This number
+        is based on the refresh rate of most monitors -60Hz. <br>
+        <i>And that is why the <b>window.requestAnimationFrame ( )</b> function runs at <b>60fps</b>.</i><br><br>
+
+        Let's calculate and display the current <b>fps</b> our animation runs at when using the
+        <b>window.requestAnimationFrame ( )</b> function.<br>
+        To do that, we first need to calculate the time that has passed between the frames. That can be achieved by
+        simply taking the current time and subtracting the time of the previous frame, which we'll store in a variable
+        called <b>t</b>.
+    </blockquote>
+    <p>
+        var &nbsp;t; <br>
+        function draw ( ) { <br>
+        &nbsp;&nbsp; t = <em>Date.now ( )</em> <br>
+        &nbsp;&nbsp; ... <br>
+        }
+    </p>
+    <blockquote>
+        The code above creates the variable <b>t</b>, and updates its value to the current time during each iteration.
+        <br>
+        <mark>Note, that we used the JavaScript <b>Date.now ( )</b> function, which is used to get the current time in
+            millisecods.</mark><br><br>
+        Currently, we have stored the time for each frame. <br>
+        Next, we need to calculate the time that has passed between those frames.
+    </blockquote>
+    <p>
+        var &nbsp;t; <br>
+        function draw ( ) { <br>
+        &nbsp;&nbsp; <em>var timePassed = ( Date.now ( ) - t ) / 1000</em> <br>
+        &nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp; ... <br>
+        }
+    </p>
+    <blockquote>
+        We take the current <b>Date.now ( ) </b> value and subtract the previous <b>t</b> value from it.<br>
+        We also divide the number by 1000, to get the seconds from the milliseconds. The result shows the number of
+        seconds that is required to produce one frame.<br>
+        <mark>Note, that we need to calculate the <b>timePassed</b> value before updating the <b>t</b>
+            value.</mark><br><br>
+        Now, when we have the seconds that are required to produce one frame, we simply need to divide 1 by this number
+        to get the number of frames per second:
+    </blockquote>
+    <p>
+        var fps = Math<em>.round (</em> 1 / timePassed <em>)</em>
+    </p>
+    <blockquote>
+        <mark>The <b>Math.round ( )</b> function is used to round the result to the nearest whole number.</mark>
+        <br><br>
+
+        Now we need to simply draw the <b>fps</b> value on our canvas:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; var t <br>
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var timePassed = ( Date.now ( ) - t ) / 1000 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var fps = Math.round ( 1 / timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.font = '25px Arial' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = 'black' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillText ( "FPS: " + fps, 20, 30 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "blue" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; x += 10 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -100 <br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; window.requestAnimationFrame ( draw ) <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasFPS" width="600" height="400"></canvas>
+        <script>
+            function exCanvasFPS() {
+                var fpsCanvas = document.getElementById("exCanvasFPS")
+                var fpsContext = fpsCanvas.getContext("2d")
+                var fpsX = 0
+                var fpsY = 100
+
+                var t
+
+                function draw() {
+                    var timePassed = (Date.now() - t) / 1000
+                    t = Date.now()
+                    var fps = Math.round(1 / timePassed)
+
+                    fpsContext.clearRect(0, 0, 600, 400)
+
+                    fpsContext.font = '25px Arial'
+                    fpsContext.fillStyle = 'black'
+                    fpsContext.fillText("FPS: " + fps, 20, 30)
+
+                    fpsContext.beginPath()
+                    fpsContext.rect(fpsX, fpsY, 100, 100)
+                    fpsContext.fillStyle = "green"
+                    fpsContext.fill()
+
+                    fpsX += 10
+                    if (fpsX >= 600) {
+                        fpsX = -100
+                    }
+                    window.requestAnimationFrame(draw)
+                }
+                draw()
+            }
+        </script>
+    </p>
+    <blockquote>
+        <mark>Run the code to see the frame rate that you get on your device.</mark><br><br>
+
+        We need to come up with a solution to handle dynamic frame rate, so that the animation looks the same on every
+        device. <br>
+        For that, we can take the time as a factor for our animation, and move the object based on the time that has
+        passed between the frames. This way, the distance that our object passed in a given timeframe will always be the
+        same, irrespective of the frame rate. <br>
+        To move the object relative to time, we first need to define a speed value for our object. <br>
+        Let's say we want it to move at 100 pixels per second:
+    </blockquote>
+    <p>
+        let speed = 100;
+    </p>
+    <blockquote>
+        Remember, that we increased the position of our rectangle by 10 during each frame?<br>
+        To make it relative to time, we simply need to change it to include the seconds passed and the speed value:
+    </blockquote>
+    <p>
+        x += ( speed * timePassed )
+    </p>
+    <blockquote>
+        This will increase the x position of our rectangle by <b>speed</b> pixels every second.<br>
+        Here is the result:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        <em>&nbsp;&nbsp; var t = Date.now ( )<br>
+            &nbsp;&nbsp; let speed = 100 <br></em>
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var timePassed = ( Date.now ( ) - t ) / 1000 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var fps = Math.round ( 1 / timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.font = '25px Arial' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = 'black' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillText ( "FPS: " + fps, 20, 30 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "blue" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; <em>x += ( speed * timePassed )</em> <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x = -100 <br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; window.requestAnimationFrame ( draw ) <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasBiggerFPS" width="600" height="400"></canvas>
+        <script>
+            function exCanvasBiggerFPS() {
+                var biggerFPSCanvas = document.getElementById("exCanvasBiggerFPS")
+                var biggerFPSContext = biggerFPSCanvas.getContext("2d")
+                var biggerFPSx = 0
+                var biggerFPSy = 100
+
+                var biggerFPSt = Date.now()
+                let fpsSpeed = 100
+
+                function biggerFPSDraw() {
+                    var fpsTimePassed = (Date.now() - biggerFPSt) / 1000
+                    biggerFPSt = Date.now()
+                    var biggerFPS = Math.round(1 / fpsTimePassed)
+
+                    biggerFPSContext.clearRect(0, 0, 600, 400)
+
+                    biggerFPSContext.font = '25px Arial'
+                    biggerFPSContext.fillStyle = 'black'
+                    biggerFPSContext.fillText("FPS: " + biggerFPS, 20, 30)
+
+                    biggerFPSContext.beginPath()
+                    biggerFPSContext.rect(biggerFPSx, biggerFPSy, 100, 100)
+                    biggerFPSContext.fillStyle = "purple"
+                    biggerFPSContext.fill()
+
+                    biggerFPSx += (fpsSpeed * fpsTimePassed)
+
+                    if (biggerFPSx >= 600) {
+                        biggerFPSx = -100
+                    }
+                    window.requestAnimationFrame(biggerFPSDraw)
+                }
+                biggerFPSDraw()
+            }
+        </script>
+    </p>
+    <blockquote>
+        This will increase the x position of our rectangle by <b>speed</b> pixels every second.<br><br>
+        We have achieved movement relative to time!<br><br>
+        When you want to move your object 100 pixels every second and your game runs at <b>60fps</b>, you will move the
+        object 100/60 = 1.6666 pixels per frame. This is what we have done in our <b>draw ( )</b> function.<br>
+        When the frame rate increases or decreases, the movement speed will change, too. No mater how much time has
+        passed, your objects will always move at the given speed. <br>
+        <mark>This makes the animation work the same on different devices with different frame rates.</mark>
+    </blockquote>
+
+
+    <h2>- Collision Detection -</h2>
+    <blockquote>
+        Another important concept in games is <b>collision detection</b>. <i>This is the process of understanding when
+            objects collide.</i><br>
+        For example, let's say we want our rectangle to stop when it hits the right border of our canvas. Right now, our
+        rectangle simply resets its position when it reaches the end of the canvas. <br>That is done using the following
+        code:
+    </blockquote>
+    <p>
+        if ( x >= 600 ) { <br>
+        &nbsp;&nbsp; x = -100 <br>
+        }
+    </p>
+    <blockquote>
+        As soon as the position of the rectangle passes the width of the canvas we set it to -100, which makes it start
+        from the beginning.<br>
+        <mark>We use -100 instead of 0, to compensate for the width of the rectangle, which is 100.</mark><br><br>
+
+        Collision detection is done in a similar way. <br>
+        We simply need to compare the positions of the objects and check if they intersect. <br><br>
+
+        To understand when the rectangle hits the edge of the canvas, we simply need to compare its position of the
+        edge, which corresponds to the width of the canvas:
+    </blockquote>
+    <p>
+        if ( x >= 600 - 100 ) {<br>
+        &nbsp;&nbsp; speed = 0 <br>
+        }
+    </p>
+    <blockquote>
+        We subtract 100 from the width of the canvas, because we want our rectangle to stop when its right edge hits the
+        border ( the position is calculated from the left edge, and the rectangle has a width of 100 ). <br>
+        <mark>When the collision is detected, we set the speed to 0 to make the rectangle stop.</mark><br><br>
+
+        Let's make it more fun and change the direction of the rectangle when it hits the edge of the canvas.<br>
+        This means, that when the rectangle reaches the right edge, it will start to move back to the left, adn
+        vice-e-versa.<br>
+        <i>To do that</i>, we need a variable to define the direction of movement:
+    </blockquote>
+    <p>
+        let dir = 1
+    </p>
+    <blockquote>
+        <mark>1 will indicate a positive change in the x coordinate, while -1 will reverse it.</mark><br><br>Next, we
+        need to take into account the direction when moving the rectangle:
+    </blockquote>
+    <p>
+        x += dir * ( speed * timePassed )
+    </p>
+    <blockquote>
+        When dir is 1, the value of the equation is positive, making the rectangle move to the right.<br>
+        When dir is -1, the value is negative, decreasing the x position, making it move to the left. <br>
+        <mark>This makes the rectangle move left when dir is 1, and right, when it's -1.</mark><br><br>
+        Finally, we need to modify our collision detection logic to include the left edge of the canvas:
+    </blockquote>
+    <p>
+        if ( x >= 600 - 100 || x &lt;= 0) {<br>
+        &nbsp;&nbsp; dir *= -1 <br>
+        }
+    </p>
+    <blockquote>
+        The || is the logical <b>or</b> operator. <br>
+        As soon as the rectangle reaches any of the edge of the canvas, the direction of its movement is reversed.
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; var t = Date.now ( )<br>
+        &nbsp;&nbsp; let speed = 100 <br>
+        &nbsp;&nbsp; <em>let dir = 1</em> <br><br>
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var timePassed = ( Date.now ( ) - t ) / 1000 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var fps = Math.round ( 1 / timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.font = '25px Arial' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = 'black' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillText ( "FPS: " + fps, 20, 30 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "hotpink" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; x += <em>dir * </em>( speed * timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; if ( x >= 600 || x &lt;= 0 ) { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>dir *= -1</em> <br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; window.requestAnimationFrame ( draw ) <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        &lt;/script>
+        <canvas id="exCanvasReverseAnimation" width="600" height="400"></canvas>
+        <script>
+            function exCanvasReverseAnimation() {
+                var reverseAnimationCanvas = document.getElementById("exCanvasReverseAnimation")
+                var reverseAnimationContext = reverseAnimationCanvas.getContext("2d")
+                var reverseX = 0
+                var reverseY = 100
+
+                var reverseT = Date.now()
+                let reverseSpeed = 300
+                let reverseDir = 1
+
+                function reverseDraw() {
+                    var reverseTimePassed = (Date.now() - reverseT) / 1000
+                    reverseT = Date.now()
+                    var reversefps = Math.round(1 / reverseTimePassed)
+
+                    reverseAnimationContext.clearRect(0, 0, 600, 400)
+
+                    reverseAnimationContext.font = '25px Arial'
+                    reverseAnimationContext.fillStyle = 'black'
+                    reverseAnimationContext.fillText("FPS: " + reversefps, 20, 30)
+
+                    reverseAnimationContext.beginPath()
+                    reverseAnimationContext.rect(reverseX, reverseY, 100, 100)
+                    reverseAnimationContext.fillStyle = "hotpink"
+                    reverseAnimationContext.fill()
+
+                    reverseX += reverseDir * (reverseSpeed * reverseTimePassed)
+
+                    if (reverseX >= 600 - 100 || reverseX <= 0) {
+                        reverseDir *= -1
+                    }
+                    window.requestAnimationFrame(reverseDraw)
+                }
+                reverseDraw()
+            }
+        </script>
+    </p>
+
+
+
+    <h2>- User Input -</h2>
+    <blockquote>
+        One last thing we need to learn before making an actual game is <b>handling user input</b>.<br>
+        User input is needed to add control to our game. For example, move objects when the user presses keys, taps,
+        buttons or objects.<br><br>
+
+        To handle a user input, we simply need to handle the corresponding event and add the logic in the handler
+        function, similar to handling a button click.
+        <br>
+        <mark>For our example, let's add controls to our rectangle animation, so the user can move the rectangle in 4
+            directions ( up, down, left, right ), by pressing the corresponding buttons.</mark><br><br>
+        Let's first add the buttons to our HTML:
+    </blockquote>
+    <p>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;br>&lt;br> <br>
+        <em>&lt;div align="center"> <br>
+            &nbsp;&nbsp; &lt;button id="up">↑&lt;/button>&lt;br> <br>
+            &nbsp;&nbsp; &lt;button id="left">←&lt;/button> <br>
+            &nbsp;&nbsp; &lt;button id="down">↓&lt;/button> <br>
+            &nbsp;&nbsp; &lt;button id="right">→&lt;/button> <br>
+            &lt;/div></em>
+    </p>
+    <blockquote>
+        We added 4 buttons with their corresponding ids, so we can refer to them in JavaScript. <br>
+        We have also nested the buttons in a <b>&lt;div></b> tag, which acts as a container, aligning the buttons to the
+        center of the screen. <br>
+        We also used some CSS to give height and width to our buttons.<br>
+        <mark>We use buttons for our controls to make it usable on both desktops and mobile devices.</mark><br><br>
+
+        Now we can take the reference of the buttons in JavaScript. <br>
+        Let's do this for the <b>right</b> button only, and then repeat the process for all the other buttons.
+    </blockquote>
+    <p>
+        let right = document.getElementById ( 'right' )
+    </p>
+    <blockquote>
+        Time to handle the press events. <br><br>
+        When the button is pressed, we need to move the rectangle to the right. <br> When the button is not pressed, we
+        need to stop the rectangle. <br> For that, let's define the <b>dir</b> variable, which will indicate the
+        following:<br>
+        dir = 1 will indicate movement to the right <br>
+        dir = 2 movement to the left <br>
+        dir = 3 movement top <br>
+        dir = 4 movement down <br>
+        dir = 0 stop <br>
+        We need to set the corresponding dir value, when the button is pressed and released:
+    </blockquote>
+    <p>
+        right<em>.onmousedown</em> = function ( ) {<br>
+        &nbsp;&nbsp; dir = 1 <br>
+        } <br>
+        right<em>.onmouseup</em> = function ( ) {<br>
+        &nbsp;&nbsp; dir = 0 <br>
+        }
+    </p>
+    <blockquote>
+        We used the <b>onmousedown</b> and <b>onmouseup</b> to handle the button press and release events.<br><br>
+        The <b>onmouseup</b> and <b>onmousedown</b> events are used when the button is pressed/released using a mouse or
+        similar input device. <br>
+        To make it work on touchscreens, we need to handle the <b>ontouchstart</b> and <b>ontouchend</b> events:
+    </blockquote>
+    <p>
+        right<em>.ontouchstart</em> = function ( ) {<br>
+        &nbsp;&nbsp; dir = 1 <br>
+        } <br>
+        right<em>.ontouchend</em> = function ( ) {<br>
+        &nbsp;&nbsp; dir = 0 <br>
+        }
+    </p>
+    <blockquote>
+        At this point, pressing the <b>right</b> button simply sets the value of the <b>dir</b> variable. <br>
+        Now we need to handle the <b>dir</b> value and move the rectangle. <br>
+        In our <b>draw ( )</b> function, we need to the following:
+    </blockquote>
+    <p>
+        if ( dir == 1 ) { <br>
+        &nbsp;&nbsp; x += ( speed * timePassed ) <br>
+        }
+    </p>
+    <blockquote>
+        <mark>We check the value of the <b>dir</b> variable and move the rectangle in the corresponding
+            direction.</mark><br><br>
+        Similarly, we need to handle all the other button press/release events and move the rectangle in the
+        corresponding direction:
+    </blockquote>
+    <p>
+        <em>
+            &lt;html> <br>
+            &lt;head> <br>
+            &lt;style> <br>
+            &nbsp;&nbsp; #canvas { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; width: 100%; <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid black; <br>
+            &nbsp;&nbsp; } <br>
+            &nbsp;&nbsp; button { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; width: 50px; <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; height: 30px; <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 5px; <br>
+            &nbsp;&nbsp; } <br>
+            &lt;/style> <br>
+            &lt;/head> <br><br></em>
+
+        <em>&lt;body></em> <br>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;br>&lt;br> <br>
+        &lt;div align="center"> <br>
+        &nbsp;&nbsp; &lt;button id="up">↑&lt;/button>&lt;br> <br>
+        &nbsp;&nbsp; &lt;button id="left">←&lt;/button> <br>
+        &nbsp;&nbsp; &lt;button id="down">↓&lt;/button> <br>
+        &nbsp;&nbsp; &lt;button id="right">→&lt;/button> <br>
+        &lt;/div> <br><br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 250 <br>
+        &nbsp;&nbsp; var y = 150 <br> <br>
+
+        &nbsp;&nbsp; var t = Date.now ( )<br>
+        &nbsp;&nbsp; let speed = 300 <br>
+        &nbsp;&nbsp; let dir = 0 <br><br>
+
+        <em>
+            &nbsp;&nbsp; let up = document.getElementById ( 'up' ) <br>
+            &nbsp;&nbsp; let down = document.getElementById ( 'down' ) <br>
+            &nbsp;&nbsp; let left = document.getElementById ( 'left' ) <br>
+            &nbsp;&nbsp; let right = document.getElementById ( 'right' ) <br><br>
+
+            &nbsp;&nbsp; up.onmousedown = function ( ) { dir = 4 } <br>
+            &nbsp;&nbsp; down.onmousedown = function ( ) { dir = 3 } <br>
+            &nbsp;&nbsp; left.onmousedown = function ( ) { dir = 2 } <br>
+            &nbsp;&nbsp; right.onmousedown = function ( ) { dir = 1 } <br><br>
+
+            &nbsp;&nbsp; up.ontouchstart = function ( ) { dir = 4 } <br>
+            &nbsp;&nbsp; down.ontouchstart = function ( ) { dir = 3 } <br>
+            &nbsp;&nbsp; left.ontouchstart = function ( ) { dir = 2 } <br>
+            &nbsp;&nbsp; right.ontouchstart = function ( ) { dir = 1 } <br><br>
+
+            &nbsp;&nbsp; up.onmouseup = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; down.onmouseup = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; left.onmouseup = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; right.onmouseup = function ( ) { dir = 0 } <br><br>
+
+            &nbsp;&nbsp; up.ontouchend = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; down.ontouchend = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; left.ontouchend = function ( ) { dir = 0 } <br>
+            &nbsp;&nbsp; right.ontouchend = function ( ) { dir = 0 } <br><br>
+        </em>
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var timePassed = ( Date.now ( ) - t ) / 1000 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var fps = Math.round ( 1 / timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.font = '25px Arial' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = 'black' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillText ( "FPS: " + fps, 20, 30 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "yellow" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.lineWidth = 6 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.strokeStyle = "#505050" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.stroke() <br><br>
+
+        <em>
+            &nbsp;&nbsp;&nbsp;&nbsp; if ( dir == 1 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 2 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x -= ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 3 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y += ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 4 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y -= ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        </em>
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp; window.requestAnimationFrame ( draw ) <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        <em>
+            &lt;/script> <br>
+            &lt;/body> <br>
+            &lt;/html>
+        </em>
+
+        <canvas id="exCanvasArrowButtons" width="600" height="400"></canvas>
+        <br><br>
+        <div align="center" style="background-color:black; 
+            margin-top: -30px; margin-bottom:-25px; 
+            box-shadow: 4px 3px gray;">
+            <button id="up">↑</button><br>
+            <button id="left">←</button>
+            <button id="down">↓</button>
+            <button id="right">→</button>
+        </div>
+        <script>
+            function exCanvasArrowButtons() {
+                var arrowButtonCanvas = document.getElementById("exCanvasArrowButtons")
+                var arrowButtonsContext = arrowButtonCanvas.getContext("2d")
+                var dirX = 250
+                var dirY = 150
+
+                var arrowButtonsT = Date.now()
+                let arrowButtonsSpeed = 300
+                let arrowButtonsDir = 0
+
+                let up = document.getElementById('up')
+                let down = document.getElementById('down')
+                let left = document.getElementById('left')
+                let right = document.getElementById('right')
+
+                up.onmousedown = function () {
+                    arrowButtonsDir = 4
+                }
+                down.onmousedown = function () {
+                    arrowButtonsDir = 3
+                }
+                left.onmousedown = function () {
+                    arrowButtonsDir = 2
+                }
+                right.onmousedown = function () {
+                    arrowButtonsDir = 1
+                }
+
+                up.ontouchstart = function () {
+                    arrowButtonsDir = 4
+                }
+                down.ontouchstart = function () {
+                    arrowButtonsDir = 3
+                }
+                left.ontouchstart = function () {
+                    arrowButtonsDir = 2
+                }
+                right.ontouchstart = function () {
+                    arrowButtonsDir = 1
+                }
+
+                up.onmouseup = function () {
+                    arrowButtonsDir = 0
+                }
+                down.onmouseup = function () {
+                    arrowButtonsDir = 0
+                }
+                left.onmouseup = function () {
+                    arrowButtonsDir = 0
+                }
+                right.onmouseup = function () {
+                    arrowButtonsDir = 0
+                }
+
+                up.ontouchend = function () {
+                    arrowButtonsDir = 0
+                }
+                down.ontouchend = function () {
+                    arrowButtonsDir = 0
+                }
+                left.ontouchend = function () {
+                    arrowButtonsDir = 0
+                }
+                right.ontouchend = function () {
+                    arrowButtonsDir = 0
+                }
+
+                function draw() {
+                    var arrowButtonsTimePassed = (Date.now() - arrowButtonsT) / 1000
+                    arrowButtonsT = Date.now()
+                    var fps = Math.round(1 / arrowButtonsTimePassed)
+
+                    arrowButtonsContext.clearRect(0, 0, 600, 400)
+
+                    arrowButtonsContext.font = '25px Arial'
+                    arrowButtonsContext.fillStyle = 'black'
+                    arrowButtonsContext.fillText("FPS: " + fps, 20, 30)
+
+                    arrowButtonsContext.beginPath()
+                    arrowButtonsContext.rect(dirX, dirY, 100, 100)
+                    arrowButtonsContext.fillStyle = "gold"
+                    arrowButtonsContext.fill()
+
+                    arrowButtonsContext.lineWidth = 6
+                    arrowButtonsContext.strokeStyle = "#505050"
+                    arrowButtonsContext.stroke()
+
+                    if (arrowButtonsDir == 1) {
+                        dirX += (arrowButtonsSpeed * arrowButtonsTimePassed)
+                    } else if (arrowButtonsDir == 2) {
+                        dirX -= (arrowButtonsSpeed * arrowButtonsTimePassed)
+                    } else if (arrowButtonsDir == 3) {
+                        dirY += (arrowButtonsSpeed * arrowButtonsTimePassed)
+                    } else if (arrowButtonsDir == 4) {
+                        dirY -= (arrowButtonsSpeed * arrowButtonsTimePassed)
+                    }
+
+                    window.requestAnimationFrame(draw)
+                }
+                draw()
+            }
+        </script>
+    </p>
+    <blockquote>
+        <mark>Note, that we change the <b>x</b> position of the rectangle for the left/right movement, and the <b>y</b>
+            position for the up/down movement.</mark><br><br>
+        Now, all the buttons work and move the rectangle in the corresponding direction.<br>
+        However, the rectangle can go out ofo the canvas boundaries. <br>
+        Time for some collision detection! <br>
+        As soon as the rectangle reaches the end of the canvas, we need to stop it.<br>
+        We can do that by checking the position when moving the box and change the position only when the rectangle is
+        in the canvas boundaries:
+    </blockquote>
+    <p>
+
+        &lt;html> <br>
+        &lt;head> <br>
+        &lt;style> <br>
+        &nbsp;&nbsp; #canvas { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; width: 100%; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid black; <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; button { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; width: 50px; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; height: 30px; <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; margin-bottom: 5px; <br>
+        &nbsp;&nbsp; } <br>
+        &lt;/style> <br>
+        &lt;/head> <br><br>
+
+        &lt;body> <br>
+        &lt;canvas id="canvas" width="600" height="400">&lt;/canvas> <br>
+        &lt;br>&lt;br> <br>
+        &lt;div align="center"> <br>
+        &nbsp;&nbsp; &lt;button id="up">↑&lt;/button>&lt;br> <br>
+        &nbsp;&nbsp; &lt;button id="left">←&lt;/button> <br>
+        &nbsp;&nbsp; &lt;button id="down">↓&lt;/button> <br>
+        &nbsp;&nbsp; &lt;button id="right">→&lt;/button> <br>
+        &lt;/div> <br><br>
+        &lt;script> <br>
+        window.onload = function ( ) <br>{ <br>
+        &nbsp;&nbsp; var canvas = document.getElementById ( "canvas" ) <br>
+        &nbsp;&nbsp; var context = canvas.getContext ( "2d" ) <br>
+        &nbsp;&nbsp; var x = 0 <br>
+        &nbsp;&nbsp; var y = 100 <br> <br>
+
+        &nbsp;&nbsp; var t = Date.now ( )<br>
+        &nbsp;&nbsp; let speed = 300 <br>
+        &nbsp;&nbsp; let dir = 0 <br><br>
+
+        
+        &nbsp;&nbsp; let up = document.getElementById ( 'up' ) <br>
+        &nbsp;&nbsp; let down = document.getElementById ( 'down' ) <br>
+        &nbsp;&nbsp; let left = document.getElementById ( 'left' ) <br>
+        &nbsp;&nbsp; let right = document.getElementById ( 'right' ) <br><br>
+
+        &nbsp;&nbsp; up.onmousedown = function ( ) { dir = 4 } <br>
+        &nbsp;&nbsp; down.onmousedown = function ( ) { dir = 3 } <br>
+        &nbsp;&nbsp; left.onmousedown = function ( ) { dir = 2 } <br>
+        &nbsp;&nbsp; right.onmousedown = function ( ) { dir = 1 } <br><br>
+
+        &nbsp;&nbsp; up.ontouchstart = function ( ) { dir = 4 } <br>
+        &nbsp;&nbsp; down.ontouchstart = function ( ) { dir = 3 } <br>
+        &nbsp;&nbsp; left.ontouchstart = function ( ) { dir = 2 } <br>
+        &nbsp;&nbsp; right.ontouchstart = function ( ) { dir = 1 } <br><br>
+
+        &nbsp;&nbsp; up.onmouseup = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; down.onmouseup = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; left.onmouseup = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; right.onmouseup = function ( ) { dir = 0 } <br><br>
+
+        &nbsp;&nbsp; up.ontouchend = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; down.ontouchend = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; left.ontouchend = function ( ) { dir = 0 } <br>
+        &nbsp;&nbsp; right.ontouchend = function ( ) { dir = 0 } <br><br>
+        
+
+        &nbsp;&nbsp; function draw ( ) <br>&nbsp;&nbsp; { <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var timePassed = ( Date.now ( ) - t ) / 1000 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; t = Date.now ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; var fps = Math.round ( 1 / timePassed ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.clearRect ( 0, 0, 600, 400 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.font = '25px Arial' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = 'black' <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillText ( "FPS: " + fps, 20, 30 ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.beginPath ( ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.rect ( x, y, 100, 100 ) <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fillStyle = "gold" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.fill ( ) <br><br>
+
+        &nbsp;&nbsp;&nbsp;&nbsp; context.lineWidth = 6 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.strokeStyle = "black" <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; context.stroke() <br><br>
+
+        
+            &nbsp;&nbsp;&nbsp;&nbsp; if ( dir == 1 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>if ( x + 100 &lt; 600 ) {</em> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x += ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <em>}</em> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 2 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>if ( x > 0 ) {</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; x -= ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>}</em> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 3 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>if ( y + 100 &lt; 400 ) {</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y += ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <em>}</em> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+            &nbsp;&nbsp;&nbsp;&nbsp; else if ( dir == 4 ) { <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>if ( y > 0 ) {</em><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; y -= ( speed * timePassed ) <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <em>}</em> <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+        
+
+        <br>&nbsp;&nbsp;&nbsp;&nbsp; window.requestAnimationFrame ( draw ) <br>
+        &nbsp;&nbsp; } <br>
+        &nbsp;&nbsp; draw ( ) <br>
+        } <br>
+        
+        &lt;/script> <br>
+        &lt;/body> <br>
+        &lt;/html>
+        <canvas id="exCanvasArrowBounds" width="600" height="400"></canvas>
+        <br><br>
+        <div align="center" style="background-color:black; 
+        margin-top: -30px; margin-bottom:-25px; 
+        box-shadow: 4px 3px gray;">
+           <button id="arrowBoundsUp">↑</button><br>
+           <button id="arrowBoundsLeft">←</button>
+           <button id="arrowBoundsDown">↓</button>
+           <button id="arrowBoundsRight">→</button>
+        </div>
+        
+        <script>
+        function exCanvasArrowBounds( )
+        {
+           var arrowBoundsCanvas = document.getElementById ( "exCanvasArrowBounds" )
+           var arrowBoundsContext = arrowBoundsCanvas.getContext ( "2d" )
+           var arrowBoundsX = 250
+           var arrowBoundsY = 150
+        
+           var arrowBoundsT = Date.now ( )
+           let arrowBoundsSpeed = 300
+           let arrowBoundsDir = 0
+        
+           let arrowBoundsUp = document.getElementById ( 'arrowBoundsUp' )
+           let arrowBoundsDown = document.getElementById ( 'arrowBoundsDown' )
+           let arrowBoundsLeft = document.getElementById ( 'arrowBoundsLeft' )
+           let arrowBoundsRight = document.getElementById ( 'arrowBoundsRight' )
+        
+           arrowBoundsUp.onmousedown = function ( ) { arrowBoundsDir = 4 }
+           arrowBoundsDown.onmousedown = function ( ) { arrowBoundsDir = 3 }
+           arrowBoundsLeft.onmousedown = function ( ) { arrowBoundsDir = 2 }
+           arrowBoundsRight.onmousedown = function ( ) { arrowBoundsDir = 1 }
+        
+           arrowBoundsUp.ontouchstart = function ( ) { arrowBoundsDir = 4 }
+           arrowBoundsDown.ontouchstart = function ( ) { arrowBoundsDir = 3 }
+           arrowBoundsLeft.ontouchstart = function ( ) { arrowBoundsDir = 2 }
+           arrowBoundsRight.ontouchstart = function ( ) { arrowBoundsDir = 1 }
+        
+           arrowBoundsUp.onmouseup = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsDown.onmouseup = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsLeft.onmouseup = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsRight.onmouseup = function ( ) { arrowBoundsDir = 0 }
+        
+           arrowBoundsUp.ontouchend = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsDown.ontouchend = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsLeft.ontouchend = function ( ) { arrowBoundsDir = 0 }
+           arrowBoundsRight.ontouchend = function ( ) { arrowBoundsDir = 0 }
+        
+           function draw ( )
+           {
+             var arrowBoundsTimePassed = ( Date.now ( ) - arrowBoundsT ) / 1000
+             arrowBoundsT = Date.now ( )
+             var arrowBoundsFPS = Math.round ( 1 / arrowBoundsTimePassed )
+        
+             arrowBoundsContext.clearRect ( 0, 0, 600, 400 )
+        
+             arrowBoundsContext.font = '25px Arial'
+             arrowBoundsContext.fillStyle = 'black'
+             arrowBoundsContext.fillText ( "FPS: " + arrowBoundsFPS, 20, 30 )
+        
+             arrowBoundsContext.beginPath ( )
+             arrowBoundsContext.rect ( arrowBoundsX, arrowBoundsY, 100, 100 )
+             arrowBoundsContext.fillStyle = "lightgreen"
+             arrowBoundsContext.fill ( )
+        
+             arrowBoundsContext.lineWidth = 6
+             arrowBoundsContext.strokeStyle = "black"
+             arrowBoundsContext.stroke()
+        
+             if ( arrowBoundsDir == 1 ) {
+               if ( arrowBoundsX + 100 < 600 ) {
+                   arrowBoundsX += ( arrowBoundsSpeed * arrowBoundsTimePassed )
+               }
+             }
+             else if ( arrowBoundsDir == 2 ) {
+               if ( arrowBoundsX > 0 ) {
+                   arrowBoundsX -= ( arrowBoundsSpeed * arrowBoundsTimePassed )
+               }
+             }
+             else if ( arrowBoundsDir == 3 ) {
+               if ( arrowBoundsY + 100 < 400 ) {
+                   arrowBoundsY += ( arrowBoundsSpeed * arrowBoundsTimePassed )
+               }
+             }
+             else if ( arrowBoundsDir == 4 ) {
+               if ( arrowBoundsY > 0 ) {
+                   arrowBoundsY -= ( arrowBoundsSpeed * arrowBoundsTimePassed )
+               }
+             }
+        
+             window.requestAnimationFrame ( draw )
+           }
+           draw ( )
+        }
+        </script> 
+    </p>
+    <blockquote>
+        Now we can control the rectangle in the canvas and it will stop when it hits any side of the canvas. <br>
+        <mark>Note, that we need to take into account the size of the rectangle when checking the right and bottom positions, because the x and y position is calculated from the top left corner.</mark>
+    </blockquote>
+
+
+    <br>
+    <h1 class="language">Making a Game</h1>
+    <h2>- Introduction -</h2>
+    <blockquote>
+        At this point, we know how to move objects, control them using user input and detect collisions.<br>So, we can now make a real game!<br>
+    </blockquote>
+
+    <h2>- Coin Collector -</h2>
+    <blockquote>
+        Let's draw some coins!<br>
+        A coin will be represented by a yellow rectangle of size 50x50. <br>
+        Similar to our red rectangle, we need variables to store the position of the coin:
+    </blockquote>
+    <p>
+        var coinx = Math<em>.random ( )</em> * ( 600 - 50 ) <br>
+        var coinx = Math<em>.random ( )</em> * ( 400 - 50 ) 
+    </p>
+    <blockquote>
+        We use the <b>Math.random ( )</b> function to generate a random position of the coin in the canvas. <br>
+        <mark><b>Math.random ( )</b> generates a random number in the range [ 0 - 1 ).</mark><br><br>
+        Now we can draw the coin on our canvas:
+    </blockquote>
+    <p>
+        context.beginPath ( ) <br>
+        context.rect ( coinx, coiny, 50, 50 ) <br>
+        context.fillStyle = "#e3c228" <br>
+        context.fill ( )
+    </p>
+    <blockquote>
+        <mark>Each time the code is run, a yellow rectangle will be drawn at a random position.</mark><br><br>
+        The next step is to add a <b>score</b> to the game and increment it each time the player collects a coin.
+    </blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer><b></b></footer>
+
+
+    <!-- load canvas drawings -->
+    <script>
+        window.onload = function () {
+            exCanvasStyles()
+            exCanvasMultiShapes()
+            exCanvasText()
+            exCanvasFont()
+            exCanvasTextColor()
+            exCanvasTextOutline()
+            exCanvasImage()
+            exCanvasLargeImage()
+            exCanvasAnimationCleared()
+            exCanvasBounceAnimation()
+            exCanvasReqAnimation()
+            exCanvasFPS()
+            exCanvasBiggerFPS()
+            exCanvasReverseAnimation()
+            exCanvasArrowButtons()
+            exCanvasArrowBounds()
+        }
+    </script>
+
+
+</body>
+
+
+</html>
