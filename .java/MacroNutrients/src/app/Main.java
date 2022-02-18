@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 // driver class
-public class Main {
+public class MacroNutrients {
 
     // create Scanner
     static Scanner input = new Scanner(System.in);
@@ -33,19 +33,37 @@ public class Main {
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+    // COlORS
+    //
+    // text color
+    public static final String reset = "\u001B[0m";
+    public static final String black = "\u001B[30m";
+    public static final String red = "\u001B[31m";
+    public static final String green = "\u001B[32m";
+    public static final String yellow = "\u001B[33m";
+    public static final String blue = "\u001B[34m";
+    public static final String purple = "\u001B[35m";
+    public static final String cyan = "\u001B[36m";
+    public static final String white = "\u001B[37m";
+
     // Global Constants
     private int proteinCals = 4;
     private int carbCals = 4;
     private int fatCals = 9;
 
+    static Scanner in = new Scanner(System.in);
+
 
     // start of main
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         System.out.println();
 
         // Array - Data Structure
-        FoodItem[] foodItems = new FoodItem[53];
-        //
+        FoodItem[] foodItems = new FoodItem[74];
+
+
+        // add Food items into array
         foodItems[1]  = new FoodItem("Greek Yogurt",             12, 8,  0);
         foodItems[2]  = new FoodItem("Danimals",                 2,  11, 0);
         foodItems[3]  = new FoodItem("8 Turkey Slices",          16, 6,  8);
@@ -137,19 +155,12 @@ public class Main {
             foodItems[26].folate = 15;
         foodItems[27] = new FoodItem("Mini-Tortilla",            2,  21, 1);
         foodItems[28] = new FoodItem("Nutrition Bar",            10, 15, 12);
-
-
-        // Juices
         foodItems[29] = new FoodItem("Raspberry Lemonade",       0,  28, 0);
             foodItems[29].totalSugars = 26;
             foodItems[29].addedSugars = 26;
         foodItems[30] = new FoodItem("Peach Juice",              0,  26, 0);
             foodItems[30].totalSugars = 25;
             foodItems[30].addedSugars = 21;
-
-
-            // Fast Food Items
-        // Raising Canes
         foodItems[31] = new FoodItem("Cane's Chicken Finger",   13, 5, 6);
             foodItems[31].saturatedFat = 1;
             foodItems[31].transFat = 0;
@@ -347,75 +358,259 @@ public class Main {
             foodItems[52].potassium = 40;
             foodItems[52].riboflavin = 0.12;
             foodItems[52].folate = 105;
+        foodItems[53] = new FoodItem("Digiornio small pizza", 29, 85, 36);
+            foodItems[53].saturatedFat = 8;
+            foodItems[53].transFat = 1;
+            foodItems[53].cholesterol = 60;
+            foodItems[53].sodium = 710;
+            foodItems[53].dietaryFiber = 4;
+            foodItems[53].totalSugars = 6;
+            foodItems[53].addedSugars = 6;
+            foodItems[53].vitaminD = 0.3;
+            foodItems[53].calcium = 390;
+            foodItems[53].iron = 5.9;
+            foodItems[53].potassium = 330;
+        foodItems[54] = new FoodItem("Chick-fil-A Chicken Sandwich", 29, 41, 17);
+            foodItems[54].saturatedFat = 4;
+            foodItems[54].transFat = 0;
+            foodItems[54].cholesterol = 70;
+            foodItems[54].sodium = 1400;
+            foodItems[54].dietaryFiber = 1;
+            foodItems[54].totalSugars = 6;
+        foodItems[55] = new FoodItem("Chick-fil-A Waffle Fries (medium)", 5, 45, 24);
+            foodItems[55].saturatedFat = 4;
+            foodItems[55].transFat = 0;
+            foodItems[55].cholesterol = 0;
+            foodItems[55].sodium = 240;
+            foodItems[55].dietaryFiber = 5;
+            foodItems[55].totalSugars = 1;
+        foodItems[56] = new FoodItem("Chick-fil-A Coca-Cola (large)", 0, 62, 0);
+            foodItems[56].saturatedFat = 0;
+            foodItems[56].transFat = 0;
+            foodItems[56].cholesterol = 0;
+            foodItems[56].sodium = 70;
+            foodItems[56].dietaryFiber = 0;
+            foodItems[56].totalSugars = 62;
+            foodItems[56].addedSugars = 62;
+        foodItems[57] = new FoodItem("Chick-fil-A Nuggets (8 ct)", 27, 11, 11);
+            foodItems[57].saturatedFat = 2.5;
+            foodItems[57].transFat = 0;
+            foodItems[57].cholesterol = 85;
+            foodItems[57].sodium = 1210;
+            foodItems[57].dietaryFiber = 0;
+            foodItems[57].totalSugars = 1;
+        foodItems[58] = new FoodItem("Subway Italian Bread (footlong)", 7, 34, 1.5);
+            foodItems[58].saturatedFat = 0.5;
+            foodItems[58].transFat = 0;
+            foodItems[58].cholesterol = 0;
+            foodItems[58].sodium = 350;
+            foodItems[58].dietaryFiber = 0;
+            foodItems[58].totalSugars = 2;
+            foodItems[58].vitaminA = 0;
+            foodItems[58].vitaminC = 8;
+            foodItems[58].calcium = 0;
+            foodItems[58].iron = 50;
+        foodItems[59] = new FoodItem("Subway Provolone Cheese", 4, 0, 4);
+            foodItems[59].saturatedFat = 2;
+            foodItems[59].transFat = 0;
+            foodItems[59].cholesterol = 10;
+            foodItems[59].sodium = 125;
+            foodItems[59].dietaryFiber = 0;
+            foodItems[59].totalSugars = 0;
+            foodItems[59].vitaminA = 4;
+            foodItems[59].vitaminC = 0;
+            foodItems[59].calcium = 8;
+            foodItems[59].iron = 0;
+        foodItems[60] = new FoodItem("Subway Light Mayonnaise", 0, 1, 5);
+            foodItems[60].saturatedFat = 1;
+            foodItems[60].transFat = 0;
+            foodItems[60].cholesterol = 5;
+            foodItems[60].sodium = 100;
+            foodItems[60].dietaryFiber = 0;
+            foodItems[60].totalSugars = 0;
+            foodItems[60].vitaminA = 0;
+            foodItems[60].vitaminC = 0;
+            foodItems[60].calcium = 0;
+            foodItems[60].iron = 0;
+        foodItems[61] = new FoodItem("Subway Buffalo Chicken", 24, 5, 5);
+            foodItems[61].saturatedFat = 2.5;
+            foodItems[61].transFat = 0;
+            foodItems[61].cholesterol = 55;
+            foodItems[61].sodium = 1000;
+            foodItems[61].dietaryFiber = 2;
+            foodItems[61].totalSugars = 4;
+            foodItems[61].vitaminA = 25;
+            foodItems[61].vitaminC = 20;
+            foodItems[61].calcium = 2;
+            foodItems[61].iron = 60;
+        foodItems[62] = new FoodItem("Subway Roast Beef", 22, 7, 5);
+            foodItems[62].saturatedFat = 5;
+            foodItems[62].transFat = 0;
+            foodItems[62].cholesterol = 40;
+            foodItems[62].sodium = 740;
+            foodItems[62].dietaryFiber = 4;
+            foodItems[62].totalSugars = 7;
+            foodItems[62].vitaminA = 30;
+            foodItems[62].vitaminC = 15;
+            foodItems[62].calcium = 2;
+            foodItems[62].iron = 20;
+        foodItems[63] = new FoodItem("Qdoba Black Beans", 9, 24, 1);
+            foodItems[63].saturatedFat = 0;
+            foodItems[63].transFat = 0;
+            foodItems[63].cholesterol = 0;
+            foodItems[63].sodium = 330;
+            foodItems[63].potassium = 360;
+            foodItems[63].dietaryFiber = 14;
+            foodItems[63].totalSugars = 1;
+        foodItems[64] = new FoodItem("Qdoba Cilantro Lime Rice", 3, 38, 3);
+            foodItems[64].saturatedFat = 1;
+            foodItems[64].transFat = 0;
+            foodItems[64].cholesterol = 0;
+            foodItems[64].sodium = 390;
+            foodItems[64].potassium = 30;
+            foodItems[64].dietaryFiber = 1;
+            foodItems[64].totalSugars = 0;
+        foodItems[65] = new FoodItem("Qdoba Chicken", 16, 2, 9);
+            foodItems[65].saturatedFat = 3;
+            foodItems[65].transFat = 0;
+            foodItems[65].cholesterol = 70;
+            foodItems[65].sodium = 360;
+            foodItems[65].potassium = 220;
+            foodItems[65].dietaryFiber = 0;
+            foodItems[65].totalSugars = 1;
+        foodItems[66] = new FoodItem("Qdoba Shredded Cheese", 7, 1, 9);
+            foodItems[66].saturatedFat = 5;
+            foodItems[66].transFat = 0;
+            foodItems[66].cholesterol = 30;
+            foodItems[66].sodium = 180;
+            foodItems[66].potassium = 29;
+            foodItems[66].dietaryFiber = 0;
+            foodItems[66].totalSugars = 0;
+        foodItems[67] = new FoodItem("Qdoba Sour Cream", 1, 3, 5);
+            foodItems[67].saturatedFat = 3;
+            foodItems[67].transFat = 0;
+            foodItems[67].cholesterol = 15;
+            foodItems[67].sodium = 10;
+            foodItems[67].potassium = 42;
+            foodItems[67].dietaryFiber = 0;
+            foodItems[67].totalSugars = 1;
+        foodItems[68] = new FoodItem("Qdoba Salsa Verde", 0, 3, 0);
+            foodItems[68].saturatedFat = 0;
+            foodItems[68].transFat = 0;
+            foodItems[68].cholesterol = 0;
+            foodItems[68].sodium = 280;
+            foodItems[68].potassium = 90;
+            foodItems[68].dietaryFiber = 1;
+            foodItems[68].totalSugars = 1;
+        foodItems[69] = new FoodItem("Qdoba Salsa Roja", 1, 4, 0);
+            foodItems[69].saturatedFat = 0;
+            foodItems[69].transFat = 0;
+            foodItems[69].cholesterol = 0;
+            foodItems[69].sodium = 460;
+            foodItems[69].potassium = 0;
+            foodItems[69].dietaryFiber = 1;
+            foodItems[69].totalSugars = 2;
+        foodItems[70] = new FoodItem("Qdoba Flour Tortilla", 1, 52, 7);
+            foodItems[70].saturatedFat = 3;
+            foodItems[70].transFat = 0;
+            foodItems[70].cholesterol = 0;
+            foodItems[70].sodium = 760;
+            foodItems[70].potassium = 50;
+            foodItems[70].dietaryFiber = 3;
+            foodItems[70].totalSugars = 2;
+        foodItems[71] = new FoodItem("Lays Sour Cream & Onion (small bag)", 3, 23, 14);
+            foodItems[71].saturatedFat = 2;
+            foodItems[71].transFat = 0;
+            foodItems[71].cholesterol = 0;
+            foodItems[71].sodium = 260;
+            foodItems[71].potassium = 490;
+            foodItems[71].dietaryFiber = 2;
+            foodItems[71].totalSugars = 2;
+            foodItems[71].addedSugars = 1;
+            foodItems[71].calcium = 30;
+            foodItems[71].iron = 0.8;
+        foodItems[72] = new FoodItem("Pepsi Bottle (1.25 pt)", 0, 69, 0);
+            foodItems[72].saturatedFat = 0;
+            foodItems[72].transFat = 0;
+            foodItems[72].cholesterol = 0;
+            foodItems[72].sodium = 55;
+            foodItems[72].potassium = 490;
+            foodItems[72].dietaryFiber = 0;
+            foodItems[72].totalSugars = 69;
+            foodItems[72].addedSugars = 69;
+            foodItems[72].calcium = 0;
+            foodItems[72].iron = 0;
+        foodItems[73] = new FoodItem("Naked Green Machine", 4, 63, 0);
+            foodItems[73].saturatedFat = 0;
+            foodItems[73].transFat = 0;
+            foodItems[73].cholesterol = 0;
+            foodItems[73].sodium = 25;
+            foodItems[73].potassium = 760;
+            foodItems[73].dietaryFiber = 0;
+            foodItems[73].totalSugars = 53;
+            foodItems[73].addedSugars = 0;
+            foodItems[73].calcium = 40;
+            foodItems[73].iron = 1.4;
+            foodItems[73].vitaminA = 230;
+            foodItems[73].riboflavin = 0.3;
+            foodItems[73].magnesium = 40;
+            foodItems[73].vitaminC = 42;
+            foodItems[73].vitaminB6 = 0.4;
 
 
 
 
 
-
-
-
-
-        // Local variables
+        // array list to hold menu choices
         ArrayList<Integer> menuChoices = new ArrayList<Integer>();
 
+        // while menu loop
+        while (true)
+        {
+            // display food menu
+            displayMenu(foodItems);
 
+            // initialize menuChoices array
+            initMenuChoices(menuChoices, foodItems);
 
+            // print macro results
+            displayMacros(menuChoices, foodItems);
 
+            // ...
+            dailyMacrosArray();
 
-
-
-        // METHOD CALLS
-        // display food menu
-        displayMenu(foodItems);
-        // initialize menuChoices array
-        initMenuChoices(menuChoices, foodItems);
-        // print macro results
-        displayMacros(menuChoices,foodItems);
-        // ...
-        dailyMacrosArray();
-
-
-
-
-
-
-
+            // wait to loop again
+            System.out.println("Press enter to try again...");
+            in.nextLine();
+            menuChoices.clear();
+        }
 
 
         //-----------------------------------------/
         // ** END PROGRAM **
-        System.out.print(ANSI_RED);
+        /*System.out.print(ANSI_RED);
         System.out.print("\nProgram has ended.");
         System.out.print(ANSI_RESET);
         System.out.printf(
-                "%n%nNext on the list to do: \n" + ANSI_GREEN +
-                        "\t+ make time to add micro nutrients to the menu items." + ANSI_RESET
+                "%n%nNext on the list to do: \n"
         );
-        System.exit(99);
-    }
+        System.exit(99);*/
+
+    } // end of main method
 
 
+    // functions list
 
-
-
-
-
-
-
-    // Main methods
-    //
-    /*                  displayMenu()               */
-    public static void displayMenu(FoodItem[] arr) {
-        // function variables
-        // ...none so far.
-
+    // display menu function
+    public static void displayMenu(FoodItem[] arr)
+    {
+        // display a title
         System.out.print(ANSI_WHITE_BACKGROUND);
         System.out.print(ANSI_BLACK);
         System.out.println("\t\t\t\t\t> FOOD MENU < ");
         System.out.print(ANSI_RESET);
 
-        // print category titles
+        // print column titles
         System.out.print(ANSI_YELLOW);
         System.out.printf("    %-24s %20s  %6s %6s\n",
                 "Food Item #", "Protein", "Carb", "Fat");
@@ -423,14 +618,8 @@ public class Main {
         System.out.println("--------------------------------------------------------------------------");
 
         // loop and display food items
-        for (int i = 1; i < arr.length; i++) {
-
-            // start of Raising Cane's menu
-            if (i == 31) {
-                System.out.print("\n\\\\ Raising Cane's\n");
-
-            }
-
+        for (int i = 1; i < arr.length; i++)
+        {
             // numbering formatting
             if (i < 10) {
                 System.out.print(i + ".  ");
@@ -438,8 +627,7 @@ public class Main {
             else
                 System.out.print(i + ". ");
 
-
-            // print data
+            // print item details
             System.out.printf("%-40s %-8.0f %-6.0f %-5.0f \n",
                     // #. 'itemName' 'protein' 'carb' 'fat' "\n"
                     arr[i].getItemName(),
@@ -451,24 +639,16 @@ public class Main {
         System.out.println("----------------------------------------------------------------------------");
     }
 
-
-
-
-
-
-
-
-
-    //
-    /*                  intMenuChoices(ArrayList<Int>)               */
-    public static void initMenuChoices(ArrayList<Integer> menuChoices, FoodItem[] foodItems) {
+    // initialize menu choices function
+    public static void initMenuChoices(ArrayList<Integer> menuChoices, FoodItem[] foodItems)
+    {
         // function variables
         int choice = -1; // initialize it to false
 
         // let user know how to end loop
         System.out.println("(To end the following loop enter 0)");
 
-        // try...catch blocks
+        // do try to get a correct input from the user
         do {
             try {
                 //
@@ -478,11 +658,12 @@ public class Main {
                 // input validation
                 choice = inputValidation(choice, (foodItems.length - 1) );
 
+                // if user enters 0, end loop and calculate nutrients
                 if (choice != 0) {
                     //
-                    int numLoops = ifChoice_ServingSize(choice);
+                    int numLoops = (int) ifChoice_ServingSize(choice, foodItems[choice].getItemName());
 
-                    // necessary for loop
+                    // add choice to menu choices list
                     for (int i = 0; i < numLoops; i++) {
                         menuChoices.add(choice);
                     }
@@ -497,21 +678,14 @@ public class Main {
 
     }
 
-
-
-
-
-
-
-
     // find out how many servings ?
-    public static int ifChoice_ServingSize(int c) {
+    public static double ifChoice_ServingSize(int c, String itemName) {
         // function variables
-        int servingSize =-1;
+        double servingSize =-1;
 
         if (c > 0) {
-            System.out.print("How many: ");
-            servingSize = input.nextInt();
+            System.out.printf("How many '%s' servings: ", red + itemName + reset);
+            servingSize = input.nextDouble();
             return servingSize;
         }
         else
@@ -519,19 +693,9 @@ public class Main {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-    /*                  displayMacros(ArrayList<Int>)           */
-    public static void displayMacros(ArrayList<Integer> intArray,
-                                       FoodItem[] foodArray) {
+    // display macros function
+    public static void displayMacros(ArrayList<Integer> intArray, FoodItem[] foodArray)
+    {
         // MacroNutrients running totals
         double totalMacros = 0;
         double totalCalories = 0;
@@ -563,7 +727,7 @@ public class Main {
         double totalVitaminE = 0;
         double totalZinc = 0;
         double totalFolate = 0;
-
+        double totalMagnesium = 0;
 
 
 
@@ -600,6 +764,7 @@ public class Main {
             totalVitaminE           += foodArray[intArray.get(i)].vitaminE;
             totalZinc               += foodArray[intArray.get(i)].zinc;
             totalFolate             += foodArray[intArray.get(i)].folate;
+            totalMagnesium          += foodArray[intArray.get(i)].magnesium;
 
         }
 
@@ -649,6 +814,7 @@ public class Main {
                         "%-20s %.0fmg\n" +  // Vitamin E:
                         "%-20s %.0fmg\n" +  // Zinc:
                         "%-20s %.0fmcg\n" +  // Folate:
+                        "%-20s %.0fmcg\n" + // magnesium
                         "%s\n\n",
 
 
@@ -661,7 +827,7 @@ public class Main {
                 "---------------",
 
                 "MicroNutrients:",
-                "-----------------------",
+                "-------------------------------",
                 "Total Sugars:",        totalSugars,
                 "Added Sugars:",        totalAddedSugars,
                 "Cholesterol:",         totalCholesterol,
@@ -686,48 +852,34 @@ public class Main {
                 "Vitamin E:",           totalVitaminE,
                 "Zinc:",                totalZinc,
                 "Folate:",              totalFolate,
-                "-----------------------"
+                "Magnesium:",           totalMagnesium,
+                "-------------------------------"
                 );
     }
 
 
 
-
-
-
-
-
-
-
-
     // input validation method for array bounds
-    /*                inputValidation(int)          */
-    public static int inputValidation(int choice, int arrLength) {
-        // function variables
-        // ... none so far
-
-        while (choice < 0 || choice > arrLength) {
+    public static int inputValidation(int choice, int arrLength)
+    {
+        while (choice < 0 || choice > arrLength)
+        {
             System.out.print("Error! Enter valid food item #: ");
             choice = input.nextInt();
         }
-
         return choice;
-
     }
 
 
     // ... > incomplete <
     // this method holds an array containing E.O.D macros
-    public static void dailyMacrosArray() {
+    public static void dailyMacrosArray()
+    {
         // function variables
         int[] dailyMacros = {
                 1104 // 1/27/21 - Wednesday
         };
-
     }
-
-
-
 
 
 } // end of class MacroNutrients.java
@@ -735,24 +887,18 @@ public class Main {
 
 
 
-
-
-
-
-
-
-
-
 /*
 * Additional Notes:
-* - We need to add micro nutrients into the FoodItem.class
+* -
 *
 * */
 
 // last update : 1/27/21
-// class for food menu
-class FoodItem {
 
+
+// class for food menu
+class FoodItem
+{
     // instance variables
     private String itemName;
 
@@ -785,15 +931,12 @@ class FoodItem {
     double monounsaturatedFat; // <44 g daily limit
     double zinc;                // 11mg recommended daily amount
     double folate;              // 400 mcg daily recommendation
+    double magnesium;
 
 
 
     // constructor #0
-    FoodItem(){} // no-args
-    //
-
-
-
+    FoodItem(){}
     // constructor #1
     FoodItem(String item, double p, double c, double f) {
         itemName = item;
@@ -802,11 +945,8 @@ class FoodItem {
         fat = f;
     }
 
-
-
-
-
     // SET METHODS
+
     // set 'itemName'
     public void setItemName(String item) {
         itemName = item;
@@ -841,9 +981,8 @@ class FoodItem {
     public double getFat() { return fat; }
 
 
-
-
     // Calculation Methods
+
     // get total calories
     public double getTotalCalories() {
         return (
@@ -853,14 +992,10 @@ class FoodItem {
         );
     }
 
-
-
-
     // get total macros
     public double getTotalMacros() {
         return (protein + carb + fat);
     }
-
 
 
 } // end of class FoodItem.java
