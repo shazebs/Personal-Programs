@@ -1,73 +1,146 @@
-// library imports
-import java.io.*;
+package app;
 
-public class FilePlay
+import java.util.Scanner;
+import java.util.ArrayList; 
+
+public class example_1 
 {
-    private static int copyFile ( String inputFile, String outputFile ) {
-        // Input and Output File Read/Writer declarations
-        BufferedReader in = null;
-        BufferedWriter out = null;
+	static Scanner in = new Scanner(System.in);
 
-        try {
-            // FileReader and FileWriter class objects
-            in = new BufferedReader(new FileReader(inputFile));
-            out = new BufferedWriter(new FileWriter(outputFile));
+	// Main Method
+	public static void main(String[] args) 
+	{
+		// Scanner for user input. 
+		
+		// Instantiate a Linked tasks. 
+		ArrayList<Task> tasks = new ArrayList<>(); 
+		ArrayList<Song> songs = new ArrayList<>(); 
+		
+		System.out.println("TASKS:");
+		
+		// Add class 'ToDoItem' objects to instantiated linked tasks.  
+		/*		tasks.add(new Task(""));			*/
+		tasks.add(new Task("Car oil change."));
+		tasks.add(new Task("Car tire balance."));
+		tasks.add(new Task("Clean car."));
+		tasks.add(new Task("Go apartment searching with Mama."));
+		tasks.add(new Task("Replace retainers."));
+		tasks.add(new Task("Clear iPhone storage.")); 
+		tasks.add(new Task("Renew Fafsa"));
+		tasks.add(new Task("Quit smoking weed"));
+		tasks.add(new Task("Quit fapping"));
+		
+		// Print all tasks 
+		printTasks(tasks);
+		
+		
+		System.out.println("FALLING IN REVERSE:");
+		// track some songs
+		/*		songs.add(new Song("")); 		*/
+		songs.add(new Song("I'm Not A Vampire"));
+		songs.add(new Song("Zombified"));
+		songs.add(new Song("Drugs"));
+		songs.add(new Song("Raised By The Wolves"));
+		songs.add(new Song("Fuck You and All Your Friends"));
+		songs.add(new Song("Not Good Enough For Truth In Cliche"));
+		songs.add(new Song("Losing My Mind"));
+		songs.add(new Song("The Drug In Me You Is You"));
+		songs.add(new Song("Situations"));
+		songs.add(new Song("Just Like You"));
+		songs.add(new Song("Popular Monster"));
+		
+		// print all songs
+		printSongs(songs); 
+		
+		calcmpg(); 
+		
+	}	
+	
+	
+	// Functions 
+	
+	// print Tasks
+	public static void printTasks(ArrayList<Task> tasks)
+	{
+		int count = 0; 
+		for (Task item : tasks){
+			System.out.printf("%3d. %s\n", ++count, item.getTitle()); 
+		}
+		System.out.println(); 
+	}
+	
+	// print Songs 
+	public static void printSongs(ArrayList<Song> songs)
+	{
+		int count = 0; 
+		for (Song song : songs){
+			System.out.printf("%3d. %s\n", ++count, song.getTitle()); 
+		}
+		System.out.println(); 
+	}
+	
+	// calculate MPG trip with args
+	public static double calcmpg(double miles, double mpg, double price, String title)
+	{
+		double cost = (miles/mpg) * price; 
+		System.out.printf("\n%s\nMiles: %.2f\n  MPG: %.2f\nPrice:  %.3f\n = $%,.2f\n", 
+				title, miles, mpg, price, cost); 
+		return cost; 
+	}
+	
+	// calculate MPG trip with user input fields
+	public static void calcmpg()
+	{
+		// declare variables
+		float miles, mpg, price, cost;
+		
+		// get user input 
+		System.out.println("\nEnter miles, mpg, and price (in that order)");
+		miles = in.nextFloat(); 
+		mpg = in.nextFloat();
+		price = in.nextFloat(); 
+		
+		// calculate cost
+		cost = (miles/mpg) * price; 
+		
+		// display a result
+		System.out.printf("Cost = $%,.2f\n", cost);
+	}
+}
 
-            // variable to hold ASCII numerical character
-            String line;
 
-			/* while in-reading file object doesn't have an ASCII key of -1 (end of file),
-			 keep outputting the ASCII character to the out-writing file
-			 then return 0 if everything was successful */
-            while ((line = in.readLine()) != null)
-            {
-                String[] tokens = line.split("\\|");
-                out.write(String.format("Name is %s %s of age %s\n", tokens[0], tokens[1], tokens[2]));
-            }
-            return 0;
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return -1;
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            return -2;
-        }
-        // finally closing block for try..catch
-        finally {
-            // try to close the files upon exit
-            try {
-                if (in != null)
-                    in.close();
-                if (out != null)
-                    out.close();
-            }
-            // catch any IO exception that may be thrown and return -2
-            catch (IOException e) {
-                e.printStackTrace();
-                return -2;
-            }
-        }
-    }
-    // main method
-    public static void main(String[] args)
-    {
-        // call method to read/write files
-        int err = FilePlay.copyFile("InUsers.txt", "OutUsers.txt");
+// Classes 
 
-        // display copy file results
-        switch (err)
-        {
-            case 0:
-                System.out.println("File was copied successfully.");
-                break;
-            case -1:
-                System.out.println("File could not be opened.");
-                break;
-            case -2:
-                System.out.println("File I/O error.");
-                break;
-        }
-    }
+class Task
+{
+	// Properties 
+	private String title; 
+	
+	// Constructors
+	public Task() {}
+	
+	public Task(String title)
+	{
+		this.title = title; 
+	}
+	 
+	// Methods 
+	public String getTitle() {return this.title;}
+}
+
+
+class Song
+{
+	// properties
+	private String title; 
+	
+	// constructors
+	public Song() {this.title = "";}
+	
+	public Song(String song) {
+		this.title = song; 
+	}
+	
+	// methods
+	public String getTitle() {return this.title;}
 }
