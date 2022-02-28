@@ -3,6 +3,7 @@ package app;
 // library imports
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.*; 
 
 /**
  * 
@@ -52,7 +53,17 @@ public class Main
         System.out.println("----------------------------------------------------------"); 
         
         // initialize starting inventory
-        initializeInventory(); 
+        try {
+        	initializeInventory("InventoryItems.txt"); 
+        } 
+        catch (FileNotFoundException e) {
+        	e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+        	e.printStackTrace();
+        }
+        
         
         do 
         { 
@@ -107,10 +118,19 @@ public class Main
     /* functions */ 
     
     // utility functions 
+    /**
+     * This function prints a newline in the console output.
+     */
     public static void newline() {System.out.println();}
+    /**
+     * This function passes a whole number determining how many newlines to display in the console output.
+     * @param x
+     */
     public static void newline(int x) { for(int i=0;i<x;i++) newline(); }
     
-    // print menu function 
+    /**
+     * This function prints the main menu.  
+     */
     public static void printMenu()
     {
     	System.out.println("-- MAIN MENU --\nMake a selection:\n" +
@@ -120,6 +140,9 @@ public class Main
     						"(4) : Exit"); 
     }
     
+    /**
+     * This function prints the all items in the inventory list.
+     */
     public static void printInventory()
     {
     	System.out.println("----------------------------------------------------------"); 
@@ -133,6 +156,9 @@ public class Main
     	System.out.println("----------------------------------------------------------");
     }
     
+    /**
+     * This function prints all the items in the shopping cart.
+     */
     public static void printShoppingCart()
     {
     	System.out.println("----------------------------------------------------------"); 
@@ -146,7 +172,9 @@ public class Main
     }
     
     
-    // view store inventory function 
+    /**
+     * This item deals with adding items from inventory list to shopping cart.
+     */
     public static void viewInventory()
     {
     	// local function variables
@@ -209,7 +237,9 @@ public class Main
     }
     
     
-    // view shopping cart function 
+    /**
+     * This function deals with the shopping cart operations. 
+     */
     public static void viewCart()
     {
     	// local function variables
@@ -344,7 +374,9 @@ public class Main
     }
     
     
-    // manage store inventory function 
+    /**
+     * This function deals with managing inventory operations.
+     */
     public static void manageInventory()
     {
     	// local function variables
@@ -519,65 +551,87 @@ public class Main
     }
     
     
-    // initialize starting inventory function
-    public static void initializeInventory()
+    /**
+     * Pass a name for a text file and parse its contents to add a new inventory item to the list. 
+     * @param inputFile
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
+    public static void initializeInventory(String inputFile) throws FileNotFoundException, IOException
     {
-    	// create 2 Weapon objects
-    	Sword sword = new Sword(); 
-    	sword.setName("Jaithys, the Prison Blade");
-    	sword.setDescription("224-374 Damage");
-    	sword.setPrice(15370.46);
-    	sword.iLvl = 259;
-    	sword.type = "Sword"; 
-    	products.add(sword); 
-    	// weapons.add(sword); 
-    	// 
-    	Bow bow = new Bow(); 
-    	bow.setName("Rae'shalare, Death's Whisper");
-    	bow.setDescription("212-287 Damage");
-    	bow.setPrice(23226.85);
-    	bow.iLvl = 233;
-    	bow.type = "Bow"; 
-    	products.add(bow);    
     	
-    	    	
-    	// create 2 Armor objects
-    	Shield shield = new Shield(); 
-    	shield.setName("Guard of the Sundered Defender"); 
-    	shield.setDescription("1,992 Block");
-    	shield.setPrice(8016.86);
-    	shield.iLvl = 259;
-    	shield.type = "Shield"; 
-    	products.add(shield); 
-    	// armors.add(shield);    	
-    	//
-    	Helmet helmet = new Helmet(); 
-    	helmet.setName("Dark Tormentor's Gaze"); 
-    	helmet.setDescription("195 Armor");
-    	helmet.setPrice(6321.23);
-    	helmet.iLvl = 252;
-    	helmet.type = "Helmet"; 
-    	products.add(helmet); 
-    	// armors.add(helmet); 
+    	// Input and Output File Read declaration
+        BufferedReader in = null;
+
+        // FileReader class object
+        in = new BufferedReader(new FileReader(inputFile));
     	
-    	    	
-    	// create 2 Health objects
-    	Potion potion = new Potion(); 
-    	potion.setName("Spiritual Healing Potion");
-    	potion.setDescription("Restores 10,000 HP");
-    	potion.setPrice(50.00);
-    	potion.iLvl = 0;
-    	potion.type = "Potion"; 
-    	products.add(potion);
-    	// healths.add(potion); 
-    	//
-    	Food food = new Food(); 
-    	food.setName("Mon'Dazi");
-    	food.setDescription("Restores 7,692 HP");
-    	food.setPrice(200.00);
-    	food.iLvl = 0;
-    	food.type = "Food"; 
-    	products.add(food); 
-    	// healths.add(heal); 
+        // to hold line of file 
+        String line;
+        
+        while ((line = in.readLine()) != null)
+        {
+        	String[] tokens = line.split("\\|");
+        	
+        	switch(tokens[0])
+        	{
+        		case "Sword": 
+        			Sword newSword = new Sword();  
+        			createNewItem(tokens, newSword); 
+        			break;
+        			
+        		case "Bow": 
+        			Bow newBow = new Bow();  
+        			createNewItem(tokens, newBow);
+        			break;
+        			
+        		case "Shield": 
+        			Shield newShield = new Shield();  
+        			createNewItem(tokens, newShield);
+        			break;
+        			
+        		case "Helmet": 
+        			Helmet newHelmet = new Helmet();  
+        			createNewItem(tokens, newHelmet);
+        			break;
+        			
+        		case "Potion": 
+        			Potion newPotion = new Potion();  
+        			createNewItem(tokens, newPotion);
+        			break;
+        			
+        		case "Food": 
+        			Food newFood = new Food();  
+        			createNewItem(tokens, newFood);
+        			break;
+        	}
+        }
+        
+        // clean up files
+        try {
+        	if (in != null) 
+        		in.close(); 
+        } catch (IOException e) {
+        	e.printStackTrace();
+        }
+    	
+    }
+    
+    /**
+     * Create a new SalableProduct and add it to the inventory list. 
+     * @param tokens
+     * @param product
+     */
+    public static void createNewItem(String[] tokens, SalableProduct product)
+    {
+    	// initialize object's properties
+    	product.setType(tokens[0]);
+    	product.setName(tokens[1]);
+    	product.setDescription(tokens[2]);
+    	product.setPrice(Double.parseDouble(tokens[3]));
+    	product.setItemLevel(Integer.parseInt(tokens[4]));
+    	
+    	// add object to inventory list
+    	products.add(product); 
     }
 }
