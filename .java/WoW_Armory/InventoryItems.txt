@@ -1,0 +1,8 @@
+Sword|Jaithys, the Prison Blade|224-374 Damage|15370.46|259
+Bow|Rae'shalare, Death's Whisper|212-287 Damage|23226.85|233
+Shield|Guard of the Sundered Defender|1,992 Block|8016.86|259
+Helmet|Dark Tormentor's Gaze|195 Armor|6321.23|252
+Potion|Spiritual Healing Potion|Restores 10,000 HP|50.00|0
+Food|Mon'Dazi|Restores 7,692 HP|200.00|0
+Sword|Great-Sword|100 Damage|999.00|69
+Shield|Large Shield|2000 Block|655.99|15
