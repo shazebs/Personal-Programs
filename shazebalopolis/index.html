@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- start of head -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <title>Shazeb's Webpage</title> <!-- Webpage tab text goes here -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- link to page's javascript-->
+    <script src="javascriptalopolis.js"></script>
+
+    <!-- tab icon -->
+    <link rel="icon" href="https://i.gifer.com/8Ums.gif">
+
+    <!-- <link rel="icon" href="https://cdn.icon-icons.com/icons2/2620/PNG/512/among_us_player_red_icon_156942.png"> -->
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="css/index.css" />
+
+    <!-- additional styles -->
+    <!-- Falling in Reverse white logo -->
+    <!-- background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_ptCidq9c2kvxFydSO4RJfNJP40qui43gQA&usqp=CAU); -->
+
+    <style>
+
+    </style>
+
+</head>
+<!-- end of head -->
+
+
+
+<!-- /////////////////////////////////// Start of Body ////////////////////////////////// -->
+<!-- -->
+<!-- background-image: url(https://pbs.twimg.com/media/EaRZs8OXQAAs1wD.jpg:large); -->
+<!-- background-image:url(https://scx2.b-cdn.net/gfx/news/hires/2020/5e677f5397ada.jpg); -->
+<!-- background-image:url(https://orsted.com/-/media/www/images/corp/campaign/spacesafari/space-safari-background.png); -->
+<!-- background-image:url(https://i.redd.it/c1wq7vbdn2h11.jpg); -->
+<!-- background-image:url(https://images4.alphacoders.com/936/thumb-1920-936378.jpg); -->
+<!-- background-image:url(https://www.lockheedmartin.com/content/dam/lockheed-martin/space/photo/exploration/Earth_Moon_Mars.jpg.pc-adaptive.full.medium.jpeg); -->
+
+<!-- start of body -->
+
+<body>
+
+    <!-- create scrolling status bar here -->
+    <div class="progress">
+        <div></div>
+    </div>
+    <!-- progress bar javascript -->
+    <script>
+        const bar = document.querySelector(".progress div");
+        // scroll event handler function 
+        addEventListener("scroll", function () {
+            let max = document.body.scrollHeight - innerHeight;
+            let percent = (pageYOffset / max) * 100;
+            bar.style.width = percent + "%";
+        });
+    </script>
+
+    <!-- webpage author -->
+    <!-- <br> -->
+    <p><span style="background-color:rgba(0, 0, 0, 0.50);">Author: Shazeb Suhail</span></p>
+
+    <!-- webpage title -->
+    <h1>
+        <i><span style="background-color:rgba(0, 0, 0, 0.50);">Welcome to Shazebalopolis</span></i></h1>
+    <hr>
+
+    <!-- main menu heading -->
+    <p><span style="background-color:white; color:black; margin-bottom:10px">Main Menu: (Click a button)</span></p>
+
+
+
+    <!-- Rotating Earth -->
+    <!-- action="RotatingEarth.html" method="get" target="_blank" -->
+
+    <!-- time-clock -->
+    <button id="time_clock">
+        <!-- The Earth -->
+        <!-- <img src="https://cdn.freelogovectors.net/wp-content/uploads/2017/05/Earth.png" style="position:relative; width:50px; margin-top:15px" id="earthImg">      -->
+
+        <div class="flexThings">
+            <!-- flying saucer gif -->
+            <img src="https://img1.picmix.com/output/stamp/normal/4/2/8/3/593824_91c68.gif"
+                style="position:relative; width:50px; margin-top:15px" id="earthImg">
+            <script>
+                var rotObj = document.querySelector("img")
+                var angle = 0,
+                    lastTime = null;
+
+                function animate(time) {
+                    angle += (time - lastTime) * 0.001;
+                    lastTime = time;
+                    rotObj.style.top = (Math.sin(angle) * 3) + "px";
+                    rotObj.style.left = (Math.cos(angle) * 85) + "px";
+                    requestAnimationFrame(animate);
+                }
+                requestAnimationFrame(animate);
+            </script>
+
+            <div class="flex-inline">
+                <div id="currentDate" onload="setDate()"></div>
+                <div id="currentTime"></div>
+            </div>
+
+            <script>
+                var today = new Date();
+                var date = (today.getMonth() + 1) + '-' +
+                    today.getDate() + '-' +
+                    today.getFullYear();
+                // console.log(date);
+                var element = document.getElementById("currentDate");
+                element.textContent = date + " |";
+
+                // LIVE RUNNING CLOCK!!! 
+                function time() {
+                    var d = new Date()
+                    var h = d.getHours()
+                    if (h > 12) h -= 12
+                    var m = d.getMinutes()
+                    var s = d.getSeconds()
+                    // get id for output
+                    var id = document.getElementById('currentTime')
+                    var textDate = document.getElementById('currentTime')
+                    var clockOn = false;
+                    id.textContent = h + ':' + m + ':' + s
+                }
+                setInterval(time, 0000)
+            </script>
+        </div>
+    </button>
+
+
+    <!-- days between dates button -->
+    <center>
+        <details id="days" class="iFrame" align="center">
+            <summary>Days Between Dates Calculator</summary>
+            <iframe src="http://www.shazebs.com/days.html"></iframe>
+        </details>
+    </center>
+
+    <!-- days between dates button -->
+    <center>
+        <details id="hw" class="iFrame" align="center">
+            <summary>GCU Homework</summary>
+            <iframe src="http://www.shazebs.com/hw.html"></iframe>
+        </details>
+    </center>
+
+    <!-- boxed calendar -->
+    <center>
+        <details id="boxCalendar" class="iFrame" align="center">
+            <summary>Boxed Calendar</summary>
+            <iframe src="boxes.html"></iframe>
+        </details>
+    </center>
+    
+    <!-- web-timelines -->
+    <center>
+        <details id="web" class="iFrame" align="center">
+            <summary>Web-Timelines</summary>
+            <iframe src="web.html"></iframe>
+        </details>
+    </center>
+
+
+    <!-- days between dates widget -->
+    <!-- <form action="days.html" method="get" target="_self">
+        <button style="width:300px; 
+                       height:100px; 
+                       background:black; 
+                       color:black; 
+                       font-size:140%;
+                       background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUs6UgexaE7i2Niz_qMWTBtT6OAAsU5DdXnw&usqp=CAU); 
+                       background-size:65%; 
+                       background-repeat: repeat-x; 
+                       text-align: center; 
+                       background-position: center; 
+                       font-family: monospace; ">
+            <b style="background:lightcoral">Days Between Dates <span style="color:white">Calculator</span></b>
+        </button>
+    </form> -->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Hourly Schedule Button -->
+    <form action="schedule.html" method="get" target="_self">
+        <button class="hourly"><span style="margin-left:15px">Hourly Schedule</span>
+        </button>
+    </form>
+
+
+
+
+    <!-- /////////////////////////////// Twitch Button ///////////////////////////// -->
+
+    <!-- background-image:url(https://www.graphis.com/media/uploads/cfe/entry/a6403de8-e17e-46b1-8e34-e97371714ab4/01_twitch_logo1.jpg); -->
+    <form action="https://www.twitch.tv/sapherons" method="get" target="_blank">
+        <button style="background:black; 
+                    width:300px; 
+                    height:100px; 
+                    background-image:url(https://blog.twitch.tv/assets/uploads/generic-email-header-1.jpg);
+                    background-size: 100%; 
+                    background-repeat: no-repeat;
+                    background-position: center">
+            <!-- 
+        <p style="color:white">
+            <a href="https://www.twitch.tv/sapherons" style="color:rebeccapurple; font-size: 200%" target="_blank" 
+               title="twitch.tv/sapherons">
+            Twitch.tv
+            </a>
+        </p> -->
+        </button></form>
+
+
+
+    <!-- <form action="hw.html" method="get" target="_self">
+        <button class="itinerary"><b style="margin-left:60px;"><span
+                    style="color:#d429e3; font-weight:bolder;">GCU</span> Homework</b></button>
+    </form> -->
+
+
+
+
+
+
+    <!-- //////////////////////////////////// Youtube Button ///////////////////////////////////-->
+
+    <form action="https://www.youtube.com/" method="get" target="_blank">
+        <button style="background:white;
+                   background-image:url(https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Logo_of_YouTube_%282015-2017%29.svg/1280px-Logo_of_YouTube_%282015-2017%29.svg.png); 
+                   background-size:contain;
+                   background-size: 60%;
+                   background-repeat: no-repeat;
+                   background-position: center;
+                   width:300px; 
+                   height:100px;">
+            <!-- 
+        <p style="color:white; font-size: 200%">Youtube
+        <span style="color:yellow; font-size:50%">
+            <br>(This feature is not yet available)
+        </span></p> -->
+        </button></form>
+
+
+
+    <!-- //////////////////////////// GCU Vlogs Button ///////////////////////////// -->
+
+    <form action="http://shazebs.com/homepage.html" method="get" target="_self">
+        <button class="GCU">
+            <b style="font-family:monospace; font-size:150%;">Home</b>
+        </button>
+    </form>
+
+
+
+    <!-- /////////////////////////////////// Github Button ////////////////////////////////// -->
+
+    <!-- background-image: url(https://www.dsxhub.org/wp-content/uploads/2021/03/DataLab_-_Chapitre_0_-_Fabriquer_sa_station_de_mesure_connect_e_github-logo-640x320-1.png); -->
+    <form action="https://github.com/shazebs/Personal-Programs" method="get" target="_blank">
+        <button style="background:black; 
+                   width:300px; 
+                   height:100px; 
+                   background-image:url(https://ih1.redbubble.net/image.981584875.3083/flat,750x,075,f-pad,750x1000,f8f8f8.jpg);
+                   background-size: 105%; 
+                   background-repeat: no-repeat;
+                   background-position: center" title="github.com/shazebs/personal-programs" type="submit">
+            <!-- 
+        <p style="color:black; font-size:150%">
+            <a href="https://github.com/shazebs/Personal-Programs" style="color:blue; font-size:150%" target="_blank">
+                Github </a>
+        </p> -->
+        </button></form>
+
+
+
+    <!-- LinkedIn Button -->
+    <form action="https://www.linkedin.com/in/shazebs/" method="get" target="_blank">
+
+        <button class="linkedin">LinkedIn
+            <img class="graphic-icon"
+                src="https://cliply.co/wp-content/uploads/2021/02/372102050_LINKEDIN_ICON_TRANSPARENT_400.gif">
+        </button>
+    </form>
+
+
+
+
+    <!-- ////////////////////////////////// Juice WRLD Tribute Button ///////////////////////////////// -->
+
+    <form action="juiceWRLD.html" method="get" target="_self">
+        <button style="width:300px; height:100px;
+                   
+                   background-image: url(https://media.pitchfork.com/photos/5b44ddb642074f59ca4a9827/2:1/w_790,h_395,c_limit/Juice%20WRLD%20and%20Lil%20Uzi%20Vert.png); 
+                   
+                   background-size:cover">
+
+            <p style="color:red; font-size:185%"><b style="background-color: aliceblue">Juice WRLD<br>Tribute</b><br>
+                <!-- <span style="color:black; font-size:66%; background-color: yellow">(This feature is not yet available)</span> -->
+            </p>
+        </button>
+    </form>
+
+
+    <!-- //////////////////////////// Lil Peep Tribute Button ////////////////////////////// -->
+
+    <form action="peep.html" method="get" target="_self">
+        <button class="lilpeep" style="background-image: url(images/lil_peep.png);">Tribute<br>
+            <!-- <span style="font-size:30%; color:white; background:#d246eb;">(Feature not yet available)</span> -->
+        </button>
+    </form>
+
+
+
+
+
+
+
+
+    <!-- Calendar Button -->
+    <form action="calendar.html" method="get" target="_self">
+        <button class="calendar">
+            <div style="border:3px solid black">2021 CALENDAR</div>
+        </button>
+    </form>
+
+
+
+
+    <!-- Groceries List Button -->
+    <form action="groceries.html" method="get" target="_self">
+        <div id="overlayGroceries">
+            <button class="groceries">Groceries List</button>
+        </div>
+    </form>
+
+
+
+    <form action="coding_notes.html" method="get" target="_self">
+        <button class="codingNotes">Coding Notes</button>
+    </form>
+
+
+
+
+
+
+
+    <!-- Immortality Button  
+    <form action="rickrollpage.html" method="get" target="_self">
+        <button class="immortality">
+            Click Here for Immortality
+    </button>
+    </form> -->
+
+
+
+
+
+
+
+    <!-- ////////////////////////////// Classic World Rugs Button ///////////////////////////// -->
+
+    <form action="https://classicworldrugs.com/" method="get" target="_blank">
+        <button class="g2mamu">
+        </button>
+    </form>
+
+
+
+
+    <!-- ////////////////////////////// Falling in Reverse Button //////////////////////////// -->
+
+    <button class="ronnie" onclick="radke()">
+    </button>
+    <br>
+
+
+
+    <!-- ///////////////////////////// Fitness Journey Button ////////////////////////////////-->
+    <button style="width:300px; height:100px; 
+                   background-size:cover;
+                   background-color:lightslategrey;
+                   background-image:url(https://previews.123rf.com/images/fredex8/fredex81505/fredex8150500080/39505904-under-construction-tape-background.jpg);
+                   background-position: left;" onclick="fitnessJourney();">
+
+        <p style="color:black; font-size:200%;"><b style="background:black; color:lightgreen">Fitness Journey</b><br>
+            <span style="color:white; background:black; font-size:66%;">(This feature is not yet available)</span></p>
+    </button><br>
+
+
+
+    <!-- Twitter Button -->
+    <form action="tweeter.html" method="get" target="_blank">
+        <button class="tweeter">
+        </button>
+    </form>
+
+
+
+    <!-- ////////////////////////////////// Instagram Button ////////////////////////////// -->
+
+    <form action="https://www.instagram.com/shazebs" method="get" target="_blank">
+        <button style="background:white; 
+                    width:300px; 
+                    height:100px; 
+                    background-image:url(https://www.logogenie.net/images/articles/instagram-logo2.jpg);
+                    background-size: 135%; 
+                    background-repeat: no-repeat;
+                    background-position: center">
+        </button>
+    </form>
+
+
+
+
+
+
+    <!-- Scratch-Pad     -->
+    <center><textarea style="width:300px; height:100px; position:inherit;">Scratch-Pad:</textarea></center>
+
+    <!-- Test Button -->
+    <br><br>
+    <button onclick="test_button()">Test Button</button><br><br>
+
+
+    <!-- Site Last Updated Tag -->
+    <br>
+    <span style="background-color: black">
+        (site last updated <span style="color:white">7/21/21</span> 10:33 PM) </span><br><br>
+
+
+
+    <script>
+        window.onload = function() {
+            document.querySelectorAll('details').toggle();
+            
+        // Fetch all the details element.
+        const details = document.querySelectorAll("details");
+        
+        // Add the onclick listeners.
+        details.forEach((targetDetail) => {
+          targetDetail.addEventListener("click", () => {
+            // Close all the details that are not targetDetail.
+            details.forEach((detail) => {
+              if (detail !== targetDetail) {
+                detail.removeAttribute("open");
+              }
+            });
+          });
+        });
+        }
+    </script>
+
+
+
+
+    <!-- ////////////////////////// ** Test Output ** /////////////////////////// -->
+
+    <!-- <span style="color:lawngreen">The following section is test code:</span> -->
+
+    <!-- Macronutrients Button 
+    <button>Macronutrients Calculator</button><br>  -->
+
+    <!-- iFrame 
+    <iframe src="https://www.instagram.com/"></iframe><br> -->
+
+    <!-- ** TEST OUTPUT ** 
+    <br><br> 
+    
+    Username: <input type="password"><br>
+    <input type="radio" /> Bulls<br>
+    
+    <select multiple="multiple">
+        <option>Macronutrients</option>
+        <option>DaysBetweenDates</option>
+        <option>Twitch</option>
+        <option>Youtube</option>
+        <option>Basketball Highlights</option>
+    </select><br><br> -->
+
+    <!-- <input type="file" /><br> -->
+
+    <!-- <input type="submit" /> -->
+
+
+    <hr>
+    <p style="color:navajowhite; font-size:70%; font-family: arial">
+        <span style="background-color: black;">End of Webpage.</span></p>
+</body>
+
+
+
+</html>
