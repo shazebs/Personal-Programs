@@ -3,6 +3,8 @@ package app;
 // library imports
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.io.*; 
 
 /**
@@ -25,18 +27,12 @@ public class Main
     public static final String cyan = "\u001B[36m";
     public static final String white = "\u001B[37m";
     
-    
     // global arrays 
     static ArrayList<SalableProduct> products = new ArrayList<>(); 
     static ArrayList<SalableProduct> shoppingCart = new ArrayList<>(); 
-    // 
-    /* static ArrayList<Weapon> weapons = new ArrayList<>(); 
-    static ArrayList<Armor> armors = new ArrayList<>(); 
-    static ArrayList<Health> healths = new ArrayList<>(); */
     
     // Scanner object
     static Scanner in = new Scanner(System.in);
-    
     
     /**
      * Main driver method. 
@@ -52,7 +48,7 @@ public class Main
         System.out.println("-- Welcome to the World of Warcraft (WoW) Armory store! --");
         System.out.println("----------------------------------------------------------"); 
         
-        // initialize starting inventory
+        // initialize starting inventory using a file read 
         try {
         	initializeInventory("InventoryItems.txt"); 
         } 
@@ -64,7 +60,7 @@ public class Main
         	e.printStackTrace();
         }
         
-        
+        // main program loop 
         do 
         { 
         	newline(); 
@@ -145,13 +141,11 @@ public class Main
      */
     public static void printInventory()
     {
-    	System.out.println("----------------------------------------------------------"); 
-        // loop and display all items in inventory 
+    	// loop and display all inventory items  
     	int count = 0; 
-    	for (SalableProduct item : products)
-    	{
-    		count++; 
-    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
+    	System.out.println("----------------------------------------------------------"); 
+    	for (SalableProduct item : products){
+    		System.out.printf("-- Item #%d --\n%s%n", ++count, item); 
     	}
     	System.out.println("----------------------------------------------------------");
     }
@@ -161,12 +155,11 @@ public class Main
      */
     public static void printShoppingCart()
     {
-    	System.out.println("----------------------------------------------------------"); 
-        // loop and display shopping cart items
+    	// loop and display all shopping cart items
         int count = 0; 
-    	for (SalableProduct item : shoppingCart) {
-    		count++; 
-    		System.out.printf("-- Item #%d --\n%s%n", count, item); 
+        System.out.println("----------------------------------------------------------"); 
+    	for (SalableProduct item : shoppingCart){
+    		System.out.printf("-- Item #%d --\n%s%n", ++count, item); 
     	}
     	System.out.println("----------------------------------------------------------"); 
     }
@@ -186,22 +179,55 @@ public class Main
     		System.out.println("Inventory is empty."); 
     	else 
     		System.out.println("Here are all " + inventoryItems + " items in the inventory:");
-    	
-    	
         printInventory(); 
     	
-    	
-    	// try adding items from inventory into shopping cart 
+    	// if inventory is not empty  
         if (inventoryItems != 0)
         {
-        	try 
+        	try // adding items from inventory to shopping cart 
         	{
-        		System.out.println("Would you like to purchase an item (y/n): ");
-            	userChoice = in.next().charAt(0);
+        		// ask user if he/she would like to sort the list 
+        		System.out.println("Would you like to SORT the list (y/n): ");
+        		userChoice = in.next().trim().charAt(0); 
+        		if (userChoice == 'y')
+        		{
+        			System.out.println("-- Pick a Sort Filter --\n"
+        					+ "a) Ascending by Name\n"
+        					+ "b) Ascending by Price\n"
+        					+ "c) Descending by Name\n"
+        					+ "d) Descending by Price");
+        			userChoice = in.next().trim().charAt(0); 
+        			switch(userChoice)
+        			{
+        				case 'a':
+        					sortBy(1, "name", products, "inventory");
+        					break;
+        					
+        				case 'b':
+        					sortBy(1, "price", products, "inventory");
+        					break;
+        					
+        				case 'c':
+        					sortBy(-1, "name", products, "inventory");
+        					break;
+        					
+        				case 'd':
+        					sortBy(-1, "price", products, "inventory");
+        					break;
+        					
+        				default:
+        					System.out.println("You entered something invalid, no sorting will happen.");
+        					break;
+        			}
+        		}
+        		
+        		// ask user if he/she would like to purchase an item and get their input
+        		System.out.println("Would you like to PURCHASE an item (y/n): ");
+            	userChoice = in.next().trim().charAt(0);
             	
             	// keep looping if user wants to add more items to shopping cart 
-            	while (userChoice == 'y')
-            	{ 
+            	while (userChoice == 'y'){ 
+            		// prompt user for input on next item to add to shopping cart 
             		System.out.println("Enter the Item # you want to purchase:"); 
             		int itemChosen = in.nextInt();
             		
@@ -210,15 +236,15 @@ public class Main
             		// and remove it from inventory 
             		products.remove(itemChosen-1);
             		
-            		// if all products have been removed, exit. 
+            		// if all products have been removed, exit this loop. 
             		if (products.size() == 0) {
             			System.out.println("The inventory is now empty. You might have some items in your shopping cart."); 
             			break; 
             		}
-            		
+            		// ask user if he/she wants to add more items to their shopping cart from the inventory list
             		System.out.println("You added Item #" + itemChosen + " to your cart. Add another? (y/n):");
             		userChoice = in.next().charAt(0);
-            		
+            		// if user agrees, print the inventory list and loop again 
             		if (userChoice == 'y') printInventory();
             	} 
             	
@@ -229,11 +255,13 @@ public class Main
             		System.out.println("You chose not to buy anything.");
             	
         	}
+        	// this block alerts user of any error that may have occurred during this process
         	catch (Exception e) {
         		System.err.println("You entered something invalid, back to main menu you go."); 
         	}
         }
-    	in.nextLine(); // fix any scanner input errors 
+        // fix any scanner input errors and exit this function 
+    	in.nextLine(); 
     }
     
     
@@ -251,44 +279,80 @@ public class Main
     		System.out.println("Your shopping cart is empty."); 
     	else 
     		System.out.println("Your shopping cart has " + cartItems + " items.");
-    	
-
         printShoppingCart(); 
-    	
-    	
-    	// See if user wants to purchase items or remove items
+
+    	// if the inventory is not empty 
     	if (cartItems != 0) 
     	{
-	    	try 
-	    	{
-	    		System.out.println("-- SHOPPING CART MENU --\nMake a selection:\n(a) Purchase all items\n(b) Remove an item from cart\n(c) Clear entire cart\n(d) Cancel\n"); 
+    		// ask user if he/she would like to sort the list 
+    		System.out.println("Would you like to SORT the list (y/n): ");
+    		userChoice = in.next().trim().charAt(0); 
+    		if (userChoice == 'y')
+    		{
+    			System.out.println("-- Pick a Sort Filter --\n"
+    					+ "a) Ascending by Name\n"
+    					+ "b) Ascending by Price\n"
+    					+ "c) Descending by Name\n"
+    					+ "d) Descending by Price");
+    			userChoice = in.next().trim().charAt(0); 
+    			switch(userChoice)
+    			{
+    				case 'a':
+    					sortBy(1, "name", shoppingCart, "cart");
+    					break;
+    					
+    				case 'b':
+    					sortBy(1, "price", shoppingCart, "cart");
+    					break;
+    					
+    				case 'c':
+    					sortBy(-1, "name", shoppingCart, "cart");
+    					break;
+    					
+    				case 'd':
+    					sortBy(-1, "price", shoppingCart, "cart");
+    					break;
+    					
+    				default:
+    					System.out.println("You entered something invalid, no sorting will happen.");
+    					break;
+    			}
+    		}
+    		
+    		// see if user wants to purchase items or remove items from shopping cart 
+	    	try {
+	    		System.out.println("-- SHOPPING CART MENU --\n"
+	    				+ "Make a selection:\n"
+	    				+ "(a) Purchase all items\n"
+	    				+ "(b) Remove an item from cart\n"
+	    				+ "(c) Clear entire cart\n"
+	    				+ "(d) Cancel\n"); 
 	    		userChoice = in.next().charAt(0);
 	    		
 	    	} catch (Exception e) {
 	    		System.err.println("You entered something invalid, back to main menu you go.");
 	    	}
 	    		
+	    	// switch to a correct shopping cart process depending on user's input 
     		switch(userChoice)
     		{
-    		
+    			// if user chooses to purchase all items in the cart, execute these instructions 
 	    		case 'a': 
 	    			System.out.println("You chose to purchase all items!"); 
 	    			
-	    			// sum up total for shopping cart 
+	    			// sum up total for shopping cart and print the purchase total
 	    			double total = 0.00; 
-	    			for (SalableProduct item : shoppingCart) {
-	    				total = total + item.getPrice(); 
-	    			}
+	    			for (SalableProduct item : shoppingCart) { total = total + item.getPrice(); }
 	    			System.out.printf("You spent $%,.2f at the WoW Armory. Thank You, please come again!%n", total); 
 	    			
-	    			// get names of all items in shopping cart 
+	    			// array to hold names of all items in shopping cart 
 	    			String[] productNames = new String[shoppingCart.size()]; 
+	    			
 	    			int it = 0; 
-	    		    for (SalableProduct cartItem : shoppingCart) {
-	    		    	productNames[it] = cartItem.getName(); 
-	    		    	it++; 
-	    		    }
-	    			// remove all items from shopping cart and inventory
+	    			// loop through shopping cart and add each item's name to a list
+	    		    for (SalableProduct cartItem : shoppingCart) { productNames[it++] = cartItem.getName(); }
+	    		    
+	    			// using the names in the list, remove those items from the main inventory 
 	    		    for (String name : productNames) {
 	    		    	for (SalableProduct product : products) {
 	    		    		if (product.getName() == name) {
@@ -297,10 +361,12 @@ public class Main
 	    		    		}
 	    		    	}
 	    		    }
+	    		    // and finally, clear the shopping cart list
 	    			shoppingCart.clear();
 	    			break;
 	    			
 	    			
+	    		// if user chooses to remove items from their cart, execute these instruction	
 	    		case 'b':
 	    			System.out.println("You chose to remove an item from cart."); 
 	    			
@@ -310,41 +376,46 @@ public class Main
 	    	    		// while cart is not empty 
 	    	    		while(shoppingCart.size() != 0)
 	    	    		{
-	    	    			// get input from the user on which item # to remove from cart 
+	    	    			// get input from the user on which item # to remove from shopping cart 
 	    	    			System.out.println("Enter the Item # you want to remove: ");
 	    	    			int removeItem = in.nextInt(); 		
 	    	    			
-	    	    			// add removed shopping cart item back into inventory
+	    	    			// add removed shopping cart item back into main inventory list
 	    	    			products.add(shoppingCart.get(removeItem-1)); 
-	    	    			// then remove item from shopping cart 
+	    	    			// then remove item from shopping cart list
 	    	    			shoppingCart.remove(removeItem-1); 
 	    	    			
 	    	    			// display a successful item removal message 
 	    	    			System.out.println("You removed Item #" + removeItem + " from shopping cart."); 
 	    	    			
-	    	    			// ask if user wants to remove more items 
+	    	    			// if the shopping cart list is not empty yet 
 	    	    			if (shoppingCart.size() != 0) 
 	    	    			{
+	    	    				// ask user if he/she wants to remove another item from shopping cart list
 	    	    				System.out.println("Want to remove another item? (y/n): "); 
 	    	    				char decision = in.next().charAt(0); 
+	    	    				
+	    	    				// if yes, print all shopping cart items and repeat the loop 
 	    	    				if (decision != 'y') break; 
 	    	    				else 
 	    	    					printShoppingCart(); 
 	    	    			}
 	    	    		}
 	    	        	
-	    	        	// end of purchasing items message
+	    	        	// if shopping cart is not empty, print a message to the user 
 	    	        	if (shoppingCart.size() == 0)
 	    	        		System.out.println("Your shopping cart is now empty.");		
 	    	        	else 
 	    	        		System.out.println("Returning to Main Menu. Please re-view your shopping cart to see your updated cart items."); 
 	    	    	}
+	    	    	// lets user know of any errors, if any do occur
 	    	    	catch (Exception e) {
 	    	    		System.err.println("You entered something invalid, back to main menu you go."); 
 	    	    	}
 	    			break;
 	    			
 	    			
+	    		// if user wants to remove all items from the shopping cart, execute these instructions
 	    		case 'c':
 	    			System.out.println("You chose to clear entire cart."); 
 	    			
@@ -369,8 +440,8 @@ public class Main
 	    			break; 
     		}	    	
     	}
-    	
-    	in.nextLine(); // fix any scanner input errors 
+    	// fix any scanner input errors
+    	in.nextLine();  
     }
     
     
@@ -383,25 +454,79 @@ public class Main
     	int inventoryItems = products.size(); 
     	char userChoice; 
     	
+    	// print the number of items in the inventory list
     	if (inventoryItems == 0)
     		System.out.println("Inventory is empty. You cannot manage this list right now."); 
     	else 
     		System.out.println("Inventory has " + inventoryItems + " items.");
-    	
-    	
     	printInventory(); 
+    	
+    	
     	try 
     	{
-    		System.out.println("-- INVENTORY MANAGER MENU --\nMake a selection:\n(a) Add an item\n(b) Remove an item \n(c) Clear entire inventory\n(d) Cancel\n"); 
+    		// ask user if he/she would like to sort the list 
+    		System.out.println("Would you like to SORT the list (y/n): ");
+    		userChoice = in.next().trim().charAt(0); 
+    		if (userChoice == 'y')
+    		{
+    			System.out.println("-- Pick a Sort Filter --\n"
+    					+ "a) Ascending by Name\n"
+    					+ "b) Ascending by Price\n"
+    					+ "c) Descending by Name\n"
+    					+ "d) Descending by Price");
+    			userChoice = in.next().trim().charAt(0); 
+    			switch(userChoice)
+    			{
+    				case 'a':
+    					sortBy(1, "name", products, "inventory");
+    					break;
+    					
+    				case 'b':
+    					sortBy(1, "price", products, "inventory");
+    					break;
+    					
+    				case 'c':
+    					sortBy(-1, "name", products, "inventory");
+    					break;
+    					
+    				case 'd':
+    					sortBy(-1, "price", products, "inventory");
+    					break;
+    					
+    				default:
+    					System.out.println("You entered something invalid, no sorting will happen.");
+    					break;
+    			}
+    		}
+    		
+    		// print the sub-menu for inventory manager component
+    		System.out.println("-- INVENTORY MANAGER MENU --\n"
+    				+ "Make a selection:\n"
+    				+ "(a) Add an item\n"
+    				+ "(b) Remove an item \n"
+    				+ "(c) Clear entire inventory\n"
+    				+ "(d) Cancel\n"); 
     		userChoice = in.next().charAt(0);
     		
+    		// switch to the correct inventory item process 
     		switch (userChoice)
     		{
+    		
+    		// if user wants to add an item to the inventory, execute these instructions
     		case 'a': 
     			System.out.println("You chose to add an item to the inventory!\n"); 
+    			
+    			// try adding a new inventory item
     			try 
     	    	{
-    	    		System.out.println("What type of inventory item are you creating:\n(a) Sword\n(b) Bow\n(c) Shield\n(d) Helmet\n(e) Potion\n(f) Food\n(g) Cancel\n"); 
+    	    		System.out.println("What type of inventory item are you creating:\n"
+    	    				+ "(a) Sword\n"
+    	    				+ "(b) Bow\n"
+    	    				+ "(c) Shield\n"
+    	    				+ "(d) Helmet\n"
+    	    				+ "(e) Potion\n"
+    	    				+ "(f) Food\n"
+    	    				+ "(g) Cancel\n"); 
     	    		userChoice = in.next().charAt(0);
     	    		
     	    		switch (userChoice)
@@ -438,8 +563,10 @@ public class Main
     	    	}
     			break;
     			
-    			
+    		
+    		// if user wants to remove an item from the inventory list, execute these instructions
     		case 'b':
+    			// if list is empty, print a message to the user
     			if (inventoryItems == 0)
     			{
     				System.out.println("Inventory is empty, you cannot remove anyting."); 
@@ -447,6 +574,7 @@ public class Main
     			else 
     			{
     				System.out.println("You chose to remove an item from inventory."); 
+    				
     				// try removing items from the inventory 
 	    	    	try 
 	    	    	{
@@ -455,27 +583,31 @@ public class Main
 	    	    		{
 	    	    			// get input from the user on which item # to remove from inventory 
 	    	    			System.out.println("Enter the Item # you want to remove: ");
-	    	    			int removeItem = in.nextInt(); 		
+	    	    			int removeItem = in.nextInt(); 	
+	    	    			// try removing that item
 	    	    			products.remove(removeItem-1); 
 	    	    			
 	    	    			// display a successful item removal message 
 	    	    			System.out.println("You removed Item #" + removeItem + " from inventory."); 
 	    	    			
-	    	    			// ask if user wants to remove more items 
+	    	    			// ask user if he/she wants to remove another item
 	    	    			if (products.size() != 0) {
 	    	    				System.out.println("Want to remove another item? (y/n): "); 
 	    	    				char decision = in.next().charAt(0); 
+	    	    				
+	    	    				// if yes, print items in inventory list and repeat the loop
 	    	    				if (decision != 'y') break; 
 	    	    				else 
 	    	    					printInventory(); 
 	    	    			}
 	    	    		}
-	    	        	// end of purchasing items message
-	    	        	if (shoppingCart.size() == 0)
+	    	        	// if all items in inventory are now gone, let the user know 
+	    	        	if (products.size() == 0)
 	    	        		System.out.println("Inventory is now empty.");		
 	    	        	else 
 	    	        		System.out.println("Returning to Main Menu."); 
 	    	    	}
+	    	    	// print an error message to user if one occurs
 	    	    	catch (Exception e) {
 	    	    		System.err.println("You entered something invalid, back to main menu you go."); 
 	    	    	}
@@ -483,8 +615,8 @@ public class Main
     			break;
     			
     			
+    		// if user chooses to empty the entire inventory list, execute these instructions
     		case 'c':
-    			
     			if (products.size() == 0)
     				System.out.println("The inventory is already empty.");
     			else {
@@ -509,8 +641,8 @@ public class Main
     	{
     		System.err.println("You entered something invalid, back to main menu you go.");
     	}
-        
-        in.nextLine(); // fix any scanner input errors 
+    	// fix any scanner input errors
+        in.nextLine();  
     }
     
     /**
@@ -521,8 +653,10 @@ public class Main
      */
     public static SalableProduct createInventoryItem(SalableProduct product, String type)
     {
+    	// fix any scanner input errors
     	in.nextLine(); 
-    	// get name property 
+    	
+    	// get a name property 
     	System.out.println("Enter a name for this item:"); 
     	product.setName(in.nextLine().trim());
     	while (product.getName() == "") {
@@ -530,7 +664,7 @@ public class Main
     		product.setName(in.nextLine().trim());
     	}
     	
-    	// get description property 
+    	// get a description property 
     	System.out.println("Enter a description for this item:");
     	product.setDescription(in.nextLine().trim());
     	while (product.getDescription() == "") {
@@ -538,11 +672,11 @@ public class Main
     		product.setDescription(in.nextLine().trim());
     	}
     	
-    	// get price property  
+    	// get a price property  
     	System.out.println("Enter a price for this item:");
     	product.setPrice(in.nextDouble());
     	
-    	// get item level property 
+    	// get an item level property 
     	System.out.println("Enter an iLvl for this item:");
     	product.setItemLevel(in.nextInt());
     	product.setType(type); 
@@ -569,9 +703,12 @@ public class Main
         // to hold line of file 
         String line;
         
+        
         while ((line = in.readLine()) != null)
         {
         	String[] tokens = line.split("\\|");
+        	
+        	
         	
         	switch(tokens[0])
         	{
@@ -634,4 +771,160 @@ public class Main
     	// add object to inventory list
     	products.add(product); 
     }
+    
+    /**
+     * This function sorts a list by ascending/descending name or price values. 
+     * @param dir (sort direction)
+     * @param x (name or price param)
+     * @param list (collection to sort)
+     * @param y (inventory or shopping cart param)
+     */
+    public static void sortBy(int dir, String x, ArrayList<SalableProduct> list, String y)
+    {
+    	newline(); 
+    	
+    	// create a temporary array for sorting 
+		ArrayList<String> names = new ArrayList<String>();
+    	ArrayList<Double> prices = new ArrayList<Double>();
+    	ArrayList<SalableProduct> placeholders = new ArrayList<SalableProduct>();
+    	
+    	// place all inventory item via name and price two separate lists and sort them
+    	for (int i=0; i < list.size(); i++) {
+			names.add(list.get(i).getName());
+			prices.add(list.get(i).getPrice());
+		}
+    	Collections.sort(names);
+    	Collections.sort(prices);    	
+    	
+    	// initialize placeholder sorted list 
+    	for (int i=0; i<list.size(); i++) {
+			for (SalableProduct product : list)
+			{
+				if (product.getName() == names.get(i) && x == "name") {
+					placeholders.add(product); 
+				}
+				if (product.getPrice() == prices.get(i) && x == "price") {
+					placeholders.add(product); 
+				}
+			}
+		} 	
+    	
+    	// switch to the correct sort filter instruction
+    	switch(dir) {
+    		// descending 
+    		case -1:
+    			// by name
+    			if (x == "name") {
+    				// reverse items in the list
+    				Collections.sort(names, Collections.reverseOrder());
+    				placeholders.clear();
+    				
+    				// insert reverse alphabetically inventory items into a temporary list 
+    				for (int i=0; i<list.size(); i++) {
+    					for (SalableProduct product : list)
+    					{
+    						if (product.getName() == names.get(i)) {
+    							placeholders.add(product); 
+    							break;
+    						}
+    					}
+    				}
+    				// clear the original inventory list and insert the sorted list items
+    				if (y == "inventory") {
+    					products.clear(); 
+        				products = placeholders;
+        				System.out.println("~ Items sorted by product name descending alphabetical ~");
+        				printInventory();
+    				}
+    				else if (y == "cart") {
+    					shoppingCart.clear(); 
+    					shoppingCart = placeholders;
+    					System.out.println("~ Items sorted by product name descending alphabetical ~");
+        				printShoppingCart();
+    				}
+    			}
+    			// by price 
+    			else if (x == "price") {
+    				// reverse the list and print the items
+    				Collections.sort(prices, Collections.reverseOrder());
+    				placeholders.clear();
+    				
+    				// insert descending inventory items into a temporary list 
+    				for (int i=0; i<list.size(); i++) {
+    					for (SalableProduct product : list)
+    					{
+    						if (product.getPrice() == prices.get(i)) {
+    							placeholders.add(product); 
+    							break;
+    						}
+    					}
+    				}
+    				// clear the original inventory list and insert the sorted list items
+    				if (y == "inventory") {
+    					products.clear(); 
+        				products = placeholders;
+        				System.out.println("~ Items sorted by product price highest to lowest ~");
+        				printInventory();
+    				}
+    				else if (y == "cart") {
+    					shoppingCart.clear(); 
+    					shoppingCart = placeholders;
+        				System.out.println("~ Items sorted by product price highest to lowest ~");
+        				printShoppingCart();
+    				}
+    			}
+    			break;
+    		
+    		// ascending 
+    		case 1:
+    			// by name
+    			if (x == "name") {
+    				if (y == "inventory") {
+    					products.clear(); 
+        				products = placeholders;
+        				System.out.println("~ Items sorted by product name ascending alphabetical ~"); 
+        				printInventory();
+    				}
+    				else if (y == "cart") {
+    					shoppingCart.clear(); 
+    					shoppingCart = placeholders;
+    					System.out.println("~ Items sorted by product name ascending alphabetical ~"); 
+        				printShoppingCart();
+    				}
+    			}
+    			else if (x == "price") {
+    				if (y == "inventory") {
+    					products.clear(); 
+        				products = placeholders;
+        				System.out.println("~ Items sorted by product price lowest to highest ~"); 
+        				printInventory();
+    				}
+    				else if (y == "cart") {
+    					shoppingCart.clear(); 
+    					shoppingCart = placeholders;
+    					System.out.println("~ Items sorted by product price lowest to highest ~");  
+        				printShoppingCart();
+    				}
+    			}
+    			
+    			break;
+    			
+    		// default case 
+			default:
+				break;
+    	}
+    }
+    
+    /**
+     * print generic array type elements function 
+     * @param <E> Element
+     * @param list generic array object 
+     */
+    public static <E> void printItemsE(E[] list) {
+    	for (E item : list)
+    	{
+    		System.out.println(item);
+    	}
+    }
+    
 }
