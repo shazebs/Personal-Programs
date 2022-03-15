@@ -110,16 +110,7 @@ namespace Minesweeper_GUI
                 // loop through columns
                 for (int c = 0; c < this.size; c++)
                 {
-                    // Professor Sluiter's Code
-                    // nw 
-                    if (r-1 >0 && c-1 > 0 && grid[r - 1, c - 1].isLive) grid[r,c].liveNeighbors++;
-                    // ne 
-                    if (r - 1 > 0 && c + 1 < size && grid[r - 1, c + 1].isLive) grid[r, c].liveNeighbors++;
-                    // w
-                    if ( c -1  > 0 && grid[r, c - 1].isLive) grid[r, c].liveNeighbors++;
-                    
-
-
+                             
                     // if selected Cell already has a bomb
                     if (grid[r, c].isLive)
                     {
