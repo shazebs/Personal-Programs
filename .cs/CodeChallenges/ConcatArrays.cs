@@ -1,3 +1,4 @@
+/* my submission (faster than online searched) */ 
 public class Solution 
 {
     public int[] GetConcatenation(int[] nums) 
@@ -9,5 +10,15 @@ public class Solution
             ans[i+n] = nums[i]; 
         }
         return ans;
+    }
+}
+
+
+/* after submitting, online searched version solution (slower than my submission) */ 
+public class Solution 
+{
+    public int[] GetConcatenation(int[] nums) 
+    {
+        return nums.Concat(nums).ToArray(); 
     }
 }
