@@ -25,8 +25,6 @@ Time:   12:22 AM
 // Create a connection
 $conn = mysqli_connect($servername, $username, $password, $databse); 
 
-
-
 // Die if the connection was not successful
 if (!$conn) {
   die("Sorry we failed to connect: ". mysqli_connect_error()); 
