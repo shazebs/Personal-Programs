@@ -1,3 +1,33 @@
+<?php
+
+require('../phpdocs/dbconnectLopes.php'); 
+
+/* retrieve POST variables */ 
+$chat_text = $_POST["chat"];
+$chat_user = $_POST["username"]; 
+
+if ($chat_text && $chat_user) 
+{
+    /* insert a new chat into the database */
+    $sql = "INSERT INTO `chats` (`chat_id`, `chat_text`, `chat_date`, `chat_user`) VALUES (NULL, '".$chat_text."', current_timestamp(), '".$chat_user."');";
+    $result = mysqli_query($db, $sql);
+
+    /* insertion success message */ 
+    if ($result){
+        echo 'Successful Insert!<br>'; 
+        // echo '<a href="../phpdocs/login.php">Click here to return to chat.</a>'; 
+        // echo '<a href="../phpdocs/underground.php">Click here to return to chat.</a>'; 
+    }
+    else {
+        echo 'Unsuccessful Insert (Empty fields).<br>'; 
+    }
+}
+
+/* close the connection */ 
+$db->close();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +44,10 @@
 
     <style>
 
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&family=Roboto+Mono&family=Source+Code+Pro&display=swap');
+
         body {
+            margin-top: 10px;
             background:black;
             color:white;
             text-align:center;
@@ -24,6 +57,7 @@
             background-attachment:fixed;
             text-shadow: 2px 2px black;
             background-position: center;
+            font-family: 'League Spartan', sans-serif;
         }
         h1 {
             text-align: center;
@@ -31,6 +65,10 @@
         }
         form {
             /* margin-left:50px; */
+        }
+        textarea {
+            width: 300px;
+            height: 300px; 
         }
 
         div.firstname {
@@ -78,6 +116,7 @@
         .btn-submit:hover {
             opacity: 0.8; 
         }
+
         
         @media (max-width: 500px)
         {
@@ -107,39 +146,27 @@
 </head>
 
 <body>
-    <h1>Register for Shazebalopolis</h1><hr>
+    <h1>Add a Public Comment</h1>
 
-    <!-- Register Form -->
-    <form action="registerHandler.php" method="POST">
+    <!-- chat form -->
+    <form action="underground.php" method="POST">
 
-        <!-- First Name field-->
-        <div class="firstname">
-        First Name<br>
-        <input name="FirstName" type="text"/>
+        <!-- chat -->
+        <div class="">
+            Chat<br>
+            <textarea name="chat" type="text"></textarea>
+        </div><br>
+        <!-- username -->
+        <div class="">From:<br>
+            <input name="username" type="text">
         </div>
-
-        <!-- Last Name field-->
-        <div class="lastname">
-        Last Name<br>
-        <input name="LastName" type="text"/>
-        </div>
-
-        <!-- Username field -->
-        <div class="username">
-        User Name<br>
-        <input name="Username" type="text"/>
-        </div>
-
-        <!-- Password field -->
-        <div class="password">
-        Password<br>
-        <input name="Password" type="password"/>
-        </div>
-
+        
         <!-- Submit button -->
+        <br>
         <input class="btn-submit" name="Submit" type="submit"/><br>
 
     </form>
+
 </body>
 
 </html>
