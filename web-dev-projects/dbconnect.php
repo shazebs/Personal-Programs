@@ -19,8 +19,7 @@ else {
     echo '<h3>Successfully connected to Database : ' . $dbName . '</h3>';
 }
 
-
 // Close the connection
-// $conn->close();
+$dbc->close();
 
 ?>
