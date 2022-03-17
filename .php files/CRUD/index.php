@@ -34,7 +34,7 @@ if (!$conn) {
 
 
 
-// if ( what ? )
+// if a delete process when executed as a get request 
 if(isset($_GET['delete'])){
   $sno = $_GET['delete'];  
   $delete = true;
