@@ -5,8 +5,8 @@ static void Main(string[] args)
     int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
     List<int> intList = toList(array); 
-    updateList(intList, "print"); 
-    array = updateList(intList, "return");
+    returnList(intList, "print"); 
+    array = returnList(intList, "return");
     printArray(array); 
 
 
@@ -44,7 +44,7 @@ public static List<int> toList(int[] array) {
 
 
 /* either print linked list or return it back as a static array */ 
-public static int[] updateList(List<int> list, string str) {
+public static int[] returnList(List<int> list, string str) {
     
     if (str == "print") {
         
