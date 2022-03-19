@@ -32,11 +32,14 @@ $db->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Underground.css</title>
     <link rel="stylesheet" src="">
+    <script>
+        const username = <?php $chat_user ?>; 
+    </script>
 </head>
     
     
 <body>
-    <h1>Welcome to the Underground</h1>
+    <h1>Welcome to the Underground, <script>username</script></h1>
 </body>
 
 </html>
