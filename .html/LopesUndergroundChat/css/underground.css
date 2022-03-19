@@ -13,9 +13,6 @@ body {
     background-position: center;
     font-family: 'League Spartan', sans-serif;
 }
-body.underground-scene {
-    background-image:url(https://pbs.twimg.com/media/EpTR-ZOXEAIXrB_?format=jpg&name=large);
-}
 h1 {
     text-align: center;
     font-size: 2.5rem;
