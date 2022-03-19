@@ -5,6 +5,7 @@ require('../phpdocs/dbconnect.php');
 $chat_text = $_POST["chat"];
 $chat_user = $_POST["username"]; 
 
+/* chat POST handler on current page */ 
 if ($chat_text && $chat_user) 
 {
     /* insert a new chat into the database */
@@ -26,6 +27,8 @@ if ($chat_text && $chat_user)
 
 <!DOCTYPE html>
 <html lang="en">
+    
+<!-- start of head section --> 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +42,13 @@ if ($chat_text && $chat_user)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 
 </head>
+<!-- end of head section --> 
 
+    
+<!-- start of body section --> 
 <body>
+    
+    <!-- page title --> 
     <h1>Add a Public Comment</h1>
 
     <!-- chat form -->
@@ -56,12 +64,14 @@ if ($chat_text && $chat_user)
             <input name="username" type="text">
         </div>
         
-        <!-- Submit button -->
         <br>
+        <!-- Submit button -->
         <input class="btn-submit" name="Submit" type="submit"/><br>
 
     </form>
+    <!-- end of chat form --> 
 
 </body>
+<!-- end of body section --> 
 
 </html>
