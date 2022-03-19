@@ -23,7 +23,7 @@ if ($chat_text && $chat_user)
 </head>
 
 
-<body class="underground-scene">
+<body style="background-image:url(https://i.ytimg.com/vi/WxpAEBXqWKs/maxresdefault.jpg);">
     <h1>Welcome to the Underground, <?php echo $chat_user ?>.</h1>
 </body>
 
