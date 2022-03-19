@@ -23,7 +23,7 @@ if ($chat_text && $chat_user)
 </head>
 
 
-<body>
+<body class="underground-scene">
     <h1>Welcome to the Underground, <?php echo $chat_user ?>.</h1>
 </body>
 
