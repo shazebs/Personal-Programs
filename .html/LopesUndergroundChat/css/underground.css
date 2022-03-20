@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&family=Roboto+Mono&family=Source+Code+Pro&display=swap');
 
 body {
-    margin-top: 10px;
+    margin-top: 2%;
     background:black;
     color:white;
     text-align:center;
@@ -13,59 +13,50 @@ body {
     background-position: center;
     font-family: 'League Spartan', sans-serif;
 }
+.underground_scene {
+    background-image:url(https://pbs.twimg.com/media/EpTR-ZOXEAIXrB_?format=jpg&name=large);
+}
 h1 {
     text-align: center;
     font-size: 2.5rem;
 }
-form {
-    /* margin-left:50px; */
+h1.lopesWelcome {
+    color: white;
 }
 textarea {
     width: 300px;
     height: 300px; 
 }
 
-div.firstname {
-    font-size:2rem;
-    margin: 10px 0 20px 0; 
-}
-.firstname input {
-    width: 30%; 
-    font-size:16px;
-}
 
-div.lastname {
-    font-size:2rem;
-    margin: 10px 0 20px 0; 
-}
-.lastname input {
-    width: 30%; 
-    font-size:16px;
-}
-
+/* username input field */ 
 div.username {
     font-size:2rem;
-    margin: 10px 0 20px 0; 
+    margin: 0px 0 0px 0; 
 }
 .username input {
     width: 30%; 
     font-size:16px;
 }
 
+/* password input field */ 
 div.password {
     font-size:2rem;
-    margin: 10px 0 20px 0; 
+    margin: 0px 0 0px 0; 
 }
 .password input {
     width: 30%; 
     font-size:16px;
 }
 
+/* submit button */ 
 .btn-submit {
     font-size:1.25rem;
     margin-top:10px;
-    padding:7px;
-    border-radius:8px;
+    /* padding:7px; */
+    border-radius:5px;
+    padding: 2px 12px;
+    transform: translate(2px, 0); 
 }
 .btn-submit:hover {
     opacity: 0.8; 
