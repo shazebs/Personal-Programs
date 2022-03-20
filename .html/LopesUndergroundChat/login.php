@@ -1,27 +1,26 @@
 <?php
-require('../phpdocs/dbconnect.php'); 
+require('dbconnect.php'); 
 
 /* retrieve POST variables */ 
-$chat_text = $_POST["chat"];
-$chat_user = $_POST["username"]; 
+// $chat_text = $_POST["chat"];
+// $chat_user = $_POST["username"]; 
 
 /* chat POST handler on current page */ 
+/*
 if ($chat_text && $chat_user) 
 {
-    /* insert a new chat into the database */
+    // insert a new chat into the database
     $sql = "INSERT INTO `chats` (`chat_id`, `chat_text`, `chat_date`, `chat_user`) VALUES (NULL, '".$chat_text."', current_timestamp(), '".$chat_user."');";
     $result = mysqli_query($db, $sql);
 
-    /* insertion success message */ 
+    // insertion success message  
     if ($result){
         echo 'Successful Insert!<br>'; 
-        // echo '<a href="../phpdocs/underground.php">Click here to return to chat.</a>'; 
-        // echo '<a href="../phpdocs/underground.php">Click here to return to chat.</a>'; 
     }
     else {
         echo 'Unsuccessful Insert (Empty fields).<br>'; 
     }
-}
+} */
 
 ?>
 
@@ -33,7 +32,7 @@ if ($chat_text && $chat_user)
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login-LopesUnderground</title>
+    <title>Login-Lopes-Underground</title>
 
     <!-- Bootstrap and jQuery plugins -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -41,7 +40,7 @@ if ($chat_text && $chat_user)
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     
-    <link rel="stylesheet" href="css/underground.css">
+    <link rel="stylesheet" href="../shazebalopolis/css/underground.css">
 
 </head>
 <!-- end of head section --> 
@@ -51,24 +50,15 @@ if ($chat_text && $chat_user)
 <body>
     
     <!-- page title --> 
-    <h1>Add a Public Comment</h1>
+    <h1 style="">Members Only</h1><hr>
 
     <!-- chat form -->
-    <form action="chatPostHandler.php" method="POST">
+    <form action="underground.php" method="POST">
 
-        <!-- chat -->
-        <div class="">
-            Chat<br>
-            <textarea name="chat" type="text"></textarea>
-        </div><br>
-        <!-- username -->
-        <div class="">From:<br>
-            <input name="username" type="text">
-        </div>
-        
-        <br>
-        <!-- Submit button -->
-        <input class="btn-submit" name="Submit" type="submit"/><br>
+
+        <div class="username"><input name="username" placeholder="Username" style="text-align:center"></div>
+        <div class="password" style="margin-top: -5px;"><input name="password" type="password" placeholder="Password" style="text-align:center"></div>
+        <input class="btn-submit" name="submit" type="submit" value="Login"><hr>
 
     </form>
     <!-- end of chat form --> 
