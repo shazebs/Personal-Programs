@@ -21,7 +21,7 @@ if ($username && $password) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Underground</title>
-    <link rel="stylesheet" href="../shazebalopolis/css/underground.css">
+    <link rel="stylesheet" href="css/underground.css">
 
     <!-- bootstrap css -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
