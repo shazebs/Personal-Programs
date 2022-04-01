@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.IOException;
 
 public class ServerThread implements Runnable
 {
@@ -11,12 +12,21 @@ public class ServerThread implements Runnable
         this.$thread = $thread;
     }
 
-
     @Override
     public void run()
     {
-        // Execute Thread commands in this order.
-        Timer(rand.nextInt(180));
+        Server server = new Server();
+        try
+        {
+            // Starting the server.
+            server.start(6667);
+
+            // Close in/out buffers and socket.
+            server.cleanup();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -26,10 +36,6 @@ public class ServerThread implements Runnable
         for (int i = t ; t >= i ; i--)
         {
             System.out.println($thread + " " + i);
-
-            // Try to make a "glitch" occur
-            if (i == rand.nextInt(i+1)) System.out.println(" -- GLITCH -- " + $thread + " on " + i);
-
             // Putting the thread to sleep example.
             try {
                 Thread.sleep(1000);
@@ -40,7 +46,7 @@ public class ServerThread implements Runnable
                 System.out.println("Timer ended.");
                 for (var j = 0; j < 1000000; j++)
                 {
-                    System.out.println($thread + "timer ended " + j + " seconds ago.");
+                    System.out.println($thread + " timer started " + j + " seconds ago.");
                     // Putting the thread to sleep example.
                     try {
                         Thread.sleep(1000);
