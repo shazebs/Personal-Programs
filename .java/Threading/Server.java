@@ -10,26 +10,23 @@ This is a server class.
 public class Server
 {
     // global properties
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private PrintWriter out;
-    private BufferedReader in;
+    static private ServerSocket serverSocket;
+    static private Socket clientSocket;
+    static private PrintWriter out;
+    static private BufferedReader in;
 
     // Function to start the server and wait for connections on the specified port.
-    public void start(int port) throws IOException
+    static public void start(int port) throws IOException
     {
-
         // Wait for a client connection.
-        System.out.println("\nWaiting for a Client connection....");
-
+        System.out.println("\nWaiting for a Client connection to our Store....");
 
         // open a socket and be ready to accept the first client that connects.
         serverSocket = new ServerSocket(port); // start the server on port etc.
         clientSocket = serverSocket.accept(); // listen for a client connection
 
-
         // If you get here, then a client connected to this server.
-        System.out.println("Received a Client connection on port " + clientSocket.getLocalPort());
+        System.out.println("\nReceived a Client connection from our Store on port " + clientSocket.getLocalPort());
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
@@ -39,36 +36,42 @@ public class Server
         while ((response = in.readLine()) != null)
         {
             System.out.printf("\nHere is a message from the client:\n-- \"%s\" --\n\n", response);
-            if ("Is this thing on?".equals(response)){
-                out.println("Yes, this \"thing\" is on.");
-                // break;
-            }
+            String line = "Server's response: \"Hello from Admin User.\"";
+            out.printf(line);
+            break;
         }
 
         // all responses have been received.
         System.out.println("Server is now shutting down...");
     }
 
-
     // this function closes any open utilities before ending program.
-    public void cleanup() throws IOException
-    {
+    static public void cleanup() throws IOException {
         // Close all input and output network buffers and sockets
-        in.close();
-        out.close();
-        clientSocket.close();
-        serverSocket.close();
+        try
+        {
+            in.close();
+            out.close();
+            clientSocket.close();
+            serverSocket.close();
+            System.out.println("\nServer resources have been cleaned up.");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 
     // this main branch starts the server.
     public static void main(String[] args) throws IOException
     {
-        Server server = new Server();
-        server.start(6666);
-        server.cleanup();
+        ServerThread ServerThread = new ServerThread("Server Thread");
+        Thread serverThread = new Thread(ServerThread);
+        serverThread.start();
+
+        // cleanup();
     }
-}
+
+} // end of Server class.
 
 /*
 <-- Additional Assignment Notes -->
