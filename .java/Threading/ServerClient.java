@@ -1,4 +1,3 @@
-
 // library imports
 import java.io.*;
 import java.net.Socket;
@@ -11,55 +10,6 @@ public class ServerClient
     static private Socket clientSocket;    // connect to the specified IP address or port.
     static private PrintWriter out;        // for sending text over the socket to the Server.
     static private BufferedReader in;      // for receiving text over the socket from the Server.
-
-    /*
-    Our server starts here.
-    This is where we make...
-     */
-    public static void main(String[] args) throws IOException
-    {
-        // Create a Thread 1
-        ServerThread KingThread = new ServerThread("King Thread");
-        Thread kingThread = new Thread(KingThread);
-
-        // Create a Thread 2
-        ServerThread QueenThread = new ServerThread("Queen Thread");
-        Thread queenThread = new Thread(QueenThread);
-
-        // Create a Thread 3 (Administrative Application)
-        ServerThread AdministrationThread = new ServerThread("Administration Thread");
-        Thread administrativeApp = new Thread (AdministrationThread);
-
-        // Create a Thread 4 (Store Application)
-        ServerThread StoreThread = new ServerThread("Store Thread");
-        Thread storeThread = new Thread(StoreThread);
-
-        // start the threads, automatically jumps into run() function.
-        kingThread.start();
-        // queenThread.start();
-
-        // start administrative and store threads
-        // administrativeApp.start();
-        // storeThread.start();
-
-
-        // Create a client and connect it to a server.
-        ServerClient pawnClient = new ServerClient();
-        pawnClient.start("127.0.0.1", 6666);
-
-        // Send a message to the server.
-        String response = sendMessage("Is this thing on?");
-
-        // Receive a response from the server.
-        System.out.println("\nServer response is " + response);
-
-        // clean up code and close this program.
-        cleanup();
-
-
-        // Exit the program.
-        System.exit(999);
-    }
 
 
     // start a client socket on a specific port of our choice.
@@ -93,4 +43,54 @@ public class ServerClient
         out.close();
         clientSocket.close();
     }
+
+
+    /*
+    Our server starts here.
+    This is where we make...
+     */
+    public static void main(String[] args) throws IOException
+    {
+        // Create a Thread 1
+        // ServerThread KingThread = new ServerThread("King Thread");
+        // Thread kingThread = new Thread(KingThread);
+
+        // Create a Thread 2
+        // ServerThread QueenThread = new ServerThread("Queen Thread");
+        // Thread queenThread = new Thread(QueenThread);
+
+        // Create a Thread 3 (Administrative Application)
+        // ServerThread AdministrationThread = new ServerThread("Administration Thread");
+        // Thread administrativeApp = new Thread (AdministrationThread);
+
+        // Create a Thread 4 (Store Application)
+        // ServerThread StoreThread = new ServerThread("Store Thread");
+        // Thread storeThread = new Thread(StoreThread);
+
+        // start the threads, automatically jumps into run() function.
+        // kingThread.start();
+        // queenThread.start();
+
+        // start administrative and store threads
+        // administrativeApp.start();
+        // storeThread.start();
+
+        // Create a client and connect it to a server.
+        // ServerClient pawnClient = new ServerClient();
+        // pawnClient.start("127.0.0.1", 6666);
+
+        // Send a message to the server.
+        // String response = sendMessage("Is this thing on?");
+
+        // Receive a response from the server.
+        // System.out.println("\nServer response is " + response);
+
+        // clean up code and close this program.
+        // cleanup();
+
+
+        // Exit the program.
+        // System.exit(999);
+    }
+
 }
