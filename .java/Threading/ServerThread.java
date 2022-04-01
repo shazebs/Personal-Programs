@@ -2,9 +2,11 @@ import java.util.Random;
 
 public class ServerThread implements Runnable
 {
+    // Properties
     Random rand = new Random();
     String $thread = "";
 
+    // Constructor
     ServerThread(String $thread){
         this.$thread = $thread;
     }
@@ -18,7 +20,7 @@ public class ServerThread implements Runnable
     }
 
 
-    // Start a timer function.
+    // Timer function.
     public void Timer(int t){
         // Create a Timer ofo 60 seconds
         for (int i = t ; t >= i ; i--)
@@ -30,7 +32,7 @@ public class ServerThread implements Runnable
 
             // Putting the thread to sleep example.
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             }
             catch (InterruptedException e){
             }
