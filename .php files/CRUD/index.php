@@ -308,7 +308,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
     
     
     
-    <!-- Javascript --> 
+    <!-- jQuery --> 
     <script>
       $(document).ready( function () {
           $('#myTable').DataTable();

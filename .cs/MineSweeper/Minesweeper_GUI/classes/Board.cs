@@ -59,38 +59,37 @@ namespace Minesweeper_GUI
 
         // Methods
 
-        /* place bombs randomly on the grid */
+        // place bombs randomly on the grid 
         public void placeBombs(int diff) 
         {
-            /* properties */ 
+            // function variables  
             Random rand = new Random();
             size = diff; 
 
-            /* the algorithm for bomb placements */ 
+            // the algorithm for bomb placements 
             if (size == 12) totalBombs =  rand.Next(5, 10);
-            if (size == 19) totalBombs = size * 2;
+            if (size == 19) totalBombs = rand.Next(20, 25);
             if (size == 27) totalBombs = size * 2 + rand.Next(20, 50);
 
-
-            /* loop and place bombs randomly throughout cells array */ 
+            // loop and place bombs randomly throughout cells array 
             int count = 0;
             while (count != totalBombs)
             {
-                /* select random coordinates on the grid */
+                // select random coordinates on the grid 
                 int x = rand.Next(size);
                 int y = rand.Next(size);
 
-                /* place a bomb if appropriate to do so */ 
-                if (this.grid[x, y].isLive == false)
-                {
+                // place a bomb if appropriate to do so
+                if (this.grid[x, y].isLive == false){
                     this.grid[x, y].isLive = true;
                     count++; 
                 }
             }
-            /* print bomb locations through the console */ 
+
+            // print bomb locations through the console 
             for (var x=0; x < size; x++)
             {
-                Console.Write("\t"); /* tab in front of row */ 
+                Console.Write("\t"); // tab in front of row 
                 for (var y = 0; y < size; y++) {
                     if (this.grid[x, y].isLive == false) Console.Write("~ ");
                     else if (this.grid[x, y].isLive) Console.Write("x "); 
@@ -110,14 +109,21 @@ namespace Minesweeper_GUI
                 // loop through columns
                 for (int c = 0; c < this.size; c++)
                 {
-                             
+                    /* // Professor Sluiter's Code
+                    // nw 
+                    if (r-1 >0 && c-1 > 0 && grid[r - 1, c - 1].isLive) grid[r,c].liveNeighbors++;
+                    // ne 
+                    if (r - 1 > 0 && c + 1 < size && grid[r - 1, c + 1].isLive) grid[r, c].liveNeighbors++;
+                    // w
+                    if ( c -1  > 0 && grid[r, c - 1].isLive) grid[r, c].liveNeighbors++;
+                    */
+
                     // if selected Cell already has a bomb
                     if (grid[r, c].isLive)
                     {
                         grid[r, c].liveNeighbors = 9;
                         continue;   // move to next Cell
                     }
-
 
                     // (for board corner Cells only)
                     // top-left corner
@@ -200,7 +206,6 @@ namespace Minesweeper_GUI
                         grid[r, c].liveNeighbors = nearbyBombs;
                         continue;
                     }
-
 
                     // (for Cells on board sides only) 
                     // top-side
@@ -303,7 +308,6 @@ namespace Minesweeper_GUI
                         continue;
                     }
 
-
                     // (for Cells in-between)
                     if ((r > 0 && r < this.size - 1) && (c > 0 && c < this.size - 1))
                     {
@@ -346,7 +350,8 @@ namespace Minesweeper_GUI
         /* right click to set a flag */
         public void rightClick(int row, int col)
         {
-            this.grid[row, col].hasFlag = true; /* set a flag */  
+            // Set a flag on the selected cell. 
+            this.grid[row, col].hasFlag = true;  
         }
 
 
@@ -354,21 +359,17 @@ namespace Minesweeper_GUI
         /* left click to place a bomb */
         public bool leftClick(int row, int col)
         {
-            // if user hits a bomb, game over 
-            if (this.grid[row, col].isLive == true)
-            {
+            // If user hits a bomb, game over.
+            if (this.grid[row, col].isLive == true){
                 grid[row, col].isVisited = true;
                 return true; 
             }
-            // if user hits an empty cell 
-            else if (grid[row, col].liveNeighbors == 0)
-            {
+            // If user hits an empty cell, flood fill. 
+            else if (grid[row, col].liveNeighbors == 0) {
                 floodFill(grid, row, col);
             }
-            // if user hits a safe cell 
-            else
-            {
-                // bomb not hit but cell has now been visited 
+            // if user hits a safe cell, mark cell as visited.
+            else {
                 this.grid[row, col].isVisited = true;
             }        
             return false; // default 
@@ -379,7 +380,7 @@ namespace Minesweeper_GUI
         /* determine if the game has been won */
         public bool isGameWon() 
         {
-            /* CHECK TO SEE IF USER HAS WON */
+            // CHECK TO SEE IF USER HAS WON 
             // local variables 
             int totalSweep = 0;
             int totalCorrect = 0;
@@ -389,27 +390,25 @@ namespace Minesweeper_GUI
             {
                 for (var j = 0; j < size; j++)
                 {
-                    if (grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9)
-                    {
+                    // If safe cell and unvisited. 
+                    if (grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9){
                         totalSweep++;
                     }
-                    if (grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9 && grid[i, j].isVisited)
-                    {
+                    // If safe cell and visited. 
+                    if (grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9 && grid[i, j].isVisited){
                         totalCorrect++;
                     }
-                    /* adjust score */ 
-                    if (grid[i,j].isVisited && grid[i,j].isLive == false && grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9)
-                    {
+                    // Increment score based on revealed cell face number.  
+                    if (grid[i,j].isVisited && grid[i,j].isLive == false && grid[i, j].liveNeighbors > 0 && grid[i, j].liveNeighbors < 9){
                         score += grid[i, j].liveNeighbors;
                     }
                 }
             }
-            // check if user has won  
-            if (totalSweep == totalCorrect)
-            {
+            // check if user has won. 
+            if (totalSweep == totalCorrect){
                 return true;
             }
-
+            // if user has not won yet. 
             return false; 
         }
 
@@ -424,8 +423,7 @@ namespace Minesweeper_GUI
         public void floodFill(Cell[,] grid, int row, int col)
         {
             // check to see if cell has already been visited 
-            if (grid[row, col].isVisited == true)
-            {
+            if (grid[row, col].isVisited == true){
                 return;
             }
             else // cell has not yet been visited 
@@ -482,5 +480,8 @@ namespace Minesweeper_GUI
             }
         }
         
-    }
-}
+
+
+    } // end of class. 
+
+} // end of namespace.
