@@ -17,10 +17,12 @@ public class Store
     static ArrayList<SalableProduct> products = new ArrayList<>();
     static ArrayList<SalableProduct> shoppingCart = new ArrayList<>();
 
-    // Scanner object
+    // global Scanner object
     static Scanner in = new Scanner(System.in);
 
-    // Server Stuff
+
+    // ------------------------------------------------------------------------------------------------
+    //                                          Server Stuff
     static private Socket storeSocket;
     static private PrintWriter writer;
     static private BufferedReader reader;
@@ -45,10 +47,11 @@ public class Store
             writer.close();
             storeSocket.close();
         } catch (Exception e){
-            System.out.println("An nonfatal error occurred while closing utility resources.");
+            System.out.println("A nonfatal error occurred while closing utility resources.");
         }
+    } //------------------------------------------------------------------------------------------------
 
-    }
+
 
     /*
      * Main driver method.
@@ -57,38 +60,37 @@ public class Store
     public static void main(String[] args) throws IOException, InterruptedException
     {
         System.out.println();
+        // ------------------------------------------------------------------------------------------------
+        //                                          More Server Stuff
 
-        // Server Stuff
-        // Start a Thread
-        /* ServerThread StoreThread = new ServerThread("Server Thread");
-        Thread storeThread = new Thread(StoreThread);
-        storeThread.start(); */
-
-        // Create a client connection to the server.
+        // Create a Client connection to the server.
         try {
             ServerClient storeClient = new ServerClient();
             storeClient.start("127.0.0.1", 6667);
 
             // Send a message to the admin server.
-            String adminResponse = storeClient.sendMessage("Hello from Store");
-            System.out.println("\n" + adminResponse);
+            String adminResponse = storeClient.sendMessage("Hello from Store.");
+            System.out.println(adminResponse);
         }
-        catch (Exception e)
-        {
-            System.out.println("-- (ERROR) Please start the Admin class first then start this Store class again. --\n");
-        }
-
+        catch (Exception e) {
+            System.out.println("-- (ERROR) Please start the Admin class first,\n"
+                                        + "\t then start this Store class again. --\n\n"
+                                + "You are Offline.");
+        } //------------------------------------------------------------------------------------------------
 
 
         // local variables
         String userChoice = "";
 
+
         // display welcome message
-        System.out.println("\n----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------");
         System.out.println("-- Welcome to the World of Warcraft (WoW) Armory store! --");
         System.out.println("----------------------------------------------------------");
 
-        // initialize starting inventory using a file read
+
+        // ------------------------------------------------------------------------------------------------
+        //                          initialize starting inventory using a file read
         try {
             initializeInventory("InventoryItems.txt");
         }
@@ -97,7 +99,8 @@ public class Store
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }  //------------------------------------------------------------------------------------------------
+
 
         // main program loop
         do

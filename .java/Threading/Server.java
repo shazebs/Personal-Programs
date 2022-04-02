@@ -3,9 +3,10 @@
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 /*
-This is a server class.
+This is a Server class.
  */
 public class Server
 {
@@ -15,11 +16,13 @@ public class Server
     static private PrintWriter out;
     static private BufferedReader in;
 
+    static Scanner cin = new Scanner(System.in);
+
     // Function to start the server and wait for connections on the specified port.
     static public void start(int port) throws IOException
     {
         // Wait for a client connection.
-        System.out.println("\nWaiting for a Client connection to our Store....");
+        System.out.println("\nWaiting for a Client connection to this server....");
 
         // open a socket and be ready to accept the first client that connects.
         serverSocket = new ServerSocket(port); // start the server on port etc.
@@ -30,20 +33,90 @@ public class Server
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-
-        // Wait for responses from the client.
+        // Wait for a response from the client and send a response back to the client.
         String response;
-        while ((response = in.readLine()) != null)
-        {
-            System.out.printf("\nHere is a message from the client:\n-- \"%s\" --\n\n", response);
-            String line = "Server's response: \"Hello from Admin User.\"";
-            out.printf(line);
-            break;
+        response = in.readLine();
+        System.out.printf("\nHere is a message from the client:\n-- \"%s\" --\nA message was sent back to the client.\n\n", response);
+        out.println("You are online!");
+
+        // Admin User can now send commands to the store.
+        if(!SendCommands()) {
+            System.out.println("Sending commands has ended.");
         }
 
         // all responses have been received.
         System.out.println("Server is now shutting down...");
     }
+
+
+    // Receive commands for Client-side class.
+    static public void ReceiveCommands() throws IOException {
+        // function properties
+        String command = "";
+
+        // function task
+        while ( command != "end" ) {
+            System.out.println( "Enter a command:\n" );
+            switch ( cin.nextLine().trim() )
+            {
+                case "u":
+                case "U":
+                    System.out.println( "Command: U" );
+                    break;
+
+                case "r":
+                case "R":
+                    System.out.println( "Command: R" );
+                    break;
+
+                case "end":
+                case "END":
+                    System.out.println( "END of receiving commands." );
+                    break;
+
+                default:
+                    System.out.println( "That command does not exist." );
+                    break;
+            }
+        }
+    }
+
+
+    // Send Commands
+    static public boolean SendCommands() {
+        boolean on = true;
+        do {
+            System.out.print("Enter a command: ");
+            switch ( cin.nextLine().trim() )
+            {
+                case "u":
+                case "U":
+                    System.out.println("Command: U");
+                    out.println("Command: U was called from Admin User.");
+                    break;
+
+                case "r":
+                case "R":
+                    System.out.println("Command: R");
+                    out.println("Command: R was called from Admin User.");
+                    break;
+
+                case "end":
+                case "END":
+                    System.out.println("END of sending commands.");
+                    out.println("END of receiving commands from Admin User.");
+                    on = false;
+                    break;
+
+                default:
+                    System.out.println("That command does not exist.");
+                    break;
+            }
+            System.out.println();
+        } while (on);
+        return on;
+    }
+
 
     // this function closes any open utilities before ending program.
     static public void cleanup() throws IOException {
@@ -54,10 +127,11 @@ public class Server
             out.close();
             clientSocket.close();
             serverSocket.close();
-            System.out.println("\nServer resources have been cleaned up.");
+            System.out.println("Server resources have been cleaned up.");
         }
         catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Nonfatal crash.");
         }
     }
 
@@ -68,7 +142,7 @@ public class Server
         Thread serverThread = new Thread(ServerThread);
         serverThread.start();
 
-        // cleanup();
+        cleanup();
     }
 
 } // end of Server class.

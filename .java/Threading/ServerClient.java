@@ -26,7 +26,7 @@ public class ServerClient
     // send a message to the server hosting the socket we are connected to from this app.
     static public String sendMessage(String msg) throws IOException
     {
-        System.out.printf("This client will now send the message:\n-- \"%s\" --\nto the server.\n", msg);
+        System.out.println("This client will now try to connect to the server.\n");
         // Send/Print a Message to Server with a terminating line feed.
         out.println(msg);
 
@@ -52,8 +52,8 @@ public class ServerClient
     public static void main(String[] args) throws IOException
     {
         // Create a Thread 1
-        // ServerThread KingThread = new ServerThread("King Thread");
-        // Thread kingThread = new Thread(KingThread);
+        ServerThread KingThread = new ServerThread("King Thread");
+        Thread kingThread = new Thread(KingThread);
 
         // Create a Thread 2
         // ServerThread QueenThread = new ServerThread("Queen Thread");
@@ -68,7 +68,7 @@ public class ServerClient
         // Thread storeThread = new Thread(StoreThread);
 
         // start the threads, automatically jumps into run() function.
-        // kingThread.start();
+        kingThread.start();
         // queenThread.start();
 
         // start administrative and store threads
@@ -86,7 +86,7 @@ public class ServerClient
         // System.out.println("\nServer response is " + response);
 
         // clean up code and close this program.
-        // cleanup();
+        cleanup();
 
 
         // Exit the program.
