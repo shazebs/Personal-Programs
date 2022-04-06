@@ -4,7 +4,8 @@ import java.io.*;
 import java.util.*;
 import java.net.*;
 
-public class Store {
+public class Store
+{
     // global variables
     static ArrayList<SalableProduct> products = new ArrayList<>();
     static ArrayList<SalableProduct> shoppingCart = new ArrayList<>();
@@ -38,7 +39,6 @@ public class Store {
             try {
                 // for Scanner input errors
                 if (in.hasNext()) in.reset();
-
                 // read a menu input from user
                 userChoice = in.next();
                 newline();
@@ -54,8 +54,8 @@ public class Store {
                         viewCart();
                         break;
                     case "4":
-                        System.out.println("You have exited the WoW Armory store...good-bye!");
-                        System.exit(0);
+                        System.out.print("You have exited the WoW Armory store...good-bye!");
+                        System.exit(999);
                         break;
                     case "":
                         System.out.println("Input cannot be blank! Try again.");
@@ -74,16 +74,19 @@ public class Store {
 
     /**
      * This function prints a newline in the console output.
+     *
      */
     public static void newline() {System.out.println();}
     /**
-     * This function passes a whole number determining how many newlines to display in the console output.
-     * @param x
+     * This function passes an integer number determining how many newlines to display in the console output.
+     *
+     * @param x number of newlines
      */
     public static void newline(int x) { for(int i=0;i<x;i++) newline(); }
 
     /**
      * This function prints the main menu.
+     *
      */
     public static void printMenu()
     {
@@ -96,6 +99,7 @@ public class Store {
 
     /**
      * This function prints the all items in the inventory list.
+     *
      */
     public static void printInventory()
     {
@@ -124,6 +128,7 @@ public class Store {
 
     /**
      * This item deals with adding items from inventory list to shopping cart.
+     *
      */
     public static void viewInventory()
     {
@@ -224,6 +229,7 @@ public class Store {
 
     /**
      * This function deals with the shopping cart operations.
+     *
      */
     public static void viewCart()
     {
@@ -400,6 +406,7 @@ public class Store {
 
     /**
      * This function deals with managing inventory operations.
+     *
      */
     public static void manageInventory()
     {
@@ -600,6 +607,7 @@ public class Store {
 
     /**
      * This function will assist in getting user input for new inventory item creation.
+     *
      * @param SalableProduct object
      * @param class type
      * @return SalableProduct
@@ -639,6 +647,7 @@ public class Store {
 
     /**
      * Pass a name for a text file and parse its contents to add a new inventory item to the list.
+     *
      * @param inputFile
      * @throws FileNotFoundException
      * @throws IOException
@@ -701,6 +710,7 @@ public class Store {
 
     /**
      * Create a new SalableProduct and add it to the inventory list.
+     *
      * @param tokens
      * @param product
      */
@@ -719,6 +729,11 @@ public class Store {
 
     /**
      * This function sorts a list by ascending/descending name or price values.
+     * + ArrayList object
+     * + Collections.sort() method
+     * + foreach loop
+     * + switch block
+     *
      * @param dir (sort direction)
      * @param x (name or price param)
      * @param list (collection to sort)
@@ -727,7 +742,6 @@ public class Store {
     public static void sortBy(int dir, String x, ArrayList<SalableProduct> list, String y)
     {
         newline();
-
         // create a temporary array for sorting
         ArrayList<String> names = new ArrayList<String>();
         ArrayList<Double> prices = new ArrayList<Double>();
@@ -743,8 +757,7 @@ public class Store {
 
         // initialize placeholder sorted list
         for (int i=0; i<list.size(); i++) {
-            for (SalableProduct product : list)
-            {
+            for (SalableProduct product : list) {
                 if (product.getName() == names.get(i) && x == "name") {
                     placeholders.add(product);
                 }
@@ -837,6 +850,7 @@ public class Store {
                         printShoppingCart();
                     }
                 }
+                // by price
                 else if (x == "price") {
                     if (y == "inventory") {
                         products.clear();
@@ -851,7 +865,6 @@ public class Store {
                         printShoppingCart();
                     }
                 }
-
                 break;
 
             // default case
@@ -861,14 +874,15 @@ public class Store {
     }
 
     /**
-     * print generic array type elements function
+     * This function prints generic type elements from an array.
+     * + foreach loop
+     *
      * @param <E> Element
      * @param list generic array object
      */
     public static <E> void printItemsE(E[] list)
     {
-        for (E item : list)
-        {
+        for (E item : list) {
             System.out.println(item);
         }
     }
@@ -877,6 +891,8 @@ public class Store {
      * Start the WowServer and wait for AdminClient to connect before continuing.
      * + ServerSocket
      * + ClientThread (Java Thread)
+     * + try-catch-finally blocks
+     *
      */
     public static void startServer()
     {
@@ -917,42 +933,57 @@ public class Store {
 
     /**
      * This function handles continuous input and output of a java Thread in a Server-type class.
-     * + Sockets
-     * + PrintWriter
-     * + BufferedReader
+     * + Socket object
+     * + PrintWriter object
+     * + BufferedReader object
+     * + switch block
+     * + try-catch-finally blocks
+     *
      */
     public static class ClientThread implements Runnable
     {
+        // class properties
         private final Socket clientSocket;
 
+        /**
+         * This constructor targets the Socket object the AdminClient is received on.
+         *
+         * @param socket client Socket object
+         */
         public ClientThread(Socket socket) {
             this.clientSocket = socket;
         }
 
+        /**
+         * This function executes as soon as the ClientThread begins.
+         * + PrintWriter object
+         * + BufferedReader object
+         * + switch block
+         * + try-catch-finally blocks
+         *
+         */
         public void run()
         {
             PrintWriter out = null;
             BufferedReader in = null;
-
             try {
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                 String line;
-
                 while ((line = in.readLine()) != null)
                 {
-                    System.out.printf("Sent from AdminClient: \"%s\"\n", line);
-                    switch(line /*.toLowerCase()*/)
+                    System.out.printf("\nAdminClient says: \"%s\"\n", line);
+                    switch(line)
                     {
-                        case "Command U: Inventory has been Updated":
+                        case "Command U: Inventory Update was issued as a JSON payload.":
                             line = "booyah";
                             break;
-                        case "Command R: Viewing All Inventory Items":
-                            line = "yippee";
+                        case "Command R: Retrieving All Inventory Items as a JSON payload.":
+                            line = sendInventoryItems();
                             break;
-                        case "Disconnected from WowServer":
-                            line = "merp";
+                        case "Disconnected from WowServer.":
+                            line = "exit";
                             break;
                         default:
                             line = "zoinks";
@@ -964,8 +995,7 @@ public class Store {
             catch (SocketException e) {
                 System.out.println("AdminClient has been disconnected from the server.");
             }
-            catch (IOException e)
-            {
+            catch (IOException e) {
                 e.printStackTrace();
                 System.out.println("Read the error logs.");
             }
@@ -978,22 +1008,46 @@ public class Store {
                         in.close();
                         clientSocket.close();
                     }
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
 
-} // end of Store class.
+    /**
+     * Send all the inventory item to Client in JSON format.
+     * + foreach loop
+     * + SalableProduct class
+     *
+     * @return JSON String
+     */
+    public static String sendInventoryItems()
+    {
+        int size = 0;
+        String json = "r";
+        for (SalableProduct product : products)
+        {
+            json += "{";
+            json += "\"type\": " + "\"" + product.type + "\"|";
+            json += "\"name\": " + "\"" + product.getName() + "\"|";
+            json += "\"description\": " + "\"" + product.getDescription() + "\"|";
+            json += "\"price\": " + product.getPrice() + "|";
+            json += "\"iLvl\": " + product.iLvl;
+            json += "}";
 
+            if (!(++size == products.size())) {
+                json += "@";
+            }
+            else json += "";
+        }
+        return json;
+    }
+}
 
 /*
-
 Command: U, will update the Store Inventory Management System with new Salable Products.
             The data payload will be a JSON string of Salable Products.
 
 Command: R, will return all of the Salable Products from the Store Inventory Management System in JSON format.
-
  */

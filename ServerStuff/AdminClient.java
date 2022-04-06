@@ -1,25 +1,64 @@
+//package app;
+
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
 
-public class AdminClient 
+/**
+ * author: Shazeb Suhail
+ * This AdminClient class must be run after running Store class.
+ *
+ */
+public class AdminClient
 {
+    // global variables
     static Scanner cin = new Scanner(System.in);
-    public static void main(String[] args0) throws IOException
+
+    /**
+     * This main method starts up our AdminClient which should only be compiled after we start our Store class.
+     * + Socket object
+     * + PrintWriter object
+     * + BufferedReader object
+     * + try-catch-finally blocks
+     * + .equalsIgnoreCase() method
+     *
+     * @param args statements
+     * @throws IOException thrown from the use of Socket objects
+     */
+    public static void main(String[] args) throws IOException
     {
         try (Socket socket = new Socket("localhost", 4445))
         {
-            System.out.println("\nConnection to WowServer was successful.\nYou are online!\n");
+            System.out.println("\nConnection to WowServer was successful.\nYou are online!");
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             String line = null;
             while (!"exit".equalsIgnoreCase(line))
             {
-                out.println(displayOptions());
+                // print menu options
+                String msg = displayOptions();
+
+                // send a message to server
+                out.println(msg);
                 out.flush();
-                System.out.printf("WowServer replied: \"%s\"\n\n", in.readLine());
+
+                // read-in the server's response
+                line = in.readLine();
+
+                // process the response
+                msg = processServerResponse(line);
+
+                // display the correct output response
+                if (msg.equalsIgnoreCase("r")) {
+                    System.out.printf("WowServer replied: \"%s\"\n", "All Inventory Items have been retrieved.");
+                }
+                else {
+                    System.out.printf("WowServer replied: \"%s\"\n", line);
+                }
             }
+
+            // close any open resources
             cin.close();
             out.close();
             in.close();
@@ -36,34 +75,83 @@ public class AdminClient
             e.printStackTrace();
             System.out.println("Read the error stack trace for more info.");
         }
+
+        // shut down message
+        System.out.print("AdminClient has shutdown.");
+        System.exit(999);
     }
+
+    /**
+     * This function displays the AdminClient menu options and returns a string message to send to the server.
+     * + .trim() method
+     * + switch block
+     *
+     * @return String Message to send to Server
+     */
     public static String displayOptions()
     {
-        System.out.printf("-- Main Menu -- \n1) %s \n2) %s \n3) %s \n> ",
-                    "Command U", "Command R", "Disconnect"
-                );
-        String userInput = cin.nextLine();
-        switch(userInput.trim())
+        // display menu options
+        System.out.printf("\n-- Main Menu -- \n1) %s \n2) %s \n3) %s \n> ",
+                "Command U", "Command R", "Disconnect"
+        );
+
+        // read and process the user's input
+        String userInput = cin.nextLine().trim();
+        switch(userInput)
         {
             case "1":
-                COMMAND_R();
-                return "Command U: Inventory has been Updated";
-            case "2":
                 COMMAND_U();
-                return "Command R: Viewing All Inventory Items";
+                return "Command U: Inventory Update was issued as a JSON payload.";
+            case "2":
+                return "Command R: Retrieving All Inventory Items as a JSON payload.";
             case "3":
                 Store.newline();
-                return "Disconnected from WowServer";
+                return "Disconnected from WowServer.";
             default:
+                Store.newline();
                 return userInput;
         }
     }
-    public static void COMMAND_R()
+
+    /**
+     * This function processes the String response received from the server.
+     * + .substring() method
+     * + switch block
+     *
+     * @param line server response
+     * @return flag identified with server response
+     */
+    public static String processServerResponse(String line)
     {
+        String flag = line.substring(0, 1);
+        switch(flag)
+        {
+            // if server response was a JSON payload
+            case "r":
+                System.out.println("Server response was detected to be a JSON payload.");
+                COMMAND_R(line.substring(1));
+                break;
+            // if some other server response was received
+            default:
+                break;
+        }
+        return flag;
+    }
+
+    /**
+     * This function sends new SalableProduct items to the sever as a JSON payload.
+     * + .trim() method
+     * + switch block
+     */
+    public static void COMMAND_U()
+    {
+        // display instructions to user
         System.out.println("How do you want to update the WowServer Inventory Items?");
         System.out.printf("1) %s \n2) %s \n> ",
                 "Manually Insert New SalableProduct",
                 "Insert From a File");
+
+        // process user's input
         switch(cin.nextLine().trim())
         {
             case "1":
@@ -77,9 +165,63 @@ public class AdminClient
                 break;
         } Store.newline();
     }
-    public static void COMMAND_U()
+
+    /**
+     * This function returns a JSON formatted list of all current Inventory Items.
+     * + String[] arrays
+     * + .split() method
+     *
+     * @param json String of Inventory Items
+     */
+    public static void COMMAND_R(String json)
     {
+        // display a message
         System.out.println("Here are all inventory items retrieved from WowServer:");
-        System.out.println("...none so far...\n");
+
+        int obj = 0;
+        System.out.println("[");
+
+        // parse the json String into objects
+        String[] objects = json.split("@");
+
+        // loop through JSON objects and print objects
+        for (String object : objects)
+        {
+            System.out.println("\t{");
+            System.out.println("\t\t\"id\": " + (obj+1) + ",");
+
+            // parse JSON objects into key-value pairs
+            String[] fields = object.split("[|{}]");
+
+            // loop through JSON object's key-value pairs
+            int key = 0;
+            for (String field : fields)
+            {
+                // code snip for parsing issue
+                if (field.trim() == "") {
+                    ++key;
+                    continue;
+                }
+
+                // print key-value pair
+                System.out.print("\t\t" + field);
+
+                // add a comma if more key-value pairs exist in this JSON object
+                if (!(++key == fields.length)) {
+                    System.out.println(",");
+                } else {
+                    System.out.println();
+                }
+            }
+
+            // add a comma if more JSON objects exist and have yet to be parsed
+            if (!(++obj == objects.length)) {
+                System.out.println("\t},");
+            }
+            else {
+                System.out.println("\t}");
+            }
+        }
+        System.out.println("]\n");
     }
 }
