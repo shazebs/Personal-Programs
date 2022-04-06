@@ -1,49 +1,86 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-// start of Server class.
-class Server
+public class Server 
 {
-    // properties
-    private ServerSocket serverSocket;
-    private Socket clientSocket;
-    private PrintWriter p_writer;
-    private BufferedReader b_reader;
-
-    public void start(int port) throws IOException
+    public static void main(String[] args) 
     {
-        System.out.println("Server Socket is open, searching for a client connection...");
-        // Open a server-side socket and listen for a client connection.
-        serverSocket = new ServerSocket(port);
-        clientSocket = serverSocket.accept();
-
-        // Display a message if a client socket connects to the server socket.
-        System.out.println("Received a new client socket on port: " + clientSocket.getLocalPort());
-
-        // Initialize our PrintWriter and BufferedReader objects since a connection has formed.
-        p_writer = new PrintWriter(clientSocket.getOutputStream(), true);
-        b_reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-
-        System.out.println("Server is online.\n");
-    }
-
-    public void cleanup() throws IOException {
+        ServerSocket server = null; 
         try {
-            p_writer.close();
-            b_reader.close();
-            clientSocket.close();
-            serverSocket.close();
-            System.out.println("Server resources have been cleaned up.");
+            server = new ServerSocket(4445);
+            server.setReuseAddress(true);
+
+            System.out.println("Waiting for a connection...");
+            while (true) {
+                Socket client = WowServer.accept();
+
+                System.out.println("New client connected: " + client.getInetAddress().getHostAddress());
+    
+                ClientThread clientSocket = new ClientThread(client);
+    
+                new Thread(clientSocket).start();
+            }
         }
-        catch (Exception error)
-        {
-            error.printStackTrace();
-            System.out.println("No resources were open that needed to be closed.");
+        catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Server could not be started.");
+        } 
+        finally {
+            if (server != null) {
+                try {
+                    server.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
+    public static class ClientThread implements Runnable
+    {
+        private final Socket clientSocket;
 
-} // end of Server class.
+        public ClientThread(Socket socket) {
+            this.clientSocket = socket;
+        }
+
+        public void run() {
+            PrintWriter out = null;
+            BufferedReader in = null;
+            try {
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+                String line;
+
+                while ((line = in.readLine()) != null)
+                {
+                    System.out.printf("Sent from AdminClient: \"%s\"\n", line);
+                    out.println(line);
+                }
+            }
+            catch (SocketException e) {
+                System.out.println("AdminClient has been disconnected from the server.");
+            }
+            catch (IOException e){
+                e.printStackTrace();
+                System.out.println("Read the error logs.");
+            }
+            finally {
+                try {
+                    if (out != null) {
+                        out.close();
+                    }
+                    if (in != null) {
+                        in.close();
+                        clientSocket.close();
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+} 

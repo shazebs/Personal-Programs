@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch main",
+            "request": "launch",
+            "mainClass": "main",
+            "projectName": "Personal-Programs_e1d750fe"
+        },
+        {
+            "type": "java",
+            "name": "Launch testClient",
+            "request": "launch",
+            "mainClass": "testClient",
+            "projectName": "Personal-Programs_e1d750fe"
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",

@@ -10,8 +10,7 @@ public class Threads implements Runnable
     Threads(String s) {threadName = s;}
 
     @Override
-    public void run()
-    {
+    public void run() {
         Timer();
     }
 
