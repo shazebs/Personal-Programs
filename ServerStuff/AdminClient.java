@@ -51,7 +51,7 @@ public class AdminClient
 
                 // display the correct output response
                 if (msg.equalsIgnoreCase("r")) {
-                    System.out.printf("WowServer replied: \"%s\"\n", "All Inventory Items have been retrieved.");
+                    System.out.printf("WowServer replied: \"%s\"\n", "All Inventory Items have been retrieved!");
                 }
                 else {
                     System.out.printf("WowServer replied: \"%s\"\n", line);
@@ -73,7 +73,7 @@ public class AdminClient
         }
         catch (Exception e) {
             e.printStackTrace();
-            System.out.println("Read the error stack trace for more info.");
+            System.out.println("\nRead the error stack trace for more info.");
         }
 
         // shut down message
@@ -100,8 +100,8 @@ public class AdminClient
         switch(userInput)
         {
             case "1":
-                COMMAND_U();
-                return "Command U: Inventory Update was issued as a JSON payload.";
+                String json = COMMAND_U();
+                return json;
             case "2":
                 return "Command R: Retrieving All Inventory Items as a JSON payload.";
             case "3":
@@ -143,7 +143,7 @@ public class AdminClient
      * + .trim() method
      * + switch block
      */
-    public static void COMMAND_U()
+    public static String COMMAND_U()
     {
         // display instructions to user
         System.out.println("How do you want to update the WowServer Inventory Items?");
@@ -154,16 +154,72 @@ public class AdminClient
         // process user's input
         switch(cin.nextLine().trim())
         {
+            // if user chooses to manually insert new SalableProduct items.
             case "1":
-                System.out.println("You chose manual");
+                // prompt user the different type of SalableProduct classes available to be created.
+                System.out.println("What type of product do you want to create?");
+                System.out.printf("1) %s \n2) %s \n3) %s \n4) %s \n5) %s \n6) %s \n> ",
+                        "Sword", "Bow", "Shield", "Helmet", "Potion", "Food");
+                String type = cin.nextLine().trim();
+
+                // begin product creation
+                SalableProduct product = null;
+                switch(type)
+                {
+                    case "1":
+                        System.out.println("You chose Sword.");
+                        product = Store.createInventoryItem(new Sword(), "Sword", true);
+                        break;
+                    case "2":
+                        System.out.println("You chose Bow.");
+                        product = Store.createInventoryItem(new Bow(), "Bow", true);
+                        break;
+                    case "3":
+                        System.out.println("You chose Shield.");
+                        product = Store.createInventoryItem(new Shield(), "Shield", true);
+                        break;
+                    case "4":
+                        System.out.println("You chose Helmet.");
+                        product = Store.createInventoryItem(new Helmet(), "Helmet", true );
+                        break;
+                    case "5":
+                        System.out.println("You chose Potion.");
+                        product = Store.createInventoryItem(new Potion(), "Potion", true);
+                        break;
+                    case "6":
+                        System.out.println("You chose Food");
+                        product = Store.createInventoryItem(new Food(), "Food", true);
+                        break;
+                    default:
+                        System.out.println("You entered something invalid so the product creation process terminated.\nTry again.");
+                        break;
+                }
+                // format the product into JSON
+                if (product != null)
+                {
+                    String json = "u{";
+                    json += "\"type\":\"" + product.type + "\"|";
+                    json += "\"name\":\"" + product.getName() + "\"|";
+                    json += "\"description\":\"" + product.getDescription() + "\"|";
+                    json += "\"price\":" + product.getPrice() + "|";
+                    json += "\"ilvl\":" + product.iLvl + "";
+                    json += "}";
+                    // System.out.println(json);
+                    return json;
+                }
                 break;
+
+            // if user chooses to automatically insert new SalableProduct items via JSON format text file.
             case "2":
                 System.out.println("You chose automatic");
                 break;
+
             default:
                 System.out.println("You chose something beyond the scope of this project");
                 break;
-        } Store.newline();
+        }
+        Store.newline();
+        return "bruh";
     }
 
     /**

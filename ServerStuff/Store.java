@@ -406,6 +406,7 @@ public class Store
 
     /**
      * This function deals with managing inventory operations.
+     * + try-catch-
      *
      */
     public static void manageInventory()
@@ -419,40 +420,36 @@ public class Store
             System.out.println("Inventory is empty. You cannot manage this list right now.");
         else
             System.out.println("Inventory has " + inventoryItems + " items.");
-        printInventory();
 
+        printInventory();
 
         try
         {
-            // ask user if he/she would like to sort the list
+            // ask user would like to sort the list
             System.out.println("Would you like to SORT the list (y/n): ");
             userChoice = in.next().trim().charAt(0);
-            if (userChoice == 'y')
-            {
+
+            // if user says yes, process the sort
+            if (userChoice == 'y') {
                 System.out.println("-- Pick a Sort Filter --\n"
                         + "a) Ascending by Name\n"
                         + "b) Ascending by Price\n"
                         + "c) Descending by Name\n"
                         + "d) Descending by Price");
                 userChoice = in.next().trim().charAt(0);
-                switch(userChoice)
-                {
+                switch(userChoice) {
                     case 'a':
                         sortBy(1, "name", products, "inventory");
                         break;
-
                     case 'b':
                         sortBy(1, "price", products, "inventory");
                         break;
-
                     case 'c':
                         sortBy(-1, "name", products, "inventory");
                         break;
-
                     case 'd':
                         sortBy(-1, "price", products, "inventory");
                         break;
-
                     default:
                         System.out.println("You entered something invalid, no sorting will happen.");
                         break;
@@ -469,16 +466,12 @@ public class Store
             userChoice = in.next().charAt(0);
 
             // switch to the correct inventory item process
-            switch (userChoice)
-            {
-
+            switch (userChoice) {
                 // if user wants to add an item to the inventory, execute these instructions
                 case 'a':
                     System.out.println("You chose to add an item to the inventory!\n");
-
                     // try adding a new inventory item
-                    try
-                    {
+                    try {
                         System.out.println("What type of inventory item are you creating:\n"
                                 + "(a) Sword\n"
                                 + "(b) Bow\n"
@@ -488,31 +481,28 @@ public class Store
                                 + "(f) Food\n"
                                 + "(g) Cancel\n");
                         userChoice = in.next().charAt(0);
-
-                        switch (userChoice)
-                        {
+                        switch (userChoice) {
                             case 'a':
-                                products.add(createInventoryItem(new Sword(), "Sword"));
+                                products.add(createInventoryItem(new Sword(), "Sword", false));
                                 break;
                             case 'b':
-                                products.add(createInventoryItem(new Bow(), "Bow"));
+                                products.add(createInventoryItem(new Bow(), "Bow", false));
                                 break;
                             case 'c':
-                                products.add(createInventoryItem(new Shield(), "Shield"));
+                                products.add(createInventoryItem(new Shield(), "Shield", false));
                                 break;
                             case 'd':
-                                products.add(createInventoryItem(new Helmet(), "Helmet"));
+                                products.add(createInventoryItem(new Helmet(), "Helmet", false));
                                 break;
                             case 'e':
-                                products.add(createInventoryItem(new Potion(), "Potion"));
+                                products.add(createInventoryItem(new Potion(), "Potion", false));
                                 break;
                             case 'f':
-                                products.add(createInventoryItem(new Food(), "Food"));
+                                products.add(createInventoryItem(new Food(), "Food", false));
                                 break;
                             case 'g':
                                 System.out.println("You decided not to add an inventory item.");
                                 break;
-
                             default:
                                 System.out.println("You entered something invalid.");
                                 break;
@@ -523,24 +513,18 @@ public class Store
                     }
                     break;
 
-
                 // if user wants to remove an item from the inventory list, execute these instructions
                 case 'b':
                     // if list is empty, print a message to the user
-                    if (inventoryItems == 0)
-                    {
+                    if (inventoryItems == 0) {
                         System.out.println("Inventory is empty, you cannot remove anyting.");
                     }
-                    else
-                    {
+                    else {
                         System.out.println("You chose to remove an item from inventory.");
-
                         // try removing items from the inventory
-                        try
-                        {
+                        try {
                             // while cart is not empty
-                            while(products.size() != 0)
-                            {
+                            while(products.size() != 0) {
                                 // get input from the user on which item # to remove from inventory
                                 System.out.println("Enter the Item # you want to remove: ");
                                 int removeItem = in.nextInt();
@@ -574,7 +558,6 @@ public class Store
                     }
                     break;
 
-
                 // if user chooses to empty the entire inventory list, execute these instructions
                 case 'c':
                     if (products.size() == 0)
@@ -585,20 +568,16 @@ public class Store
                     }
                     break;
 
-
                 case 'd':
                     System.out.println("You chose to do nothing.");
                     break;
-
 
                 default:
                     System.out.println("You entered something invalid, back to main menu you go.");
                     break;
             }
-
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.err.println("You entered something invalid, back to main menu you go.");
         }
         // fix any scanner input errors
@@ -608,39 +587,68 @@ public class Store
     /**
      * This function will assist in getting user input for new inventory item creation.
      *
-     * @param SalableProduct object
-     * @param class type
+     * @param //SalableProduct object
+     * @param //class type
      * @return SalableProduct
      */
-    public static SalableProduct createInventoryItem(SalableProduct product, String type)
+    public static SalableProduct createInventoryItem(SalableProduct product, String type, boolean sentFromAdmin)
     {
         // fix any scanner input errors
-        in.nextLine();
+        if (!sentFromAdmin) in.nextLine();
 
-        // get a name property
+        // set a name property
         System.out.println("Enter a name for this item:");
         product.setName(in.nextLine().trim());
         while (product.getName() == "") {
-            System.out.println("Error, name cannot be left blank. Enter a name for this " + type + " item:");
+            System.out.println("Error, name cannot be left blank.\nEnter a name for this " + type + " item:");
             product.setName(in.nextLine().trim());
         }
 
-        // get a description property
+        // set description property
         System.out.println("Enter a description for this item:");
         product.setDescription(in.nextLine().trim());
         while (product.getDescription() == "") {
-            System.out.println("Error, description cannot be left blank. Enter a description for this " + type + " item:");
+            System.out.println("Error, description cannot be left blank.\nEnter a description for this " + type + " item:");
             product.setDescription(in.nextLine().trim());
         }
 
-        // get a price property
-        System.out.println("Enter a price for this item:");
-        product.setPrice(in.nextDouble());
+        // set price property
+        boolean bl = true;
+        do {
+            try {
+                // set price property
+                System.out.println("Enter a price for this item:");
+                double temp = in.nextDouble();
+                product.setPrice(temp);
+                bl = false;
+                break;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error, you need to enter a number.");
+                in.next();
+            }
+        } while (bl);
 
-        // get an item level property
-        System.out.println("Enter an iLvl for this item:");
-        product.setItemLevel(in.nextInt());
+        // set ilvl property
+        bl = true;
+        do {
+            try {
+                // set item level property
+                System.out.println("Enter an iLvl for this item:");
+                int temp = in.nextInt();
+                product.setItemLevel(temp);
+                bl = false;
+                break;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error, you need to enter a number.");
+                in.next();
+            }
+        } while (bl);
+
+        // set type
         product.setType(type);
+        newline();
 
         return product;
     }
@@ -722,7 +730,6 @@ public class Store
         product.setDescription(tokens[2]);
         product.setPrice(Double.parseDouble(tokens[3]));
         product.setItemLevel(Integer.parseInt(tokens[4]));
-
         // add object to inventory list
         products.add(product);
     }
@@ -973,7 +980,16 @@ public class Store
                 String line;
                 while ((line = in.readLine()) != null)
                 {
-                    System.out.printf("\nAdminClient says: \"%s\"\n", line);
+                    newline();
+                    String key = line.substring(0,1);
+
+                    // a JSON payload was received as a result of calling Command U.
+                    if (key.equalsIgnoreCase("u")) {
+                        receiveInventoryItems(line.substring(1));
+                        line = "Command U: Inventory Update was issued as a JSON payload.";
+                    }
+
+                    System.out.printf("AdminClient says: \"%s\"\n", line);
                     switch(line)
                     {
                         case "Command U: Inventory Update was issued as a JSON payload.":
@@ -1033,15 +1049,33 @@ public class Store
             json += "\"name\": " + "\"" + product.getName() + "\"|";
             json += "\"description\": " + "\"" + product.getDescription() + "\"|";
             json += "\"price\": " + product.getPrice() + "|";
-            json += "\"iLvl\": " + product.iLvl;
+            json += "\"ilvl\": " + product.iLvl;
             json += "}";
 
-            if (!(++size == products.size())) {
-                json += "@";
-            }
+            if (!(++size == products.size())) json += "@";
             else json += "";
         }
         return json;
+    }
+
+    /**
+     * This function parses the JSON payload received from AdminClient.
+     * + String[] arrays
+     * + .trim() method
+     * + .split() method
+     *
+     * @param json JSON payload in String format
+     */
+    public static void receiveInventoryItems(String json)
+    {
+        String[] tokens = json.trim().split("[{\":|}]+");
+        String[] properties = new String[5];
+        properties[0] = tokens[2];
+        properties[1] = tokens[4];
+        properties[2] = tokens[6];
+        properties[3] = tokens[8];
+        properties[4] = tokens[10];
+        createNewItem(properties, new SalableProduct());
     }
 }
 
