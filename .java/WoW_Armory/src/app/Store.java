@@ -1,9 +1,14 @@
-//package app;
+package app;
 
 import java.io.*;
 import java.util.*;
 import java.net.*;
 
+/**
+ * author: Shazeb Suhail
+ * Store class must be run before AdminClient.
+ *
+ */
 public class Store
 {
     // global variables
@@ -14,7 +19,8 @@ public class Store
     static Scanner in = new Scanner(System.in);
 
     /**
-     * author: Shazeb Suhail
+     * Our main method to begin our WoW Inventory Store and WowServer.
+     *
      * @param args (program statements)
      */
     public static void main(String[] args)
@@ -39,11 +45,11 @@ public class Store
             try {
                 // for Scanner input errors
                 if (in.hasNext()) in.reset();
+
                 // read a menu input from user
                 userChoice = in.next();
                 newline();
-                switch(userChoice)
-                {
+                switch(userChoice) {
                     case "1":
                         viewInventory();
                         break;
@@ -65,7 +71,7 @@ public class Store
                         break;
                 }
             }
-            catch (Exception e){
+            catch (Exception e) {
                 System.out.println("You entered something invalid, try again.");
                 in.next();
             }
@@ -77,6 +83,7 @@ public class Store
      *
      */
     public static void newline() {System.out.println();}
+
     /**
      * This function passes an integer number determining how many newlines to display in the console output.
      *
@@ -114,6 +121,7 @@ public class Store
 
     /**
      * This function prints all the items in the shopping cart.
+     *
      */
     public static void printShoppingCart()
     {
@@ -226,9 +234,10 @@ public class Store
         in.nextLine();
     }
 
-
     /**
      * This function deals with the shopping cart operations.
+     * + switch blocks
+     * + try-catch blocks
      *
      */
     public static void viewCart()
@@ -423,8 +432,7 @@ public class Store
 
         printInventory();
 
-        try
-        {
+        try {
             // ask user would like to sort the list
             System.out.println("Would you like to SORT the list (y/n): ");
             userChoice = in.next().trim().charAt(0);
@@ -655,6 +663,9 @@ public class Store
 
     /**
      * Pass a name for a text file and parse its contents to add a new inventory item to the list.
+     * + BufferedReader object
+     * + switch block
+     * + try-catch blocks
      *
      * @param inputFile
      * @throws FileNotFoundException
@@ -662,7 +673,6 @@ public class Store
      */
     public static void initializeInventory(String inputFile) throws FileNotFoundException, IOException
     {
-
         // Input and Output File Read declaration
         BufferedReader in = null;
 
@@ -671,14 +681,10 @@ public class Store
 
         // to hold line of file
         String line;
-
-
-        while ((line = in.readLine()) != null)
-        {
+        while ((line = in.readLine()) != null) {
             String[] tokens = line.split("\\|");
 
-            switch(tokens[0])
-            {
+            switch(tokens[0]) {
                 case "Sword":
                     Sword newSword = new Sword();
                     createNewItem(tokens, newSword);
@@ -705,15 +711,12 @@ public class Store
                     break;
             }
         }
-
         // clean up files
         try {
-            if (in != null)
-                in.close();
+            if (in != null) in.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -816,8 +819,7 @@ public class Store
 
                     // insert descending inventory items into a temporary list
                     for (int i=0; i<list.size(); i++) {
-                        for (SalableProduct product : list)
-                        {
+                        for (SalableProduct product : list) {
                             if (product.getPrice() == prices.get(i)) {
                                 placeholders.add(product);
                                 break;
@@ -922,8 +924,7 @@ public class Store
             new Thread(clientSocket).start();
             //}
         }
-        catch (IOException e)
-        {
+        catch (IOException e) {
             e.printStackTrace();
         }
         finally {

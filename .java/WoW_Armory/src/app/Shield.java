@@ -1,13 +1,9 @@
 package app;
 
-//weapon
+// armor
 public class Shield extends SalableProduct
 {
-	 // properties (inherited) 
-	
-	 // constructor(s)
-	 public Shield() { super(); }
-	
-	 // class methods
-	
+	public Shield() {
+		super();
+	}
 }

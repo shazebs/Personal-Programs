@@ -1,4 +1,4 @@
-//package app;
+package app;
 
 import java.io.*;
 import java.net.*;
@@ -146,16 +146,16 @@ public class AdminClient
     public static String COMMAND_U()
     {
         // display instructions to user
-        System.out.println("How do you want to update the WowServer Inventory Items?");
+        /*System.out.println("How do you want to update the WowServer Inventory Items?");
         System.out.printf("1) %s \n2) %s \n> ",
                 "Manually Insert New SalableProduct",
-                "Insert From a File");
+                "Insert From a File"); */
 
         // process user's input
-        switch(cin.nextLine().trim())
+        /*switch(cin.nextLine().trim())
         {
             // if user chooses to manually insert new SalableProduct items.
-            case "1":
+            case "1":*/
                 // prompt user the different type of SalableProduct classes available to be created.
                 System.out.println("What type of product do you want to create?");
                 System.out.printf("1) %s \n2) %s \n3) %s \n4) %s \n5) %s \n6) %s \n> ",
@@ -207,17 +207,17 @@ public class AdminClient
                     // System.out.println(json);
                     return json;
                 }
-                break;
+                //break;
 
             // if user chooses to automatically insert new SalableProduct items via JSON format text file.
-            case "2":
+            /* case "2":
                 System.out.println("You chose automatic");
-                break;
+                break; */
 
-            default:
+            /*default:
                 System.out.println("You chose something beyond the scope of this project");
-                break;
-        }
+                break;*/
+        //}
         Store.newline();
         return "bruh";
     }

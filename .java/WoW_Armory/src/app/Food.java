@@ -1,11 +1,9 @@
 package app;
 
-/**
- * 
- * @author shazebs
- *
- */
+// health
 public class Food extends SalableProduct
 {
-	public Food() {super();}
+	public Food() {
+		super();
+	}
 }

@@ -1,16 +1,22 @@
 package app;
 
-// super-class
+/**
+ * author: Shazeb Suhail
+ * This SalableProduct class is the blueprint of all inventory item objects.
+ */
 public class SalableProduct
 {
-    // properties
+    // class properties
     private String name;
     private String description;
     private double price;
     int iLvl;
-    String type; 
+    String type;
 
-    // constructor(s)
+    /**
+     * Default Constructor
+     *
+     */
     public SalableProduct(){
         name = "";
         description = "";
@@ -18,6 +24,11 @@ public class SalableProduct
         iLvl = 0;
         type = ""; 
     }
+
+    /**
+     * Non-Default Constructor
+     *
+     */
     public SalableProduct(String a, String b, double c, int d, String e)
     {
         name = a;
@@ -27,11 +38,9 @@ public class SalableProduct
         type = e; 
     }
 
-    // class methods
-
     /**
-     * 
-     * @param Setter Methods
+     * Setter Methods
+     *
      */
     public void setName(String x) { this.name = x; }
     public void setDescription(String x) { this.description = x; }
@@ -40,8 +49,8 @@ public class SalableProduct
     public void setType(String x) { this.type = x; }
 
     /**
-     * 
-     * @return Getter methods 
+     * Getter methods
+     *
      */
     public String getName() { return name; }
     public String getDescription() { return description; }
@@ -49,7 +58,11 @@ public class SalableProduct
     public int getItemLevel() { return iLvl; }
     public String getType() { return type; }
 
-    // toString
+    /**
+     * Overrided ToString method
+     *
+     * @return String
+     */
     @Override
     public String toString()
     {

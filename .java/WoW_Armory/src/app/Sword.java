@@ -1,12 +1,9 @@
 package app;
 
-/**
- * 
- * @author shazebs
- *
- */
+// weapon
 public class Sword extends SalableProduct
 {
-	public Sword() { super(); }
-	
+	public Sword() {
+		super();
+	}
 }
