@@ -15,7 +15,8 @@ public class ServerThread implements Runnable
     @Override
     public void run()
     {
-        Server server = new Server();
+        Timer(5);
+        /*Server server = new Server();
         try
         {
             // Starting the server.
@@ -26,9 +27,8 @@ public class ServerThread implements Runnable
         }
         catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
-
 
     // Timer function.
     public void Timer(int t){
@@ -36,37 +36,31 @@ public class ServerThread implements Runnable
         for (int i = t ; t >= i ; i--)
         {
             System.out.println($thread + " " + i);
+
             // Putting the thread to sleep example.
             try {
                 Thread.sleep(1000);
             }
-            catch (InterruptedException e){
+            catch (InterruptedException e)
+            {
+
             }
-            if (i == 0) {
+            if (i == 0)
+            {
                 System.out.println("Timer ended.");
                 for (var j = 0; j < 1000000; j++)
                 {
                     System.out.println($thread + " timer started " + j + " seconds ago.");
+
                     // Putting the thread to sleep example.
                     try {
                         Thread.sleep(1000);
                     }
-                    catch (InterruptedException e){
+                    catch (InterruptedException e) {
+
                     }
                 }
             }
         }
     }
-
-
-} // end of ServerThread class.
-
-
-/*
-Additional Resources:
-
-https://www.youtube.com/watch?v=r_MbozD32eo (Java Thread Youtube Tutorial)
-
-
-
- */
+}
